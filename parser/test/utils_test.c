@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 20:55:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/10 15:59:23 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/13 22:17:05 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "test.h"
+#include "../parser.h"
 
 void	print_vector(char **vector)
 {

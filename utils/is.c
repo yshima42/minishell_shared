@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   is.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 21:57:47 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/09 17:26:56 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/13 20:26:48 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static t_dict	*init_dict(void)
+bool	is_single_proc(t_proc *proc)
 {
-	t_dict	*elem;
-
-	elem = xmalloc(sizeof(t_dict));
-	elem->prev = elem;
-	elem->next = elem;
-	return (elem);
+	return (!proc->next);
 }
 
-t_info	*shell_init(void)
+bool	is_redirect(t_proc *proc)
 {
-	t_info	*info;
-	extern char	**environ;
-	
-	info = xmalloc(sizeof(t_info));
-	info->env = init_dict();
-	add_envs(environ, info);
+	return (proc->io_info);
+}
 
-	return (info);
+bool	is_first_proc(t_proc *proc)
+{
+	return (proc->id == 0);
+}
+
+bool	is_last_proc(t_proc *proc)
+{
+	return (!proc->next);
 }

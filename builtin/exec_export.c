@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   exec_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 21:57:47 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/13 22:03:13 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static t_dict	*init_dict(void)
+int	exec_export(char **args, t_info *info)
 {
-	t_dict	*elem;
-
-	elem = xmalloc(sizeof(t_dict));
-	elem->prev = elem;
-	elem->next = elem;
-	return (elem);
-}
-
-t_info	*shell_init(void)
-{
-	t_info	*info;
-	extern char	**environ;
-	
-	info = xmalloc(sizeof(t_info));
-	info->env = init_dict();
-	add_envs(environ, info);
-
-	return (info);
+	//=だけの時などのエラー処理が必要、lexerとかで判断するか検討
+	//when only "=" comes, what we do?? consider to judge in lexer or not.
+	add_envs(&args[1], info);
+	return (1);
 }

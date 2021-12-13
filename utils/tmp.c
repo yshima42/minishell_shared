@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   tmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 21:57:47 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/11/26 21:29:12 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/13 20:27:54 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static t_dict	*init_dict(void)
+//delete this later
+void	test_args_check(char **args)
 {
-	t_dict	*elem;
+	int	i;
 
-	elem = xmalloc(sizeof(t_dict));
-	elem->prev = elem;
-	elem->next = elem;
-	return (elem);
+	i = 0;
+	while (args[i])
+	{
+		printf("%s\n", args[i]);
+		i++;
+	}
 }
 
-t_info	*shell_init(void)
+void	print_all_env(t_dict *env)
 {
-	t_info	*info;
-	extern char	**environ;
-	
-	info = xmalloc(sizeof(t_info));
-	info->env = init_dict();
-	add_envs(environ, info);
+	t_dict	*t_env;
 
-	return (info);
+	t_env = env;
+	while (t_env->next)
+	{
+		printf("key: %s, value: %s\n", t_env->key, t_env->value);
+		t_env = t_env->next;
+	}
 }

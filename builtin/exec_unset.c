@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   exec_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 21:57:47 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/02 11:18:08 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/13 20:29:54 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static t_dict	*init_dict(void)
-{
-	t_dict	*elem;
+int	exec_unset(char **args, t_info *info)
+{	
+	size_t	i;
 
-	elem = xmalloc(sizeof(t_dict));
-	elem->prev = elem;
-	elem->next = elem;
-	return (elem);
-}
-
-t_info	*shell_init(void)
-{
-	t_info	*info;
-	extern char	**environ;
-	
-	info = xmalloc(sizeof(t_info));
-	info->env = init_dict();
-	add_envs(environ, info);
-
-	return (info);
+	if (!args[1])
+		return (1);
+	i = 1;
+	while (args[i])
+	{
+		if (ft_strchr(args[i], '='))
+			printf("'%s': not a valid identifier\n", args[i]);//need to fix how to print error
+		i++;
+	}
+	del_envs(&args[1], info);
+	return (1); 
 }

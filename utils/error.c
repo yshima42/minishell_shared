@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 21:57:47 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/02 23:00:33 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/13 20:28:00 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-static t_dict	*init_dict(void)
+void	cmd_err(char **cmd)
 {
-	t_dict	*elem;
-
-	elem = xmalloc(sizeof(t_dict));
-	elem->prev = elem;
-	elem->next = elem;
-	return (elem);
-}
-
-t_info	*shell_init(void)
-{
-	t_info	*info;
-	extern char	**environ;
-	
-	info = xmalloc(sizeof(t_info));
-	info->env = init_dict();
-	add_envs(environ, info);
-
-	return (info);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd[0], STDERR_FILENO);
+	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	exit(127);
 }
