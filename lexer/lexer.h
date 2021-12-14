@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 15:11:49 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 10:28:15 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,6 @@ bool	is_operator(char c);
 bool	is_2chr_operator(const char *str);
 bool	is_quote(char c);
 bool	is_end(char c);
-char	*ft_xstrdup(const char *s1);
-char	*ft_strndup(const char *s1, size_t n);
-void	*xmalloc(size_t size);
 t_token	*tkn_lstnew(char *str);
 t_token	*tkn_lstlast(t_token *lst);
 void	tkn_lstadd_back(t_token **lst, t_token *new);
