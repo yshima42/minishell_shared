@@ -3,6 +3,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c\
+			  parse_line.c\
 			  to_proclist.c\
 			  remove_quote.c\
 			  parse_ctype.c\
