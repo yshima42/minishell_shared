@@ -13,11 +13,12 @@ LEXER_PATH		=	./lexer/
 MAIN			=	main.c
 SRCS_FILES    	= 	exec/loop_shell.c exec/exec_shell.c utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c env/shell_init.c \
 					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c utils/error.c utils/is.c
-PARSER_FILES	=	to_proclist.c\
+PARSER_FILES	=	parse_line.c\
+					to_proclist.c\
 					remove_quote.c\
-					parse_ctype.c\
 					proc_lst.c\
 					proc_lstdel.c\
+					proc_ctype.c\
 					io_lst.c\
 					io_lstdel.c\
 					set_procinfo.c\
