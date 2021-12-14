@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 10:45:56 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:56:22 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "test_parser.h"
 
 void	test_init_procinfo(char *line, char *tstmsg)
 {

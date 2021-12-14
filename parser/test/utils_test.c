@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 20:55:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/13 22:17:05 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:56:23 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "test_parser.h"
 #include "../parser.h"
 
 void	print_vector(char **vector)

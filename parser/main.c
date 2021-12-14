@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:57:42 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 12:38:18 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:57:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test/test.h"
+#include "test/test_parser.h"
 
 #define TEST_NO 10
 
