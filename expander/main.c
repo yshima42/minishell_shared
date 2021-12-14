@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:57:42 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/13 01:12:59 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:42:02 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	detect_leak(void)
 {
 	int	status;
 
-	status = system("leaks -q expander > /dev/null");
+	// status = system("leaks -q expander > /dev/null");
+	status = system("leaks -q expander");
 	if (status)
 		printf(RED"#####Leaks#####\n"RESET);
 }

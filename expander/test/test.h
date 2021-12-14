@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:28:48 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/13 00:27:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:34:35 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TEST_H
 
 # include "../expander.h"
-# include "../lexer/test/test.h"
+# include "../lexer/test/test_lexer.h"
 
 void	test_search_prefix(char *word, char *tstmsg);
 void	test_search_prefixs(void);

@@ -15,11 +15,12 @@ LIB_LEXER	= liblexer.a
 L_SRC		= tkn_lst.c\
 			  tkn_lstdel.c\
 			  tkn_strlen.c\
-			  utils.c\
 			  lex_ctype.c\
 			  to_token.c\
-			  test/test_lexer.c\
-			  test/test_utils.c
+			  test/test_to_token.c\
+			  test/test_utils.c\
+			  test/test_operator.c\
+			  test/test_quote.c
 L_SRCDIR	= ../lexer
 L_SRCS		= $(addprefix ${L_SRCDIR}/,${L_SRC})
 L_OBJS		= $(L_SRCS:.c=.o)

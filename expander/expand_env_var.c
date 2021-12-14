@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/13 01:08:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:52:36 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*search_prefix(char *word)
 	while (*word != '\0')
 	{
 		if (*word == '$' && quote != SINGLE && *(word + 1) != '\0')
-			return ((char *)word);
+			return (word);
 		if (quote == NONE)
 		{
 			check_quote_begin(&quote, *word);
@@ -86,6 +86,9 @@ char	*expand_var(char *word, t_info *info)
 	expanded = NULL;
 	tmp = NULL;
 	whead = word;
+	prefix = search_prefix(word);
+	if (prefix == NULL)
+		return (word);
 	while (*word != '\0')
 	{
 		prefix = search_prefix(word);
@@ -97,9 +100,11 @@ char	*expand_var(char *word, t_info *info)
 			return (tmp2);
 		}
 		tmp = append_nonvar(tmp, word, prefix - word);
+		printf("[tmp]%s\n", tmp);
 		key_len = ft_strclen_array((prefix + 1), "\"$");
 		value = fetch_value(prefix, key_len, info);
 		tmp = append_var(tmp, value);
+		printf("[tmp2]%s\n", tmp);
 		word = prefix + key_len + 1;
 	}
 	free(whead);
