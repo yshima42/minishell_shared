@@ -6,9 +6,9 @@ SRCS		= main.c\
 			  parse_line.c\
 			  to_proclist.c\
 			  remove_quote.c\
-			  parse_ctype.c\
 			  proc_lst.c\
 			  proc_lstdel.c\
+			  proc_ctype.c\
 			  io_lst.c\
 			  io_lstdel.c\
 			  set_procinfo.c\
