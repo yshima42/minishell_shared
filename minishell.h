@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 20:47:39 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:03:10 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef enum e_stdfd
 typedef struct	s_info
 {
 	t_dict	*env;
-	char	**environ;
+	int		exit_status;
 	int		stdfd[STDFD_NUM];
 }	t_info;
 
@@ -131,7 +131,7 @@ void	cmd_err(char **cmd);
 //loop_shell.c
 void	loop_shell(t_info *info);
 char	**shell_split_line(char *line);
-int	shell_launch(t_proc *proc, t_info *info);
+bool	launch_shell(t_proc *proc, t_info *info);
 
 //bool.c
 bool	is_single_proc(t_proc *proc);

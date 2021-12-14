@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 22:02:22 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 11:49:43 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exec_cd(char **args, t_info *info)
 		if (chdir(args[1]) != 0)
 			perror("cd");
 	}
-	return (1);
+	return (0);
 }
 
 int	exec_pwd(void)
@@ -34,7 +34,7 @@ int	exec_pwd(void)
 	ft_memset(pathname, '\0', PATHNAME_SIZE);
 	getcwd(pathname, PATHNAME_SIZE);
 	printf("%s\n", pathname);
-	return (1);
+	return (0);
 }
 
 void	redirect_reset(t_info *info)
@@ -60,7 +60,7 @@ int	exec_env(t_proc *proc, t_info *info)
 		t_env = t_env->next;
 	}
 	//need pipe unset because ecec_env is parent 
-	return (1);
+	return (0);
 }
 
 bool	is_builtin(char **args)//feel like there is a better way to do this
@@ -90,7 +90,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	if (is_redirect(proc))
 		redirect_pipe(proc->io_info, info);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
-		ret = 0;
+		ret = 1;
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
 		ret = exec_cd(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "export") == 0)

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 20:49:33 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:39:34 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,15 @@
 void	loop_shell(t_info *info)
 {
 	char	*line;
-	int		status;
+	bool	exit_flag;
 	t_proc	*proc;
 
-	status = 1;
-	while (true)
+	exit_flag = 0;
+	while (!exit_flag)
 	{
-		if (!status)
-			break ;
-		#include <stdio.h>
 		line = readline("minishell > ");
-		status = parse_line(&proc, line);//change later
-		status = exec_shell(proc, info);
+		info->exit_status = parse_line(&proc, line);//change later
+		exit_flag = launch_shell(proc, info);
 		free(line);
 		free(proc);//need change
 	}

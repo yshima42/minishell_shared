@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:31:58 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 22:12:07 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:48:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 t_proc	*test_set_pipe(char *line, t_info *info)
 {
-	t_proc	*procs;
-	int status;
+	t_proc	*proc;
+	int exit_flag;
 
 	printf("\x1b[36m%s\x1b[39m\n", line);
-	status = parse_line(&procs, line);//change later
-	shell_launch(procs, info);
+	info->exit_status = parse_line(&proc, line);//change later
+	exit_flag = launch_shell(proc, info);
 	printf("\n");
-	return (procs);
+	return (proc);
 }
 
 void	test_pipe(t_info *info)
 {
-	test_set_pipe("ls  -l | wc -l", info);
+	test_set_pipe("echo aaa | cat | cat", info);
+	/* test_set_pipe("ls  -l | wc -l", info);
 	test_set_pipe("ls  -l", info);
 	test_set_pipe("ls  -l | cat main.c", info);
 	test_set_pipe("ls  -l | grep Dec | wc -l", info);
@@ -61,7 +62,7 @@ void	test_pipe(t_info *info)
 
 	//ERROR case (need to fix) *commenting out for the case which stops the shell
 	//no such file or directory
-	test_set_pipe("ls ", info);
+	test_set_pipe("ls ", info); */
 
 	//need to type
 	//test_set_pipe("ls -l | cat << he | cat", info);

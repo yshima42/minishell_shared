@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 21:57:26 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 14:37:19 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	add_envs(char **envs, t_info *info)
 {
@@ -28,6 +28,7 @@ void	add_envs(char **envs, t_info *info)
 		dict_addback(info->env, dict_new(key, value));
 		i++;
 	}
+	//printf("%s\n", info->env->key);
 }
 
 void	del_envs(char **envs, t_info *info)

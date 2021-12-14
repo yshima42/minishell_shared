@@ -265,7 +265,7 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 {
 	//(void)info;//will use later maybe..
-	save_stdfd(info);
+
 	if (!is_first_proc(proc))
 		xdup2(pipes[proc->id - 1][0], STDIN_FILENO);
 	if (!is_last_proc(proc))
@@ -276,7 +276,7 @@ int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 		redirect_pipe(proc->io_info, info);
 	if (ft_exec(proc->cmd, info) == -1)
 		xperror("child");
-	return (1/* status */);
+	return (0/* status */);
 }
 
 void	pids_wait(pid_t pids[], int num_pids, int status)
@@ -314,7 +314,7 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 		proc_p = proc_p->next;
 	}
 	pids_wait(pids, proc_num(proc), status);
-	return (1);
+	return (0);
 }
 
 int	exec_single_proc(t_proc *proc, t_info *info)
@@ -324,6 +324,9 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 	pid_t	wpid;
 
 	(void)info; // will use later
+
+	if (is_builtin(proc->cmd))
+		return (exec_builtin(proc, info));	
 	pid = xfork();
 	if (pid == 0)
 	{
@@ -333,29 +336,19 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 			xperror("child");
 	}
 	wpid = waitpid(pid, &status, WUNTRACED);
-	return (1); /* WEXITSTATUS(status) */
+	return (0); /* WEXITSTATUS(status) */
 }
 
-int	shell_launch(t_proc *proc, t_info *info)
+bool	launch_shell(t_proc *proc, t_info *info)
 {
-	int	status;
-	/* extern char **environ;
-	
-	info->environ = dict_to_array(info->env);
-	environ = info->environ; */
+	int	exit_flag;
+
+	if (!proc)//when proc is NULL, check it later
+		return (0);
+	save_stdfd(info);
 	if (is_single_proc(proc))
-		status = exec_single_proc(proc, info);
+		exit_flag = exec_single_proc(proc, info);
 	else
-		status = exec_multi_procs(proc, info);
-	return (1/* status */);
-}
-
-int	exec_shell(t_proc *proc, t_info *info)
-{
-	if (proc == NULL)//when proc is NULL, check it later
-		return (1);
-	//make a wrap func	
-	if (is_builtin(proc->cmd))
-		return (exec_builtin(proc, info));
-	return (shell_launch(proc, info));
+		exit_flag = exec_multi_procs(proc, info);
+	return (exit_flag);
 }
