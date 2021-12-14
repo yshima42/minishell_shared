@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_xstrndup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:46:23 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 09:35:09 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 09:38:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myfunc.h"
 
-char	*ft_strndup(const char *s1, size_t n)
+char	*ft_xstrndup(const char *s1, size_t n)
 {
 	char	*str;
 	size_t	ret_len;
@@ -25,9 +25,7 @@ char	*ft_strndup(const char *s1, size_t n)
 		ret_len = n;
 	else
 		ret_len = src_len;
-	str = malloc(sizeof(char) * (ret_len + 1));
-	if (str == NULL)
-		return (NULL);
+	str = xmalloc(sizeof(char) * (ret_len + 1));
 	ft_strlcpy(str, s1, ret_len + 1);
 	return (str);
 }

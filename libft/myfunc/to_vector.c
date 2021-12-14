@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_file_to_vector.c                           :+:      :+:    :+:   */
+/*   to_vector.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 14:08:02 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/09/24 09:29:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 09:44:00 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	make_firstnode(char **str, t_list **lst, int fd);
 static void	*clear_set(t_list **lst, char *str);
 static char	**set_strings_from_list(t_list *head);
 
-char	**convert_file_to_vector(int fd)
+char	**to_vector(int fd)
 {
 	char	*str;
 	int		gnlflag;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ulongtoa_base.c                                 :+:      :+:    :+:   */
+/*   ft_xulongtoa_base.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:17:56 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/09/06 17:17:56 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 09:42:34 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_length(unsigned long nbr, unsigned long base_num)
 	return (digit);
 }
 
-char	*ft_ulongtoa_base(unsigned long nbr, char *base)
+char	*ft_xulongtoa_base(unsigned long nbr, char *base)
 {
 	unsigned long	base_num;
 	int				digit;
@@ -35,9 +35,7 @@ char	*ft_ulongtoa_base(unsigned long nbr, char *base)
 		return (NULL);
 	base_num = (unsigned long)ft_strlen(base);
 	digit = get_length(nbr, base_num);
-	str = (char *)malloc(sizeof(char) * (digit + 1));
-	if (!str)
-		return (NULL);
+	str = (char *)xmalloc(sizeof(char) * (digit + 1));
 	str[digit] = '\0';
 	if (nbr == 0)
 		str[0] = '0';

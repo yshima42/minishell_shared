@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:18:05 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/10 17:43:05 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 09:55:46 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,33 @@
 # include "color.h"
 # include "dict.h"
 
-char	*ft_ulongtoa_base(unsigned long nbr, char *base);
+void	free_vector(char **vector);
+size_t	ft_lstsize_sizet(t_list *lst);
+char	*ft_strajoin(char **str, char *connector);
 size_t	ft_strclen(const char *str, int c);
 size_t	ft_strclen_array(const char *str, char *sep);
+int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strjoin3(const char *s1, const char *s2, const char *s3);
-int		ft_v_strchr(const char *str, int c);
-size_t	ft_lstsize_sizet(t_list *lst);
-char	**convert_file_to_vector(int fd);
-void	free_vector(char **vector);
 char	*ft_strndup(const char *s1, size_t n);
 char	*ft_trijoin(char const *s1, char const *s2, char const *s3);
-
-//yshima
+char	*ft_ulongtoa_base(unsigned long nbr, char *base);
+int		ft_v_strchr(const char *str, int c);
+void	*ft_xcalloc(size_t nmemb, size_t size);
+char	*ft_xitoa(int n);
+t_list	*ft_xlstnew(void *content);
+char	**ft_xsplit(char const *s, char c);
 char	*ft_strajoin(char **str, char *connector);
-int		ft_strcmp(const char *s1, const char *s2);
-
-//xfunction
-void	*xmalloc(size_t size);
 char	*ft_xstrdup(const char *s1);
+char	*ft_xstrjoin(char const *s1, char const *s2);
+char	*ft_strjoin3(const char *s1, const char *s2, const char *s3);
+char	*ft_xstrmapi(char const *s, char (*f)(unsigned int, char));
+char	*ft_xstrndup(const char *s1, size_t n);
+char	*ft_xsubstr(char const *s, unsigned int start, size_t len);
+char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3);
+char	*ft_xulongtoa_base(unsigned long nbr, char *base);
+char	**to_vector(int fd);
 void	xdup2(int fd1, int fd2);
-pid_t	xfork(void);
+void	*xmalloc(size_t size);
 void	xperror(char *s);
 void	xpipe(int *fd);
 

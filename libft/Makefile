@@ -15,8 +15,7 @@ B_SRC	=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
 			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
 			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c\
 
-M_SRC	=	convert_file_to_vector.c\
-			dict_addback.c\
+M_SRC	=	dict_addback.c\
 			dict_clear.c\
 			dict_delone.c\
 			dict_new.c\
@@ -32,7 +31,22 @@ M_SRC	=	convert_file_to_vector.c\
 			ft_trijoin.c\
 			ft_ulongtoa_base.c\
 			ft_v_strchr.c\
+			ft_xcalloc.c\
+			ft_xitoa.c\
+			ft_xlstnew_bonus.c\
+			ft_xsplit.c\
+			ft_xstrajoin.c\
 			ft_xstrdup.c\
+			ft_xstrjoin.c\
+			ft_xstrjoin3.c\
+			ft_xstrmapi.c\
+			ft_xstrndup.c\
+			ft_xsubstr.c\
+			ft_xtrijoin.c\
+			ft_xulongtoa_base.c\
+			to_vector.c\
+			xdict_new.c\
+			xdict_to_array.c\
 			xdup2.c\
 			xfork.c\
 			xmalloc.c\

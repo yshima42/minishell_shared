@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:22:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/10 17:32:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 09:55:38 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ bool	dict_delone(t_dict *elem);
 t_dict	*dict_new(char *key, char *value);
 size_t	dict_size(t_dict *head);
 char	**dict_to_array(t_dict *dict_head);
+t_dict	*xdict_new(char *key, char *value);
+char	**xdict_to_array(t_dict *dict_head);
 
 #endif
