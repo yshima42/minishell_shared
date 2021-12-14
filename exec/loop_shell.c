@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 16:53:42 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 22:43:07 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	loop_shell(t_info *info)
 	exit_flag = 0;
 	while (!exit_flag)
 	{
+		printf("[%d]", info->exit_status);
 		line = readline("minishell > ");
 		add_history(line);
 		info->exit_status = parse_line(&proc, line);//change later

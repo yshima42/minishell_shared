@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 17:41:08 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 19:34:57 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,24 @@ void	test_expand_vars(void)
 	test_expand_var("$HOME$HISTSIZE", "Two Var");
 	test_expand_var("aa$HOME$HISTSIZE", "Two Var after Chars");
 	test_expand_var("aa$HOME$HISTSIZEbb", "Two Var Between Chars");
-	test_expand_var("$?", "EXITSTATUS");
-	test_expand_var("$?aa", "EXITSTATUS before Chars");
-	test_expand_var("aa$?", "EXITSTATUS after Chars");
 	return ;
 }
 
 void	test_expand_exit_status(void)
 {
 	test_expand_var("$?", "EXITSTATUS");
-	test_expand_var("$?aa", "EXITSTATUS before Chars");
-	test_expand_var("aa$?", "EXITSTATUS after Chars");
+	test_expand_var("$?aa", "EST before Chars");
+	test_expand_var("aa$?", "EST after Chars");
+	test_expand_var("\"aa\"$HOME", "EST after DQuart Chars");
+	test_expand_var("$?\"aa\"", "EST before DQuart Chars");
+	test_expand_var("\'aa\'$?", "EST after SQuart Chars");
+	test_expand_var("$?\'aa\'", "EST before SQuart Chars");
+	test_expand_var("aa$?bb", "EST between Chars");
+	test_expand_var("aa\"$?\"bb", "EST in DQuart between Chars");
+	test_expand_var("aa\'$?\'bb", "EST in SQuart between Chars");
+	test_expand_var("$?$HISTSIZE", "EST before Var");
+	test_expand_var("$HISTSIZE$?", "EST after Var");
+	test_expand_var("aa$?$HISTSIZE", "EST-Var after Chars");
+	test_expand_var("aa$?$HISTSIZEbb", "EST-Var Between Chars");
 	return ;
 }
