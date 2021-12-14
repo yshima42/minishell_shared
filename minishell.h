@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 14:03:10 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:43:11 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/mylibft.h"
+# include "parser/parser.h"
 # include <stdint.h>
 # include <stdbool.h>
 # include <string.h>
@@ -41,43 +42,6 @@ typedef struct	s_info
 	int		exit_status;
 	int		stdfd[STDFD_NUM];
 }	t_info;
-
-//yoshie struct
-enum e_kind
-{
-	WORD,
-	HEREDOC,
-	APPEND,
-	IN_REDIRECT,
-	OUT_REDIRECT,
-	PIPE,
-	LAST,
-};
-
-typedef struct s_token
-{
-	struct s_token	*prev;
-	struct s_token	*next;
-	char			*word;
-	enum e_kind		kind;
-}	t_token;
-
-typedef struct s_io
-{
-	struct s_io	*prev;
-	struct s_io	*next;
-	char			*word;
-	enum e_kind		kind;
-}	t_io;
-
-typedef struct s_proc
-{
-	struct s_proc	*prev;
-	struct s_proc	*next;
-	char			**cmd;
-	t_io			*io_info;
-	size_t			id;
-}	t_proc;
 
 //要検討
 #define PATHNAME_SIZE 512
