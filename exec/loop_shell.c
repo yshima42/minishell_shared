@@ -6,21 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 16:53:42 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 20:59:26 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/* char	**shell_split_line(char *line)
-{
-	char	**tokens;
-
-	//char	*token;
-	tokens = ft_split(line, '|');
-	return (tokens);
-	//token = ft_strtok(line);
-} */
 
 void	loop_shell(t_info *info)
 {
@@ -33,8 +23,8 @@ void	loop_shell(t_info *info)
 	{
 		line = readline("minishell > ");
 		add_history(line);
-		info->exit_status = parse_line(&proc, line);//change later
-		if (info->exit_status == EMPTY_LINE || info->exit_status  == SYNTAX_ERR)
+		info->exit_status = parse_line(&proc, line);
+		if (info->exit_status == EMPTY_LINE || info->exit_status == SYNTAX_ERR)
 			continue ;
 		exit_flag = launch_shell(proc, info);
 		free(line);

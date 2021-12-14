@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 17:17:41 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 22:57:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,21 @@ static t_dict	*init_dict(void)
 	return (elem);
 }
 
-t_info	*shell_init(void)
+static void	init_env(t_info *info)
 {
-	t_info	*info;
 	extern char	**environ;
 	
-	info = xmalloc(sizeof(t_info));
 	info->env = init_dict();
-	info->exit_status = 0;
 	add_envs(environ, info);
+}
 
+t_info	*shell_init(void)
+{
+	t_info		*info;
+
+	info = xmalloc(sizeof(t_info));
+	init_env(info);
+	save_stdfd(info);
+	info->exit_status = 0;
 	return (info);
 }

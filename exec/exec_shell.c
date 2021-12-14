@@ -15,7 +15,7 @@
 //move to yoshie's file
 int	proc_num(t_proc *head)
 {
-	int	num;
+	int		num;
 	t_proc	*p;
 
 	if (!head)
@@ -77,20 +77,19 @@ char	*get_path(char *cmd, char **sp_cmd, t_info *info)
 int	ft_open(char *file, enum e_kind open_mode)
 {
 	int	fd;
-
-	//when you cannot open the file, xperror or something	
+	//when you xperror, you have to free everything
 	if (open_mode == IN_REDIRECT)
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
-			perror(ft_trijoin("minishell", ": ", file));
+			xperror(ft_trijoin("minishell", ": ", file));
 		return (fd);
 	}
 	else if (open_mode == OUT_REDIRECT)
 	{
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		if (fd == -1)
-			perror(ft_trijoin("minishell", ": ", file));
+			xperror(ft_trijoin("minishell", ": ", file));
 		return (fd);
 	}
 	else if (open_mode == APPEND)
@@ -99,42 +98,19 @@ int	ft_open(char *file, enum e_kind open_mode)
 		if (fd == -1)
 			fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 		if (fd == -1)
-			perror(ft_trijoin("minishell", ": ", file));
+			xperror(ft_trijoin("minishell", ": ", file));
 		return (fd);
 	}	
 	else
 		return (0);
 }
 
-//change to with connecter
-/* char	**dict_to_array(t_dict *dict_head)
-{
-	char	**array;
-	t_dict	*p;
-	size_t	i;
-	size_t size;
-
-	size = dict_size(dict_head);
-	p = dict_head->next;
-	array = xmalloc(sizeof(char *) * (size + 1));
-	i = -1;
-	while (++i < size)
-	{
-		array[i] = ft_trijoin(p->key, "=", p->value);
-		p = p->next;
-	}
-	array[i] = NULL;
-	return (array);
-} */
-
-//todo: need to fix environ in execve -> done I think...
 int	ft_exec(char **cmd, t_info *info)
 {
 	char	*path;
-	/* extern  */char	**environ;
+	char	**environ;
 
-	//sp_cmd = ft_split(cmd, ' ');
-	environ = dict_to_array(info->env);
+	environ = xdict_to_array(info->env, "=");
 	path = get_path(cmd[0], cmd, info);
 	execve(path, cmd, environ);
 	free (path);
@@ -145,11 +121,10 @@ int	ft_exec(char **cmd, t_info *info)
 void	pipes_close(int pipes[][2], int num_pipes)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < num_pipes)
 	{
-		//printf("i: %d\n", i);
 		close(pipes[i][0]);
 		close(pipes[i][1]);
 		i++;
@@ -166,8 +141,8 @@ int	xdup(int fd)
 	return (ret);
 }
 
-//change to dup
-void	save_stdfd(t_info *info)//change to stdfd
+//change to stdfd
+void	save_stdfd(t_info *info)
 {
 	info->stdfd[SAVED_IN] = xdup(STDIN_FILENO);
 	info->stdfd[SAVED_OUT] = xdup(STDOUT_FILENO);
@@ -183,21 +158,21 @@ void	close_stdfd(void)
 
 int	heredoc_open(char **heredoc_file_name)
 {
-	int	fd;
-	char *name;
-	char *i_str;
-	int	i;
+	int		fd;
+	char	*name;
+	char	*i_str;
+	int		i;
 
 	name = ".heredoc";
 	i = 0;
-	fd = -1;	
+	fd = -1;
 	while (fd == -1)
 	{
 		if (*heredoc_file_name)
 			free(*heredoc_file_name);
 		i_str = ft_itoa(i);
 		*heredoc_file_name = ft_strjoin(name, i_str);
-		fd =  open(*heredoc_file_name, O_WRONLY | O_EXCL | O_CREAT, 0666);
+		fd = open(*heredoc_file_name, O_WRONLY | O_EXCL | O_CREAT, 0666);
 		free(i_str);
 		i++;
 	}
@@ -206,9 +181,9 @@ int	heredoc_open(char **heredoc_file_name)
 
 void	heredoc_handler(t_io *io_info, t_info *info)
 {
-	int fd;
-	char *line;
-	char *heredoc_file_name;
+	int		fd;
+	char	*line;
+	char	*heredoc_file_name;
 
 	heredoc_file_name = NULL;
 	redirect_reset(info);
@@ -217,11 +192,11 @@ void	heredoc_handler(t_io *io_info, t_info *info)
 	{
 		line = readline("> ");
 		if (ft_strcmp(line, io_info->word) == 0)
-			break;
+			break ;
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
-	close(fd);//need to close somewhere
+	close(fd);
 	fd = ft_open(heredoc_file_name, IN_REDIRECT);
 	xdup2(fd, STDIN_FILENO);
 	unlink(heredoc_file_name);
@@ -233,8 +208,7 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 {
 	int	fd;
 
-	(void)info; // use it later
-	while(io_info)
+	while (io_info)
 	{
 		if (io_info->kind == OUT_REDIRECT)
 		{
@@ -256,7 +230,7 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 		}
 		else if (io_info->kind == HEREDOC)
 		{
-			heredoc_handler(io_info, info);		
+			heredoc_handler(io_info, info);
 		}
 		io_info = io_info->next;
 	}
@@ -287,7 +261,7 @@ int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 void	pids_wait(pid_t pids[], int num_pids)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i <= num_pids)
 	{
@@ -350,10 +324,8 @@ bool	launch_shell(t_proc *proc, t_info *info)
 {
 	int	exit_flag;
 
-	//need to deal only the redirect
-	if (!proc)//when proc is NULL, check it later
+	if (!proc)
 		return (0);
-	save_stdfd(info);
 	if (is_single_proc(proc))
 		exit_flag = exec_single_proc(proc, info);
 	else

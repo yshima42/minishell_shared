@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 07:45:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 11:49:05 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 22:50:35 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	exec_echo(char **args, t_info *info)
 {
 	size_t	i;
 	bool	n_option;
-	
+
 	i = 1;
 	n_option = false;
 	if (!args[1])
 	{
 		printf("\n");
-		return (1);
+		return (0);
 	}
 	if (ft_strcmp(args[1], "-n") == 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 11:05:33 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/10 17:00:06 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 22:39:14 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,4 @@
 # define RESET		"\x1b[39m"
 # define END		"\x1b[0m"
 
-#endif /* COLOR_H */
+#endif

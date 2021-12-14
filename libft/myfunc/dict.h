@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:22:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 09:55:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 21:03:04 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	dict_clear(t_dict *head);
 bool	dict_delone(t_dict *elem);
 t_dict	*dict_new(char *key, char *value);
 size_t	dict_size(t_dict *head);
-char	**dict_to_array(t_dict *dict_head);
+char	**dict_to_array(t_dict *dict_head, char *connector);
 t_dict	*xdict_new(char *key, char *value);
-char	**xdict_to_array(t_dict *dict_head);
+char	**xdict_to_array(t_dict *dict_head, char *connector);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 14:37:19 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 22:57:36 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	add_envs(char **envs, t_info *info)
 	i = 0;
 	while (envs[i])
 	{
-		key_len = ft_strlen(envs[i]) - ft_strlen(ft_strchr(envs[i], '=')); 
+		key_len = ft_strlen(envs[i]) - ft_strlen(ft_strchr(envs[i], '='));
 		key = ft_substr(envs[i], 0, key_len);
 		value = ft_strdup(ft_strchr(envs[i], '=') + 1);
 		dict_addback(info->env, dict_new(key, value));
 		i++;
 	}
-	//printf("%s\n", info->env->key);
 }
 
 void	del_envs(char **envs, t_info *info)

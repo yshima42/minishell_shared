@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:18:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 11:49:18 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:16:15 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	exec_unset(char **args, t_info *info)
 	while (args[i])
 	{
 		if (ft_strchr(args[i], '='))
-			printf("'%s': not a valid identifier\n", args[i]);//need to fix how to print error
+			printf("'%s': not a valid identifier\n", args[i]);
 		i++;
 	}
 	del_envs(&args[1], info);
-	return (0); 
+	return (0);
 }

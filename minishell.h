@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 17:19:20 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 22:42:05 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ char	**ft_splitfree(char **tab);
 int	ft_strcmp(const char *s1, const char *s2);
 char	*mini_getenv(const char *key, t_info *info);
 char	*ft_strajoin(char **str, char *connector);
-char	*ft_strtok(char *str, char *sep);
-
 
 //test.c 後で消す
 void	test_args_check(char **args);

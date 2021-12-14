@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 20:27:47 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 22:41:31 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,37 +38,4 @@ char	*mini_getenv(const char *key, t_info *info)
 		t_env = t_env->next;
 	}
 	return (NULL);
-}
-
-char	*ft_strtok(char *str, char *sep)
-{
-	static char	*nexttok;
-	char		*next_ptr;
-	char		*sep_ptr;
-
-	if (str)
-		nexttok = str;
-	else
-		str = nexttok;
-	next_ptr = NULL;
-	while (*str)
-	{
-		if (next_ptr == NULL)
-		{
-			if (ft_strchr(sep, *str) == NULL)
-				next_ptr = str;
-		}
-		else
-		{
-			if (ft_strchr(sep, *str) != NULL)
-			{
-				sep_ptr = str;
-				*sep_ptr = '\0';
-				nexttok = sep_ptr + 1;
-				break;
-			}
-		}
-		str++;
-	}
-	return (next_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 17:27:06 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 22:50:41 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,13 @@ int	redirect_reset(t_info *info)
 	return (0);
 }
 
-int	exec_env(t_proc *proc, t_info *info)
+int	exec_env(t_info *info)
 {
 	t_dict	*t_env;
 
-	(void)proc;//use it later
 	t_env = info->env->next;
 	while (t_env != info->env)
-	{
-		//printf("%s=%s\n", t_env->key, t_env->value);
+	{	
 		ft_putstr_fd(t_env->key, STDOUT_FILENO);
 		ft_putstr_fd("=", STDOUT_FILENO);
 		ft_putstr_fd(t_env->value, STDOUT_FILENO);
@@ -99,7 +97,7 @@ int	_exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)
 		ret = exec_pwd();
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)
-		ret = exec_env(proc, info);
+		ret = exec_env(info);
 	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
 		ret = exec_echo(proc->cmd, info);
 	else
@@ -110,7 +108,7 @@ int	_exec_builtin(t_proc *proc, t_info *info)
 int	exec_builtin(t_proc *proc, t_info *info)
 {
 	int	ret;
-		
+
 	if (is_redirect(proc))
 		redirect_pipe(proc->io_info, info);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
@@ -124,7 +122,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)
 		ret = exec_pwd();
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)
-		ret = exec_env(proc, info);
+		ret = exec_env(info);
 	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
 		ret = exec_echo(proc->cmd, info);
 	else
