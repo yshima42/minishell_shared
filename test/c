@@ -1,15 +1,11 @@
-total 360
+total 352
 -rw-r--r--   1 yuki  staff   2351 Dec 13 22:28 Makefile
 -rw-r--r--   1 yuki  staff     77 Dec 13 20:09 README.md
--rw-r--r--   1 yuki  staff      0 Dec 14 12:57 a
--rw-r--r--   1 yuki  staff      0 Dec 14 12:57 b
-drwxr-xr-x  10 yuki  staff    320 Dec 14 13:43 builtin
--rw-r--r--   1 yuki  staff     15 Dec 14 12:57 c
+drwxr-xr-x  10 yuki  staff    320 Dec 14 15:21 builtin
 drwxr-xr-x  11 yuki  staff    352 Dec 14 14:37 env
 -rw-r--r--   1 yuki  staff   1292 Dec 14 12:55 env.txt
-drwxr-xr-x   6 yuki  staff    192 Dec 14 14:47 exec
+drwxr-xr-x   6 yuki  staff    192 Dec 14 15:21 exec
 drwxr-xr-x  10 yuki  staff    320 Dec 13 20:09 expander
--rw-r--r--   1 yuki  staff      0 Dec 14 12:57 hoge
 drwxr-xr-x  23 yuki  staff    736 Dec 14 13:43 lexer
 drwxr-xr-x   9 yuki  staff    288 Dec 14 13:44 libft
 drwxr-xr-x  11 yuki  staff    352 Dec 13 20:09 lsh
@@ -17,12 +13,12 @@ drwxr-xr-x  11 yuki  staff    352 Dec 13 20:09 lsh
 -rw-r--r--   1 yuki  staff    764 Dec 14 14:40 main.o
 -rwxr-xr-x   1 yuki  staff  72656 Dec 14 14:46 minishell
 -rw-r--r--   1 yuki  staff   5018 Dec 14 14:03 minishell.h
--rw-r--r--   1 yuki  staff   1453 Dec 14 12:57 outfile
+-rw-r--r--   1 yuki  staff   1453 Dec 14 15:07 outfile
 drwxr-xr-x  30 yuki  staff    960 Dec 14 13:43 parser
 drwxr-xr-x   4 yuki  staff    128 Dec 13 20:09 sandbox
 drwxr-xr-x   5 yuki  staff    160 Dec 13 20:09 script
 drwxr-xr-x  17 yuki  staff    544 Dec 13 20:09 syakyo
-drwxr-xr-x  17 yuki  staff    544 Dec 14 14:47 test
--rwxr-xr-x   1 yuki  staff  72848 Dec 14 14:47 tests
+drwxr-xr-x  17 yuki  staff    544 Dec 14 15:21 test
+-rwxr-xr-x   1 yuki  staff  72848 Dec 14 15:21 tests
 drwxr-xr-x   4 yuki  staff    128 Dec 13 22:28 tmp
 drwxr-xr-x  11 yuki  staff    352 Dec 14 13:49 utils

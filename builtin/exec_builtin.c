@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 11:49:43 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:21:42 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ bool	is_builtin(char **args)//feel like there is a better way to do this
 int	exec_builtin(t_proc *proc, t_info *info)
 {
 	int	ret;
-	
-	if (is_redirect(proc))
-		redirect_pipe(proc->io_info, info);
+		
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
 		ret = 1;
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
@@ -105,7 +103,5 @@ int	exec_builtin(t_proc *proc, t_info *info)
 		ret = exec_echo(proc->cmd, info);
 	else
 		ret = EXIT_FAILURE;
-	if (is_redirect(proc))
-		redirect_reset(info);
 	return (ret);
 }

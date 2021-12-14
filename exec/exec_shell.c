@@ -270,23 +270,23 @@ int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 		xdup2(pipes[proc->id - 1][0], STDIN_FILENO);
 	if (!is_last_proc(proc))
 		xdup2(pipes[proc->id][1], STDOUT_FILENO);
-	//printf("not this\n");
 	pipes_close(pipes, proc->id + 1);
 	if (is_redirect(proc))
 		redirect_pipe(proc->io_info, info);
+	
 	if (ft_exec(proc->cmd, info) == -1)
 		xperror("child");
 	return (0/* status */);
 }
 
-void	pids_wait(pid_t pids[], int num_pids, int status)
+void	pids_wait(pid_t pids[], int num_pids)
 {
 	int	i;
 	
 	i = 0;
 	while (i <= num_pids)
 	{
-		waitpid(pids[i], &status, 0);
+		waitpid(pids[i], NULL, 0);
 		i++;
 	}
 }
@@ -296,7 +296,6 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 {
 	int		pipes[MAX_PROC][2];
 	pid_t	pids[MAX_PROC + 1];
-	int		status;
 	t_proc	*proc_p;
 
 	proc_p = proc;
@@ -305,7 +304,7 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 		xpipe(pipes[proc_p->id]);
 		pids[proc_p->id] = xfork();
 		if (pids[proc_p->id] == 0)
-			status = child_proc(proc_p, pipes, info);
+			child_proc(proc_p, pipes, info);
 		if (!is_first_proc(proc_p))
 		{
 			close(pipes[proc_p->id - 1][0]);
@@ -313,20 +312,21 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 		}
 		proc_p = proc_p->next;
 	}
-	pids_wait(pids, proc_num(proc), status);
+	pids_wait(pids, proc_num(proc));
 	return (0);
 }
 
 int	exec_single_proc(t_proc *proc, t_info *info)
 {
-	int		status;
 	pid_t	pid;
 	pid_t	wpid;
 
-	(void)info; // will use later
-
+	if (is_redirect(proc))
+		redirect_pipe(proc->io_info, info);
 	if (is_builtin(proc->cmd))
-		return (exec_builtin(proc, info));	
+		return (exec_builtin(proc, info));
+	if (is_redirect(proc))
+		redirect_reset(info);
 	pid = xfork();
 	if (pid == 0)
 	{
@@ -335,7 +335,7 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 		if (ft_exec(proc->cmd, info) == -1)
 			xperror("child");
 	}
-	wpid = waitpid(pid, &status, WUNTRACED);
+	wpid = waitpid(pid, NULL, 0);
 	return (0); /* WEXITSTATUS(status) */
 }
 
@@ -343,6 +343,7 @@ bool	launch_shell(t_proc *proc, t_info *info)
 {
 	int	exit_flag;
 
+	//need to deal only the redirect
 	if (!proc)//when proc is NULL, check it later
 		return (0);
 	save_stdfd(info);
