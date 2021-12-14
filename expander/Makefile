@@ -2,13 +2,15 @@ NAME		= expander
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= main.c\
-			  expand_env_var.c\
-			  test/test_search_prefix.c\
+SRCS		= expand_var.c\
+			  expand_var_all.c\
+			  main.c\
+			  utils.c\
+			  test/test_append_nonvar.c\
 			  test/test_expand_var.c\
 			  test/test_expand_var_all.c\
-			  test/test_strclen_array.c\
-			  test/test_append_nonvar.c
+			  test/test_search_prefix.c\
+			  test/test_strclen_array.c
 
 OBJS		= $(SRCS:.c=.o)
 LIB_LEXER	= liblexer.a

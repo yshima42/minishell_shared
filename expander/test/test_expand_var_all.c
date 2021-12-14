@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:53:01 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 14:42:36 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "test_expander.h"
 
 void	test_expand_var_all(char *line, char *tstmsg)
 {

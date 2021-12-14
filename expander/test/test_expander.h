@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   test_expander.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 16:28:48 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:34:35 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/14 14:41:37 by hyoshie           #+#    #+#             */
+/*   Updated: 2021/12/14 14:41:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef TEST_EXPANDER_H
+# define TEST_EXPANDER_H
 
 # include "../expander.h"
 # include "../lexer/test/test_lexer.h"
@@ -29,4 +29,5 @@ void	test_expand_var_all(char *line, char *tstmsg);
 void	test_expand_var_alls(void);
 //lexer/test/test.h
 void	print_tokens(t_token *head);
-#endif /* TEST_H */
+
+#endif /* TEST_EXPANDER_H */

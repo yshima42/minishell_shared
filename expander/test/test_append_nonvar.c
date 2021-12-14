@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 11:20:03 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/10 13:20:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 14:42:49 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test/test.h"
+#include "test_expander.h"
 
 void	test_append_nonvar(char *str, char *tail, size_t len, char *tstmsg)
 {
