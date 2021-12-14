@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 20:55:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 11:02:18 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:04:56 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "test_lexer.h"
 
 void	test_is_ifs(void)
 {

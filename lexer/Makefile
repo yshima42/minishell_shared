@@ -8,8 +8,10 @@ SRCS		= main.c\
 			  tkn_strlen.c\
 			  lex_ctype.c\
 			  to_token.c\
-			  test/test_lexer.c\
-			  test/test_utils.c
+			  test/test_to_token.c\
+			  test/test_utils.c\
+			  test/test_operator.c\
+			  test/test_quote.c
 OBJS		= $(SRCS:.c=.o)
 LIBS		= -L. -lft
 

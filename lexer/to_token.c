@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:54:49 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 10:25:43 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:14:15 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_token	*to_tokenlist(char *line)
 	{
 		tmp = make_token(&line);
 		if (tmp == NULL)
-			break;
+			break ;
 		tkn_lstadd_back(&head, tmp);
 	}
 	return (head);
