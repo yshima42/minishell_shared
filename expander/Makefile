@@ -76,4 +76,7 @@ test_append_nonvar: all
 test_expand_all: all
 	./expander 4
 
+test_expand_exit_status: all
+	./expander 5
+
 .PHONY: all clean fclean re

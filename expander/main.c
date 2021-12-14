@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:57:42 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 14:43:21 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 17:43:08 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	call_testfunc(int idx)
 	func[2] = test_strclen_arrays;
 	func[3] = test_append_nonvars;
 	func[4] = test_expand_var_alls;
+	func[5] = test_expand_exit_status;
 	func[idx]();
 	return ;
 }
