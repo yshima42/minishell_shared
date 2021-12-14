@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:52:36 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:59:34 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*expand_var(char *word, t_info *info)
 	whead = word;
 	prefix = search_prefix(word);
 	if (prefix == NULL)
-		return (word);
+		return (ft_strdup(word));
 	while (*word != '\0')
 	{
 		prefix = search_prefix(word);
@@ -96,7 +96,6 @@ char	*expand_var(char *word, t_info *info)
 		{
 			tmp2 = ft_strjoin(tmp, word);
 			free(tmp);
-			free(whead);
 			return (tmp2);
 		}
 		tmp = append_nonvar(tmp, word, prefix - word);
@@ -107,18 +106,20 @@ char	*expand_var(char *word, t_info *info)
 		printf("[tmp2]%s\n", tmp);
 		word = prefix + key_len + 1;
 	}
-	free(whead);
 	return (tmp);
 }
 
 t_token	*expand_var_all(t_token *tokens, t_info *info)
 {
 	t_token	*head;
+	char	*tmp;
 
 	head = tokens;
 	while (tokens != NULL)
 	{
+		tmp = tokens->word;
 		tokens->word = expand_var(tokens->word, info);
+		free(tmp);
 		tokens = tokens->next;
 	}
 	return (head);
