@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 15:41:51 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 16:53:42 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	loop_shell(t_info *info)
 	while (!exit_flag)
 	{
 		line = readline("minishell > ");
+		add_history(line);
 		info->exit_status = parse_line(&proc, line);//change later
 		if (info->exit_status == EMPTY_LINE || info->exit_status  == SYNTAX_ERR)
-		{
 			continue ;
-		}
 		exit_flag = launch_shell(proc, info);
 		free(line);
 		free(proc);//need change
 	}
+	rl_clear_history();
 }
