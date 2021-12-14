@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:57:42 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/13 16:00:46 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:39:24 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test/test.h"
+#include "test/test_lexer.h"
 
 #define TEST_NO 10
 
@@ -51,5 +51,9 @@ void	detect_leak(void)__attribute__((destructor));
 
 void	detect_leak(void)
 {
-	system("leaks -q lexer");
+	int	status;
+
+	status = system("leaks -q lexer > /dev/null");
+	if (status)
+		printf(RED"#####Leaks#####\n"RESET);
 }

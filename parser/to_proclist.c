@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 14:15:43 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 13:19:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,8 @@ t_proc	*to_proclist(t_token *tokens)
 	t_proc	*procs;
 	size_t	proc_num;
 
-	if (!validate_syntax(tokens))
-		return (NULL);
 	proc_num = count_process(tokens);
 	procs = init_procinfo(proc_num);
 	procs = set_procinfo(procs, tokens, proc_num);
 	return (procs);
-}
-
-int	parse_line(t_proc **proclist, char *line)
-{
-	t_token	*tokens;
-
-	*proclist = NULL;
-	tokens = to_tokenlist(line);
-	if (tokens == NULL)
-		return (EMPTY_LINE);
-	tokens = remove_quote(tokens);
-	*proclist = to_proclist(tokens);
-	tkn_lstclear(&tokens, free);
-	if (*proclist == NULL)
-		return (SYNTAX_ERR);
-	return (INITIAL_STATE);
 }

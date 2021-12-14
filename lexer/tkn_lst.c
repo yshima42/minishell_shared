@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 11:42:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 10:55:51 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_token	*tkn_lstnew(char *str)
 	new->next = NULL;
 	new->word = str;
 	new->kind = WORD;
-	new->quote = NONE;
 	return (new);
 }
 

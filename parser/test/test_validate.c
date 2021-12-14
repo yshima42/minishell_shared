@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:45:16 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 15:28:47 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 13:28:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "test_parser.h"
 
 void	test_validate(char *line, char *tstmsg)
 {

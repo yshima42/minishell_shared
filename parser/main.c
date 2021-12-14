@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:57:42 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 16:50:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:57:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test/test.h"
+#include "test/test_parser.h"
 
 #define TEST_NO 10
 
@@ -52,5 +52,9 @@ void	detect_leak(void)__attribute__((destructor));
 
 void	detect_leak(void)
 {
-	system("leaks -q parser");
+	int	status;
+
+	status = system("leaks -q parser > /dev/null");
+	if (status)
+		printf(RED"#####Leaks#####\n"RESET);
 }

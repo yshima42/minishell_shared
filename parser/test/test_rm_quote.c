@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:03:39 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/09 11:02:06 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:56:22 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "test_parser.h"
 
 void	test_rm_quote_word(char *word, char *tstmsg)
 {

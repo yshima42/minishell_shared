@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:54:49 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/10 15:50:30 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:14:15 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_token	*make_token(char **line)
 	if (*start == '\0')
 		return (NULL);
 	len = tkn_strlen(start);
-	word = ft_strndup(start, len);
+	word = ft_xstrndup(start, len);
 	new = tkn_lstnew(word);
 	new->kind = set_kind_info(start);
 	*line = start + len;
@@ -63,7 +63,7 @@ t_token	*to_tokenlist(char *line)
 	{
 		tmp = make_token(&line);
 		if (tmp == NULL)
-			break;
+			break ;
 		tkn_lstadd_back(&head, tmp);
 	}
 	return (head);

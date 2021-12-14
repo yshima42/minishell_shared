@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:59:25 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/05 13:32:53 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 13:27:50 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ static bool	validate_operator_position(t_token *tokens)
 
 bool	validate_syntax(t_token *tokens)
 {
-	if (tokens == NULL)
-		return (false);
-	if (!validate_pipe_position(tokens))
-		return (false);
-	if (!validate_operator_position(tokens))
+	if (!validate_pipe_position(tokens) || \
+		!validate_operator_position(tokens))
 		return (false);
 	return (true);
 }

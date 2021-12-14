@@ -3,11 +3,12 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
 SRCS		= main.c\
+			  parse_line.c\
 			  to_proclist.c\
 			  remove_quote.c\
-			  parse_ctype.c\
 			  proc_lst.c\
 			  proc_lstdel.c\
+			  proc_ctype.c\
 			  io_lst.c\
 			  io_lstdel.c\
 			  set_procinfo.c\
@@ -26,11 +27,12 @@ LIB_LEXER	= liblexer.a
 L_SRC		= tkn_lst.c\
 			  tkn_lstdel.c\
 			  tkn_strlen.c\
-			  utils.c\
 			  lex_ctype.c\
 			  to_token.c\
-			  test/test_lexer.c\
-			  test/test_utils.c
+			  test/test_to_token.c\
+			  test/test_utils.c\
+			  test/test_operator.c\
+			  test/test_quote.c
 L_SRCDIR	= ../lexer
 L_SRCS		= $(addprefix ${L_SRCDIR}/,${L_SRC})
 L_OBJS		= $(L_SRCS:.c=.o)
