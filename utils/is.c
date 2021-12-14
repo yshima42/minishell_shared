@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 17:26:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 13:48:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:07:52 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ bool	is_first_proc(t_proc *proc)
 bool	is_last_proc(t_proc *proc)
 {
 	return (!proc->next);
+}
+
+bool	is_no_cmd(t_proc *proc)
+{
+	return (!proc->cmd[0]);	
 }

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:31:58 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 15:07:32 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:24:31 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_proc	*test_set_pipe(char *line, t_info *info)
 void	test_pipe(t_info *info)
 {
 	test_set_pipe("echo aaa | cat | cat", info);
-	test_set_pipe("ls  -l | wc -l", info);
+	/* test_set_pipe("ls  -l | wc -l", info);
 	test_set_pipe("ls  -l", info);
 	test_set_pipe("ls  -l | cat main.c", info);
 	test_set_pipe("ls  -l | grep Dec | wc -l", info);
@@ -62,7 +62,7 @@ void	test_pipe(t_info *info)
 
 	//ERROR case (need to fix) *commenting out for the case which stops the shell
 	//no such file or directory
-	test_set_pipe("ls ", info);
+	test_set_pipe("ls ", info); */
 
 	//need to type
 	//test_set_pipe("ls -l | cat << he | cat", info);

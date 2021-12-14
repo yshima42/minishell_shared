@@ -265,8 +265,6 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 
 int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 {
-	//(void)info;//will use later maybe..
-
 	if (!is_first_proc(proc))
 		xdup2(pipes[proc->id - 1][0], STDIN_FILENO);
 	if (!is_last_proc(proc))
@@ -274,6 +272,13 @@ int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	pipes_close(pipes, proc->id + 1);
 	if (is_redirect(proc))
 		redirect_pipe(proc->io_info, info);
+	if (is_builtin(proc->cmd))
+	{
+		if (!is_first_proc(proc))
+			close(STDIN_FILENO);
+		_exec_builtin(proc, info);
+		exit(0);
+	}
 	if (ft_exec(proc->cmd, info) == -1)
 		xperror("child");
 	return (0/* status */);
@@ -321,13 +326,11 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 	pid_t	pid;
 	pid_t	wpid;
 
-	if (is_redirect(proc))
-		redirect_pipe(proc->io_info, info);
-	if (!proc->cmd[0])
+	//これをforkの中に入れるかどうか検討
+	if (is_no_cmd(proc) && is_redirect(proc))
 	{
-		if (is_redirect(proc))
-			redirect_reset(info);
-		return (0);
+		redirect_pipe(proc->io_info, info);
+		return (redirect_reset(info));
 	}
 	if (is_builtin(proc->cmd))
 		return (exec_builtin(proc, info));

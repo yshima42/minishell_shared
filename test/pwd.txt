@@ -1,3 +1,0 @@
-/Users/yuki/Documents/42cursus/minishell_shared
-
-[36mecho aa > test/echo.txt[39m

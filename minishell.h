@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 15:43:11 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 17:19:20 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	exec_shell(t_proc *proc, t_info *info);
 
 //exec_builtin.c
 int	exec_builtin(t_proc *proc, t_info *info);
+int	_exec_builtin(t_proc *proc, t_info *info);
 bool	is_builtin(char **args);
 
 //exec_echo.c
@@ -102,6 +103,7 @@ bool	is_single_proc(t_proc *proc);
 bool	is_redirect(t_proc *proc);
 bool	is_first_proc(t_proc *proc);
 bool	is_last_proc(t_proc *proc);
+bool	is_no_cmd(t_proc *proc);
 
 //xutils.c
 void	xperror(char *s);
@@ -116,7 +118,7 @@ void	save_stdfd(t_info *info);
 
 
 //exec_builtin.c
-void	redirect_reset(t_info *info);
+int	redirect_reset(t_info *info);
 
 ////////parser///////
 int		parse_line(t_proc **proclist, char *line);
