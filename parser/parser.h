@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 15:24:14 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 11:28:48 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 
 # include "../lexer/lexer.h"
-# include "../lexer/test/test.h"
+# include "../lexer/test/test_lexer.h"
 
 # define INITIAL_STATE -1
 # define EMPTY_LINE 0
