@@ -6,13 +6,13 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:17:06 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 09:51:37 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 10:00:01 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myfunc.h"
 
-char	*ft_strjoin3(const char *s1, const char *s2, const char *s3)
+char	*ft_xstrjoin3(const char *s1, const char *s2, const char *s3)
 {
 	char	*ret_m;
 	char	*tmp_m;

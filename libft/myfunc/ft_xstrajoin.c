@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:01:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 09:48:09 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 10:00:38 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myfunc.h"
 
-char	*ft_strajoin(char **str, char *connector)
+char	*ft_xstrajoin(char **str, char *connector)
 {
 	size_t	i;
 	char	*joined_str;
