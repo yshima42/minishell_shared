@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 10:35:02 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 10:52:11 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 10:57:08 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,12 @@ enum e_kind
 	LAST,
 };
 
-enum e_quote
-{
-	NONE,
-	SINGLE,
-	DOUBLE,
-};
-
 typedef struct s_token
 {
 	struct s_token	*prev;
 	struct s_token	*next;
 	char			*word;
 	enum e_kind		kind;
-	enum e_quote	quote;
 }	t_token;
 
 t_token	*tkn_lstnew(char *str);

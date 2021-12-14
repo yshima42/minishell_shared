@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 10:53:32 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/14 10:57:02 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@
 # include  <stdbool.h>
 # include "../libft/mylibft.h"
 # include "token.h"
-
 # include "color.h"
 
 # define EQUAL 0
+
+enum e_quote
+{
+	NONE,
+	SINGLE,
+	DOUBLE,
+};
 
 t_token	*to_tokenlist(char *line);
 size_t	tkn_strlen(const char *start);
