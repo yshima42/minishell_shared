@@ -78,6 +78,7 @@ int	ft_open(char *file, enum e_kind open_mode)
 {
 	int	fd;
 
+	//when you cannot open the file, xperror or something	
 	if (open_mode == IN_REDIRECT)
 	{
 		fd = open(file, O_RDONLY);
@@ -273,7 +274,6 @@ int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	pipes_close(pipes, proc->id + 1);
 	if (is_redirect(proc))
 		redirect_pipe(proc->io_info, info);
-	
 	if (ft_exec(proc->cmd, info) == -1)
 		xperror("child");
 	return (0/* status */);
@@ -323,10 +323,14 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 
 	if (is_redirect(proc))
 		redirect_pipe(proc->io_info, info);
+	if (!proc->cmd[0])
+	{
+		if (is_redirect(proc))
+			redirect_reset(info);
+		return (0);
+	}
 	if (is_builtin(proc->cmd))
 		return (exec_builtin(proc, info));
-	if (is_redirect(proc))
-		redirect_reset(info);
 	pid = xfork();
 	if (pid == 0)
 	{

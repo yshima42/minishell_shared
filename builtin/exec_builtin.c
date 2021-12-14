@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 15:21:42 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/14 15:37:56 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 		ret = exec_echo(proc->cmd, info);
 	else
 		ret = EXIT_FAILURE;
+	if (is_redirect(proc))
+		redirect_reset(info);
 	return (ret);
 }
