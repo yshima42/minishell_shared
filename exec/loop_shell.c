@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 10:58:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 13:39:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	loop_shell(t_info *info)
 	t_proc	*proc;
 
 	exit_flag = 0;
-	set_signal_in_reading();
+	set_signal_in_read();
 	while (!exit_flag)
 	{
 		printf("[%d]", info->exit_status);

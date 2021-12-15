@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 09:59:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/15 10:46:18 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:50:01 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 //signal/signal.c
 void	send_newline(int sig);
-void	set_signal_in_reading(void);
+void	terminate_heredoc(int sig);
+void	set_signal_in_read(void);
+void	set_signal_in_cmd(void);
+void	set_signal_in_heredoc(void);
+void	set_signal_ignore(void);
+int		display_sig_info(int sig);
 
 #endif /* MS_SIGNAL_H */

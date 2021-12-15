@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_shell.c                                    :+:      :+:    :+:   */
+/*   exec_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:05 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/09 16:44:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:50:35 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void	heredoc_handler(t_io *io_info, t_info *info)
 	heredoc_file_name = NULL;
 	redirect_reset(info);
 	fd = heredoc_open(&heredoc_file_name);
+	set_signal_in_heredoc();
 	while (1)
 	{
 		line = readline("> ");
@@ -261,13 +262,18 @@ int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 void	pids_wait(pid_t pids[], int num_pids)
 {
 	int	i;
+	int	status;
 
 	i = 0;
 	while (i <= num_pids)
 	{
-		waitpid(pids[i], NULL, 0);
+		waitpid(pids[i], &status, 0);
 		i++;
 	}
+	set_signal_in_read();
+	if (WIFSIGNALED(status))
+		// return (display_sig_info(WTERMSIG(status)));
+		display_sig_info(WTERMSIG(status));
 }
 
 //todo: num of fork return error
@@ -278,6 +284,7 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 	t_proc	*proc_p;
 
 	proc_p = proc;
+	set_signal_in_cmd();
 	while (proc_p)
 	{
 		xpipe(pipes[proc_p->id]);
@@ -291,6 +298,7 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 		}
 		proc_p = proc_p->next;
 	}
+	set_signal_ignore();
 	pids_wait(pids, proc_num(proc));
 	return (0);
 }
@@ -299,6 +307,7 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
 	pid_t	wpid;
+	int		status;
 
 	//これをforkの中に入れるかどうか検討
 	if (is_no_cmd(proc) && is_redirect(proc))
@@ -308,6 +317,7 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 	}
 	if (is_builtin(proc->cmd))
 		return (exec_builtin(proc, info));
+	set_signal_in_cmd();
 	pid = xfork();
 	if (pid == 0)
 	{
@@ -316,7 +326,12 @@ int	exec_single_proc(t_proc *proc, t_info *info)
 		if (ft_exec(proc->cmd, info) == -1)
 			xperror("child");
 	}
-	wpid = waitpid(pid, NULL, 0);
+	set_signal_ignore();
+	wpid = waitpid(pid, &status, 0);
+	set_signal_in_read();
+	if (WIFSIGNALED(status))
+		// return (display_sig_info(WTERMSIG(status)));
+		display_sig_info(WTERMSIG(status));
 	return (0); /* WEXITSTATUS(status) */
 }
 

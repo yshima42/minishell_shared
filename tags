@@ -1,4 +1,8 @@
+Minfinite	signal/test/infinite.c	/^int	main(void)$/
 Mmain	env/main.c	/^int	main(void)$/
+Msignal1	signal/test/signal1.c	/^int	main(void)$/
+Msignal2	signal/test/signal2.c	/^int	main(void)$/
+Msignal4	signal/test/signal4.c	/^int	main(void)$/
 Mtest_main	test/test_main.c	/^int	main(int argc, char **argv)$/
 _exec_builtin	builtin/exec_builtin.c	/^int	_exec_builtin(t_proc *proc, t_info *info)$/
 add_cmd	ref/srcs/set_parse_cmd.c	/^void	add_cmd(t_cmd **res, t_cmd *new)$/
@@ -36,6 +40,7 @@ dict_delone	libft/myfunc/dict_delone.c	/^bool	dict_delone(t_dict *elem)$/
 dict_new	libft/myfunc/dict_new.c	/^t_dict	*dict_new(char *key, char *value)$/
 dict_size	libft/myfunc/dict_size.c	/^size_t	dict_size(t_dict *head)$/
 dict_to_array	libft/myfunc/dict_to_array.c	/^char	**dict_to_array(t_dict *dict_head, char *conn/
+display_sig_info	signal/signal.c	/^int	display_sig_info(int sig)$/
 dollar_expansion	ref/srcs/interpret_dollar_quotation.c	/^void	dollar_expansion(t_cmd *target, size_t dindex/
 double_char_dup	ref/srcs/utils.c	/^char	**double_char_dup(char **envp)$/
 double_char_free	ref/srcs/utils_free.c	/^void	*double_char_free(char **list)$/
@@ -185,11 +190,12 @@ get_cmd_start_len	ref/srcs/set_parse_cmd.c	/^static t_cmd	*get_cmd_start_len(cha
 get_expnaded_str	ref/srcs/general_expansion.c	/^char	*get_expnaded_str(char *old_str, char *new, c/
 get_minlst	ref/srcs/builtin_export.c	/^t_env	*get_minlst(t_env *env_list, t_env *limit)$/
 getnumber	ref/libft/ft_atoi.c	/^static long	getnumber(const char *str, int *num, l/
+handler	signal/test/signal1.c	/^void	handler(int sig)$/
+handler_42	signal/test/signal2.c	/^void	handler_42(int sig)$/
 heredoc	ref/srcs/heredoc.c	/^int	heredoc(t_cmd *here, char *file_name, t_env *e/
 heredoc_child	ref/srcs/heredoc.c	/^int	heredoc_child(t_cmd *here, char *file_name, t_/
 heredoc_parent	ref/srcs/heredoc.c	/^int	heredoc_parent(pid_t id)$/
 heredoc_sig_handler	ref/srcs/signal_handler.c	/^void	heredoc_sig_handler(int sig)$/
-ifeq	Makefile	/^ifeq ($(shell uname), Darwin)$/
 inequality_branch_second	ref/srcs/child_check_redirect.c	/^static int	inequality_branch_second(t_cmd **cmd, /
 inequality_l1	ref/srcs/inequality.c	/^int	inequality_l1(t_cmd *cmd)$/
 inequality_l2	ref/srcs/inequality.c	/^int	inequality_l2(t_cmd *cmd)$/
@@ -278,6 +284,7 @@ search_len_3	ref/srcs/get_cmd_search_len.c	/^static size_t	search_len_3(char *st
 search_len_4	ref/srcs/get_cmd_search_len.c	/^static size_t	search_len_4(char *str, size_t *str_/
 search_path_exec	ref/srcs/child_exec.c	/^char	*search_path_exec(char **cmd_list, char **pat/
 search_prefix	expander/utils.c	/^char	*search_prefix(char *word)$/
+send_newline	signal/signal.c	/^void	send_newline(int sig)$/
 set_answer_memo	ref/libft/ft_split.c	/^static char	**set_answer_memo(const char *str, cha/
 set_cmdinfo	parser/set_cmdinfo.c	/^char	**set_cmdinfo(t_token **tokens)$/
 set_each_procinfo	parser/set_procinfo.c	/^static void	set_each_procinfo(t_proc *proc, t_toke/
@@ -288,6 +295,8 @@ set_key_value	ref/srcs/proc_env.c	/^int	set_key_value(char *str, char **key, cha
 set_kind_info	lexer/to_token.c	/^static enum e_kind	set_kind_info(const char *str)$/
 set_parse_cmd	ref/srcs/set_parse_cmd.c	/^int	set_parse_cmd(t_cmd **res, char *str)$/
 set_procinfo	parser/set_procinfo.c	/^t_proc	*set_procinfo(t_proc *procs, t_token *token/
+set_signal_in_child	signal/signal.c	/^void	set_signal_in_child(void)$/
+set_signal_in_reading	signal/signal.c	/^void	set_signal_in_reading(void)$/
 set_string	lexer/test/test_to_token.c	/^void	set_string(char **kstr)$/
 set_strings_from_list	libft/myfunc/to_vector.c	/^static char	**set_strings_from_list(t_list *head)$/
 set_tmpfile	ref/srcs/tmp_file.c	/^int	set_tmpfile(t_cmd *cmd, t_common_process *c_p)/
@@ -297,19 +306,6 @@ sig_error	ref/srcs/signal_handler.c	/^int	sig_error(int num)$/
 sorted_print	ref/srcs/builtin_export.c	/^int	sorted_print(t_env *env_list)$/
 str_is_space_only	ref/srcs/set_parse_cmd.c	/^int	str_is_space_only(char *str, size_t str_index)/
 strlen_key	expander/expand_var.c	/^size_t	strlen_key(char *start)$/
-t_bilst	ref/srcs/struct.h	/^}				t_bilst;$/
-t_cmd	ref/srcs/struct.h	/^}				t_cmd;$/
-t_common_process	ref/srcs/struct.h	/^}				t_common_process;$/
-t_dict	libft/myfunc/dict.h	/^}				t_dict;$/
-t_env	ref/srcs/struct.h	/^typedef t_bilst	t_env;$/
-t_info	minishell.h	/^}	t_info;$/
-t_io	parser/parser.h	/^}	t_io;$/
-t_list	libft/subject/libft.h	/^}	t_list;$/
-t_minishell	ref/srcs/struct.h	/^}				t_minishell;$/
-t_proc	parser/parser.h	/^}	t_proc;$/
-t_stdfd	minishell.h	/^}	t_stdfd;$/
-t_tmp	ref/srcs/struct.h	/^}				t_tmp;$/
-t_token	lexer/token.h	/^}	t_token;$/
 terminate_syntaxerr	parser/parse_line.c	/^int	terminate_syntaxerr(t_token *tokens)$/
 test_append_nonvar	expander/test/test_append_nonvar.c	/^void	test_append_nonvar(char *str, char *tail, siz/
 test_append_nonvars	expander/test/test_append_nonvar.c	/^void	test_append_nonvars(void)$/
