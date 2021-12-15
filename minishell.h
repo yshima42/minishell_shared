@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 12:22:27 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:38:49 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_info
 //要検討
 #define PATHNAME_SIZE 512
 
+//move to exec.h
 int	ft_exec(char **cmd, t_info *info);
 void	save_stdfd(t_info *info);
 void	close_stdfd(void);
@@ -59,7 +60,8 @@ int	xdup(int fd);
 int	proc_num_count(t_proc *head);
 int	ft_open(char *file, enum e_kind open_mode);
 void	heredoc_handler(t_io *io_info, t_info *info);
-
+int	single_proc(t_proc *proc, t_info *info);
+int	exec_multi_procs(t_proc *proc, t_info *info);
 
 //utils.c
 char	*ft_trijoin(char const *s1, char const *s2, char const *s3);

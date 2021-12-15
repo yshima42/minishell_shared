@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 11:09:24 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:42:50 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	heredoc_open(char **heredoc_file_name)
+static int	heredoc_open(char **heredoc_file_name)
 {
 	int		fd;
 	char	*name;

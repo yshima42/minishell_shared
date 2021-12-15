@@ -6,11 +6,24 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 10:58:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 13:43:45 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+bool	launch_shell(t_proc *proc, t_info *info)
+{
+	int	exit_flag;
+
+	if (!proc)
+		return (0);
+	if (is_single_proc(proc))
+		exit_flag = single_proc(proc, info);
+	else
+		exit_flag = exec_multi_procs(proc, info);
+	return (exit_flag);
+}
 
 void	loop_shell(t_info *info)
 {

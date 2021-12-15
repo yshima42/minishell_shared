@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 11:09:37 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:42:27 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*path_from_env(char *cmd, char *strenv)
+static char	*path_from_env(char *cmd, char *strenv)
 {
 	int		i;
 	char	*path;
@@ -36,7 +36,7 @@ char	*path_from_env(char *cmd, char *strenv)
 	return (0);
 }
 
-char	*get_path(char *cmd, char **sp_cmd, t_info *info)
+static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
 {
 	char		*strenv;
 

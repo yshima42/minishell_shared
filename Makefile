@@ -12,9 +12,9 @@ PARSER_PATH		=	./parser/
 LEXER_PATH		=	./lexer/
 SIGNAL_PATH		=	./signal/
 MAIN			=	main.c
-SRCS_FILES    	= 	exec/loop_shell.c exec/launch_shell.c exec/add_to_libft.c exec/heredoc_handler.c \
-					exec/pipe_utils.c exec/ft_exec.c exec/ft_open.c\
-					utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c env/shell_init.c \
+SRCS_FILES    	= 	exec/loop_shell.c exec/add_to_libft.c exec/heredoc_handler.c \
+					exec/pipe_utils.c exec/ft_exec.c exec/ft_open.c exec/single_proc.c exec/multi_procs.c\
+					utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c utils/shell_init.c \
 					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c utils/error.c utils/is.c
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\
