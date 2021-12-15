@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 11:29:26 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 12:18:31 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ void	pipes_close(int pipes[][2], int num_pipes)
 		close(pipes[i][1]);
 		i++;
 	}
+}
+
+int	redirect_reset(t_io *io_info, t_info *info)
+{
+	if (!is_redirect(io_info))
+		return (0);
+	xdup2(info->stdfd[SAVED_IN], STDIN_FILENO);
+	xdup2(info->stdfd[SAVED_OUT], STDOUT_FILENO);
+	xdup2(info->stdfd[SAVED_ERR], STDOUT_FILENO);
+	return (0);
 }
 
 void	redirect_pipe(t_io *io_info, t_info *info)

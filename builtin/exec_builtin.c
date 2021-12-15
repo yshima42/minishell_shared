@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 09:56:33 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 12:17:35 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ int	exec_pwd(void)
 	ft_memset(pathname, '\0', PATHNAME_SIZE);
 	getcwd(pathname, PATHNAME_SIZE);
 	printf("%s\n", pathname);
-	return (0);
-}
-
-int	redirect_reset(t_io *io_info, t_info *info)
-{
-	if (!is_redirect(io_info))
-		return (0);
-	xdup2(info->stdfd[SAVED_IN], STDIN_FILENO);
-	xdup2(info->stdfd[SAVED_OUT], STDOUT_FILENO);
-	xdup2(info->stdfd[SAVED_ERR], STDOUT_FILENO);
 	return (0);
 }
 
