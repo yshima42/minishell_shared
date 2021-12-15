@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 10:07:35 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 11:34:02 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define EQUAL 0
 
 # define MAX_PROC 709
+
+int	g_exit_status;
 
 typedef enum e_stdfd
 {
