@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 16:08:33 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:12:31 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int		ft_open(char *file, enum e_kind open_mode);
 void	heredoc_handler(t_io *io_info, t_info *info);
 int		single_proc(t_proc *proc, t_info *info);
 int		exec_multi_procs(t_proc *proc, t_info *info);
+void	loop_shell(t_info *info);
+bool	launch_shell(t_proc *proc, t_info *info);
 
 #endif

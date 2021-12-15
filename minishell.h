@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 15:11:28 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:12:37 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,6 @@ size_t	dict_size(t_dict *head);
 
 //error.c
 void	cmd_err(char **cmd);
-
-//loop_shell.c
-void	loop_shell(t_info *info);
-char	**shell_split_line(char *line);
-bool	launch_shell(t_proc *proc, t_info *info);
 
 //bool.c
 bool	is_single_proc(t_proc *proc);
