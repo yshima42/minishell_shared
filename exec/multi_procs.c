@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:41:00 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:24:47 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	pids_wait(pid_t pids[], int num_pids)
 	}
 }
 
+/* check if you need to return status */
 static int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 {
 	if (!is_first_proc(proc))
@@ -41,7 +42,7 @@ static int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	}
 	if (ft_exec(proc->cmd, info) == -1)
 		xperror("child");
-	return (0/* status */);
+	return (0);
 }
 
 //todo: num of fork return error

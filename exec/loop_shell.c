@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:43:45 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:23:04 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ bool	launch_shell(t_proc *proc, t_info *info)
 	return (exit_flag);
 }
 
+//need change the free(froc)
 void	loop_shell(t_info *info)
 {
 	char	*line;
@@ -48,7 +49,7 @@ void	loop_shell(t_info *info)
 			continue ;
 		exit_flag = launch_shell(proc, info);
 		free(line);
-		free(proc);//need change
+		free(proc);
 	}
 	rl_clear_history();
 }

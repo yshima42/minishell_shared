@@ -12,20 +12,24 @@
 
 #include "../minishell.h"
 
+int	no_cmd_handler(t_proc *proc, t_info *info)
+{
+	redirect_pipe(proc->io_info, info);
+	redirect_reset(proc->io_info, info);
+	return (0);
+}
+
+/* use WEXITSTATUS(status) for return*/
+//need to think if you need to put is_no_cmd in fork
 int	single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
 	pid_t	wpid;
 	int		exit_flag;
 
-	//これをforkの中に入れるかどうか検討
 	exit_flag = 0;
 	if (is_no_cmd(proc))
-	{
-		redirect_pipe(proc->io_info, info);
-		redirect_reset(proc->io_info, info);
-		return (exit_flag);
-	}
+		return (no_cmd_handler(proc, info));
 	if (is_builtin(proc->cmd))
 	{
 		redirect_pipe(proc->io_info, info);
@@ -41,5 +45,5 @@ int	single_proc(t_proc *proc, t_info *info)
 			xperror("child");
 	}
 	wpid = waitpid(pid, NULL, 0);
-	return (exit_flag); /* WEXITSTATUS(status) */
+	return (exit_flag);
 }

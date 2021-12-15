@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proc_lst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 12:10:51 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 14:32:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:00:56 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,21 @@ void	proc_lstadd_back(t_proc **lst, t_proc *new)
 		new->prev = ptr;
 	}
 	return ;
+}
+
+int	proc_num_count(t_proc *head)
+{
+	int		num;
+	t_proc	*p;
+
+	if (!head)
+		return (0);
+	num = 0;
+	p = head;
+	while (p)
+	{
+		p = p->next;
+		num++;
+	}
+	return (num);
 }

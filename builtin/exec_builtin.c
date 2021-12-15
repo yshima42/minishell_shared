@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:49:11 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 15:00:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	exec_env(t_info *info)
 	return (0);
 }
 
-bool	is_builtin(char **args)//feel like there is a better way to do this
+//feel like there is a better way to do this
+bool	is_builtin(char **args)
 {
 	if (ft_strcmp(args[0], "exit") == 0)
 		return (true);

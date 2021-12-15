@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:42:27 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:23:58 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static char	*path_from_env(char *cmd, char *strenv)
 	return (0);
 }
 
+//need free(path);
 static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
 {
 	char		*strenv;
@@ -47,7 +48,6 @@ static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
 		return (sp_cmd[0]);
 	else if (ft_strchr(sp_cmd[0], '/'))
 	{
-		//free(path);
 		xperror(ft_trijoin("minishell", ": ", cmd));
 		return (0);
 	}
