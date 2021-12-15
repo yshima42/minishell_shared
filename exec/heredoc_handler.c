@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 23:10:25 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 01:45:22 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	heredoc_open(char **heredoc_file_name)
 	return (fd);
 }
 
+//display plus nl
 void	heredoc_handler(t_io *io_info, t_info *info)
 {
 	int		fd;
@@ -47,14 +48,18 @@ void	heredoc_handler(t_io *io_info, t_info *info)
 	heredoc_file_name = NULL;
 	redirect_reset(io_info, info);
 	fd = heredoc_open(&heredoc_file_name);
+	set_signal_in_heredoc();
 	while (1)
 	{
 		line = readline("> ");
+		if (line == NULL)
+			break ;
 		if (ft_strcmp(line, io_info->word) == 0)
 			break ;
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
+	set_signal_in_cmd();
 	close(fd);
 	fd = ft_open(heredoc_file_name, IN_REDIRECT);
 	xdup2(fd, STDIN_FILENO);

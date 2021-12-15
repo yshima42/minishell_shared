@@ -33,7 +33,8 @@ LEXER_FILES		=	tkn_lst.c\
 					tkn_strlen.c\
 					lex_ctype.c\
 					to_token.c
-SIGNAL_FILES	=	signal.c
+SIGNAL_FILES	=	signal.c\
+					signal_heredoc.c
 BONUS_FILES		=
 TEST_MAIN    	= 	$(TEST_PATH)/test_main.c $(TEST_PATH)/test_pipe.c
 SRCS			= 	$(SRCS_FILES)
