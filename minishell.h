@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 14:08:34 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 15:11:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/mylibft.h"
 # include "parser/parser.h"
 # include "signal/ms_signal.h"
+# include "exec/exec.h"
 # include <stdint.h>
 # include <stdbool.h>
 # include <string.h>
@@ -50,18 +51,7 @@ typedef struct	s_info
 #define PATHNAME_SIZE 512
 
 //move to exec.h
-int	ft_exec(char **cmd, t_info *info);
-void	save_stdfd(t_info *info);
-void	close_stdfd(void);
-void	pipes_close(int pipes[][2], int num_pipes);
-void	redirect_pipe(t_io *io_info, t_info *info);
-int	redirect_reset(t_io *io_info, t_info *info);
-int	xdup(int fd);
-int	proc_num_count(t_proc *head);
-int	ft_open(char *file, enum e_kind open_mode);
-void	heredoc_handler(t_io *io_info, t_info *info);
-int	single_proc(t_proc *proc, t_info *info);
-int	exec_multi_procs(t_proc *proc, t_info *info);
+
 
 //utils.c
 char	*ft_trijoin(char const *s1, char const *s2, char const *s3);
