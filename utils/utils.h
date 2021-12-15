@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:41:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:44:13 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:59:42 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "../libft/mylibft.h"
 #include "../env/env.h"
+
+int	g_exit_status;
 
 typedef enum e_stdfd
 {
@@ -27,7 +29,6 @@ typedef enum e_stdfd
 typedef struct	s_info
 {
 	t_dict	*env;
-	int		exit_status;
 	int		stdfd[STDFD_NUM];
 }	t_info;
 

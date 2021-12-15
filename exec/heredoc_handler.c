@@ -6,12 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:42:50 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 18:19:24 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+//heredocmax message exit
 static int	heredoc_open(char **heredoc_file_name)
 {
 	int		fd;
@@ -24,6 +25,8 @@ static int	heredoc_open(char **heredoc_file_name)
 	fd = -1;
 	while (fd == -1)
 	{
+		if (i == INT_MAX)
+			xperror("too many .heredoc files");
 		if (*heredoc_file_name)
 			free(*heredoc_file_name);
 		i_str = ft_itoa(i);
