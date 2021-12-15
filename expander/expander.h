@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 15:16:14 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 00:18:23 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define EXPANDER_H
 
 # include "../lexer/lexer.h"
-# include "../env/minishell.h"
+# include "../minishell.h"
 
 //expand_var.c
 char	*append_nonvar(char *expanded, char *current, size_t len);
