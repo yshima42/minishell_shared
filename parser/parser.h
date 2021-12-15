@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:28:48 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 14:01:15 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ bool	is_cmd(t_token *token);
 //list
 t_proc	*proc_lstnew(void);
 t_proc	*proc_lstlast(t_proc *lst);
+int		proc_num_count(t_proc *head);
 void	proc_lstadd_back(t_proc **lst, t_proc *new);
 void	proc_lstdelone(t_proc *lst);
 void	proc_lstclear(t_proc **lst);

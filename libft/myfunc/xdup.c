@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   xdup.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 14:59:50 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/15 13:55:47 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/15 13:55:48 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "myfunc.h"
 
-//arg_check
-//bash initiate
-int	main(void)
+int	xdup(int fd)
 {
-	t_info	*info;
+	int	ret;
 
-	info = shell_init();
-	loop_shell(info);
-	dict_clear(info->env);
-	return (EXIT_SUCCESS);
+	ret = dup(fd);
+	if (ret == -1)
+		xperror("dup2");
+	return (ret);
 }

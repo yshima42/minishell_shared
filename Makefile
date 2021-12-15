@@ -12,7 +12,9 @@ PARSER_PATH		=	./parser/
 LEXER_PATH		=	./lexer/
 SIGNAL_PATH		=	./signal/
 MAIN			=	main.c
-SRCS_FILES    	= 	exec/loop_shell.c exec/exec_shell.c utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c env/shell_init.c \
+SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c \
+					exec/pipe_utils.c exec/ft_exec.c exec/ft_open.c exec/single_proc.c exec/multi_procs.c\
+					utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c utils/shell_init.c \
 					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c utils/error.c utils/is.c
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\
@@ -40,7 +42,7 @@ PARSER_SRCS		= 	$(addprefix $(PARSER_PATH), $(PARSER_FILES))
 LEXER_SRCS		= 	$(addprefix $(LEXER_PATH), $(LEXER_FILES))
 SIGNAL_SRCS		= 	$(addprefix $(SIGNAL_PATH), $(SIGNAL_FILES))
 SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o)
-TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o)  
+TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) 
 BONUS_OBJS		= 	$(SRCS:.c=.o)
 LIBFTMAKE		= 	$(MAKE) -C $(LIBFT_PATH)
 LIBFTFLAG		= 	-L$(LIBFT_PATH) -lft

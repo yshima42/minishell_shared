@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:57:28 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:58:07 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_dict	*init_dict(void)
 static void	init_env(t_info *info)
 {
 	extern char	**environ;
-	
+
 	info->env = init_dict();
 	add_envs(environ, info);
 }

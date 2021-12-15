@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:50:41 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 15:00:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@ int	exec_pwd(void)
 	return (0);
 }
 
-int	redirect_reset(t_info *info)
-{
-	xdup2(info->stdfd[SAVED_IN], STDIN_FILENO);
-	xdup2(info->stdfd[SAVED_OUT], STDOUT_FILENO);
-	xdup2(info->stdfd[SAVED_ERR], STDOUT_FILENO);
-	return (0);
-}
-
 int	exec_env(t_info *info)
 {
 	t_dict	*t_env;
@@ -57,12 +49,12 @@ int	exec_env(t_info *info)
 		ft_putstr_fd(t_env->value, STDOUT_FILENO);
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		t_env = t_env->next;
-	}
-	//need pipe unset because ecec_env is parent 
+	}	
 	return (0);
 }
 
-bool	is_builtin(char **args)//feel like there is a better way to do this
+//feel like there is a better way to do this
+bool	is_builtin(char **args)
 {
 	if (ft_strcmp(args[0], "exit") == 0)
 		return (true);
@@ -82,35 +74,10 @@ bool	is_builtin(char **args)//feel like there is a better way to do this
 		return (false);
 }
 
-int	_exec_builtin(t_proc *proc, t_info *info)
-{
-	int	ret;
-
-	if (ft_strcmp(proc->cmd[0], "exit") == 0)
-		ret = 1;
-	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
-		ret = exec_cd(proc->cmd, info);
-	else if (ft_strcmp(proc->cmd[0], "export") == 0)
-		ret = exec_export(proc->cmd, info);
-	else if (ft_strcmp(proc->cmd[0], "unset") == 0)
-		ret = exec_unset(proc->cmd, info);
-	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)
-		ret = exec_pwd();
-	else if (ft_strcmp(proc->cmd[0], "env") == 0)
-		ret = exec_env(info);
-	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
-		ret = exec_echo(proc->cmd, info);
-	else
-		ret = EXIT_FAILURE;
-	return (ret);
-}
-
 int	exec_builtin(t_proc *proc, t_info *info)
 {
 	int	ret;
 
-	if (is_redirect(proc))
-		redirect_pipe(proc->io_info, info);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
 		ret = 1;
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
@@ -127,7 +94,5 @@ int	exec_builtin(t_proc *proc, t_info *info)
 		ret = exec_echo(proc->cmd, info);
 	else
 		ret = EXIT_FAILURE;
-	if (is_redirect(proc))
-		redirect_reset(info);
 	return (ret);
 }

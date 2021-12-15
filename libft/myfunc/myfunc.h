@@ -45,6 +45,7 @@ char	*ft_xsubstr(char const *s, unsigned int start, size_t len);
 char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3);
 char	*ft_xulongtoa_base(unsigned long nbr, char *base);
 char	**to_vector(int fd);
+int		xdup(int fd);
 void	xdup2(int fd1, int fd2);
 void	*xmalloc(size_t size);
 void	xperror(char *s);

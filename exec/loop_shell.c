@@ -6,12 +6,26 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:39:19 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 16:19:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+bool	launch_shell(t_proc *proc, t_info *info)
+{
+	int	exit_flag;
+
+	if (!proc)
+		return (0);
+	if (is_single_proc(proc))
+		exit_flag = single_proc(proc, info);
+	else
+		exit_flag = exec_multi_procs(proc, info);
+	return (exit_flag);
+}
+
+//need change the free(froc)
 void	loop_shell(t_info *info)
 {
 	char	*line;
@@ -35,7 +49,7 @@ void	loop_shell(t_info *info)
 			continue ;
 		exit_flag = launch_shell(proc, info);
 		free(line);
-		free(proc);//need change
+		free(proc);
 	}
 	rl_clear_history();
 }

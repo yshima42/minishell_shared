@@ -47,6 +47,7 @@ M_SRC	=	dict_addback.c\
 			to_vector.c\
 			xdict_new.c\
 			xdict_to_array.c\
+			xdup.c\
 			xdup2.c\
 			xfork.c\
 			xmalloc.c\

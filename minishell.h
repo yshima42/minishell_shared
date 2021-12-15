@@ -6,16 +6,17 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 11:34:02 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/15 16:14:17 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include "libft/mylibft.h"
 # include "parser/parser.h"
 # include "signal/ms_signal.h"
+# include "exec/exec.h"
 # include <stdint.h>
 # include <stdbool.h>
 # include <string.h>
@@ -94,14 +95,9 @@ size_t	dict_size(t_dict *head);
 //error.c
 void	cmd_err(char **cmd);
 
-//loop_shell.c
-void	loop_shell(t_info *info);
-char	**shell_split_line(char *line);
-bool	launch_shell(t_proc *proc, t_info *info);
-
 //bool.c
 bool	is_single_proc(t_proc *proc);
-bool	is_redirect(t_proc *proc);
+bool	is_redirect(t_io *io_info);
 bool	is_first_proc(t_proc *proc);
 bool	is_last_proc(t_proc *proc);
 bool	is_no_cmd(t_proc *proc);
@@ -118,8 +114,6 @@ void	redirect_pipe(t_io *io_info, t_info *info);
 void	save_stdfd(t_info *info);
 
 
-//exec_builtin.c
-int	redirect_reset(t_info *info);
 
 ////////parser///////
 int		parse_line(t_proc **proclist, char *line);
