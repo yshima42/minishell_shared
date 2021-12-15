@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 11:10:22 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 11:29:26 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	pipes_close(int pipes[][2], int num_pipes)
 
 void	redirect_pipe(t_io *io_info, t_info *info)
 {
-	int	fd;	
+	int	fd;
 
 	if (!is_redirect(io_info))
 		return ;
