@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:42:05 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 10:53:57 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,21 @@ typedef struct	s_info
 //要検討
 #define PATHNAME_SIZE 512
 
+//heredoc_handler.c
+int	heredoc_open(char **heredoc_file_name);
+void	heredoc_handler(t_io *io_info, t_info *info);
+
+//pipe_utils.c
+void	save_stdfd(t_info *info);
+void	close_stdfd(void);
+void	redirect_pipe(t_io *io_info, t_info *info);
+void	pipes_close(int pipes[][2], int num_pipes);
+
+//ft_exec.c
+char	*path_from_env(char *cmd, char *strenv);
+char	*get_path(char *cmd, char **sp_cmd, t_info *info);
+int	ft_exec(char **cmd, t_info *info);
+
 //utils.c
 char	*ft_trijoin(char const *s1, char const *s2, char const *s3);
 char	**ft_splitfree(char **tab);
@@ -62,7 +77,6 @@ int	exec_shell(t_proc *proc, t_info *info);
 
 //exec_builtin.c
 int	exec_builtin(t_proc *proc, t_info *info);
-int	_exec_builtin(t_proc *proc, t_info *info);
 bool	is_builtin(char **args);
 
 //exec_echo.c
@@ -98,7 +112,7 @@ bool	launch_shell(t_proc *proc, t_info *info);
 
 //bool.c
 bool	is_single_proc(t_proc *proc);
-bool	is_redirect(t_proc *proc);
+bool	is_redirect(t_io *io_info);
 bool	is_first_proc(t_proc *proc);
 bool	is_last_proc(t_proc *proc);
 bool	is_no_cmd(t_proc *proc);
@@ -114,9 +128,15 @@ void	xdup2(int fd1, int fd2);
 void	redirect_pipe(t_io *io_info, t_info *info);
 void	save_stdfd(t_info *info);
 
+//ft_open.c
+int	ft_open(char *file, enum e_kind open_mode);
 
 //exec_builtin.c
-int	redirect_reset(t_info *info);
+int	redirect_reset(t_io *io_info, t_info *info);
+
+//add_to_libft.c
+int	xdup(int fd);
+int	proc_num_count(t_proc *head);
 
 ////////parser///////
 int		parse_line(t_proc **proclist, char *line);

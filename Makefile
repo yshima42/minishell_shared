@@ -11,7 +11,9 @@ TEST_PATH		=	./test/
 PARSER_PATH		=	./parser/
 LEXER_PATH		=	./lexer/
 MAIN			=	main.c
-SRCS_FILES    	= 	exec/loop_shell.c exec/exec_shell.c utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c env/shell_init.c \
+SRCS_FILES    	= 	exec/loop_shell.c exec/launch_shell.c exec/add_to_libft.c exec/heredoc_handler.c \
+					exec/pipe_utils.c exec/ft_exec.c exec/ft_open.c\
+					utils/utils.c utils/tmp.c builtin/exec_builtin.c builtin/exec_echo.c env/shell_init.c \
 					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c utils/error.c utils/is.c
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\

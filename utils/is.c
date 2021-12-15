@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 17:26:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:40:09 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 08:31:19 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ bool	is_single_proc(t_proc *proc)
 	return (!proc->next);
 }
 
-bool	is_redirect(t_proc *proc)
+bool	is_redirect(t_io *io_info)
 {
-	return (proc->io_info);
+	return (io_info);
 }
 
 bool	is_first_proc(t_proc *proc)
