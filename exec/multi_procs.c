@@ -6,22 +6,24 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 14:24:47 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 21:54:18 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	pids_wait(pid_t pids[], int num_pids)
+static int	pids_wait(pid_t pids[], int num_pids)
 {
 	int	i;
+	int	status;
 
 	i = 0;
 	while (i <= num_pids)
 	{
-		waitpid(pids[i], NULL, 0);
+		waitpid(pids[i], &status, 0);
 		i++;
 	}
+	return (WEXITSTATUS(status));
 }
 
 /* check if you need to return status */
@@ -66,6 +68,6 @@ int	exec_multi_procs(t_proc *proc, t_info *info)
 		}
 		proc_p = proc_p->next;
 	}
-	pids_wait(pids, proc_num_count(proc));
+	g_exit_status = pids_wait(pids, proc_num_count(proc));
 	return (0);
 }

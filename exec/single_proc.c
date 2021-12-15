@@ -19,13 +19,13 @@ int	no_cmd_handler(t_proc *proc, t_info *info)
 	return (0);
 }
 
-/* use WEXITSTATUS(status) for return*/
 //need to think if you need to put is_no_cmd in fork
 int	single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
 	pid_t	wpid;
 	int		exit_flag;
+	int		status;
 
 	exit_flag = 0;
 	if (is_no_cmd(proc))
@@ -44,6 +44,7 @@ int	single_proc(t_proc *proc, t_info *info)
 		if (ft_exec(proc->cmd, info) == -1)
 			xperror("child");
 	}
-	wpid = waitpid(pid, NULL, 0);
+	wpid = waitpid(pid, &status, 0);
+	g_exit_status = WEXITSTATUS(status);
 	return (exit_flag);
 }
