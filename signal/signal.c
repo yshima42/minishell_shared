@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 10:00:37 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 01:11:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 01:18:26 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	send_newline(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+	g_exit_status = 1;
 	return ;
 }
 
