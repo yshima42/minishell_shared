@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 14:59:50 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:19:42 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	main(void)
 	info = shell_init();
 	loop_shell(info);
 	dict_clear(info->env);
+	free(info);
 	return (EXIT_SUCCESS);
 }

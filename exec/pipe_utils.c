@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:43:23 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:34:59 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "exec.h"
 
 void	pipes_close(int pipes[][2], int num_pipes)
 {

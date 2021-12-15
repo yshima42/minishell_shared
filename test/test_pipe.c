@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:31:58 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 19:13:46 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:16:32 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_proc	*test_set_pipe(char *line, t_info *info)
 	int exit_flag;
 
 	printf("\x1b[36m%s\x1b[39m\n", line);
-	info->exit_status = parse_line(&proc, line);//change later
+	g_exit_status = parse_line(&proc, line);//change later
 	exit_flag = launch_shell(proc, info);
 	printf("\n");
 	return (proc);

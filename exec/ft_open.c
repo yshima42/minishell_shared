@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:29 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 14:22:32 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 23:00:31 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "exec.h"
 
 static int	append_open(char *file)
 {

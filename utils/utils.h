@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:41:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:59:42 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:48:16 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void	save_stdfd(t_info *info);
 char	**ft_splitfree(char **tab);
 char	*mini_getenv(const char *key, t_info *info);
 t_info	*shell_init(void);
-void	cmd_err(char **cmd);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:57:20 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 23:16:58 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "exec.h"
 
 bool	launch_shell(t_proc *proc, t_info *info)
 {
@@ -21,7 +21,7 @@ bool	launch_shell(t_proc *proc, t_info *info)
 	if (is_single_proc(proc))
 		exit_flag = single_proc(proc, info);
 	else
-		exit_flag = exec_multi_procs(proc, info);
+		exit_flag = multi_procs(proc, info);
 	return (exit_flag);
 }
 
@@ -49,7 +49,7 @@ void	loop_shell(t_info *info)
 			continue ;
 		exit_flag = launch_shell(proc, info);
 		free(line);
-		free(proc);
+		proc_lstclear(&proc);
 	}
 	rl_clear_history();
 }

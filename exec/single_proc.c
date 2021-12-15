@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "exec.h"
 
 int	no_cmd_handler(t_proc *proc, t_info *info)
 {
@@ -19,7 +19,7 @@ int	no_cmd_handler(t_proc *proc, t_info *info)
 	return (0);
 }
 
-//need to think if you need to put is_no_cmd in fork
+//need to think if you need to put is_no_cmd in fork or not
 int	single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
@@ -41,8 +41,7 @@ int	single_proc(t_proc *proc, t_info *info)
 	if (pid == 0)
 	{
 		redirect_pipe(proc->io_info, info);
-		if (ft_exec(proc->cmd, info) == -1)
-			xperror("child");
+		ft_exec(proc->cmd, info);
 	}
 	wpid = waitpid(pid, &status, 0);
 	g_exit_status = WEXITSTATUS(status);

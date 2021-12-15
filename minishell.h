@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:12:03 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 22:32:44 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,7 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 
 # define EQUAL 0
-
-# define MAX_PROC 709
-
-int	g_exit_status;
 
 #endif

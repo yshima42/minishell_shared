@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 21:54:18 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 23:16:54 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "exec.h"
 
 static int	pids_wait(pid_t pids[], int num_pids)
 {
@@ -42,32 +42,32 @@ static int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 		exec_builtin(proc, info);
 		exit(0);
 	}
-	if (ft_exec(proc->cmd, info) == -1)
-		xperror("child");
+	ft_exec(proc->cmd, info);
 	return (0);
 }
 
 //todo: num of fork return error
-int	exec_multi_procs(t_proc *proc, t_info *info)
+int	multi_procs(t_proc *proc, t_info *info)
 {
-	int		pipes[MAX_PROC][2];
-	pid_t	pids[MAX_PROC + 1];
-	t_proc	*proc_p;
+	int			pipes[MAX_PROC][2];
+	pid_t		pids[MAX_PROC + 1];
+	int			proc_num;
+	extern int	g_exit_status;
 
-	proc_p = proc;
-	while (proc_p)
+	proc_num = proc_num_count(proc);
+	while (proc)
 	{
-		xpipe(pipes[proc_p->id]);
-		pids[proc_p->id] = xfork();
-		if (pids[proc_p->id] == 0)
-			child_proc(proc_p, pipes, info);
-		if (!is_first_proc(proc_p))
+		xpipe(pipes[proc->id]);
+		pids[proc->id] = xfork();
+		if (pids[proc->id] == 0)
+			child_proc(proc, pipes, info);
+		if (!is_first_proc(proc))
 		{
-			close(pipes[proc_p->id - 1][0]);
-			close(pipes[proc_p->id - 1][1]);
+			close(pipes[proc->id - 1][0]);
+			close(pipes[proc->id - 1][1]);
 		}
-		proc_p = proc_p->next;
+		proc = proc->next;
 	}
-	g_exit_status = pids_wait(pids, proc_num_count(proc));
+	g_exit_status = pids_wait(pids, proc_num);
 	return (0);
 }
