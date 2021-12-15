@@ -48,6 +48,7 @@ char	**to_vector(int fd);
 int		xdup(int fd);
 void	xdup2(int fd1, int fd2);
 void	*xmalloc(size_t size);
+pid_t	xfork(void);
 void	xperror(char *s);
 void	xpipe(int *fd);
 

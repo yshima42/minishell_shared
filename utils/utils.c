@@ -6,11 +6,19 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:41:31 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:43:59 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "utils.h"
+
+//change to stdfd
+void	save_stdfd(t_info *info)
+{
+	info->stdfd[SAVED_IN] = xdup(STDIN_FILENO);
+	info->stdfd[SAVED_OUT] = xdup(STDOUT_FILENO);
+	info->stdfd[SAVED_ERR] = xdup(STDERR_FILENO);
+}
 
 char	**ft_splitfree(char **tab)
 {

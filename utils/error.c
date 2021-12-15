@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 23:00:33 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:39:44 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:02:40 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "utils.h"
 
 void	cmd_err(char **cmd)
 {

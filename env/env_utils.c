@@ -6,40 +6,44 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 22:57:36 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:48:37 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "env.h"
 
-void	add_envs(char **envs, t_info *info)
+t_dict	*init_envs(void)
 {
 	char		*key;
 	char		*value;
 	size_t		i;
 	size_t		key_len;
+	t_dict		*env;
+	extern char	**environ;
 
 	i = 0;
-	while (envs[i])
+	env = xdict_new("", "");
+	while (environ[i])
 	{
-		key_len = ft_strlen(envs[i]) - ft_strlen(ft_strchr(envs[i], '='));
-		key = ft_substr(envs[i], 0, key_len);
-		value = ft_strdup(ft_strchr(envs[i], '=') + 1);
-		dict_addback(info->env, dict_new(key, value));
+		key_len = ft_strlen(environ[i]) - ft_strlen(ft_strchr(environ[i], '='));
+		key = ft_substr(environ[i], 0, key_len);
+		value = ft_strdup(ft_strchr(environ[i], '=') + 1);
+		dict_addback(env, dict_new(key, value));
 		i++;
 	}
+	return (env);
 }
 
-void	del_envs(char **envs, t_info *info)
+/* void	del_envs(char *key, t_dict *env)
 {
 	t_dict	*t_env;
 	size_t	i;
 
 	i = 0;
-	while (envs[i])
+	while ()
 	{
-		t_env = info->env->next;
-		while (t_env != info->env)
+		t_env = env->next;
+		while (t_env != env)
 		{
 			if (ft_strcmp(t_env->key, envs[i]) == 0)
 				dict_delone(t_env);
@@ -47,4 +51,4 @@ void	del_envs(char **envs, t_info *info)
 		}
 		i++;
 	}
-}
+} */

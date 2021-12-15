@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   exec_bool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:40:54 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/09 17:26:56 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/15 17:50:24 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "exec.h"
 
-t_info	*shell_init(void)
+bool	is_single_proc(t_proc *proc)
 {
-	t_info		*info;
+	return (!proc->next);
+}
 
-	info = xmalloc(sizeof(t_info));
-	info->env = init_envs();
-	save_stdfd(info);
-	info->exit_status = 0;
-	return (info);
+bool	is_redirect(t_io *io_info)
+{
+	return (io_info);
+}
+
+bool	is_first_proc(t_proc *proc)
+{
+	return (proc->id == 0);
+}
+
+bool	is_last_proc(t_proc *proc)
+{
+	return (!proc->next);
+}
+
+bool	is_no_cmd(t_proc *proc)
+{
+	return (!proc->cmd[0]);
 }

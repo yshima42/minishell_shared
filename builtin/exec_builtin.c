@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 15:00:28 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:06:38 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "builtin.h"
 
 int	exec_cd(char **args, t_info *info)
 {

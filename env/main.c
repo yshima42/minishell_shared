@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 20:51:43 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/14 20:51:47 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 17:05:54 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "env.h"
 
 void	test_args_check(char **args)
 {

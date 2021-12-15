@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp.c                                              :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 21:29:12 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/13 20:27:54 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/15 17:40:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#ifndef ENV_H
+# define ENV_H
 
-//delete this later
-void	test_args_check(char **args)
-{
-	int	i;
+#include "../utils/utils.h"
 
-	i = 0;
-	while (args[i])
-	{
-		printf("%s\n", args[i]);
-		i++;
-	}
-}
+t_dict	*init_envs(void);
 
-void	print_all_env(t_dict *env)
-{
-	t_dict	*t_env;
-
-	t_env = env;
-	while (t_env->next)
-	{
-		printf("key: %s, value: %s\n", t_env->key, t_env->value);
-		t_env = t_env->next;
-	}
-}
+#endif

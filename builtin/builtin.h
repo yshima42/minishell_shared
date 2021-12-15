@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is.c                                               :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 17:26:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 08:31:19 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/15 17:20:12 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
-bool	is_single_proc(t_proc *proc)
-{
-	return (!proc->next);
-}
+#include "../utils/utils.h"
+#include "../parser/parser.h"
 
-bool	is_redirect(t_io *io_info)
-{
-	return (io_info);
-}
+#define PATHNAME_SIZE 512
 
-bool	is_first_proc(t_proc *proc)
-{
-	return (proc->id == 0);
-}
+int		exec_builtin(t_proc *proc, t_info *info);
+bool	is_builtin(char **args);
+int		exec_echo(char **args, t_info *info);
+int		exec_export(char **args, t_info *info);
+int		exec_unset(char **args, t_info *info);
 
-bool	is_last_proc(t_proc *proc)
-{
-	return (!proc->next);
-}
-
-bool	is_no_cmd(t_proc *proc)
-{
-	return (!proc->cmd[0]);
-}
+#endif

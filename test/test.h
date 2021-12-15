@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:26:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:40:54 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/15 17:14:00 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#ifndef TEST_H
+# define TEST_H
 
-t_info	*shell_init(void)
-{
-	t_info		*info;
+#include "../utils/utils.h"
 
-	info = xmalloc(sizeof(t_info));
-	info->env = init_envs();
-	save_stdfd(info);
-	info->exit_status = 0;
-	return (info);
-}
+void	test_pipe(t_info *info);
+
+#endif
