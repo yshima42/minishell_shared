@@ -10,7 +10,16 @@ SRCS		= expand_var.c\
 			  test/test_expand_var.c\
 			  test/test_expand_var_all.c\
 			  test/test_search_prefix.c\
-			  test/test_strclen_array.c
+			  test/test_strclen_array.c\
+			  ../utils/is.c\
+			  ../exec/exec_shell.c\
+			  ../exec/loop_shell.c\
+			  ../builtin/exec_builtin.c\
+			  ../builtin/exec_echo.c\
+			  ../builtin/exec_export.c\
+			  ../builtin/exec_unset.c\
+			  ../env/env_utils.c\
+			  ../env/shell_init.c
 
 OBJS		= $(SRCS:.c=.o)
 LIB_LEXER	= liblexer.a
@@ -26,20 +35,13 @@ L_SRC		= tkn_lst.c\
 L_SRCDIR	= ../lexer
 L_SRCS		= $(addprefix ${L_SRCDIR}/,${L_SRC})
 L_OBJS		= $(L_SRCS:.c=.o)
-LIB_ENV		= libenv.a
-E_SRC		= shell_init.c\
-			  env_utils.c\
-			  utils.c
-E_SRCDIR	= ../env
-E_SRCS		= $(addprefix ${E_SRCDIR}/,${E_SRC})
-E_OBJS		= $(E_SRCS:.c=.o)
 
-LIBS		= -L. -lft -L. -llexer
+LIBS		= -L. -lft -L. -llexer -lreadline
 
 all: $(NAME)
 
-$(NAME): $(LIB_LEXER) $(OBJS) $(E_OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(E_OBJS) $(LIBS)
+$(NAME): $(LIB_LEXER) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
 
 $(LIB_LEXER): $(L_OBJS)
 	ar -rc $(LIB_LEXER) $(L_OBJS)
@@ -49,7 +51,6 @@ $(LIB_LEXER): $(L_OBJS)
 
 clean:
 	rm -f $(OBJS)
-	rm -f $(E_OBJS)
 	rm -f $(L_OBJS)
 
 fclean: clean
