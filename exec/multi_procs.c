@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 23:16:54 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 01:12:39 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@ static int	pids_wait(pid_t pids[], int num_pids)
 	int	i;
 	int	status;
 
+	set_signal_ignore();
 	i = 0;
 	while (i <= num_pids)
 	{
 		waitpid(pids[i], &status, 0);
 		i++;
 	}
-	return (WEXITSTATUS(status));
+	set_signal_in_read();
+	if (WIFSIGNALED(status))
+		return (display_sig_info(WTERMSIG(status)));
+	else
+		return (WEXITSTATUS(status));
 }
 
 /* check if you need to return status */
@@ -55,6 +60,7 @@ int	multi_procs(t_proc *proc, t_info *info)
 	extern int	g_exit_status;
 
 	proc_num = proc_num_count(proc);
+	set_signal_in_cmd();
 	while (proc)
 	{
 		xpipe(pipes[proc->id]);

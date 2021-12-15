@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 09:59:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/15 14:50:01 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 01:11:27 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MS_SIGNAL_H
 
 # include "../libft/mylibft.h"
+# include "../utils/utils.h"
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>

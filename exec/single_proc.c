@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   single_proc.c                                 :+:      :+:    :+:   */
+/*   single_proc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 13:33:52 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 01:12:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ int	single_proc(t_proc *proc, t_info *info)
 		redirect_reset(proc->io_info, info);
 		return (exit_flag);
 	}
+	set_signal_in_cmd();
 	pid = xfork();
 	if (pid == 0)
 	{
 		redirect_pipe(proc->io_info, info);
 		ft_exec(proc->cmd, info);
 	}
+	set_signal_ignore();
 	wpid = waitpid(pid, &status, 0);
-	g_exit_status = WEXITSTATUS(status);
+	set_signal_in_read();
+	if (WIFSIGNALED(status))
+		g_exit_status = display_sig_info(WTERMSIG(status));
+	else
+		g_exit_status = WEXITSTATUS(status);
 	return (exit_flag);
 }

@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 10:00:37 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/15 14:49:36 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 01:11:12 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	set_signal_ignore(void)
 	signal(SIGQUIT, SIG_IGN);
 	return ;
 }
-
 
 int	display_sig_info(int sig)
 {
