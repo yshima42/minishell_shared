@@ -6,13 +6,14 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 16:12:31 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:16:12 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
+#include "../parser/parser.h"
 typedef struct	s_info t_info;
 
 int		ft_exec(char **cmd, t_info *info);

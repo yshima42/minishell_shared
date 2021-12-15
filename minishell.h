@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 16:12:37 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:14:17 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ typedef struct	s_info
 
 //要検討
 #define PATHNAME_SIZE 512
-
-//move to exec.h
-
 
 //utils.c
 char	*ft_trijoin(char const *s1, char const *s2, char const *s3);
