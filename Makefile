@@ -73,11 +73,11 @@ lib:
 				$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
 
 clean:
-				# $(LIBFTMAKE) clean
+				$(LIBFTMAKE) clean
 				$(RM) $(SRCS_OBJS) $(BONUS_OBJS) $(TEST_OBJS)
 
 fclean:			clean
-				# $(LIBFTMAKE) fclean
+				$(LIBFTMAKE) fclean
 				$(RM) $(NAME) $(BONUS_NAME) $(TEST_NAME) $(SRCS_OBJS) $(BONUS_PATH)$(BONUS_OBJS) $(BONUS_PATH)$(TEST_OBJS)
 
 re:				fclean all
