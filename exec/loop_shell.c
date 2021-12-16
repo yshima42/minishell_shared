@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 15:06:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 18:08:14 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ bool	launch_shell(t_proc *proc, t_info *info)
 
 	if (!proc)
 		return (0);
+	if (is_redirect(proc->io_info))
+		heredoc_handler(proc);
 	if (is_single_proc(proc))
 		exit_flag = single_proc(proc, info);
 	else

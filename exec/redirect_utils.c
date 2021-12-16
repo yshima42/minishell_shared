@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_utils.c                                       :+:      :+:    :+:   */
+/*   redirect_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 15:24:42 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 18:36:50 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	pipes_close(int pipes[][2], int num_pipes)
 	i = 0;
 	while (i < num_pipes)
 	{
-		xclose(pipes[i][0]);
-		xclose(pipes[i][1]);
+		close(pipes[i][0]);
+		close(pipes[i][1]);
 		i++;
 	}
 }
@@ -46,6 +46,7 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 {
 	int	fd;
 
+	(void)info;
 	if (!is_redirect(io_info))
 		return ;
 	while (io_info)
@@ -66,7 +67,12 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 			xdup2_close(fd, STDOUT_FILENO);
 		}
 		else if (io_info->kind == HEREDOC)
-			heredoc_handler(io_info, info);
+		{
+			printf("%s\n", io_info->heredoc_file);
+			fd = ft_xopen(io_info->heredoc_file, IN_REDIRECT);
+			xdup2_close(fd, STDIN_FILENO);
+		}	
+			//heredoc_handler(io_info, info);
 		io_info = io_info->next;
 	}
 }

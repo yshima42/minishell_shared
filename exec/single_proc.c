@@ -6,18 +6,18 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 15:12:29 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 17:38:08 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-int	no_cmd_handler(t_proc *proc, t_info *info)
+/* int	no_cmd_handler(t_proc *proc, t_info *info)
 {
 	redirect_pipe(proc->io_info, info);
 	redirect_reset(proc->io_info, info);
 	return (0);
-}
+} */
 
 //is_no_cmdをプロセスの中でやる
 //need to think if you need to put is_no_cmd in fork or not
