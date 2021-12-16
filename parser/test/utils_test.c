@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 20:55:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 12:56:23 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:49:49 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_procinfo(t_proc *proc, int ex_status)
 {
 	printf("Proc: %zu\n", proc->id);
 	printf("Cmd : ");
-	if (proc->cmd == NULL)
+	if (proc->cmd[0] == NULL)
 		printf("No Commands\n");
 	else
 		print_vector(proc->cmd);

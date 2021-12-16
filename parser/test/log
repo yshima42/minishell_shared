@@ -1,0 +1,151 @@
+./parser 4
+TEST: Simple
+LINE: [36mls  -l | cat
+[39m-------------
+Proc: 0
+Cmd : ls->-l
+IO  : No Redirect
+$?  : -1
+-------------
+Proc: 1
+Cmd : cat
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Multi Pipe
+LINE: [36mls  -l | cat | grep hoge | wc
+[39m-------------
+Proc: 0
+Cmd : ls->-l
+IO  : No Redirect
+$?  : -1
+-------------
+Proc: 1
+Cmd : cat
+IO  : No Redirect
+$?  : -1
+-------------
+Proc: 2
+Cmd : grep->hoge
+IO  : No Redirect
+$?  : -1
+-------------
+Proc: 3
+Cmd : wc
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Redirect
+LINE: [36mls  -l > outfile
+[39m-------------
+Proc: 0
+Cmd : ls->-l
+IO  : [[33mOUT_[39m]outfile
+$?  : -1
+-------------
+TEST: Pipe and Redirect
+LINE: [36mls  -l > outfile | cat < infile
+[39m-------------
+Proc: 0
+Cmd : ls->-l
+IO  : [[33mOUT_[39m]outfile
+$?  : -1
+-------------
+Proc: 1
+Cmd : cat
+IO  : [[33mIN_ [39m]infile
+$?  : -1
+-------------
+TEST: Multi Redirect
+LINE: [36mecho hoge > a > b > c | cat
+[39m-------------
+Proc: 0
+Cmd : echo->hoge
+IO  : [[33mOUT_[39m]a->[[33mOUT_[39m]b->[[33mOUT_[39m]c
+$?  : -1
+-------------
+Proc: 1
+Cmd : cat
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Multi Redirect2
+LINE: [36mecho hoge > a huga > b hugu > c | cat
+[39m-------------
+Proc: 0
+Cmd : echo->hoge->huga->hugu
+IO  : [[33mOUT_[39m]a->[[33mOUT_[39m]b->[[33mOUT_[39m]c
+$?  : -1
+-------------
+Proc: 1
+Cmd : cat
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Multi Redirect3
+LINE: [36m< infile cat hoge > a | << end >> a cat
+[39m-------------
+Proc: 0
+Cmd : cat->hoge
+IO  : [[33mIN_ [39m]infile->[[33mOUT_[39m]a
+$?  : -1
+-------------
+Proc: 1
+Cmd : cat
+IO  : [[33mHERE[39m]end->[[33mAPPE[39m]a
+$?  : -1
+-------------
+TEST: Only Redirect
+LINE: [36mecho aaa | > hoge | cat
+[39m-------------
+Proc: 0
+Cmd : echo->aaa
+IO  : No Redirect
+$?  : -1
+-------------
+Proc: 1
+Cmd : IO  : [[33mOUT_[39m]hoge
+$?  : -1
+-------------
+Proc: 2
+Cmd : cat
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Empty String
+LINE: [36m
+[39m-------------
+[31mt_proc == NULL
+[39m-------------
+TEST: Syntax Error
+LINE: [36mecho aaa > <
+[39m-------------
+[31mt_proc == NULL
+[39m-------------
+TEST: Quote
+LINE: [36me"ch"o aaa
+[39m-------------
+Proc: 0
+Cmd : echo->aaa
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Now
+LINE: [36mls 
+[39m-------------
+Proc: 0
+Cmd : ls
+IO  : No Redirect
+$?  : -1
+-------------
+TEST: Null Char
+LINE: [36m
+[39m-------------
+[31mt_proc == NULL
+[39m-------------
+TEST: Newline
+LINE: [36m
+
+[39m-------------
+[31mt_proc == NULL
+[39m-------------

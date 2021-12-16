@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:03:39 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 12:56:22 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:55:49 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@ void	test_rm_quote_words(void)
 void	test_rm_quote(char *line, char *tstmsg)
 {
 	t_proc	*procs;
+	t_dict	*env;
 	int		ex_status;
 
+	env = init_envs();
 	printf("TEST: %s\n", tstmsg);
 	printf("LINE: "CYAN"%s\n"RESET, line);
-	ex_status = parse_line(&procs, line);
+	ex_status = parse_line(&procs, line, env);
 	print_proclist(procs, ex_status);
 	proc_lstclear(&procs);
+	dict_clear(env);
 	return ;
 }
 

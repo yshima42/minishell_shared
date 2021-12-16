@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:53:48 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 12:54:48 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:26:54 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ void	print_vector(char **vector);
 void	print_iolist(t_io *io_info);
 void	print_procinfo(t_proc *proc, int ex_status);
 void	print_proclist(t_proc *head, int ex_status);
+//parser/test/test_parse_line.c
+void	test_parse_line(char *line, char *tstmsg);
+void	test_parse_lines(void);
 
 #endif /* TEST_PARSER_H */
