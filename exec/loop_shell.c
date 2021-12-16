@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 23:16:58 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:47:50 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	loop_shell(t_info *info)
 	while (!exit_flag)
 	{
 		printf("[%d]", g_exit_status);
-		line = readline("minishell > ");
+		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
 		{
 			printf("Catch Ctrl-D\n");
