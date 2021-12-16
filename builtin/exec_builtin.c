@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 22:47:58 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 23:03:13 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	exec_pwd(void)
 	return (0);
 }
 
+//info->env == NULL is possible?
 int	exec_env(t_info *info)
 {
 	t_dict	*t_env;
@@ -47,6 +48,7 @@ int	exec_env(t_info *info)
 		printf("%s=%s\n", t_env->key, t_env->value);
 		t_env = t_env->next;
 	}	
+	g_exit_status = 0;
 	return (0);
 }
 
