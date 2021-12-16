@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 14:54:45 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:10:52 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	pids_wait(pid_t pids[], int num_pids)
 
 	set_signal_ignore();
 	i = 0;
-	while (i <= num_pids)
+	while (i < num_pids)
 	{
-		waitpid(pids[i], &status, 0);
+		xwaitpid(pids[i], &status, 0);
 		i++;
 	}
 	set_signal_in_read();

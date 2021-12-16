@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 13:31:58 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 22:16:32 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:07:16 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void	test_pipe(t_info *info)
 	//yoshie test
 	test_set_pipe("ls  -l | cat", info);
 	test_set_pipe("ls  -l | cat | grep hoge | wc", info);
-	test_set_pipe("ls  -l > outfile", info);
+	test_set_pipe("ls  -l > test/outfile", info);
 	test_set_pipe("ls  -l > test/outfile | cat < test/infile", info);
-	test_set_pipe("echo hoge > a > b > c | cat", info);
-	test_set_pipe("echo hoge > a huga > b hugu > c | cat", info);
+	test_set_pipe("echo hoge > test/a > test/b > test/c | cat", info);
+	test_set_pipe("echo hoge > test/a huga > test/b hugu > test/c | cat", info);
 	//need check
-	test_set_pipe("echo aaa | > hoge | cat", info);
+	test_set_pipe("echo aaa | > test/hoge | cat", info);
 
 	//ERROR case (need to fix) *commenting out for the case which stops the shell
 	//no such file or directory

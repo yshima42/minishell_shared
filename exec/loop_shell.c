@@ -26,6 +26,8 @@ bool	launch_shell(t_proc *proc, t_info *info)
 }
 
 //need change the free(froc)
+//heredocを消す処理を入れる
+//.heredocディレクトリを作って数字で管理
 void	loop_shell(t_info *info)
 {
 	char	*line;
