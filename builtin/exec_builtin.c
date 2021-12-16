@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 22:03:51 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 00:11:35 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	exec_pwd(void)
 	return (0);
 }
 
+//info->env == NULL is possible?
 int	exec_env(t_info *info)
 {
 	t_dict	*t_env;
@@ -47,6 +48,7 @@ int	exec_env(t_info *info)
 		printf("%s=%s\n", t_env->key, t_env->value);
 		t_env = t_env->next;
 	}	
+	g_exit_status = 0;
 	return (0);
 }
 
@@ -81,7 +83,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	if (!proc->cmd[0])
 		return (exit_flag);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
-		exit_flag = EXIT;
+		exit_flag = exec_exit(proc->cmd);
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
 		exit_flag = exec_cd(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "export") == 0)
@@ -93,6 +95,6 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)
 		exit_flag = exec_env(info);
 	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
-		exit_flag = exec_echo(proc->cmd, info);
+		exit_flag = exec_echo(proc->cmd);
 	return (exit_flag);
 }

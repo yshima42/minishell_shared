@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 20:03:06 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 00:12:54 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	launch_shell(t_proc *proc, t_info *info)
 {
-	int	exit_flag;
+	bool	exit_flag;
 
 	if (!proc)
 		return (0);
@@ -27,17 +27,21 @@ bool	launch_shell(t_proc *proc, t_info *info)
 	return (exit_flag);
 }
 
-void	loop_shell(t_info *info)
+//need change the free(froc)
+//heredocを消す処理を入れる
+//.heredocディレクトリを作って数字で管理
+int	loop_shell(t_info *info)
 {
 	char	*line;
 	bool	exit_flag;
+	int		parse_state;
 	t_proc	*proc;
 
 	exit_flag = 0;
+	parse_state = 0;
 	set_signal_in_read();
 	while (!exit_flag)
 	{
-		printf("[%d]", g_exit_status);
 		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
 		{
@@ -45,12 +49,13 @@ void	loop_shell(t_info *info)
 			break ;
 		}
 		add_history(line);
-		g_exit_status = parse_line(&proc, line, info->env);
-		if (g_exit_status == EMPTY_LINE || g_exit_status == SYNTAX_ERR)
+		parse_state = parse_line(&proc, line, info->env);
+		if (parse_state == EMPTY_LINE || parse_state == SYNTAX_ERR)
 			continue ;
 		exit_flag = launch_shell(proc, info);
 		free(line);
 		proc_lstclear(&proc);
 	}
 	rl_clear_history();
+	return (g_exit_status);
 }
