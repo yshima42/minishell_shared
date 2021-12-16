@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 10:35:02 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 10:57:08 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 15:56:09 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_token
 t_token	*tkn_lstnew(char *str);
 t_token	*tkn_lstlast(t_token *lst);
 void	tkn_lstadd_back(t_token **lst, t_token *new);
+void	tkn_lstlink(t_token *before, t_token *after);
 void	tkn_lstdelone(t_token *lst, void (*del)(void *));
 void	tkn_lstclear(t_token **lst, void(*del)(void *));
 

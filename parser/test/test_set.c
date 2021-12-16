@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:54:23 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 16:38:08 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	test_set_procinfos(void)
 	test_set_procinfo("", "Empty String");
 	test_set_procinfo("echo aaa > <", "Syntax Error");
 	test_set_procinfo("e\"ch\"o aaa", "Quote");
-	test_set_procinfo("ls ", "Now");
-	test_set_procinfo("\0", "Null Char");
-	test_set_procinfo("\n", "Newline");
+	test_set_procinfo("$HOME", "Only Env-var");
+	test_set_procinfo("$HOMEa", "Nothing");
+	test_set_procinfo("ls $HOMEa", "Only ls");
+	test_set_procinfo("$HOMEa ls", "Only ls");
 	return ;
 }
