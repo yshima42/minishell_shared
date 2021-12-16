@@ -6,12 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 12:55:28 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:24:42 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
+//is_firstとlast
 void	pipes_close(int pipes[][2], int num_pipes)
 {
 	int	i;
@@ -19,8 +20,8 @@ void	pipes_close(int pipes[][2], int num_pipes)
 	i = 0;
 	while (i < num_pipes)
 	{
-		close(pipes[i][0]);
-		close(pipes[i][1]);
+		xclose(pipes[i][0]);
+		xclose(pipes[i][1]);
 		i++;
 	}
 }
