@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 21:49:14 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 23:48:47 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,19 @@ void	heredoc_child(t_io *io_info, int fd)
 
 void	heredoc_handler(t_proc *proc)
 {
-	pid_t	pid;
-	t_proc	*proc_p;
+	pid_t	pid;	
 	int		fd;
 	char	*heredoc_file_name;
 	t_io	*io_p;
 
-	proc_p = proc;
-	while (proc_p)
+	while (proc)
 	{
-		if (!proc_p->io_info || proc_p->io_info->kind != HEREDOC)
+		if (!proc->io_info || proc->io_info->kind != HEREDOC)
 		{
-			proc_p = proc_p->next;
+			proc = proc->next;
 			continue ;
 		}
-		io_p = proc_p->io_info;
+		io_p = proc->io_info;
 		while (io_p)
 		{	
 			fd = heredoc_xopen(&heredoc_file_name);
@@ -81,9 +79,9 @@ void	heredoc_handler(t_proc *proc)
 		}
 		pid = xfork();
 		if (pid == 0)
-			heredoc_child(proc_p->io_info, fd);
+			heredoc_child(proc->io_info, fd);
 		waitpid(pid, NULL, 0);
 		close(fd);
-		proc_p = proc_p->next;
+		proc = proc->next;
 	}
 }
