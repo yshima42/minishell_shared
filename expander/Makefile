@@ -6,20 +6,14 @@ SRCS		= expand_var.c\
 			  expand_var_all.c\
 			  main.c\
 			  utils.c\
+			  ../utils/utils.c\
+			  ../utils/shell_init.c\
+			  ../env/env_utils.c\
 			  test/test_append_nonvar.c\
 			  test/test_expand_var.c\
 			  test/test_expand_var_all.c\
 			  test/test_search_prefix.c\
 			  test/test_strclen_array.c\
-			  ../utils/is.c\
-			  ../exec/exec_shell.c\
-			  ../exec/loop_shell.c\
-			  ../builtin/exec_builtin.c\
-			  ../builtin/exec_echo.c\
-			  ../builtin/exec_export.c\
-			  ../builtin/exec_unset.c\
-			  ../env/env_utils.c\
-			  ../env/shell_init.c
 
 OBJS		= $(SRCS:.c=.o)
 LIB_LEXER	= liblexer.a

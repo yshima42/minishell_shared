@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 19:34:57 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:16:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 
 void	test_expand_var(char *word, char *tstmsg)
 {
-	t_info	*info;
+	t_dict	*env;
 	char	*expanded;
 
 	printf("TEST: %s\n", tstmsg);
 	printf("WORD: "CYAN"%s\n"RESET, word);
-	info = shell_init();
-	expanded = expand_var(word, info);
-	printf("AFT : %s\n", expanded);
-	printf("\n");
-	dict_clear(info->env);
-	free(info);
+	env = init_envs();
+	expanded = expand_var(word, env);
+	printf("AFT : %s\n\n", expanded);
+	dict_clear(env);
 	free(expanded);
 	return ;
 }

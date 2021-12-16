@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 12:47:50 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 15:06:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	loop_shell(t_info *info)
 			break ;
 		}
 		add_history(line);
-		g_exit_status = parse_line(&proc, line);
+		g_exit_status = parse_line(&proc, line, info->env);
 		if (g_exit_status == EMPTY_LINE || g_exit_status == SYNTAX_ERR)
 			continue ;
 		exit_flag = launch_shell(proc, info);

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 12:58:23 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:54:23 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void	test_set_procinfo(char *line, char *tstmsg)
 {
 	t_proc	*procs;
+	t_dict	*env;
 	int		ex_status;
 
+	env = init_envs();
 	printf("TEST: %s\n", tstmsg);
 	printf("LINE: "CYAN"%s\n"RESET, line);
-	ex_status = parse_line(&procs, line);
+	ex_status = parse_line(&procs, line, env);
 	print_proclist(procs, ex_status);
 	proc_lstclear(&procs);
+	dict_clear(env);
 	return ;
 }
 

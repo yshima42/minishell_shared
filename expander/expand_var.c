@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 17:39:21 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:10:46 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*append_var(char *str, char *value)
 	return (tmp);
 }
 
-char	*fetch_value(char *prefix, size_t key_len, t_info *info)
+char	*fetch_value(char *prefix, size_t key_len, t_dict *env)
 {
 	char	*key;
 	char	*value;
@@ -41,11 +41,11 @@ char	*fetch_value(char *prefix, size_t key_len, t_info *info)
 	key = ft_xstrndup((prefix + 1), key_len);
 	if (ft_strcmp(key, "?") == EQUAL)
 	{
-		value = ft_itoa(info->exit_status);
+		value = ft_itoa(g_exit_status);
 	}
 	else
 	{
-		value = mini_getenv(key, info);
+		value = dict_get_value(key, env);
 		if (value != NULL)
 			value = ft_xstrdup(value);
 	}
@@ -62,7 +62,7 @@ size_t	strlen_key(char *start)
 }
 
 //xstrjoin
-char	*expand_var(char *word, t_info *info)
+char	*expand_var(char *word, t_dict *env)
 {
 	char	*prefix;
 	char	*value;
@@ -79,7 +79,7 @@ char	*expand_var(char *word, t_info *info)
 			return (ft_xstrjoin_free(ret, word));
 		ret = append_nonvar(ret, word, prefix - word);
 		key_len = strlen_key(prefix + 1);
-		value = fetch_value(prefix, key_len, info);
+		value = fetch_value(prefix, key_len, env);
 		ret = append_var(ret, value);
 		word = prefix + key_len + 1;
 	}

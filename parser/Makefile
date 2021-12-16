@@ -21,7 +21,14 @@ SRCS		= main.c\
 			  test/test_set.c\
 			  test/test_rm_quote.c\
 			  test/test_count_quote.c\
-			  test/utils_test.c
+			  test/utils_test.c\
+			  test/test_parse_line.c\
+			  ../expander/expand_var.c\
+			  ../expander/expand_var_all.c\
+			  ../expander/utils.c\
+			  ../utils/utils.c\
+			  ../utils/shell_init.c\
+			  ../env/env_utils.c
 OBJS		= $(SRCS:.c=.o)
 LIB_LEXER	= liblexer.a
 L_SRC		= tkn_lst.c\
@@ -81,5 +88,8 @@ test_countq: all
 
 test_remove_word: all
 	./parser 7
+
+test_parse_lines: all
+	./parser 8
 
 .PHONY: all clean fclean re

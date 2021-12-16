@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_var_all.c                                   :+:      :+:    :+:   */
+/*   dict_get_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:14:01 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/16 13:06:58 by hyoshie           #+#    #+#             */
+/*   Updated: 2021/12/16 13:16:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
+#include "myfunc.h"
 
-t_token	*expand_var_all(t_token *tokens, t_dict *env)
+char	*dict_get_value(const char *key, t_dict *head)
 {
-	t_token	*head;
-	char	*tmp;
+	t_dict	*t_env;
 
-	head = tokens;
-	while (tokens != NULL)
+	t_env = head->next;
+	while (t_env != head)
 	{
-		if (search_prefix(tokens->word) != NULL)
-		{
-			tmp = tokens->word;
-			tokens->word = expand_var(tokens->word, env);
-			free(tmp);
-		}
-		tokens = tokens->next;
+		if (ft_strcmp(t_env->key, key) == 0)
+			return (t_env->value);
+		t_env = t_env->next;
 	}
-	return (head);
+	return (NULL);
 }

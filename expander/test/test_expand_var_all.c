@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 14:42:36 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:13:25 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 
 void	test_expand_var_all(char *line, char *tstmsg)
 {
-	t_info	*info;
 	t_token	*tokens;
 	t_token	*expanded;
+	t_dict	*env;
 
 	printf("TEST: %s\n", tstmsg);
 	printf("WORD: "CYAN"%s\n"RESET, line);
-	info = shell_init();
 	tokens = to_tokenlist(line);
-	printf("BEF : ");
-	printf("\n");
+	env = init_envs();
+	printf("BEF : \n");
 	print_tokens(tokens);
-	expanded = expand_var_all(tokens, info);
-	printf("AFT : ");
-	printf("\n");
+	expanded = expand_var_all(tokens, env);
+	printf("AFT : \n");
 	print_tokens(expanded);
 	printf("\n");
 	tkn_lstclear(&tokens, free);
-	dict_clear(info->env);
-	free(info);
+	dict_clear(env);
 	return ;
 }
 

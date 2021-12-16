@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 17:04:20 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:51:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	terminate_syntaxerr(t_token *tokens)
 	return (SYNTAX_ERR);
 }
 
-int	parse_line(t_proc **procs, char *line)
+int	parse_line(t_proc **procs, char *line, t_dict *env)
 {
 	t_token	*tokens;
 
@@ -28,6 +28,7 @@ int	parse_line(t_proc **procs, char *line)
 		return (EMPTY_LINE);
 	if (!validate_syntax(tokens))
 		return (terminate_syntaxerr(tokens));
+	tokens = expand_var_all(tokens, env);
 	tokens = remove_quote(tokens);
 	*procs = to_proclist(tokens);
 	tkn_lstclear(&tokens, free);

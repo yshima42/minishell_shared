@@ -10,6 +10,7 @@ LIBFT_PATH		= 	./libft/
 TEST_PATH		=	./test/
 PARSER_PATH		=	./parser/
 LEXER_PATH		=	./lexer/
+EXPANDER_PATH	=	./expander/
 SIGNAL_PATH		=	./signal/
 MAIN			=	main.c
 SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c \
@@ -35,15 +36,19 @@ LEXER_FILES		=	tkn_lst.c\
 					to_token.c
 SIGNAL_FILES	=	signal.c\
 					signal_heredoc.c
+EXPANDER_FILES	=	expand_var.c\
+					expand_var_all.c\
+					utils.c
 BONUS_FILES		=
 TEST_MAIN    	= 	$(TEST_PATH)/test_main.c $(TEST_PATH)/test_pipe.c
 SRCS			= 	$(SRCS_FILES)
 B_SRCS			= 	$(addprefix $(BONUS_PATH), $(BONUS_FILES))
 PARSER_SRCS		= 	$(addprefix $(PARSER_PATH), $(PARSER_FILES))
 LEXER_SRCS		= 	$(addprefix $(LEXER_PATH), $(LEXER_FILES))
+EXPANDER_SRCS	= 	$(addprefix $(EXPANDER_PATH), $(EXPANDER_FILES))
 SIGNAL_SRCS		= 	$(addprefix $(SIGNAL_PATH), $(SIGNAL_FILES))
-SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o)
-TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) 
+SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o)
+TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o)
 BONUS_OBJS		= 	$(SRCS:.c=.o)
 LIBFTMAKE		= 	$(MAKE) -C $(LIBFT_PATH)
 LIBFTFLAG		= 	-L$(LIBFT_PATH) -lft

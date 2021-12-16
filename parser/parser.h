@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/15 14:01:15 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:50:26 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 
 # include "../lexer/lexer.h"
-# include "../lexer/test/test_lexer.h"
+# include "../expander/expander.h"
 
 # define INITIAL_STATE -1
 # define EMPTY_LINE 0
@@ -38,7 +38,7 @@ typedef struct s_proc
 	size_t			id;
 }	t_proc;
 
-int		parse_line(t_proc **proclist, char *line);
+int		parse_line(t_proc **proclist, char *line, t_dict *env);
 t_proc	*to_proclist(t_token *tokens);
 bool	validate_syntax(t_token *tokens);
 size_t	count_quote(char *word);
