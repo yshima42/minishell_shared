@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 15:59:09 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:34:52 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,29 @@ static int	pids_wait(pid_t pids[], int num_pids)
 		return (WEXITSTATUS(status));
 }
 
-/* check if you need to return status */
-static int	child_proc(t_proc *proc, int pipes[][2], t_info *info)
+static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 {
 	if (!is_first_proc(proc))
+	{
 		xdup2(pipes[proc->id - 1][0], STDIN_FILENO);
+		xclose(pipes[proc->id - 1][0]);	
+		xclose(pipes[proc->id - 1][1]);
+	}
 	if (!is_last_proc(proc))
+	{
 		xdup2(pipes[proc->id][1], STDOUT_FILENO);
-	pipes_close(pipes, proc->id + 1);
+		xclose(pipes[proc->id][0]);	
+		xclose(pipes[proc->id][1]);
+	}
 	redirect_pipe(proc->io_info, info);
 	if (is_builtin(proc->cmd))
 	{
 		if (!is_first_proc(proc))
-			close(STDIN_FILENO);
+			xclose(STDIN_FILENO);
 		exec_builtin(proc, info);
 		exit(0);
 	}
 	ft_exec(proc->cmd, info);
-	return (0);
 }
 
 //todo: num of fork return error
