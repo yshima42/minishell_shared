@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 00:12:54 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 00:51:09 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	loop_shell(t_info *info)
 	set_signal_in_read();
 	while (!exit_flag)
 	{
+		printf("[%d]", g_exit_status);
 		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
 		{
