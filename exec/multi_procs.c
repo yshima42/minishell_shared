@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 12:57:44 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:54:45 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	multi_procs(t_proc *proc, t_info *info)
 			child_proc(proc, pipes, info);
 		if (!is_first_proc(proc))
 		{
-			close(pipes[proc->id - 1][0]);
-			close(pipes[proc->id - 1][1]);
+			xclose(pipes[proc->id - 1][0]);
+			xclose(pipes[proc->id - 1][1]);
 		}
 		proc = proc->next;
 	}

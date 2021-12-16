@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 12:27:47 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:49:25 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	exec_env(t_info *info)
 //feel like there is a better way to do this
 bool	is_builtin(char **args)
 {
+	if (!args[0])
+		return (false);
 	if (ft_strcmp(args[0], "exit") == 0)
 		return (true);
 	else if (ft_strcmp(args[0], "cd") == 0)
@@ -75,6 +77,8 @@ int	exec_builtin(t_proc *proc, t_info *info)
 {
 	int	ret;
 
+	if (!proc->cmd[0])
+		return (0);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
 		ret = 1;
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)

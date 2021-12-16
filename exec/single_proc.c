@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 13:00:59 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 14:48:51 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	single_proc(t_proc *proc, t_info *info)
 	int		exit_flag;
 	int		status;
 
-	exit_flag = 0;
-	if (is_no_cmd(proc))
-		return (no_cmd_handler(proc, info));
+	exit_flag = 0;	
 	if (is_builtin(proc->cmd))
 	{
 		redirect_pipe(proc->io_info, info);
