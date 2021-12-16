@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_lexer.c                                       :+:      :+:    :+:   */
+/*   test_to_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:25:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 16:20:52 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	print_tokens(t_token *head)
 	char	*kstr[LAST];
 
 	set_string(kstr);
+	if (head == NULL)
+	{
+		printf(RED"No Token.\n"RESET);
+		return ;
+	}
 	tmp = head;
 	while (tmp != NULL)
 	{

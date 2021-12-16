@@ -3,12 +3,13 @@ Mmain	env/main.c	/^int	main(void)$/
 Msignal1	signal/test/signal1.c	/^int	main(void)$/
 Msignal2	signal/test/signal2.c	/^int	main(void)$/
 Msignal4	signal/test/signal4.c	/^int	main(void)$/
+Mtest_dict_get_value	expander/test/test_dict_get_value.c	/^int	main(void)$/
 Mtest_main	test/test_main.c	/^int	main(int argc, char **argv)$/
 add_cmd	ref/srcs/set_parse_cmd.c	/^void	add_cmd(t_cmd **res, t_cmd *new)$/
 add_tmpfile	ref/srcs/tmp_file.c	/^void	add_tmpfile(t_tmp *new)$/
 append_nonvar	expander/expand_var.c	/^char	*append_nonvar(char *str, char *current, size/
-append_open	exec/ft_open.c	/^static int	append_open(char *file)$/
 append_var	expander/expand_var.c	/^char	*append_var(char *str, char *value)$/
+append_xopen	exec/ft_open.c	/^static int	append_xopen(char *file)$/
 call_testfunc	expander/main.c	/^void	call_testfunc(int idx)$/
 cd_cmd	ref/srcs/builtin_cd.c	/^int	cd_cmd(t_env **env_list, t_cmd *cmd)$/
 change_flag_quart	ref/srcs/get_cmd_search_len2.c	/^void	change_flag_quart(char *str, size_t *str_inde/
@@ -36,6 +37,7 @@ detect_leak	env/main.c	/^void	detect_leak(void)$/
 dict_addback	libft/myfunc/dict_addback.c	/^bool	dict_addback(t_dict *head, t_dict *new)$/
 dict_clear	libft/myfunc/dict_clear.c	/^void	dict_clear(t_dict *head)$/
 dict_delone	libft/myfunc/dict_delone.c	/^bool	dict_delone(t_dict *elem)$/
+dict_get_value	libft/myfunc/dict_get_value.c	/^char	*dict_get_value(const char *key, t_dict *head/
 dict_new	libft/myfunc/dict_new.c	/^t_dict	*dict_new(char *key, char *value)$/
 dict_size	libft/myfunc/dict_size.c	/^size_t	dict_size(t_dict *head)$/
 dict_to_array	libft/myfunc/dict_to_array.c	/^char	**dict_to_array(t_dict *dict_head, char *conn/
@@ -60,8 +62,8 @@ exec_export	builtin/exec_export.c	/^int	exec_export(char **args, t_info *info)$/
 exec_pwd	builtin/exec_builtin.c	/^int	exec_pwd(void)$/
 exec_unset	builtin/exec_unset.c	/^int	exec_unset(char **args, t_info *info)$/
 exit_cmd	ref/srcs/builtin_exit.c	/^int	exit_cmd(t_env *env_list, t_cmd *cmd)$/
-expand_var	expander/expand_var.c	/^char	*expand_var(char *word, t_info *info)$/
-expand_var_all	expander/expand_var_all.c	/^t_token	*expand_var_all(t_token *tokens, t_info *i/
+expand_var	expander/expand_var.c	/^char	*expand_var(char *word, t_dict *env)$/
+expand_var_all	expander/expand_var_all.c	/^t_token	*expand_var_all(t_token *tokens, t_dict *e/
 expansion_param	ref/srcs/var_expansion.c	/^void	expansion_param(t_cmd *target, t_env *env_lis/
 export_cmd	ref/srcs/builtin_export.c	/^int	export_cmd(t_env *env_list, t_cmd *cmd)$/
 fetch_value	expander/expand_var.c	/^char	*fetch_value(char *prefix, size_t key_len, t_/
@@ -131,7 +133,6 @@ ft_memcpy	ref/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, s
 ft_memmove	ref/libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size/
 ft_memset	ref/libft/ft_memset.c	/^void	*ft_memset(void *str, int character, size_t n/
 ft_mv_to_home	ref/srcs/builtin_cd.c	/^int	ft_mv_to_home(t_env *env_list)$/
-ft_open	exec/ft_open.c	/^int	ft_open(char *file, enum e_kind open_mode)$/
 ft_port_free_cmd	ref/srcs/utils_free.c	/^void	ft_port_free_cmd(t_cmd *first, t_cmd *last, i/
 ft_put_2array_cmd	ref/srcs/utils.c	/^void	ft_put_2array_cmd(t_cmd *array)$/
 ft_putchar_fd	ref/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/
@@ -183,6 +184,7 @@ ft_trijoin	libft/myfunc/ft_trijoin.c	/^char	*ft_trijoin(char const *s1, char con
 ft_try_cat_dir	ref/srcs/cd_get_curpath.c	/^int	ft_try_cat_dir(char *cdpath, char *dir_ope, ch/
 ft_vallen	ref/srcs/srakuma_utils_1.c	/^size_t	ft_vallen(char *dollar_ptr)$/
 ft_wordspliting	ref/srcs/var_expansion.c	/^t_cmd	*ft_wordspliting(t_cmd *target)$/
+ft_xopen	exec/ft_open.c	/^int	ft_xopen(char *file, enum e_kind open_mode)$/
 ft_xstrajoin	libft/myfunc/ft_xstrajoin.c	/^char	*ft_xstrajoin(char **str, char *connector)$/
 ft_xstrjoin_free	expander/utils.c	/^char	*ft_xstrjoin_free(char *str1, char *str2)$/
 ft_xstrndup	libft/myfunc/ft_xstrndup.c	/^char	*ft_xstrndup(const char *s1, size_t n)$/
@@ -198,11 +200,11 @@ handler_42	signal/test/signal2.c	/^void	handler_42(int sig)$/
 heredoc	ref/srcs/heredoc.c	/^int	heredoc(t_cmd *here, char *file_name, t_env *e/
 heredoc_child	ref/srcs/heredoc.c	/^int	heredoc_child(t_cmd *here, char *file_name, t_/
 heredoc_handler	exec/heredoc_handler.c	/^void	heredoc_handler(t_io *io_info, t_info *info)$/
-heredoc_open	exec/heredoc_handler.c	/^static int	heredoc_open(char **heredoc_file_name)$/
 heredoc_parent	ref/srcs/heredoc.c	/^int	heredoc_parent(pid_t id)$/
 heredoc_sig_handler	ref/srcs/signal_handler.c	/^void	heredoc_sig_handler(int sig)$/
+heredoc_xopen	exec/heredoc_handler.c	/^static int	heredoc_xopen(char **heredoc_file_name)/
 ifeq	Makefile	/^ifeq ($(shell uname), Darwin)$/
-in_redirect_open	exec/ft_open.c	/^static int	in_redirect_open(char *file)$/
+in_redirect_xopen	exec/ft_open.c	/^static int	in_redirect_xopen(char *file)$/
 inequality_branch_second	ref/srcs/child_check_redirect.c	/^static int	inequality_branch_second(t_cmd **cmd, /
 inequality_l1	ref/srcs/inequality.c	/^int	inequality_l1(t_cmd *cmd)$/
 inequality_l2	ref/srcs/inequality.c	/^int	inequality_l2(t_cmd *cmd)$/
@@ -251,9 +253,9 @@ middle_pipe_p	ref/srcs/pipe.c	/^static void	middle_pipe_p(t_common_process *c_p,
 mini_getenv	utils/utils.c	/^char	*mini_getenv(const char *key, t_info *info)$/
 multi_procs	exec/multi_procs.c	/^int	multi_procs(t_proc *proc, t_info *info)$/
 no_cmd_handler	exec/single_proc.c	/^int	no_cmd_handler(t_proc *proc, t_info *info)$/
-out_redirect_open	exec/ft_open.c	/^static int	out_redirect_open(char *file)$/
+out_redirect_xopen	exec/ft_open.c	/^static int	out_redirect_xopen(char *file)$/
 parse_cmd	ref/srcs/parse_cmd.c	/^t_cmd	*parse_cmd(char **str)$/
-parse_line	parser/parse_line.c	/^int	parse_line(t_proc **procs, char *line)$/
+parse_line	parser/parse_line.c	/^int	parse_line(t_proc **procs, char *line, t_dict /
 path_from_env	exec/ft_exec.c	/^static char	*path_from_env(char *cmd, char *strenv/
 pids_wait	exec/multi_procs.c	/^static int	pids_wait(pid_t pids[], int num_pids)$/
 pipes_close	exec/pipe_utils.c	/^void	pipes_close(int pipes[][2], int num_pipes)$/
@@ -264,6 +266,7 @@ print_iolist	parser/test/utils_test.c	/^void	print_iolist(t_io *io_info)$/
 print_procinfo	parser/test/utils_test.c	/^void	print_procinfo(t_proc *proc, int ex_status)$/
 print_proclist	parser/test/utils_test.c	/^void	print_proclist(t_proc *head, int ex_status)$/
 print_tokens	lexer/test/test_to_token.c	/^void	print_tokens(t_token *head)$/
+print_value	expander/test/test_dict_get_value.c	/^void	print_value(char *key, t_dict *dict)$/
 print_vector	parser/test/utils_test.c	/^void	print_vector(char **vector)$/
 proc_child_stop_by_sig	ref/srcs/signal_handler.c	/^int	proc_child_stop_by_sig(int sig)$/
 proc_lstadd_back	parser/proc_lst.c	/^void	proc_lstadd_back(t_proc **lst, t_proc *new)$/
@@ -313,7 +316,7 @@ set_parse_cmd	ref/srcs/set_parse_cmd.c	/^int	set_parse_cmd(t_cmd **res, char *st
 set_procinfo	parser/set_procinfo.c	/^t_proc	*set_procinfo(t_proc *procs, t_token *token/
 set_signal_ignore	signal/signal.c	/^void	set_signal_ignore(void)$/
 set_signal_in_cmd	signal/signal.c	/^void	set_signal_in_cmd(void)$/
-set_signal_in_heredoc	signal/signal.c	/^void	set_signal_in_heredoc(void)$/
+set_signal_in_heredoc	signal/signal_heredoc.c	/^void	set_signal_in_heredoc(void)$/
 set_signal_in_read	signal/signal.c	/^void	set_signal_in_read(void)$/
 set_string	lexer/test/test_to_token.c	/^void	set_string(char **kstr)$/
 set_strings_from_list	libft/myfunc/to_vector.c	/^static char	**set_strings_from_list(t_list *head)$/
@@ -338,7 +341,7 @@ t_proc	parser/parser.h	/^}	t_proc;$/
 t_stdfd	utils/utils.h	/^}	t_stdfd;$/
 t_tmp	ref/srcs/struct.h	/^}				t_tmp;$/
 t_token	lexer/token.h	/^}	t_token;$/
-terminate_heredoc	signal/signal.c	/^void	terminate_heredoc(int sig)$/
+terminate_heredoc	signal/signal_heredoc.c	/^void	terminate_heredoc(int sig)$/
 terminate_syntaxerr	parser/parse_line.c	/^int	terminate_syntaxerr(t_token *tokens)$/
 test_append_nonvar	expander/test/test_append_nonvar.c	/^void	test_append_nonvar(char *str, char *tail, siz/
 test_append_nonvars	expander/test/test_append_nonvar.c	/^void	test_append_nonvars(void)$/
@@ -403,6 +406,7 @@ validate_operator_position	parser/validate_syntax.c	/^static bool	validate_opera
 validate_pipe_position	parser/validate_syntax.c	/^static bool	validate_pipe_position(t_token *tokens/
 validate_syntax	parser/validate_syntax.c	/^bool	validate_syntax(t_token *tokens)$/
 wait_child_process	ref/srcs/exec_cmd_pipe.c	/^static int	wait_child_process(t_common_process *co/
+xclose	libft/myfunc/xclose.c	/^void	xclose(int fd)$/
 xdict_new	libft/myfunc/xdict_new.c	/^t_dict	*xdict_new(char *key, char *value)$/
 xdict_to_array	libft/myfunc/xdict_to_array.c	/^char	**xdict_to_array(t_dict *dict_head, char *con/
 xdup	libft/myfunc/xdup.c	/^int	xdup(int fd)$/
@@ -412,3 +416,4 @@ xfork	libft/myfunc/xfork.c	/^pid_t	xfork(void)$/
 xmalloc	libft/myfunc/xmalloc.c	/^void	*xmalloc(size_t size)$/
 xperror	libft/myfunc/xperror.c	/^void	xperror(char *s)$/
 xpipe	libft/myfunc/xpipe.c	/^void	xpipe(int *fd)$/
+xwaitpid	libft/myfunc/xwaitpid.c	/^void	xwaitpid(pid_t pid, int *status, int options)/
