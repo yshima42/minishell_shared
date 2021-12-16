@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 23:03:13 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 23:22:52 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	if (!proc->cmd[0])
 		return (0);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
-		ret = 1;
+		ret = exec_exit(proc->cmd);
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
 		ret = exec_cd(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "export") == 0)

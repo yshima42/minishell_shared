@@ -16,7 +16,7 @@ MAIN			=	main.c
 SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c \
 					exec/pipe_utils.c exec/ft_exec.c exec/ft_open.c exec/single_proc.c exec/multi_procs.c\
 					utils/utils.c builtin/exec_builtin.c builtin/exec_echo.c utils/shell_init.c \
-					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c exec/exec_bool.c
+					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c exec/exec_bool.c builtin/exec_exit.c
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\
 					remove_quote.c\

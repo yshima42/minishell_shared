@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exec_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 23:27:55 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/16 23:21:39 by hyoshie           #+#    #+#             */
+/*   Updated: 2021/12/16 23:57:29 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "builtin.h"
 
-//arg_check
-//bash initiate
-int	main(void)
+int	exec_exit(char **args)
 {
-	t_info	*info;
-	int		ms_exit_status;
-
-	info = shell_init();
-	ms_exit_status = loop_shell(info);
-	dict_clear(info->env);
-	free(info);
-	return (ms_exit_status);
+	if (args[1] == NULL)
+		return (1);
+	else
+	{
+		g_exit_status = 0;
+		return (1);
+	}
 }
