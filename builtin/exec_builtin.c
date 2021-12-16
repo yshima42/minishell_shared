@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 14:49:25 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:47:58 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)
 		ret = exec_env(info);
 	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
-		ret = exec_echo(proc->cmd, info);
+		ret = exec_echo(proc->cmd);
 	else
 		ret = EXIT_FAILURE;
 	return (ret);

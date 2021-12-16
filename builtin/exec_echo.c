@@ -6,20 +6,21 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 07:45:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:06:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:57:33 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
 //need to deal with echo $?
-int	exec_echo(char **args, t_info *info)
+int	exec_echo(char **args)
 {
 	size_t	i;
 	bool	n_option;
 
 	i = 1;
 	n_option = false;
+	g_exit_status = 0;
 	if (!args[1])
 	{
 		printf("\n");
@@ -32,17 +33,9 @@ int	exec_echo(char **args, t_info *info)
 	}
 	while (args[i])
 	{
-		if (args[i][0] == '$')
-		{
-			printf("%s", mini_getenv(args[i] + 1, info));
-		}
-		else
-		{
-			printf("%s", args[i]);
-			if (args[i + 1] != NULL)
-				printf(" ");
-		}
-		i++;
+		printf("%s", args[i]);
+		if (args[i++ + 1] != NULL)
+			printf(" ");
 	}
 	if (n_option == false)
 		printf("\n");
