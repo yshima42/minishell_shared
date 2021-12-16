@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 20:00:07 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 15:04:35 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 void	test_parse_line(char *line, char *tstmsg)
 {
-	t_info	*info;
 	t_proc	*procs;
+	t_dict	*env;
 	int		ex_status;
 
 	printf("TEST: %s\n", tstmsg);
 	printf("LINE: "CYAN"%s\n"RESET, line);
-	info = shell_init();
-	ex_status = parse_line(&procs, line, info);
+	env = init_envs();
+	ex_status = parse_line(&procs, line, env);
 	print_proclist(procs, ex_status);
 	proc_lstclear(&procs);
-	dict_clear(info->env);
-	free(info);
+	dict_clear(env);
 	return ;
 }
 

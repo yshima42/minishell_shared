@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:57:42 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:41:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 15:03:24 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	use_funcptr(int idx)
 	func[5] = test_rm_quotes;
 	func[6] = test_count_quotes;
 	func[7] = test_rm_quote_words;
-	// func[8] = test_parse_lines;
+	func[8] = test_parse_lines;
 	func[idx]();
 	return ;
 }
