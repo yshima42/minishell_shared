@@ -6,13 +6,12 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 20:02:12 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:49:14 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//heredocmax message exit
 static int	heredoc_xopen(char **heredoc_file_name)
 {
 	int		fd;

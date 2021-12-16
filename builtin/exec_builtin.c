@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 14:49:25 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:03:51 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,24 @@ bool	is_builtin(char **args)
 
 int	exec_builtin(t_proc *proc, t_info *info)
 {
-	int	ret;
+	int	exit_flag;
 
+	exit_flag = CONTINUE;
 	if (!proc->cmd[0])
-		return (0);
+		return (exit_flag);
 	if (ft_strcmp(proc->cmd[0], "exit") == 0)
-		ret = 1;
+		exit_flag = EXIT;
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
-		ret = exec_cd(proc->cmd, info);
+		exit_flag = exec_cd(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "export") == 0)
-		ret = exec_export(proc->cmd, info);
+		exit_flag = exec_export(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "unset") == 0)
-		ret = exec_unset(proc->cmd, info);
+		exit_flag = exec_unset(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)
-		ret = exec_pwd();
+		exit_flag = exec_pwd();
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)
-		ret = exec_env(info);
+		exit_flag = exec_env(info);
 	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
-		ret = exec_echo(proc->cmd, info);
-	else
-		ret = EXIT_FAILURE;
-	return (ret);
+		exit_flag = exec_echo(proc->cmd, info);
+	return (exit_flag);
 }

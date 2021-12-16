@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:20:12 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:59:52 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../utils/utils.h"
 #include "../parser/parser.h"
+#include "../exec/exec.h"
 
 #define PATHNAME_SIZE 512
 

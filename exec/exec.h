@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 16:38:41 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 21:57:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <readline/history.h>
 
 # define MAX_PROC 709
+
+typedef enum e_exit
+{
+	CONTINUE,
+	EXIT
+}	t_exit;
 
 void	ft_exec(char **cmd, t_info *info);
 void	save_stdfd(t_info *info);

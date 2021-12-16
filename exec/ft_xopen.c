@@ -44,7 +44,6 @@ static int	in_redirect_xopen(char *file)
 	return (fd);
 }
 
-//when you xperror, you have to free everything
 int	ft_xopen(char *file, enum e_kind open_mode)
 {
 	if (open_mode == IN_REDIRECT)

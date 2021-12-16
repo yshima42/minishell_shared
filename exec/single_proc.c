@@ -6,26 +6,29 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 21:36:51 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 22:04:45 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
+static bool	single_builtin(t_proc *proc, t_info *info)
+{
+	int		exit_flag;
+
+	redirect_pipe(proc->io_info, info);
+	exit_flag = exec_builtin(proc, info);
+	redirect_reset(proc->io_info, info);
+	return (exit_flag);
+}
+
 int	single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
-	int		exit_flag;
 	int		status;
-
-	exit_flag = 0;	
+	
 	if (is_builtin(proc->cmd))
-	{
-		redirect_pipe(proc->io_info, info);
-		exit_flag = exec_builtin(proc, info);
-		redirect_reset(proc->io_info, info);
-		return (exit_flag);
-	}
+		return (single_builtin(proc, info));
 	set_signal_in_cmd();
 	pid = xfork();
 	if (pid == 0)
@@ -40,5 +43,5 @@ int	single_proc(t_proc *proc, t_info *info)
 		g_exit_status = display_sig_info(WTERMSIG(status));
 	else
 		g_exit_status = WEXITSTATUS(status);
-	return (exit_flag);
+	return (CONTINUE);
 }
