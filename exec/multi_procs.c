@@ -6,12 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 01:12:39 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 12:57:44 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
+//think if we need to use xwaitpid it or not
 static int	pids_wait(pid_t pids[], int num_pids)
 {
 	int	i;

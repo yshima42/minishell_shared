@@ -51,5 +51,7 @@ void	*xmalloc(size_t size);
 pid_t	xfork(void);
 void	xperror(char *s);
 void	xpipe(int *fd);
+void	xclose(int fd);
+void	xwaitpid(pid_t pid, int *status, int options);
 
 #endif

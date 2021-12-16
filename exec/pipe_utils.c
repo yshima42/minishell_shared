@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 22:34:59 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:55:28 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 	{
 		if (io_info->kind == OUT_REDIRECT)
 		{
-			fd = ft_open(io_info->word, OUT_REDIRECT);
+			fd = ft_xopen(io_info->word, OUT_REDIRECT);
 			xdup2_close(fd, STDOUT_FILENO);
 		}
 		else if (io_info->kind == IN_REDIRECT)
 		{
-			fd = ft_open(io_info->word, IN_REDIRECT);
+			fd = ft_xopen(io_info->word, IN_REDIRECT);
 			xdup2_close(fd, STDIN_FILENO);
 		}
 		else if (io_info->kind == APPEND)
 		{
-			fd = ft_open(io_info->word, APPEND);
+			fd = ft_xopen(io_info->word, APPEND);
 			xdup2_close(fd, STDOUT_FILENO);
 		}
 		else if (io_info->kind == HEREDOC)
