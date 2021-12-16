@@ -52,7 +52,9 @@ M_SRC	=	dict_addback.c\
 			xfork.c\
 			xmalloc.c\
 			xperror.c\
-			xpipe.c
+			xpipe.c\
+			xclose.c\
+			xwaitpid.c
 
 G_SRCS	= gnl/get_next_line_before.c gnl/get_next_line_utils.c
 

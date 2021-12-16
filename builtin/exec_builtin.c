@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:06:38 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:27:47 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int	exec_env(t_info *info)
 	t_env = info->env->next;
 	while (t_env != info->env)
 	{	
-		ft_putstr_fd(t_env->key, STDOUT_FILENO);
-		ft_putstr_fd("=", STDOUT_FILENO);
-		ft_putstr_fd(t_env->value, STDOUT_FILENO);
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		printf("%s=%s\n", t_env->key, t_env->value);
 		t_env = t_env->next;
 	}	
 	return (0);

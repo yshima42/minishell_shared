@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 01:12:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 13:00:59 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	no_cmd_handler(t_proc *proc, t_info *info)
 	return (0);
 }
 
+//is_no_cmdをプロセスの中でやる
 //need to think if you need to put is_no_cmd in fork or not
 int	single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
-	pid_t	wpid;
 	int		exit_flag;
 	int		status;
 
@@ -45,7 +45,7 @@ int	single_proc(t_proc *proc, t_info *info)
 		ft_exec(proc->cmd, info);
 	}
 	set_signal_ignore();
-	wpid = waitpid(pid, &status, 0);
+	xwaitpid(pid, &status, 0);
 	set_signal_in_read();
 	if (WIFSIGNALED(status))
 		g_exit_status = display_sig_info(WTERMSIG(status));

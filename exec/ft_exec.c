@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 23:00:26 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:33:20 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ static char	*path_from_env(char *cmd, char *strenv)
 
 	i = 0;
 	path = strenv + 5;
-	path_each = ft_split(path, ':');
+	path_each = ft_xsplit(path, ':');
 	i = -1;
 	while (path_each[++i])
 	{
-		ret = ft_strdup(ft_trijoin(path_each[i], "/", cmd));
+		ret = ft_xstrdup(ft_xtrijoin(path_each[i], "/", cmd));
 		if (access(ret, F_OK) == 0)
 		{
 			ft_splitfree(path_each);
@@ -55,7 +55,7 @@ static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
 		return (sp_cmd[0]);
 	else if (ft_strchr(sp_cmd[0], '/'))
 	{
-		xperror(ft_trijoin("minishell", ": ", cmd));
+		xperror(ft_xtrijoin("minishell", ": ", cmd));
 		return (0);
 	}
 	else
