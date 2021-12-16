@@ -21,6 +21,7 @@ M_SRC	=	dict_addback.c\
 			dict_new.c\
 			dict_size.c\
 			dict_to_array.c\
+			dict_get_value.c\
 			free_vector.c\
 			ft_lstsize_sizet.c\
 			ft_strajoin.c\
