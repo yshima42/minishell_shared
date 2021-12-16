@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:31:07 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 17:53:24 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../lexer/lexer.h"
 # include "../env/env.h"
+# include "../libft/mylibft.h"
 
 //expand_var.c
 char	*append_nonvar(char *expanded, char *current, size_t len);

@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 10:55:51 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/16 15:55:50 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,14 @@ void	tkn_lstadd_back(t_token **lst, t_token *new)
 		ptr->next = new;
 		new->prev = ptr;
 	}
+	return ;
+}
+
+void	tkn_lstlink(t_token *before, t_token *after)
+{
+	if (before != NULL)
+		before->next = after;
+	if (after != NULL)
+		after->prev = before;
 	return ;
 }
