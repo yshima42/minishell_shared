@@ -6,26 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:40:59 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:23:41 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
-
-int	exec_cd(char **args, t_info *info)
-{
-	if (args[1] == NULL)
-	{
-		if (chdir(mini_getenv("HOME", info)) != 0)
-			perror("cd");
-	}
-	else
-	{
-		if (chdir(args[1]) != 0)
-			perror("cd");
-	}
-	return (CONTINUE);
-}
 
 int	exec_pwd(void)
 {
