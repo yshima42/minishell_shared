@@ -78,7 +78,8 @@ clean:
 
 fclean:			clean
 				$(LIBFTMAKE) fclean
-				$(RM) $(NAME) $(BONUS_NAME) $(TEST_NAME) $(SRCS_OBJS) $(BONUS_PATH)$(BONUS_OBJS) $(BONUS_PATH)$(TEST_OBJS)
+				$(RM) $(NAME) $(BONUS_NAME) $(SRCS_OBJS) $(BONUS_PATH)$(BONUS_OBJS) $(BONUS_PATH)$(TEST_OBJS)
+				# $(RM) $(NAME) $(BONUS_NAME) $(TEST_NAME) $(SRCS_OBJS) $(BONUS_PATH)$(BONUS_OBJS) $(BONUS_PATH)$(TEST_OBJS)
 
 re:				fclean all
 
