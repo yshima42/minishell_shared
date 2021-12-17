@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:39:18 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:11:57 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
 		return (sp_cmd[0]);
 	else if (ft_strchr(sp_cmd[0], '/'))
 	{
-		xperror(ft_xtrijoin("minishell", ": ", cmd));
+		xperror_2comms("minishell: ", cmd);
 		return (0);
 	}
 	else

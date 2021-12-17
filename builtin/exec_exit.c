@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:21:39 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 10:45:16 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:11:49 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	exec_exit(char **cmd)
 {
 	ft_putendl_fd("exit", STDOUT_FILENO);
 	if (has_no_arg(cmd))
-		return (1);
+		return (EXIT);
 	if (!is_digitstring(cmd[1]))
 	{
 		puterr_non_numeric(cmd[1]);
@@ -45,7 +45,7 @@ int	exec_exit(char **cmd)
 	else if (has_one_arg(cmd))
 	{
 		g_exit_status = ft_atoi(cmd[1]);
-		return (1);
+		return (EXIT);
 	}
 	else
 	{
