@@ -29,7 +29,7 @@ error_file_save()
 	printf "# " >> ${TEST_RESULT}
 	echo ${@:4} >> ${TEST_RESULT}
 	echo $1 >> ${TEST_RESULT}
-	echo "### bash result" >> ${TEST_RESULT}
+	echo "### bash result: " >> ${TEST_RESULT}
 
 	cat $2 | while read line
 	do
@@ -37,14 +37,14 @@ error_file_save()
 	echo $line >> ${TEST_RESULT}
 	done
 	
-	echo "### minishell result" >> ${TEST_RESULT}
+	echo "### minishell result: " >> ${TEST_RESULT}
 	cat $3 | while read line
 	do
 	printf "> " >> ${TEST_RESULT}
 	echo $line >> ${TEST_RESULT}
 	done
 
-	echo "---" >> ${TEST_RESULT} 
+	printf "\n---" >> ${TEST_RESULT} 
 }
 
 file_print()
