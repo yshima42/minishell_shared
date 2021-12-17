@@ -7,7 +7,7 @@ INCLUDES		= 	minishell.h
 #SRCS_PATH		= 	./srcs/
 BONUS_PATH		= 	./srcs_bonus/
 LIBFT_PATH		= 	./libft/
-TEST_PATH		=	./test/
+TEST_PATH		=	./tests/
 PARSER_PATH		=	./parser/
 LEXER_PATH		=	./lexer/
 EXPANDER_PATH	=	./expander/
@@ -83,37 +83,37 @@ fclean:			clean
 
 re:				fclean all
 
-test:			$(SRCS_OBJS)
+test:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/cases.txt
 
-test_cd:		$(SRCS_OBJS)
+test_cd:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/cd.txt
 
-test_echo:		$(SRCS_OBJS)
+test_echo:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/echo.txt
 
-test_env:		$(SRCS_OBJS)
+test_env:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/env.txt
 
-test_exit:		$(SRCS_OBJS)
+test_exit:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/exit.txt
 
-test_expand:	$(SRCS_OBJS)
+test_expand:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/expand.txt
 
-test_export:	$(SRCS_OBJS)
+test_export:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/export.txt
 
-test_pwd:		$(SRCS_OBJS)
+test_pwd:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/pwd.txt
 
-test_redirect:	$(SRCS_OBJS)
+test_redirect:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/redirect.txt
 
-test_syntax:	$(SRCS_OBJS)
+test_syntax:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
 
-test_unset:	$(SRCS_OBJS)
+test_unset:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
 
 pipe_test: 		$(TEST_OBJS)

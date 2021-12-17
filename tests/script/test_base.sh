@@ -3,6 +3,7 @@
 COLOR_RESET="\033[0m"
 COLOR_GREEN="\033[32m"
 COLOR_RED="\033[31m"
+COLOR_YELLOW="\033[33m"
 
 GRADEME_DIR=`pwd`
 OUTPUT_DIR="${GRADEME_DIR}/tests/output"
@@ -29,7 +30,7 @@ error_file_save()
 	printf "# " >> ${TEST_RESULT}
 	echo ${@:4} >> ${TEST_RESULT}
 	echo $1 >> ${TEST_RESULT}
-	echo "### bash result" >> ${TEST_RESULT}
+	echo "### bash result: " >> ${TEST_RESULT}
 
 	cat $2 | while read line
 	do
@@ -37,14 +38,14 @@ error_file_save()
 	echo $line >> ${TEST_RESULT}
 	done
 	
-	echo "### minishell result" >> ${TEST_RESULT}
+	echo "### minishell result: " >> ${TEST_RESULT}
 	cat $3 | while read line
 	do
 	printf "> " >> ${TEST_RESULT}
 	echo $line >> ${TEST_RESULT}
 	done
 
-	echo "---" >> ${TEST_RESULT} 
+	printf "\n---\n" >> ${TEST_RESULT}
 }
 
 file_print()
@@ -78,18 +79,18 @@ tester()
 	echo $TEST_CMD | ./minishell > ${STDOUT_MINISHELL_TMP} 2> ${STDERR_MINISHELL} 
 	echo $? > ${EXIT_STATUS_MINISHELL} 
 
-	printf "Case: $TEST_CMD\n"
+	printf "${COLOR_YELLOW}$TEST_CMD\n${COLOR_RESET}"
 	#STDOUT
 	sed '/32mminishell/d' ${STDOUT_MINISHELL_TMP} > ${STDOUT_MINISHELL}
 	rm ${STDOUT_MINISHELL_TMP}
-	printf "STDOUT: "
+	printf "STDOUT:      "
 	diff -s ${STDOUT_BASH} ${STDOUT_MINISHELL} > ${DIFF_STDOUT}
 	diff_check ${DIFF_STDOUT} ${STDOUT_BASH} ${STDOUT_MINISHELL} $TEST_CMD
 
 	#STDERR
 	sed -e 's/bash: line 1/minishell/g' ${STDERR_BASH_TMP} > ${STDERR_BASH}
 	rm ${STDERR_BASH_TMP}
-	printf "STDERR: "
+	printf "STDERR:      "
 	diff -s ${STDERR_BASH} ${STDERR_MINISHELL} > ${DIFF_STDERR}
 	diff_check ${DIFF_STDERR} ${STDERR_BASH} ${STDERR_MINISHELL} $TEST_CMD
 
