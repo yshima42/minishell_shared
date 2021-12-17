@@ -6,12 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:15:03 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 10:17:39 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:26:36 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
-
 
 bool	has_no_arg(char **cmd)
 {
