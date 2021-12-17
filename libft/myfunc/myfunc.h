@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:18:05 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 19:47:48 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 01:41:40 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "dict.h"
 
 void	free_vector(char **vector);
+int		ft_isspace(int c);
 size_t	ft_lstsize_sizet(t_list *lst);
 char	*ft_strajoin(char **str, char *connector);
 size_t	ft_strclen(const char *str, int c);
