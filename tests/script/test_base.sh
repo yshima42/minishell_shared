@@ -45,7 +45,7 @@ error_file_save()
 	echo $line >> ${TEST_RESULT}
 	done
 
-	printf "\n---\n" >> ${TEST_RESULT} 
+	printf "\n---\n" >> ${TEST_RESULT}
 }
 
 file_print()
