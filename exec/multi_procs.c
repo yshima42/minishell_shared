@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 23:47:38 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:12:16 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	if (!is_first_proc(proc))
 	{
 		xdup2(pipes[proc->id - 1][0], STDIN_FILENO);
-		xclose(pipes[proc->id - 1][0]);	
+		xclose(pipes[proc->id - 1][0]);
 		xclose(pipes[proc->id - 1][1]);
 	}
 	if (!is_last_proc(proc))
 	{
 		xdup2(pipes[proc->id][1], STDOUT_FILENO);
-		xclose(pipes[proc->id][0]);	
+		xclose(pipes[proc->id][0]);
 		xclose(pipes[proc->id][1]);
 	}
 	redirect_pipe(proc->io_info, info);
@@ -51,7 +51,7 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 		if (!is_first_proc(proc))
 			xclose(STDIN_FILENO);
 		exec_builtin(proc, info);
-		exit(0);
+		exit(g_exit_status);
 	}
 	ft_exec(proc->cmd, info);
 }
@@ -71,7 +71,10 @@ int	multi_procs(t_proc *proc, t_info *info)
 		xpipe(pipes[proc->id]);
 		pids[proc->id] = xfork();
 		if (pids[proc->id] == 0)
+		{
+			g_exit_status = 0;
 			child_proc(proc, pipes, info);
+		}
 		if (!is_first_proc(proc))
 		{
 			xclose(pipes[proc->id - 1][0]);

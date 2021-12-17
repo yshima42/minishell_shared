@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 00:51:09 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:28:16 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ int	loop_shell(t_info *info)
 		printf("[%d]", g_exit_status);
 		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
-		{
-			printf("Catch Ctrl-D\n");
 			break ;
-		}
 		add_history(line);
 		parse_state = parse_line(&proc, line, info->env);
 		if (parse_state == EMPTY_LINE || parse_state == SYNTAX_ERR)

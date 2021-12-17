@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 00:13:11 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:12:46 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	single_proc(t_proc *proc, t_info *info)
 {
 	pid_t	pid;
 	int		status;
-	
+
 	if (is_builtin(proc->cmd))
 		return (single_builtin(proc, info));
 	set_signal_in_cmd();
