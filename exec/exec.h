@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:33:23 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:10:58 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ bool	is_redirect(t_io *io_info);
 bool	is_first_proc(t_proc *proc);
 bool	is_last_proc(t_proc *proc);
 bool	is_no_cmd(t_proc *proc);
+void	xperror_2comms(char *str1, char *str2);
 
 #endif
