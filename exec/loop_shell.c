@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:28:16 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:45:21 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ bool	launch_shell(t_proc *proc, t_info *info)
 	return (exit_flag);
 }
 
-//need change the free(froc)
-//heredocを消す処理を入れる
-//.heredocディレクトリを作って数字で管理
 int	loop_shell(t_info *info)
 {
 	char	*line;

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:45:06 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 11:25:45 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exec_cd(char **args, t_info *info)
 		if (chdir(args[1]) != 0)
 			perror("cd");
 	}
-	return (0);
+	return (CONTINUE);
 }
 
 int	exec_pwd(void)
@@ -35,7 +35,7 @@ int	exec_pwd(void)
 	getcwd(pathname, PATHNAME_SIZE);
 	printf("%s\n", pathname);
 	g_exit_status = 0;
-	return (0);
+	return (CONTINUE);
 }
 
 //info->env == NULL is possible?
@@ -50,7 +50,7 @@ int	exec_env(t_info *info)
 		t_env = t_env->next;
 	}	
 	g_exit_status = 0;
-	return (0);
+	return (CONTINUE);
 }
 
 //feel like there is a better way to do this

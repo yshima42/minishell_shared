@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 16:23:01 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:08:54 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_io
 	struct s_io	*next;
 	char		*word;
 	char		*heredoc_file;
+	int			fd;
 	enum e_kind	kind;
 }	t_io;
 
