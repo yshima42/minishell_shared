@@ -6,13 +6,13 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:21:39 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 00:56:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:22:52 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-bool	is_digitstring(char *str)
+static bool	is_digitstring(char *str)
 {
 	while (*str != '\0')
 	{
@@ -23,7 +23,7 @@ bool	is_digitstring(char *str)
 	return (true);
 }
 
-void	puterr_non_numeric(char *arg)
+static void	puterr_non_numeric(char *arg)
 {
 	ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
 	ft_putstr_fd(arg, STDERR_FILENO);
@@ -31,19 +31,20 @@ void	puterr_non_numeric(char *arg)
 	return ;
 }
 
-int	exec_exit(char **args)
+int	exec_exit(char **cmd)
 {
-	if (args[1] == NULL)
+	ft_putendl_fd("exit", STDOUT_FILENO);
+	if (has_no_arg(cmd))
 		return (1);
-	if (!is_digitstring(args[1]))
+	if (!is_digitstring(cmd[1]))
 	{
-		puterr_non_numeric(args[1]);
+		puterr_non_numeric(cmd[1]);
 		g_exit_status = 255;
 		return (1);
 	}
-	else if (args[2] == NULL)
+	else if (has_one_arg(cmd))
 	{
-		g_exit_status = ft_atoi(args[1]);
+		g_exit_status = ft_atoi(cmd[1]);
 		return (1);
 	}
 	else
