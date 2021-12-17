@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 22:32:44 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 21:28:15 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "env/env.h"
 # include "utils/utils.h"
 # include "builtin/builtin.h"
-# include "test/test.h"
+# include "tests/test.h"
 # include <stdint.h>
 # include <stdbool.h>
 # include <string.h>

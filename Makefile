@@ -82,14 +82,15 @@ fclean:			clean
 
 re:				fclean all
 
-test: 			$(TEST_OBJS)
+test:			$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/cases.txt
+
+test_echo:			$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/echo.txt
+
+pipe_test: 		$(TEST_OBJS)
 				$(LIBFTMAKE)
 				$(CC) $(CFLAGS) $(TEST_OBJS) $(LIBFTFLAG) -o $(TEST_NAME)
-
-test_start: test
-				./tests 0
-
-test_pipe:
 				./tests 1
 
 bonus:			$(NAME) $(BONUS_OBJS)
