@@ -85,8 +85,35 @@ re:				fclean all
 test:			$(SRCS_OBJS)
 				./tests/script/test_file.sh ./tests/cases/cases.txt
 
-test_echo:			$(SRCS_OBJS)
+test_cd:		$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/cd.txt
+
+test_echo:		$(SRCS_OBJS)
 				./tests/script/test_file.sh ./tests/cases/echo.txt
+
+test_env:		$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/env.txt
+
+test_exit:		$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/exit.txt
+
+test_expand:	$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/expand.txt
+
+test_export:	$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/export.txt
+
+test_pwd:		$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/pwd.txt
+
+test_redirect:	$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/redirect.txt
+
+test_syntax:	$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
+
+test_unset:	$(SRCS_OBJS)
+				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
 
 pipe_test: 		$(TEST_OBJS)
 				$(LIBFTMAKE)
