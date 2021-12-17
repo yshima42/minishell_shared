@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 00:11:35 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:45:06 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	exec_pwd(void)
 	ft_memset(pathname, '\0', PATHNAME_SIZE);
 	getcwd(pathname, PATHNAME_SIZE);
 	printf("%s\n", pathname);
+	g_exit_status = 0;
 	return (0);
 }
 
