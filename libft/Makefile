@@ -19,6 +19,7 @@ M_SRC	=	dict_addback.c\
 			dict_clear.c\
 			dict_delone.c\
 			dict_new.c\
+			dict_search_item.c\
 			dict_size.c\
 			dict_to_array.c\
 			dict_get_value.c\

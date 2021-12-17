@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 11:25:45 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 17:05:08 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,12 @@ int	exec_env(t_info *info)
 	t_env = info->env->next;
 	while (t_env != info->env)
 	{	
-		printf("%s=%s\n", t_env->key, t_env->value);
+		ft_putstr_fd(t_env->key, STDOUT_FILENO);
+		ft_putstr_fd("=", STDOUT_FILENO);
+		if (t_env->value != NULL)
+			ft_putendl_fd(t_env->value, STDOUT_FILENO);
+		else
+			ft_putchar_fd('\n', STDOUT_FILENO);
 		t_env = t_env->next;
 	}	
 	g_exit_status = 0;
@@ -88,7 +93,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "cd") == 0)
 		exit_flag = exec_cd(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "export") == 0)
-		exit_flag = exec_export(proc->cmd, info);
+		exit_flag = exec_export(proc->cmd, info->env);
 	else if (ft_strcmp(proc->cmd[0], "unset") == 0)
 		exit_flag = exec_unset(proc->cmd, info);
 	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)

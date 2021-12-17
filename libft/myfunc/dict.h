@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 17:22:59 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 13:16:33 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 17:38:28 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	**dict_to_array(t_dict *dict_head, char *connector);
 t_dict	*xdict_new(char *key, char *value);
 char	**xdict_to_array(t_dict *dict_head, char *connector);
 char	*dict_get_value(const char *key, t_dict *head);
+t_dict	*dict_search_item(char *key, t_dict *dict);
 
 #endif
