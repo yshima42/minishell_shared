@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:26:20 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 14:41:33 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		exec_echo(char **cmd);
 int		exec_export(char **cmd, t_info *info);
 int		exec_unset(char **cmd, t_info *info);
 int		exec_exit(char **cmd);
+int		exec_cd(char **args, t_info *info);
 //builtin/utils.c
 bool	has_no_arg(char **cmd);
 bool	has_one_arg(char **cmd);

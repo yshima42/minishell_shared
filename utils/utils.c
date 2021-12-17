@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 13:01:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:19:41 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**ft_splitfree(char **tab)
 	return (NULL);
 }
 
+//move to builtin?
 char	*mini_getenv(const char *key, t_info *info)
 {
 	t_dict	*t_env;
