@@ -46,6 +46,7 @@ M_SRC	=	dict_addback.c\
 			ft_xsubstr.c\
 			ft_xtrijoin.c\
 			ft_xulongtoa_base.c\
+			multi_free.c\
 			to_vector.c\
 			xdict_new.c\
 			xdict_to_array.c\

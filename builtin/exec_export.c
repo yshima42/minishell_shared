@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 19:12:41 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 19:50:52 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ static void	update_env(char *key, char *value, enum e_symbol symbol, \
 	if (symbol == JOIN)
 	{
 		if (item != NULL)
-			item->value = ft_xstrjoin_free(item->value, value);
+		{
+			if (ft_strcmp(item->key, "_") != 0)
+				item->value = ft_xstrjoin_free(item->value, value);
+		}
 		else
 			dict_addback(env, xdict_new(key, value));
 	}
@@ -91,23 +94,24 @@ void	export_one_data(char *arg, t_dict *env)
 	else
 	{
 		get_key_and_value(arg, symbol, &key, &value);
-		if (!validate_identifier(key))
+		if (ft_strcmp(key, "_") == 0)
+			multi_free(key, value, NULL, NULL);
+		else if (!validate_identifier(key))
 		{
 			puterr_not_validate(arg);
-			free(key);
-			free(value);
+			multi_free(key, value, NULL, NULL);
 		}
 		else
 		{
 			update_env(key, value, symbol, env);
 		}
 	}
-	return ;
 }
 
 int	exec_export(char **cmd, t_dict *env)
 {
 	g_exit_status = 0;
+	cmd++;
 	while (*cmd != NULL)
 	{
 		export_one_data(*cmd, env);

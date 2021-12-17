@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:18:05 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 09:55:46 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 19:47:48 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*ft_xstrndup(const char *s1, size_t n);
 char	*ft_xsubstr(char const *s, unsigned int start, size_t len);
 char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3);
 char	*ft_xulongtoa_base(unsigned long nbr, char *base);
+void	multi_free(char *str1, char *str2, char *str3, char *str4);
 char	**to_vector(int fd);
 int		xdup(int fd);
 void	xdup2(int fd1, int fd2);

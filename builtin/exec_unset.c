@@ -6,27 +6,24 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:18:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:42:07 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:36:47 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	exec_unset(char **args, t_info *info)
-{	
-	(void)args;
-	(void)info;
-	/* size_t	i;
+int	exec_unset(char **cmd, t_dict *env)
+{
+	t_dict	*item;
 
-	if (!args[1])
-		return (1);
-	i = 1;
-	while (args[i])
+	g_exit_status = 0;
+	cmd++;
+	while (*cmd != NULL)
 	{
-		if (ft_strchr(args[i], '='))
-			printf("'%s': not a valid identifier\n", args[i]);
-		i++;
+		item = dict_search_item(*cmd, env);
+		if (item != NULL && ft_strcmp(item->key, "_") != 0)
+			dict_delone(item);
+		cmd++;
 	}
-	del_envs(&args[1]); */
 	return (CONTINUE);
 }

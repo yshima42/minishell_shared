@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 19:15:51 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 19:25:05 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "export") == 0)
 		exit_flag = exec_export(proc->cmd, info->env);
 	else if (ft_strcmp(proc->cmd[0], "unset") == 0)
-		exit_flag = exec_unset(proc->cmd, info);
+		exit_flag = exec_unset(proc->cmd, info->env);
 	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)
 		exit_flag = exec_pwd();
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)

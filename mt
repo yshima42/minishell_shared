@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# EXIT_STATUS=$(echo "echo '$?'" | ./minishell | sed 1d | sed '$d')
-
-echo $1 | ./minishell | sed 1d | sed '$d'
-# printf "\033[32m$EXIT_STATUS\033[m\n"
-# echo "echo '$?'" | ./minishell | sed 1d | sed '$d'
