@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 23:47:38 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:36:25 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	if (!is_first_proc(proc))
 	{
 		xdup2(pipes[proc->id - 1][0], STDIN_FILENO);
-		xclose(pipes[proc->id - 1][0]);	
+		xclose(pipes[proc->id - 1][0]);
 		xclose(pipes[proc->id - 1][1]);
 	}
 	if (!is_last_proc(proc))
 	{
 		xdup2(pipes[proc->id][1], STDOUT_FILENO);
-		xclose(pipes[proc->id][0]);	
+		xclose(pipes[proc->id][0]);
 		xclose(pipes[proc->id][1]);
 	}
-	redirect_pipe(proc->io_info, info);
+	redirect_pipe(proc->io_info);
 	if (is_builtin(proc->cmd))
 	{
 		if (!is_first_proc(proc))
@@ -56,7 +56,6 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	ft_exec(proc->cmd, info);
 }
 
-//todo: num of fork return error
 int	multi_procs(t_proc *proc, t_info *info)
 {
 	int			pipes[MAX_PROC][2];

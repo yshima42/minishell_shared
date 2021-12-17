@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 00:11:50 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:33:23 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ void	ft_exec(char **cmd, t_info *info);
 void	save_stdfd(t_info *info);
 void	close_stdfd(void);
 void	pipes_close(int pipes[][2], int num_pipes);
-void	redirect_pipe(t_io *io_info, t_info *info);
+void	redirect_pipe(t_io *io_info);
 int		redirect_reset(t_io *io_info, t_info *info);
 int		ft_xopen(char *file, enum e_kind open_mode);
-//void	heredoc_handler(t_io *io_info, t_info *info);
 void	heredoc_handler(t_proc *proc);
 int		single_proc(t_proc *proc, t_info *info);
 int		multi_procs(t_proc *proc, t_info *info);

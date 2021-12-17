@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 21:36:29 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:33:14 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,20 @@ static void	xdup2_xclose(int fd1, int fd2)
 	xclose(fd1);
 }
 
-void	redirect_pipe(t_io *io_info, t_info *info)
+static void	redirect_heredoc(t_io *io_info)
 {
 	int	fd;
 
-	(void)info;
+	fd = ft_xopen(io_info->heredoc_file, IN_REDIRECT);
+	xdup2_xclose(fd, STDIN_FILENO);
+	unlink(io_info->heredoc_file);
+	free(io_info->heredoc_file);
+}
+
+void	redirect_pipe(t_io *io_info)
+{
+	int	fd;
+
 	if (!is_redirect(io_info))
 		return ;
 	while (io_info)
@@ -53,12 +62,7 @@ void	redirect_pipe(t_io *io_info, t_info *info)
 			xdup2_xclose(fd, STDOUT_FILENO);
 		}
 		else if (io_info->kind == HEREDOC)
-		{
-			fd = ft_xopen(io_info->heredoc_file, IN_REDIRECT);
-			unlink(io_info->heredoc_file);
-			free(io_info->heredoc_file);
-			xdup2_xclose(fd, STDIN_FILENO);
-		}	
+			redirect_heredoc(io_info);
 		io_info = io_info->next;
 	}
 }

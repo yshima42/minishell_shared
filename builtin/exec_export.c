@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:44:58 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:41:58 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	exec_export(char **args, t_info *info)
 	(void)args;
 	(void)info;
 	//add_envs(&args[1], info);
-	return (0);
+	return (CONTINUE);
 }

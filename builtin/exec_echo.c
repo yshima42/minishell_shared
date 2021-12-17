@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 07:45:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 22:57:33 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:41:12 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ int	exec_echo(char **args)
 	}
 	if (n_option == false)
 		printf("\n");
-	return (0);
+	return (CONTINUE);
 }
