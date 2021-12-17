@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:12:16 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:45:24 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 		xclose(pipes[proc->id][0]);
 		xclose(pipes[proc->id][1]);
 	}
-	redirect_pipe(proc->io_info, info);
+	redirect_pipe(proc->io_info);
 	if (is_builtin(proc->cmd))
 	{
 		if (!is_first_proc(proc))
@@ -56,7 +56,6 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 	ft_exec(proc->cmd, info);
 }
 
-//todo: num of fork return error
 int	multi_procs(t_proc *proc, t_info *info)
 {
 	int			pipes[MAX_PROC][2];

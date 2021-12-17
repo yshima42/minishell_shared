@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:18:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:38:32 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:42:07 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	exec_unset(char **args, t_info *info)
 		i++;
 	}
 	del_envs(&args[1]); */
-	return (0);
+	return (CONTINUE);
 }

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/16 23:48:47 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/17 10:20:58 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	heredoc_xopen(char **heredoc_file_name)
 	return (fd);
 }
 
-void	heredoc_child(t_io *io_info, int fd)
+static void	heredoc_child(t_io *io_info)
 {
 	char	*line;
 
@@ -48,7 +48,7 @@ void	heredoc_child(t_io *io_info, int fd)
 				break ;
 			if (ft_strcmp(line, io_info->word) == 0)
 				break ;
-			ft_putendl_fd(line, fd);
+			ft_putendl_fd(line, io_info->fd);
 			free(line);
 		}
 		io_info = io_info->next;
@@ -56,12 +56,30 @@ void	heredoc_child(t_io *io_info, int fd)
 	exit(0);
 }
 
+static void	heredoc_io_xopen(t_io *io_info)
+{
+	char	*heredoc_file_name;
+
+	while (io_info)
+	{	
+		io_info->fd = heredoc_xopen(&heredoc_file_name);
+		io_info->heredoc_file = heredoc_file_name;
+		io_info = io_info->next;
+	}
+}
+
+static void	heredoc_io_xclose(t_io *io_info)
+{
+	while (io_info)
+	{	
+		xclose(io_info->fd);
+		io_info = io_info->next;
+	}
+}
+
 void	heredoc_handler(t_proc *proc)
 {
-	pid_t	pid;	
-	int		fd;
-	char	*heredoc_file_name;
-	t_io	*io_p;
+	pid_t	pid;
 
 	while (proc)
 	{
@@ -70,18 +88,12 @@ void	heredoc_handler(t_proc *proc)
 			proc = proc->next;
 			continue ;
 		}
-		io_p = proc->io_info;
-		while (io_p)
-		{	
-			fd = heredoc_xopen(&heredoc_file_name);
-			io_p->heredoc_file = heredoc_file_name; 
-			io_p = io_p->next;
-		}
+		heredoc_io_xopen(proc->io_info);
 		pid = xfork();
 		if (pid == 0)
-			heredoc_child(proc->io_info, fd);
+			heredoc_child(proc->io_info);
 		waitpid(pid, NULL, 0);
-		close(fd);
+		heredoc_io_xclose(proc->io_info);
 		proc = proc->next;
 	}
 }

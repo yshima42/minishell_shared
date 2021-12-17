@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:21:39 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 10:22:52 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/17 10:45:16 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	exec_exit(char **cmd)
 	{
 		puterr_non_numeric(cmd[1]);
 		g_exit_status = 255;
-		return (1);
+		return (EXIT);
 	}
 	else if (has_one_arg(cmd))
 	{
@@ -51,6 +51,6 @@ int	exec_exit(char **cmd)
 	{
 		ft_putendl_fd("minishell: exit: too many arguments", STDERR_FILENO);
 		g_exit_status = 1;
-		return (0);
+		return (CONTINUE);
 	}
 }
