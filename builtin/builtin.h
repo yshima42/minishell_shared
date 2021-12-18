@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 09:06:57 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 22:43:19 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include "../utils/utils.h"
 # include "../parser/parser.h"
 # include "../exec/exec.h"
+/* # include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/stat.h> */
 
 # define PATHNAME_SIZE 512
 
@@ -39,6 +44,8 @@ bool	has_one_arg(char **cmd);
 //builtin/export_utils.c
 bool	validate_identifier(char *arg);
 void	puterr_not_validate(char *arg);
-char 	*get_curpath(void);
+char 	*get_pwdpath(void);
+void	update_env(char *key, char *value, enum e_symbol symbol, \
+						t_dict *env);
 
 #endif

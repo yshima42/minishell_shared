@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 19:50:52 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 21:33:40 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
 	return ;
 }
 
-static void	update_env(char *key, char *value, enum e_symbol symbol, \
+void	update_env(char *key, char *value, enum e_symbol symbol, \
 						t_dict *env)
 {
 	t_dict	*item;
