@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 07:45:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:44:51 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 10:23:44 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	exec_echo(char **cmd)
 	g_exit_status = 0;
 	if (has_no_arg(cmd))
 	{
-		printf("\n");
+		ft_putchar_fd('\n', STDOUT_FILENO);
 		return (0);
 	}
 	if (ft_strcmp(cmd[1], "-n") == 0)
@@ -33,11 +33,11 @@ int	exec_echo(char **cmd)
 	}
 	while (cmd[i])
 	{
-		printf("%s", cmd[i]);
+		ft_putstr_fd(cmd[i], STDOUT_FILENO);
 		if (cmd[i++ + 1] != NULL)
-			printf(" ");
+			ft_putchar_fd(' ', STDOUT_FILENO);
 	}
 	if (n_option == false)
-		printf("\n");
+		ft_putchar_fd('\n', STDOUT_FILENO);
 	return (CONTINUE);
 }
