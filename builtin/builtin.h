@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 19:24:41 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 09:06:57 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ bool	has_one_arg(char **cmd);
 //builtin/export_utils.c
 bool	validate_identifier(char *arg);
 void	puterr_not_validate(char *arg);
+char 	*get_curpath(void);
 
 #endif
