@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:10:46 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 11:56:51 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,9 @@ char	*expand_var(char *word, t_dict *env)
 	char	*prefix;
 	char	*value;
 	char	*ret;
-	char	*whead;
 	size_t	key_len;
 
 	ret = NULL;
-	whead = word;
 	while (*word != '\0')
 	{
 		prefix = search_prefix(word);
