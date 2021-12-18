@@ -1,1 +1,1 @@
-minishell: minishell: command not found
+minishell: /bin/la: No such file or directory
