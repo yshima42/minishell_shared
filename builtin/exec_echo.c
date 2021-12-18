@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 07:45:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 11:09:28 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 12:13:48 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	has_n_option(char *cmd)
 {
+	if (cmd == NULL)
+		return (false);
 	if (ft_strncmp(cmd, "-n", 2) == 0)
 		cmd += 2;
 	while (*cmd == 'n')
@@ -27,7 +29,7 @@ bool	has_n_option(char *cmd)
 void	skip_optins(char **cmd, size_t *i)
 {
 	while (has_n_option(cmd[*i]))
-		(*i)++;
+		*i = *i + 1;
 }
 
 int	exec_echo(char **cmd)
