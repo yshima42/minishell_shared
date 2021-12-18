@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 14:34:40 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 01:42:31 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ bool	launch_shell(t_proc *proc, t_info *info)
 
 	if (!proc)
 		return (0);
-	if (is_redirect(proc->io_info))
-		heredoc_handler(proc);
+	// if (is_redirect(proc->io_info))
+	// 	heredoc_handler(proc);
 	if (is_single_proc(proc))
 		exit_flag = single_proc(proc, info);
 	else
@@ -45,7 +45,9 @@ int	loop_shell(t_info *info)
 			break ;
 		add_history(line);
 		parse_state = parse_line(&proc, line, info->env);
-		if (parse_state == EMPTY_LINE || parse_state == SYNTAX_ERR)
+		if (proc != NULL && is_redirect(proc->io_info))
+			parse_state = heredoc_handler(proc);
+		if (parse_state == EMPTY_LINE || parse_state == SYNTAX_ERR || parse_state == HEREDOC_ERR)
 		{
 			free(line);
 			continue ;

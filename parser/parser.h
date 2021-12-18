@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 10:08:54 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 00:55:52 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define INITIAL_STATE -1
 # define EMPTY_LINE 0
 # define SYNTAX_ERR 258 
+# define HEREDOC_ERR 3
 
 //2>?
 typedef struct s_io

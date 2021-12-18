@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 10:20:58 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 01:48:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ static int	heredoc_xopen(char **heredoc_file_name)
 		i_str = ft_xitoa(i);
 		*heredoc_file_name = ft_xstrjoin(directory, i_str);
 		fd = open(*heredoc_file_name, O_WRONLY | O_EXCL | O_CREAT, 0666);
+		if (fd == -1)
+			free(*heredoc_file_name);
 		free(i_str);
 		i++;
 	}
 	return (fd);
 }
 
+//when(ft_strcmp == 0), needs free?
 static void	heredoc_child(t_io *io_info)
 {
 	char	*line;
@@ -47,7 +50,10 @@ static void	heredoc_child(t_io *io_info)
 			if (line == NULL)
 				break ;
 			if (ft_strcmp(line, io_info->word) == 0)
+			{
+				free(line);
 				break ;
+			}
 			ft_putendl_fd(line, io_info->fd);
 			free(line);
 		}
@@ -77,10 +83,12 @@ static void	heredoc_io_xclose(t_io *io_info)
 	}
 }
 
-void	heredoc_handler(t_proc *proc)
+int	heredoc_handler(t_proc *proc)
 {
 	pid_t	pid;
+	int		status;
 
+	set_signal_in_heredoc();
 	while (proc)
 	{
 		if (!proc->io_info || proc->io_info->kind != HEREDOC)
@@ -92,8 +100,22 @@ void	heredoc_handler(t_proc *proc)
 		pid = xfork();
 		if (pid == 0)
 			heredoc_child(proc->io_info);
-		waitpid(pid, NULL, 0);
-		heredoc_io_xclose(proc->io_info);
-		proc = proc->next;
+		else
+		{
+			set_signal_ignore();
+			xwaitpid(pid, &status, 0);
+			heredoc_io_xclose(proc->io_info);
+			if (WEXITSTATUS(status) == HEREDOC_ERR)
+			{
+				g_exit_status = 1;
+				proc_lstclear(&proc);
+				set_signal_in_read();
+				return (HEREDOC_ERR);
+			}
+			proc = proc->next;
+		}
 	}
+	set_signal_in_read();
+	g_exit_status = 1;
+	return (INITIAL_STATE);
 }
