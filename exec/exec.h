@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 20:47:20 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 21:03:25 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <dirent.h>
+# include <dirent.h>
 
 # define MAX_PROC 709
 
@@ -50,7 +50,7 @@ bool	is_first_proc(t_proc *proc);
 bool	is_last_proc(t_proc *proc);
 bool	is_no_cmd(t_proc *proc);
 void	xperror_2(char *str1, char *str2);
-void 	xpath_error(char *cmd);
+void	xpath_error(char *cmd);
 void	xdir_check(char *cmd);
 
 #endif

@@ -6,24 +6,24 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 20:56:08 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 21:02:46 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-void xpath_error(char *cmd)
+void	xpath_error(char *cmd)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(cmd, 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
 	g_exit_status = 127;
-	exit(127);
+	exit (127);
 }
 
 void	xdir_check(char *cmd)
 {
-	DIR *dir;
+	DIR	*dir;
 
 	dir = opendir(cmd);
 	if (dir)
@@ -33,6 +33,6 @@ void	xdir_check(char *cmd)
 		ft_putstr_fd(": is a directory\n", 2);
 		closedir(dir);
 		g_exit_status = 126;
-		exit(126);	
+		exit (126);
 	}
 }
