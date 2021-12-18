@@ -6,11 +6,33 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 19:25:05 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 09:34:06 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+
+/* char *get_curpath(void)
+{
+	char	pathname[PATHNAME_SIZE];
+	char	*curpath;
+
+	ft_memset(pathname, '\0', PATHNAME_SIZE);
+	getcwd(pathname, PATHNAME_SIZE);
+	curpath = ft_strdup(pathname);
+	return (curpath);
+}
+
+int	exec_pwd(void)
+{
+	char	*curpath;
+
+	curpath = get_curpath();
+	printf("%s\n", curpath);
+	free(curpath);
+	g_exit_status = 0;
+	return (CONTINUE);
+} */
 
 int	exec_pwd(void)
 {
