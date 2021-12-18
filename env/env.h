@@ -6,14 +6,14 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 17:40:28 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 02:06:04 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 
-#include "../utils/utils.h"
+# include "../utils/utils.h"
 
 t_dict	*init_envs(void);
 
