@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:16:43 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 12:17:12 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ void	test_expand_vars(void)
 	test_expand_var("$HOME$HISTSIZE", "Two Var");
 	test_expand_var("aa$HOME$HISTSIZE", "Two Var after Chars");
 	test_expand_var("aa$HOME$HISTSIZEbb", "Two Var Between Chars");
+	test_expand_var("\'$HOME\'", "Var in Squart");
+	test_expand_var("\"$HOME\"", "Var in Dquart");
+	test_expand_var("\'$\'", "$ char in Squart");
+	test_expand_var("\"$\"", "$ char in Dquart");
+	test_expand_var("\'$ $ $ $\'", "$ chars in Squart");
+	test_expand_var("\"$ $ $ $\"", "$ chars in Dquart");
 	return ;
 }
 

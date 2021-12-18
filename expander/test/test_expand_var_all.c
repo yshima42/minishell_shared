@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 16:34:21 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 11:45:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ void	test_expand_var_alls(void)
 	test_expand_var_all("$HOME", "Simple");
 	test_expand_var_all("$HOMEa", "No Token");
 	test_expand_var_all("ls $HOMEa", "Only ls");
+	test_expand_var_all("echo $", "only $");
+	test_expand_var_all("echo \"$\"", "only $");
 	return ;
 }
