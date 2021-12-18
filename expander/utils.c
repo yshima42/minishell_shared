@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:14:51 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/18 12:26:49 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/18 12:43:32 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*search_prefix(char *word)
 	quote = NONE;
 	while (*word != '\0')
 	{
-		if (*word == '$' && quote != SINGLE && *(word + 1) != '\0' && \
+		if (*word == '$' && quote != SINGLE && \
+			*(word + 1) != '\0' && *(word + 1) != '$' && \
 			!(quote == DOUBLE && *(word + 1) == '"') && \
 			!(quote == DOUBLE && ft_isspace(*(word + 1))))
 			return (word);
