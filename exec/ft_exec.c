@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 14:11:57 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:44:56 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,26 @@ static char	*path_from_env(char *cmd, char *strenv)
 	return (0);
 }
 
-static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
+static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 {
 	char		*strenv;
 
 	strenv = mini_getenv("PATH", info);
 	if (strenv == NULL)
-		xperror("getenv");
-	if (access(sp_cmd[0], X_OK) == 0)
-		return (sp_cmd[0]);
-	else if (ft_strchr(sp_cmd[0], '/'))
+		xpath_error(cmd);
+	if (ft_strchr(cmd_array[0], '/'))
 	{
-		xperror_2comms("minishell: ", cmd);
-		return (0);
+		xdir_check(cmd);
+		if (access(cmd_array[0], X_OK) == 0)
+			return (cmd_array[0]);
+		else
+		{
+			xperror_2("minishell: ", cmd);
+			return (0);
+		}
 	}
 	else
-		return (path_from_env(sp_cmd[0], strenv));
+		return (path_from_env(cmd_array[0], strenv));
 }
 
 void	ft_exec(char **cmd, t_info *info)
