@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 19:06:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 14:57:09 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 16:27:40 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ bool	validate_identifier(char *arg)
 	return (true);
 }
 
-void	puterr_not_validate(char *arg)
+void	puterr_not_validate(char *arg, char *cmdname)
 {
-	ft_putstr_fd("minishell: export: '", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmdname, STDERR_FILENO);
+	ft_putstr_fd(": '", STDERR_FILENO);
 	ft_putstr_fd(arg, STDERR_FILENO);
 	ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 	return ;

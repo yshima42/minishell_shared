@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 14:56:29 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 16:29:01 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	export_one_data(char *arg, t_dict *env)
 	if (symbol == NO_SYMBOL)
 	{
 		if (!validate_identifier(arg))
-			puterr_not_validate(arg);
+			puterr_not_validate(arg, "export");
 	}
 	else
 	{
@@ -104,7 +104,7 @@ void	export_one_data(char *arg, t_dict *env)
 			multi_free(key, value, NULL, NULL);
 		else if (!validate_identifier(key))
 		{
-			puterr_not_validate(arg);
+			puterr_not_validate(arg, "export");
 			multi_free(key, value, NULL, NULL);
 		}
 		else

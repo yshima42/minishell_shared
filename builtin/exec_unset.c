@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:18:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 19:36:47 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 16:28:23 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ int	exec_unset(char **cmd, t_dict *env)
 	cmd++;
 	while (*cmd != NULL)
 	{
-		item = dict_search_item(*cmd, env);
-		if (item != NULL && ft_strcmp(item->key, "_") != 0)
-			dict_delone(item);
+		if (!validate_identifier(*cmd))
+			puterr_not_validate(*cmd, "unset");
+		else
+		{
+			item = dict_search_item(*cmd, env);
+			if (item != NULL && ft_strcmp(item->key, "_") != 0)
+				dict_delone(item);
+		}
 		cmd++;
 	}
 	return (CONTINUE);
