@@ -13,7 +13,7 @@ LEXER_PATH		=	./lexer/
 EXPANDER_PATH	=	./expander/
 SIGNAL_PATH		=	./signal/
 MAIN			=	main.c
-SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c exec/ft_exec_utils.c\
+SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c exec/heredoc_utils.c exec/ft_exec_utils.c\
 					exec/redirect_utils.c exec/ft_exec.c exec/ft_xopen.c exec/single_proc.c exec/multi_procs.c\
 					utils/utils.c builtin/exec_builtin.c builtin/exec_echo.c utils/shell_init.c builtin/exec_cd.c\
 					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c exec/exec_bool.c builtin/exec_exit.c builtin/utils.c builtin/export_utils.c

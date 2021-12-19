@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 23:38:11 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 11:44:11 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	pipes_close(int pipes[][2], int num_pipes);
 void	redirect_pipe(t_io *io_info);
 int		redirect_reset(t_io *io_info, t_info *info);
 int		ft_xopen(char *file, enum e_kind open_mode);
+void	heredoc_io_xopen(t_io *io_info);
 int		heredoc_handler(t_proc *proc);
 int		single_proc(t_proc *proc, t_info *info);
 int		multi_procs(t_proc *proc, t_info *info);
