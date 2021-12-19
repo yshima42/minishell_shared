@@ -11,6 +11,7 @@ OUTPUT_DIR="${GRADEME_DIR}/tests/output"
 STDOUT_BASH="${OUTPUT_DIR}/stdout_bash"
 STDOUT_MINISHELL="${OUTPUT_DIR}/stdout_minishell"
 STDOUT_MINISHELL_TMP="${OUTPUT_DIR}/stdout_minishell_tmp"
+STDOUT_MINISHELL_TMP2="${OUTPUT_DIR}/stdout_minishell_tmp2"
 
 STDERR_MINISHELL="${OUTPUT_DIR}/stderr_minishell"
 STDERR_BASH="${OUTPUT_DIR}/stderr_bash"
@@ -81,8 +82,10 @@ tester()
 
 	printf "${COLOR_YELLOW}$TEST_CMD\n${COLOR_RESET}"
 	#STDOUT
-	sed '/32mminishell/d' ${STDOUT_MINISHELL_TMP} > ${STDOUT_MINISHELL}
+	sed -E 's/\[.+\].+//g' ${STDOUT_MINISHELL_TMP} > ${STDOUT_MINISHELL_TMP2}
+	sed -e '1d' ${STDOUT_MINISHELL_TMP2} > ${STDOUT_MINISHELL}
 	rm ${STDOUT_MINISHELL_TMP}
+	rm ${STDOUT_MINISHELL_TMP2}
 	printf "STDOUT:      "
 	diff -s ${STDOUT_BASH} ${STDOUT_MINISHELL} > ${DIFF_STDOUT}
 	diff_check ${DIFF_STDOUT} ${STDOUT_BASH} ${STDOUT_MINISHELL} $TEST_CMD

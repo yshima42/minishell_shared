@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 22:43:19 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 23:13:53 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 # include "../utils/utils.h"
 # include "../parser/parser.h"
 # include "../exec/exec.h"
-/* # include <sys/types.h>
+# include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>
-# include <fcntl.h>
-# include <sys/stat.h> */
 
 # define PATHNAME_SIZE 512
 
