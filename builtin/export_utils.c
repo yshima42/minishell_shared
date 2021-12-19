@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 19:06:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/17 19:08:54 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 14:57:09 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 bool	validate_identifier(char *arg)
 {
-	if (arg == NULL || \
-		(!ft_isalpha(*arg) && *arg != '_'))
+	if (arg == NULL)
+		return (false);
+	if (!is_shellvar_top(*arg))
 	{
 		g_exit_status = 1;
 		return (false);
@@ -23,7 +24,7 @@ bool	validate_identifier(char *arg)
 	arg++;
 	while (*arg != '\0')
 	{
-		if (!ft_isalnum(*arg) && *arg != '_')
+		if (!is_shellvar(*arg))
 		{
 			g_exit_status = 1;
 			return (false);

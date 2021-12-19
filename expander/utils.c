@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:14:51 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/18 12:43:32 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 14:48:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,20 @@ char	*ft_xstrjoin_free(char *str1, char *str2)
 	tmp = ft_xstrjoin(str1, str2);
 	free(str1);
 	return (tmp);
+}
+
+bool	is_shellvar_top(int c)
+{
+	if (ft_isalpha(c) || c == '_')
+		return (true);
+	else
+		return (false);
+}
+
+bool	is_shellvar(int c)
+{
+	if (is_shellvar_top(c) || ft_isdigit(c))
+		return (true);
+	else
+		return (false);
 }

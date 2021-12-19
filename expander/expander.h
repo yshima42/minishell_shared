@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 17:53:24 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 14:40:25 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ t_token	*expand_var_all(t_token *tokens, t_dict *env);
 //utils.c
 char	*search_prefix(char *word);
 char	*ft_xstrjoin_free(char *str1, char *str2);
+bool	is_shellvar_top(int c);
+bool	is_shellvar(int c);
 
 #endif /* EXPANDER_H */
