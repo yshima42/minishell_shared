@@ -6,32 +6,42 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 23:16:44 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 13:38:18 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
+/* void	dict_change_value(char *key, char *value, t_dict *dict)
+{
+	
+	
+	if (item != NULL)
+	{
+		free(key);
+		free(item->value);
+		item->value = value;
+	}
+} */
+
 static void	move_dir(char *operand, t_info *info)
 {
-	char		*old_pwd_path;
-	struct stat	sb;
+	//struct stat	sb;
 
-	old_pwd_path = get_pwdpath();
 	if (chdir(operand) != 0)
 	{
-		perror("cd");
+		ft_putstr_fd("minishell: cd: ", 2);
+		perror(operand);
 		g_exit_status = EXIT_FAILURE;
 	}
 	else
 	{
-		if (lstat(ft_xtrijoin(old_pwd_path, "/", operand), &sb) == 0)
-			printf("pwd_path: %s\n", ft_xtrijoin(old_pwd_path, "/", operand));
+		/* if (lstat(ft_xtrijoin(dict_get_value("pwd", info->pwd), "/", operand), &sb) == 0)
+			printf("pwd_path: %s\n", ft_xtrijoin(dict_get_value("pwd", info->pwd), "/", operand));
 		else
-		printf("pwd_path: %s\n",get_pwdpath());
+			printf("pwd_path: %s\n",ft_getcwd()); */
 		//update_env(ft_strdup("OLDPWD"), old_pwd_path, ASSIGN, info->env);
-		printf("old_pwd_path: %s\n", old_pwd_path);
-		free(old_pwd_path);
+		//printf("old_pwd_path: %s\n", dict_get_value("pwd", info->pwd));
 		//update_env(ft_strdup("PWD"), pwd_path, ASSIGN,info->env);
 		(void)info;
 	}

@@ -6,19 +6,22 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 23:27:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 13:39:33 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char *get_pwdpath(void)
+char *ft_getcwd(void)
 {
-	char	pathname[PATHNAME_SIZE];
+	char	pathname[PATH_MAX + 1];
 	char	*pwd_path;
 
-	ft_memset(pathname, '\0', PATHNAME_SIZE);
-	getcwd(pathname, PATHNAME_SIZE);
+	ft_memset(pathname, '\0', sizeof(pathname));
+	if (getcwd(pathname, sizeof(pathname)) == NULL)
+	{
+		perror("getcwd");
+	}
 	pwd_path = ft_strdup(pathname);
 	return (pwd_path);
 }
@@ -28,9 +31,9 @@ int	exec_pwd(t_info *info)
 	char	*pwd_path;
 
 	(void)info;
-	pwd_path = get_pwdpath();
+	//pwd_path = dict_get_value("pwd", info->pwd);
+	pwd_path = ft_getcwd();
 	printf("%s\n", pwd_path);
-	free(pwd_path);
 	g_exit_status = 0;
 	return (CONTINUE);
 }
