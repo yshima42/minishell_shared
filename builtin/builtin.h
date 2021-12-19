@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 23:13:53 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:05:15 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	has_one_arg(char **cmd);
 //builtin/export_utils.c
 bool	validate_identifier(char *arg);
 void	puterr_not_validate(char *arg);
-char 	*get_pwdpath(void);
+char	*get_pwdpath(void);
 void	update_env(char *key, char *value, enum e_symbol symbol, \
 						t_dict *env);
 

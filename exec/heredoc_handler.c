@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 10:47:34 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 11:31:27 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static void	heredoc_child(t_io *io_info)
 			}
 			ft_putendl_fd(line, io_info->fd);
 			free(line);
-			printf("[\x1b[32mLOOP\x1b[39m]\n");
 		}
 		io_info = io_info->next;
 	}
@@ -84,6 +83,14 @@ static void	heredoc_io_xclose(t_io *io_info)
 	}
 }
 
+int	heredoc_exit(t_proc *proc)
+{
+	g_exit_status = 1;
+	proc_lstclear(&proc);
+	set_signal_in_read();
+	return (HEREDOC_EXIT);
+}
+
 int	heredoc_handler(t_proc *proc)
 {
 	pid_t	pid;
@@ -92,15 +99,11 @@ int	heredoc_handler(t_proc *proc)
 	set_signal_in_heredoc();
 	while (proc)
 	{
-		printf("[\x1b[31mHANDLE1\x1b[39m]\n");
 		if (!proc->io_info || proc->io_info->kind != HEREDOC)
 		{
-			printf("[\x1b[31mHANDLE2\x1b[39m]\n");
 			proc = proc->next;
-			printf("[\x1b[31mHANDLE3\x1b[39m]\n");
 			continue ;
 		}
-		printf("[\x1b[31mHANDLE3\x1b[39m]\n");
 		heredoc_io_xopen(proc->io_info);
 		pid = xfork();
 		if (pid == 0)
@@ -110,17 +113,11 @@ int	heredoc_handler(t_proc *proc)
 			set_signal_ignore();
 			xwaitpid(pid, &status, 0);
 			heredoc_io_xclose(proc->io_info);
-			if (WEXITSTATUS(status) == HEREDOC_ERR)
-			{
-				g_exit_status = 1;
-				proc_lstclear(&proc);
-				set_signal_in_read();
-				return (HEREDOC_ERR);
-			}
+			if (WEXITSTATUS(status) == HEREDOC_EXIT)
+				return (heredoc_exit(proc));
 			proc = proc->next;
 		}
 	}
 	set_signal_in_read();
-	g_exit_status = 1;
-	return (INITIAL_STATE);
+	return (DEFAULT);
 }

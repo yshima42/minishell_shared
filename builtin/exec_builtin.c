@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 23:27:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:06:17 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char *get_pwdpath(void)
+char	*get_pwdpath(void)
 {
 	char	pathname[PATHNAME_SIZE];
 	char	*pwd_path;
