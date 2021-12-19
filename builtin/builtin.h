@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 11:05:15 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 13:42:05 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 # include "../utils/utils.h"
 # include "../parser/parser.h"
 # include "../exec/exec.h"
+
+//lstat
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>
 
-# define PATHNAME_SIZE 512
+//PATH_MAX
+# include <limits.h>
 
 enum e_symbol
 {
@@ -42,7 +45,7 @@ bool	has_one_arg(char **cmd);
 //builtin/export_utils.c
 bool	validate_identifier(char *arg);
 void	puterr_not_validate(char *arg);
-char	*get_pwdpath(void);
+char 	*ft_getcwd(void);
 void	update_env(char *key, char *value, enum e_symbol symbol, \
 						t_dict *env);
 

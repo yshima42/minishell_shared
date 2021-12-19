@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:41:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/15 22:48:16 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 11:52:38 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef enum e_stdfd
 typedef struct	s_info
 {
 	t_dict	*env;
+	t_dict	*pwd;
 	int		stdfd[STDFD_NUM];
 }	t_info;
 
