@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 22:44:50 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/18 23:16:44 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	move_dir(char *operand, t_info *info)
 {
-	char	*old_pwd_path;
-	//stat	*stat;
+	char		*old_pwd_path;
+	struct stat	sb;
 
 	old_pwd_path = get_pwdpath();
 	if (chdir(operand) != 0)
@@ -25,10 +25,10 @@ static void	move_dir(char *operand, t_info *info)
 	}
 	else
 	{
-		/* if (lstat(ft_xtrijoin(old_pwd_path, "/", operand), stat) == 0)
+		if (lstat(ft_xtrijoin(old_pwd_path, "/", operand), &sb) == 0)
 			printf("pwd_path: %s\n", ft_xtrijoin(old_pwd_path, "/", operand));
-		else */
-		printf("pwd_path%s\n",get_pwdpath());
+		else
+		printf("pwd_path: %s\n",get_pwdpath());
 		//update_env(ft_strdup("OLDPWD"), old_pwd_path, ASSIGN, info->env);
 		printf("old_pwd_path: %s\n", old_pwd_path);
 		free(old_pwd_path);
