@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 01:48:20 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 10:47:34 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static void	heredoc_child(t_io *io_info)
 			}
 			ft_putendl_fd(line, io_info->fd);
 			free(line);
+			printf("[\x1b[32mLOOP\x1b[39m]\n");
 		}
 		io_info = io_info->next;
 	}
@@ -91,11 +92,15 @@ int	heredoc_handler(t_proc *proc)
 	set_signal_in_heredoc();
 	while (proc)
 	{
+		printf("[\x1b[31mHANDLE1\x1b[39m]\n");
 		if (!proc->io_info || proc->io_info->kind != HEREDOC)
 		{
+			printf("[\x1b[31mHANDLE2\x1b[39m]\n");
 			proc = proc->next;
+			printf("[\x1b[31mHANDLE3\x1b[39m]\n");
 			continue ;
 		}
+		printf("[\x1b[31mHANDLE3\x1b[39m]\n");
 		heredoc_io_xopen(proc->io_info);
 		pid = xfork();
 		if (pid == 0)

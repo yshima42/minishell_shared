@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 02:07:27 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 10:59:28 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,20 @@ int	loop_shell(t_info *info)
 		printf("[%d]", g_exit_status);
 		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
+		{
+			printf("[\x1b[32m2PASS\x1b[39m]\n");
 			break ;
+		}
 		add_history(line);
 		parse_state = parse_line(&proc, line, info->env);
 		if (proc != NULL && is_redirect(proc->io_info))
+		{
+			printf("[\x1b[32mHEREPASS\x1b[39m]\n");
 			parse_state = heredoc_handler(proc);
+		}
 		if (parse_state == EMPTY_LINE || parse_state == SYNTAX_ERR || parse_state == HEREDOC_ERR)
 		{
+			printf("[\x1b[32m6PASS\x1b[39m]\n");
 			free(line);
 			continue ;
 		}
