@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 12:38:46 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 15:09:33 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	loop_shell(t_info *info)
 		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
 			break ;
-		add_history(line);
 		parse_state = parse_line(&proc, line, info->env);
 		if (proc != NULL && exists_heredoc(proc))
 			parse_state = heredoc_handler(proc);
@@ -70,6 +69,7 @@ int	loop_shell(t_info *info)
 			continue ;
 		}
 		exit_flag = launch_shell(proc, info);
+		add_history(line);
 		free(line);
 		proc_lstclear(&proc);
 	}
