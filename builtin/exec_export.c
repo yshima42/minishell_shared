@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 22:57:03 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 14:56:29 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 enum e_symbol	search_symbol(char *arg)
 {
-	if (ft_strnstr(arg, "+=", ft_strlen(arg)) != NULL)
+	char	*join_ptr;
+	char	*assign_ptr;
+
+	join_ptr = ft_strnstr(arg, "+=", ft_strlen(arg));
+	assign_ptr = ft_strchr(arg, '=');
+	if (join_ptr != NULL && join_ptr != arg)
 		return (JOIN);
-	if (ft_strchr(arg, '='))
+	if (assign_ptr != NULL && assign_ptr != arg)
 		return (ASSIGN);
 	return (NO_SYMBOL);
 }

@@ -6,13 +6,12 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/18 12:37:34 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 14:58:53 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 
-//xstrndup, xstrjoin
 char	*append_nonvar(char *str, char *current, size_t len)
 {
 	char	*tmp;
@@ -53,15 +52,29 @@ char	*fetch_value(char *prefix, size_t key_len, t_dict *env)
 	return (value);
 }
 
-size_t	strlen_key(char *start)
+size_t	strlen_key(char *key_begin)
 {
-	if (*start == '?')
-		return (1);
+	size_t	len;
+
+	len = 1;
+	if (*key_begin == '?')
+		return (len);
 	else
-		return (ft_strclen_array(start, "\"\'$"));
+	{
+		if (!is_shellvar_top(*key_begin))
+			return (len);
+		key_begin++;
+		while (*key_begin != '\0')
+		{
+			if (!is_shellvar(*key_begin))
+				return (len);
+			len++;
+			key_begin++;
+		}
+		return (len);
+	}
 }
 
-//xstrjoin
 char	*expand_var(char *word, t_dict *env)
 {
 	char	*prefix;
