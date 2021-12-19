@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 11:53:28 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 12:20:48 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	heredoc_handler(t_proc *proc)
 	pid_t	pid;
 	int		status;
 
+	printf("[\x1b[32mPASS\x1b[39m]\n");
 	set_signal_in_heredoc();
 	while (proc)
 	{
