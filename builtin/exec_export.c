@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 16:29:01 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/19 17:36:38 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,15 @@ int	exec_export(char **cmd, t_dict *env)
 {
 	g_exit_status = 0;
 	cmd++;
-	while (*cmd != NULL)
+	if (*cmd == NULL)
+		show_environment(env, EXPORT);
+	else
 	{
-		export_one_data(*cmd, env);
-		cmd++;
+		while (*cmd != NULL)
+		{
+			export_one_data(*cmd, env);
+			cmd++;
+		}
 	}
 	return (CONTINUE);
 }

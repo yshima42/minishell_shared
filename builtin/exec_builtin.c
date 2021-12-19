@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 13:42:04 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/19 17:42:12 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char *ft_getcwd(void)
+char	*ft_getcwd(void)
 {
 	char	pathname[PATH_MAX + 1];
 	char	*pwd_path;
@@ -38,23 +38,10 @@ int	exec_pwd(t_info *info)
 	return (CONTINUE);
 }
 
-//info->env == NULL is possible?
-int	exec_env(t_info *info)
+int	exec_env(t_dict *env)
 {
-	t_dict	*t_env;
-
-	t_env = info->env->next;
-	while (t_env != info->env)
-	{	
-		ft_putstr_fd(t_env->key, STDOUT_FILENO);
-		ft_putstr_fd("=", STDOUT_FILENO);
-		if (t_env->value != NULL)
-			ft_putendl_fd(t_env->value, STDOUT_FILENO);
-		else
-			ft_putchar_fd('\n', STDOUT_FILENO);
-		t_env = t_env->next;
-	}	
 	g_exit_status = 0;
+	show_environment(env, ENV);
 	return (CONTINUE);
 }
 
@@ -99,7 +86,7 @@ int	exec_builtin(t_proc *proc, t_info *info)
 	else if (ft_strcmp(proc->cmd[0], "pwd") == 0)
 		exit_flag = exec_pwd(info);
 	else if (ft_strcmp(proc->cmd[0], "env") == 0)
-		exit_flag = exec_env(info);
+		exit_flag = exec_env(info->env);
 	else if (ft_strcmp(proc->cmd[0], "echo") == 0)
 		exit_flag = exec_echo(proc->cmd);
 	return (exit_flag);
