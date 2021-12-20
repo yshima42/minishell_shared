@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 22:56:41 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/20 16:44:50 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 	char		*strenv;
 
 	strenv = mini_getenv("PATH", info);
-	if (strenv == NULL)
-		xpath_error(cmd);
-	if (ft_strchr(cmd_array[0], '/'))
+	if (strenv == NULL || ft_strchr(cmd_array[0], '/'))
 	{
 		xdir_check(cmd);
 		if (access(cmd_array[0], X_OK) == 0)
