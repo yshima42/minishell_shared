@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 13:22:56 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/20 16:16:45 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(void)
 	info = shell_init();
 	ms_exit_status = loop_shell(info);
 	dict_clear(info->env);
+	dict_clear(info->pwd);
 	free(info);
 	return (ms_exit_status);
 }
