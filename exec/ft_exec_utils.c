@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 21:02:46 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/20 22:24:47 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	xpath_error(char *cmd)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	perror(cmd);
 	g_exit_status = 127;
 	exit (127);
 }

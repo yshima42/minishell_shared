@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 16:44:50 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/20 22:39:43 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@ static void	cmd_err(char **cmd)
 	exit(127);
 }
 
-static char	*path_from_env(char *cmd, char *strenv)
+static char	*path_from_env(char *cmd, char *envpath)
 {
 	int		i;
-	char	*path;
 	char	*ret;
 	char	**path_each;
 
 	i = 0;
-	path = strenv + 5;
-	path_each = ft_xsplit(path, ':');
+	path_each = ft_xsplit(envpath, ':');
 	i = -1;
 	while (path_each[++i])
 	{
@@ -46,10 +44,10 @@ static char	*path_from_env(char *cmd, char *strenv)
 
 static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 {
-	char		*strenv;
+	char		*envpath;
 
-	strenv = mini_getenv("PATH", info);
-	if (strenv == NULL || ft_strchr(cmd_array[0], '/'))
+	envpath = mini_getenv("PATH", info);
+	if (envpath == NULL || ft_strchr(cmd_array[0], '/'))
 	{
 		xdir_check(cmd);
 		if (access(cmd_array[0], X_OK) == 0)
@@ -61,7 +59,7 @@ static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 		}
 	}
 	else
-		return (path_from_env(cmd_array[0], strenv));
+		return (path_from_env(cmd_array[0], envpath));
 }
 
 void	ft_exec(char **cmd, t_info *info)
@@ -72,7 +70,7 @@ void	ft_exec(char **cmd, t_info *info)
 	if (!cmd[0])
 		exit (0);
 	environ = xdict_to_array(info->env, "=");
-	path = get_path(cmd[0], cmd, info);
+	path = get_path(cmd[0], cmd, info);	
 	if (execve(path, cmd, environ) == -1)
 	{
 		free (path);

@@ -12,83 +12,82 @@
 
 #include "libft.h"
 
-static char const	*skip_sep(char const *str, char c)
+static void	*free_all(char **dest, size_t i)
 {
-	while (*str == c)
-		str++;
-	return (str);
-}
+	size_t	j;
 
-static size_t	count_words(char const *str, char c)
-{
-	size_t	was_sep;
-	size_t	num_words;
-
-	num_words = 0;
-	was_sep = 1;
-	while (*str)
+	j = 0;
+	while (j < i)
 	{
-		if (*str == c && was_sep == 0)
-			was_sep = 1;
-		if (*str != c && was_sep == 1)
-		{
-			num_words++;
-			was_sep = 0;
-		}
-		str++;
+		free(dest[j]);
+		j++;
 	}
-	return (num_words);
-}
-
-static size_t	count_char(char const *str, char c)
-{
-	size_t	idx;
-
-	idx = 0;
-	while (str[idx] != c && str[idx])
-		idx++;
-	return (idx);
-}
-
-static void	*free_vector(char **splitted, size_t i)
-{
-	size_t	idx;
-
-	idx = 0;
-	while (idx < i)
-	{
-		free(splitted[idx]);
-		idx++;
-	}
-	free(splitted);
+	free(dest);
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+static char	*char_malloc(char const *src, char c, size_t i)
 {
-	char	**splitted;
-	size_t	num_words;
-	size_t	len_word;
-	size_t	idx;
+	size_t	len;
+	char	*ptr;
 
-	if (!s)
-		return (NULL);
-	num_words = count_words(s, c);
-	splitted = (char **)malloc(sizeof(char *) * (num_words + 1));
-	if (!splitted)
-		return (NULL);
-	idx = 0;
-	while (idx < num_words)
+	if (!src[0])
+		return (0);
+	len = 0;
+	while (src[len] != c && src[len])
+		len++;
+	ptr = (char *)malloc(sizeof(char) * (len + 1));
+	if (ptr == NULL)
+		return (free_all(&ptr, i));
+	return (ptr);
+}
+
+static size_t	line_count(char const *str, char c)
+{
+	size_t	one_before;
+	size_t	count;
+
+	count = 0;
+	one_before = 1;
+	while (*str)
 	{
-		s = skip_sep(s, c);
-		len_word = count_char(s, c);
-		splitted[idx] = (char *)malloc(sizeof(char) * (len_word + 1));
-		if (splitted[idx] == NULL)
-			return (free_vector(splitted, idx));
-		ft_strlcpy(splitted[idx], s, len_word + 1);
-		s = s + len_word;
-		idx++;
+		if (one_before == 0 && *str == c)
+			one_before = 1;
+		if (one_before == 1 && *str != c)
+		{
+			count++;
+			one_before = 0;
+		}
+		str++;
 	}
-	splitted[idx] = NULL;
-	return (splitted);
+	return (count);
+}
+
+char	**ft_split(char const *str, char c)
+{
+	char	**dest;
+	size_t	num;
+	size_t	i;
+	size_t	j;
+
+	if (!str)
+		return (0);
+	num = line_count(str, c);
+	dest = (char **)malloc(sizeof(char *) * (num + 1));
+	if (!dest)
+		return (NULL);
+	i = 0;
+	while (i < num)
+	{
+		while (*str == c)
+			str++;
+		dest[i] = char_malloc(str, c, i);
+		j = 0;
+		while (*str != c && *str != '\0')
+			dest[i][j++] = *str++;
+		dest[i][j] = '\0';
+		i++;
+	}
+	dest[i] = NULL;
+	return (dest);
 }
