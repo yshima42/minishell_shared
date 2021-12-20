@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 22:39:43 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/20 22:41:34 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_exec(char **cmd, t_info *info)
 	if (!cmd[0])
 		exit (0);
 	environ = xdict_to_array(info->env, "=");
-	path = get_path(cmd[0], cmd, info);	
+	path = get_path(cmd[0], cmd, info);
 	if (execve(path, cmd, environ) == -1)
 	{
 		free (path);
