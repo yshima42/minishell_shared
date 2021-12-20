@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 18:30:48 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/20 19:32:57 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	heredoc_io_xclose(t_io *io_info)
 static int	heredoc_exit(t_proc *proc)
 {
 	g_exit_status = 1;
-	//unlinkで消す
+	unlink(proc->io_info->heredoc_file);
 	proc_lstclear(&proc);
 	set_signal_in_read();
 	return (HEREDOC_EXIT);
