@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 13:57:14 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/20 15:34:03 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,26 +81,35 @@ bool	is_from_slash(char *operand)
 	}
 } */
 
-/* static void	operand_cd(char *operand, t_info *info)
+/* char	*ft_taildel(char *str, char *del_str)
 {
-	char	*home_dir;
+	size_t	s_len;
+	size_t	t_len;
+	size_t	trimed_len;
 
-	home_dir = mini_getenv("HOME", info);
-	move_dir(operand, info);
+	if (!str)
+		return (NULL);
+	s_len = ft_strlen(str);
+	t_len = ft_strlen(del_str);
+	trimed_len = s_len - t_len;
+
+	if (ft_strcmp(del_str, ft_substr(str, trimed_len, s_len)) == 0)
+		return (ft_substr(str, 0, s_len - t_len));
+	else
+		return (str);
 } */
 
-static void	no_operand_cd(char **operand, char **dest_path, t_info *info)
+char	*del_tail(char *str, char del_char)
 {
-	if (!mini_getenv("HOME", info))
-	{
-		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
-		g_exit_status = EXIT_FAILURE;
-	}
-	else
-	{
-		*operand = ft_strdup(mini_getenv("HOME", info));
-		*dest_path = *operand;
-	}
+	size_t	end;
+
+	if (!str)
+		return (NULL);
+	end = ft_strlen(str);
+
+	while (str[end - 1] && str[end - 1] != del_char)
+		end--;
+	return (ft_substr(str, 0, end - 1));
 }
 
 char	*ft_tailtrim(char const *s1, char const *set)
@@ -117,6 +126,40 @@ char	*ft_tailtrim(char const *s1, char const *set)
 	return (ans);
 }
 
+static void	operand_cd(char **args, char **operand, char **dest_path, char *current_path, t_info *info)
+{
+	(void)info;
+	if (is_from_slash(args[1]))
+	{
+		*operand = ft_strdup(args[1]);
+		*dest_path = *operand;
+	}
+	else if (ft_strcmp(args[1], "..") == 0)
+	{
+		*operand = del_tail(current_path, '/');
+		*dest_path = *operand;
+	}
+	else
+	{
+		*operand = ft_tailtrim(args[1], "/");
+		*dest_path = ft_xtrijoin(current_path, "/", *operand);
+	}
+}
+
+static void	no_operand_cd(char **operand, char **dest_path, t_info *info)
+{
+	if (!mini_getenv("HOME", info))
+	{
+		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
+		g_exit_status = EXIT_FAILURE;
+	}
+	else
+	{
+		*operand = ft_strdup(mini_getenv("HOME", info));
+		*dest_path = *operand;
+	}
+}
+
 int	exec_cd(char **args, t_info *info)
 {
 	char	*current_path;
@@ -128,23 +171,9 @@ int	exec_cd(char **args, t_info *info)
 	if (args[1] == NULL)
 		no_operand_cd(&operand, &dest_path, info);
 	else
-	{
-		if (is_from_slash(args[1]))
-		{
-			operand = ft_strdup(args[1]);
-			dest_path = operand;
-		}
-		/* else if (args[1] == '..')
-		{
-			dest_path = 
-		} */
-		else
-		{
-			operand = ft_tailtrim(args[1], "/");
-			dest_path = ft_xtrijoin(current_path, "/", args[1]);
-		}
-	}
+		operand_cd(args, &operand, &dest_path, current_path,info);
 
+	//chdir
 	if (chdir(operand) != 0)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
