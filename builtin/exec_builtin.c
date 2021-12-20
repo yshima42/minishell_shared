@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 17:42:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/20 11:59:34 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	exec_pwd(t_info *info)
 	char	*pwd_path;
 
 	(void)info;
-	//pwd_path = dict_get_value("pwd", info->pwd);
-	pwd_path = ft_getcwd();
+	pwd_path = dict_get_value("pwd", info->pwd);
+	//pwd_path = ft_getcwd();
 	printf("%s\n", pwd_path);
 	g_exit_status = 0;
 	return (CONTINUE);
