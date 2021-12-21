@@ -2,13 +2,13 @@ NAME		= expander
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
-SRCS		= expand_var.c\
-			  expand_var_all.c\
+SRCS		= ../../expander/expand_var.c\
+			  ../../expander/expand_var_all.c\
+			  ../../expander/utils.c\
 			  main.c\
-			  utils.c\
-			  ../utils/utils.c\
-			  ../utils/shell_init.c\
-			  ../env/env_utils.c\
+			  ../../utils/utils.c\
+			  ../../utils/shell_init.c\
+			  ../../env/env_utils.c\
 			  test/test_expand_var.c\
 			  test/test_expand_var_all.c
 			  # test/test_append_nonvar.c\
@@ -17,15 +17,15 @@ SRCS		= expand_var.c\
 
 OBJS		= $(SRCS:.c=.o)
 LIB_LEXER	= liblexer.a
-L_SRC		= tkn_lst.c\
-			  tkn_lstdel.c\
-			  tkn_strlen.c\
-			  lex_ctype.c\
-			  to_token.c\
-			  test/test_to_token.c\
-			  test/test_utils.c\
-			  test/test_operator.c\
-			  test/test_quote.c
+L_SRC		= ../../lexer/tkn_lst.c\
+			  ../../lexer/tkn_lstdel.c\
+			  ../../lexer/tkn_strlen.c\
+			  ../../lexer/lex_ctype.c\
+			  ../../lexer/to_token.c\
+			  ../lexer/test/test_to_token.c\
+			  ../lexer/test/test_utils.c\
+			  ../lexer/test/test_operator.c\
+			  ../lexer/test/test_quote.c
 L_SRCDIR	= ../lexer
 L_SRCS		= $(addprefix ${L_SRCDIR}/,${L_SRC})
 L_OBJS		= $(L_SRCS:.c=.o)

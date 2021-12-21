@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:56:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/18 11:45:19 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 00:57:41 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test_expand_var_all(char *line, char *tstmsg)
 
 	printf("TEST: %s\n", tstmsg);
 	printf("WORD: "CYAN"%s\n"RESET, line);
-	tokens = to_tokenlist(line);
+	tokens = to_tokenlist(ft_strdup(line));
 	env = init_envs();
 	printf("BEF : \n");
 	print_tokens(tokens);

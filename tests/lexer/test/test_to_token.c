@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 14:54:18 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 16:20:52 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 00:49:00 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	test_to_token(char *line, char *tstmsg)
 
 	printf("TEST: %s\n", tstmsg);
 	printf("LINE: "CYAN"%s\n"RESET, line);
-	head = to_tokenlist(line);
+	head = to_tokenlist(ft_strdup(line));
 	print_tokens(head);
 	printf("\n");
 	tkn_lstclear(&head, free);

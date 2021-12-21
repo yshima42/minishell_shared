@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 18:36:58 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 01:19:28 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ static bool	exists_heredoc(t_proc *proc)
 	return (false);
 }
 
+static t_token	*expand_tokens(t_token *tokens, t_dict *env)
+{
+	t_token	*new;
+
+	new = expand_var_all(tokens, env);
+	new = split_expanded_word(new);
+	new = remove_quote(new);
+	return (new);
+}
+
 int	parse_line(t_proc **procs, char *line, t_dict *env)
 {
 	t_token	*tokens;
@@ -48,13 +58,10 @@ int	parse_line(t_proc **procs, char *line, t_dict *env)
 		return (EMPTY_LINE);
 	if (!validate_syntax(tokens))
 		return (terminate_syntaxerr(tokens));
-	tokens = expand_var_all(tokens, env);
-	tokens = split_expanded_word(tokens);
-	tokens = remove_quote(tokens);
+	tokens = expand_tokens(tokens, env);
 	if (tokens == NULL)
 		return (EMPTY_LINE);
 	*procs = to_proclist(tokens);
-	tkn_lstclear(&tokens, free);
 	if (exists_heredoc(*procs) && heredoc_handler(*procs) != DEFAULT)
 		return (HEREDOC_EXIT);
 	return (DEFAULT);

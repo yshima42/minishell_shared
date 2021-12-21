@@ -6,15 +6,15 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 14:41:37 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 17:42:27 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 00:54:51 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_EXPANDER_H
 # define TEST_EXPANDER_H
 
-# include "../expander.h"
-# include "../../lexer/test/test_lexer.h"
+# include "../../../expander/expander.h"
+# include "../lexer/test/test_lexer.h"
 
 //expander/test/test_append_nonvar.c
 void	test_append_nonvar(char *str, char *tail, size_t len, char *tstmsg);

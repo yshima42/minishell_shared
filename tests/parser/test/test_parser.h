@@ -6,15 +6,15 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:53:48 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 14:26:54 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 01:06:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_PARSER_H
 # define TEST_PARSER_H
 
-# include "../parser.h"
-# include "../../lexer/test/test_lexer.h"
+# include "../../../parser/parser.h"
+# include "../lexer/test/test_lexer.h"
 
 //test_count.c
 void	test_start(void);

@@ -6,14 +6,14 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 11:10:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:10:18 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 00:45:47 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_LEXER_H
 # define TEST_LEXER_H
 
-# include "../lexer.h"
+# include "../../../lexer/lexer.h"
 
 void	test_is_ifs(void);
 void	test_tknlist(void);
