@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 17:36:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 17:39:44 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ enum e_symbol	search_symbol(char *arg)
 	return (NO_SYMBOL);
 }
 
-static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
+void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
 							char **key, char **value)
 {
 	char	*key_end;
