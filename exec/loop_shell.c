@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 18:15:59 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:04:12 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,26 @@ bool	launch_shell(t_proc *proc, t_info *info)
 		exit_flag = single_proc(proc, info);
 	else
 		exit_flag = multi_procs(proc, info);
+	proc_lstclear(&proc);
 	return (exit_flag);
 }
 
-int	loop_shell(t_info *info)
+void	loop_shell(t_info *info)
 {
 	char	*line;
-	bool	exit_flag;
-	int		parse_state;
 	t_proc	*proc;
 
-	exit_flag = 0;
-	parse_state = DEFAULT;
 	set_signal_in_read();
-	while (!exit_flag)
+	while (true)
 	{
 		printf("[%d]", g_exit_status);
 		line = readline(GREEN"minishell"RESET" > ");
 		if (line == NULL)
 			break ;
-		parse_state = parse_line(&proc, line, info->env);
-		if (parse_state != DEFAULT)
-		{
-			free(line);
-			continue ;
-		}
-		exit_flag = launch_shell(proc, info);
 		add_history(line);
-		free(line);
-		proc_lstclear(&proc);
+		if (parse_line(&proc, line, info->env) != DEFAULT)
+			continue ;
+		if (launch_shell(proc, info) == EXIT)
+			break;
 	}
-	rl_clear_history();
-	return (g_exit_status);
 }

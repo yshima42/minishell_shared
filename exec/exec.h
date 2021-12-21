@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 18:06:02 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:02:39 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		redirect_reset(t_io *io_info, t_info *info);
 int		ft_xopen(char *file, enum e_kind open_mode);
 int		single_proc(t_proc *proc, t_info *info);
 int		multi_procs(t_proc *proc, t_info *info);
-int		loop_shell(t_info *info);
+void	loop_shell(t_info *info);
 bool	launch_shell(t_proc *proc, t_info *info);
 bool	is_single_proc(t_proc *proc);
 bool	is_redirect(t_io *io_info);

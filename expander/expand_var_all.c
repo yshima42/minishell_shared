@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 15:07:04 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 18:59:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ t_token	*expand_var_all(t_token *tokens, t_dict *env)
 		tokens = tokens->next;
 	}
 	head = remove_empty_token(head);
-	g_exit_status = 0;
 	return (head);
 }

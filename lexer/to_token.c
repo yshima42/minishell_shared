@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:54:49 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 15:26:41 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 18:39:02 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,18 @@ t_token	*make_token(char **line, enum e_token when)
 t_token	*to_tokenlist(char *line)
 {
 	t_token	*head;
-	t_token	*tmp;
+	t_token	*cur_token;
+	char	*cur_line;
 
 	head = NULL;
-	while (*line != '\0')
+	cur_line = line;
+	while (*cur_line != '\0')
 	{
-		tmp = make_token(&line, LEXER);
-		if (tmp == NULL)
+		cur_token = make_token(&cur_line, LEXER);
+		if (cur_token == NULL)
 			break ;
-		tkn_lstadd_back(&head, tmp);
+		tkn_lstadd_back(&head, cur_token);
 	}
+	free(line);
 	return (head);
 }
