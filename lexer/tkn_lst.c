@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 17:17:17 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 17:28:06 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,3 @@ t_token	*tkn_lstdup(t_token *old)
 	new->kind = old->kind;
 	return (new);
 }
-
