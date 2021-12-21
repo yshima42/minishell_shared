@@ -6,11 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 19:32:57 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:58:00 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "heredoc.h"
 
 //when(ft_strcmp == 0), needs free?
 static void	heredoc_child(t_io *io_info)

@@ -6,11 +6,11 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:14:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 11:44:31 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 17:59:27 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "heredoc.h"
 
 static int	heredoc_xopen(char **heredoc_file_name)
 {

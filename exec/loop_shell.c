@@ -6,30 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 17:57:26 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:15:59 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-
-bool	exists_heredoc(t_proc *proc)
-{
-	t_io	*tmp;
-
-	while (proc != NULL)
-	{
-		tmp = proc->io_info;
-		while (tmp != NULL)
-		{
-			if (tmp->kind == HEREDOC)
-				return (true);
-			tmp = tmp->next;
-		}
-		proc = proc->next;
-	}
-	return (false);
-}
 
 bool	launch_shell(t_proc *proc, t_info *info)
 {
@@ -61,8 +42,6 @@ int	loop_shell(t_info *info)
 		if (line == NULL)
 			break ;
 		parse_state = parse_line(&proc, line, info->env);
-		if (proc != NULL && exists_heredoc(proc))
-			parse_state = heredoc_handler(proc);
 		if (parse_state != DEFAULT)
 		{
 			free(line);
