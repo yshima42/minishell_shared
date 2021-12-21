@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xtrijoin.c                                      :+:      :+:    :+:   */
+/*   dict_update_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 17:02:14 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 00:41:55 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/22 01:03:33 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/22 01:03:34 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myfunc.h"
 
-char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3)
+void	dict_update_value(char *key, char *value, t_dict *dict)
 {
-	char	*tmp;
-	char	*ret;
+	t_dict	*item;
 
-	tmp = ft_xstrjoin(s1, s2);
-	ret = ft_xstrjoin(tmp, s3);
-	free(tmp);
-	return (ret);
+	item = dict_search_item(key, dict);
+	if (item == NULL)
+		dict_addback(dict, xdict_new(key, value));
+	else
+	{
+		free(key);
+		free(item->value);
+		item->value = value;
+	}
 }

@@ -23,6 +23,16 @@ M_SRC	=	dict_addback.c\
 			dict_size.c\
 			dict_to_array.c\
 			dict_get_value.c\
+			dict_update_value.c\
+			clst_addback.c\
+			clst_addfront.c\
+			clst_clear.c\
+			clst_delone.c\
+			clst_insert.c\
+			clst_link.c\
+			clst_new.c\
+			clst_del_content.c\
+			clst_count.c\
 			ft_isspace.c\
 			free_vector.c\
 			ft_lstsize_sizet.c\

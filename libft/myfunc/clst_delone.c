@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xtrijoin.c                                      :+:      :+:    :+:   */
+/*   clst_delone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 17:02:14 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 00:41:55 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/22 00:56:59 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/22 00:57:02 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myfunc.h"
 
-char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3)
+bool	clst_delone(t_clst *elem)
 {
-	char	*tmp;
-	char	*ret;
+	t_clst	*front;
+	t_clst	*back;
 
-	tmp = ft_xstrjoin(s1, s2);
-	ret = ft_xstrjoin(tmp, s3);
-	free(tmp);
-	return (ret);
+	if (!elem || elem->next == elem)
+		return (false);
+	front = elem->next;
+	back = elem->prev;
+	back->next = front;
+	front->prev = back;
+	free(elem->content);
+	free(elem);
+	return (true);
 }

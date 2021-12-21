@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 22:40:36 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 01:35:30 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,17 @@ void	puterr_not_validate(char *arg, char *cmdname);
 char	*ft_getcwd(void);
 void	update_env(char *key, char *value, enum e_symbol symbol, \
 						t_dict *env);
+//cd_utils1.c
+char	*set_cd_dest(char **args, t_info *info);
+void	array_to_clst(t_clst *clst_head, char **array);
+t_clst	*path_to_clst(char *current_path, char *operand);
+void	del_before_dots(t_clst *path_clst);
+char	*clst_to_line(t_clst *clst);
+//cd_utils2.c
+bool	is_link(char *operand);
+bool	is_from_dot(char *operand);
+bool	is_from_slash(char *operand);
+void	print_error(char *message, char *command);
+void	cd_perror(char *cmd);
 
 #endif
