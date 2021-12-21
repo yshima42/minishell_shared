@@ -6,15 +6,15 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:41:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 11:52:38 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:29:29 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "../libft/mylibft.h"
-#include "../env/env.h"
+# include "../libft/mylibft.h"
+# include "../env/env.h"
 
 int	g_exit_status;
 
@@ -26,7 +26,7 @@ typedef enum e_stdfd
 	STDFD_NUM
 }	t_stdfd;
 
-typedef struct	s_info
+typedef struct s_info
 {
 	t_dict	*env;
 	t_dict	*pwd;
