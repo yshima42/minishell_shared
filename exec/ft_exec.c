@@ -6,16 +6,16 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 22:41:34 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:26:41 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static void	cmd_err(char **cmd)
+static void	cmd_err(char *cmd)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(cmd[0], STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": command not found\n", STDERR_FILENO);
 	exit(127);
 }
@@ -38,6 +38,7 @@ static char	*path_from_env(char *cmd, char *envpath)
 			return (ret);
 		}
 	}
+	cmd_err(cmd);
 	ft_splitfree(path_each);
 	return (0);
 }
@@ -74,6 +75,6 @@ void	ft_exec(char **cmd, t_info *info)
 	if (execve(path, cmd, environ) == -1)
 	{
 		free (path);
-		cmd_err(cmd);
+		xperror(*cmd);
 	}
 }

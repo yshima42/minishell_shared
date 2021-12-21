@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 11:59:34 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 09:21:37 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 char	*ft_getcwd(void)
 {
-	char	pathname[PATH_MAX + 1];
-	char	*pwd_path;
+	char	*cwd;
 
-	ft_memset(pathname, '\0', sizeof(pathname));
-	if (getcwd(pathname, sizeof(pathname)) == NULL)
+	cwd = getcwd(0, 0);
+	if (!cwd)
 	{
-		perror("getcwd");
+		ft_putstr_fd("cd: error retrieving current directory: ", STDERR_FILENO);
+		perror("getcwd: cannot access parent directories");
 	}
-	pwd_path = ft_strdup(pathname);
-	return (pwd_path);
+	return (cwd);
 }
 
 int	exec_pwd(t_info *info)

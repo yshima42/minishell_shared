@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 15:34:03 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:23:40 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ char	*ft_tailtrim(char const *s1, char const *set)
 
 static void	operand_cd(char **args, char **operand, char **dest_path, char *current_path, t_info *info)
 {
+	char	*cwd;
+	
 	(void)info;
 	if (is_from_slash(args[1]))
 	{
@@ -137,6 +139,18 @@ static void	operand_cd(char **args, char **operand, char **dest_path, char *curr
 	else if (ft_strcmp(args[1], "..") == 0)
 	{
 		*operand = del_tail(current_path, '/');
+		*dest_path = *operand;
+	}
+	else if (ft_strcmp(args[1], ".") == 0)
+	{
+		cwd = getcwd(0, 0);
+		if (!cwd)
+		{
+			ft_putstr_fd("cd: error retrieving current directory: ", STDERR_FILENO);
+			perror("getcwd: cannot access parent directories");
+		}
+		printf("%s\n", cwd);
+		*operand = ft_strdup(current_path);
 		*dest_path = *operand;
 	}
 	else
@@ -155,7 +169,7 @@ static void	no_operand_cd(char **operand, char **dest_path, t_info *info)
 	}
 	else
 	{
-		*operand = ft_strdup(mini_getenv("HOME", info));
+		*operand = ft_xstrdup(mini_getenv("HOME", info));
 		*dest_path = *operand;
 	}
 }
@@ -182,10 +196,12 @@ int	exec_cd(char **args, t_info *info)
 	}
 	else
 	{
-		dict_update_value(ft_strdup("pwd"), dest_path, info->pwd);
-		dict_update_value(ft_strdup("oldpwd"), current_path, info->pwd);
-		printf("pwd: %s\n", dict_search_item("pwd", info->pwd)->value);
-		printf("oldpwd: %s\n", dict_search_item("oldpwd", info->pwd)->value);
+		dict_update_value(ft_xstrdup("pwd"), dest_path, info->pwd);
+		dict_update_value(ft_xstrdup("oldpwd"), current_path, info->pwd);
+		dict_update_value(ft_xstrdup("PWD"), ft_xstrdup(dest_path), info->env);
+		dict_update_value(ft_xstrdup("OLDPWD"), ft_xstrdup(current_path), info->env);	
+		//printf("pwd: %s\n", dict_search_item("pwd", info->pwd)->value);
+		//printf("oldpwd: %s\n", dict_search_item("oldpwd", info->pwd)->value);
 		//printf("old_pwd_path: %s\n", dict_get_value("pwd", info->pwd));
 		//update_env(ft_strdup("PWD"), pwd_path, ASSIGN,info->env);
 		(void)info;
