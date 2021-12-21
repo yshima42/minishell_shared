@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 12:33:24 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 17:10:01 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ bool	is_io_operator(enum e_kind kind);
 bool	is_pipe(enum e_kind kind);
 bool	is_op_kind(enum e_kind kind);
 bool	is_cmd(t_token *token);
+t_token	*split_expanded_word(t_token *old);
 //list
 t_proc	*proc_lstnew(void);
 t_proc	*proc_lstlast(t_proc *lst);

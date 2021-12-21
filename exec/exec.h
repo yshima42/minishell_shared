@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/19 11:44:11 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 16:16:57 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <dirent.h>
 
 # define MAX_PROC 709
+# define EXEC_FAIL 126
 
 typedef enum e_exit
 {

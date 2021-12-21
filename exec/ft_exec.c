@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 11:26:41 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:18:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_exec(char **cmd, t_info *info)
 	if (execve(path, cmd, environ) == -1)
 	{
 		free (path);
-		xperror(*cmd);
+		perror(*cmd);
+		exit(EXEC_FAIL);
 	}
 }

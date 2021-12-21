@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 20:02:46 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/08 15:11:35 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 14:56:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	check_quote_end(enum e_quote *quote, char c)
 	return (false);
 }
 
-static size_t	tkn_strlen_word(const char *start)
+size_t	tkn_strlen_word(const char *start,  bool (*func)(char))
 {
 	size_t			len;
 	enum e_quote	quote;
@@ -62,7 +62,7 @@ static size_t	tkn_strlen_word(const char *start)
 		if (quote == NONE)
 		{
 			check_quote_begin(&quote, *start);
-			if (is_end(*start))
+			if (func(*start))
 				break ;
 		}
 		else
@@ -83,6 +83,6 @@ size_t	tkn_strlen(const char *start)
 	}
 	else
 	{
-		return (tkn_strlen_word(start));
+		return (tkn_strlen_word(start, is_end));
 	}
 }

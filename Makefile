@@ -19,6 +19,7 @@ SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c exec/heredoc_utils.c 
 					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c exec/exec_bool.c builtin/exec_exit.c builtin/utils.c builtin/export_utils.c
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\
+					split_expanded_word.c\
 					remove_quote.c\
 					proc_lst.c\
 					proc_lstdel.c\
