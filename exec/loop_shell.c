@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 19:04:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:10:41 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	loop_shell(t_info *info)
 		if (parse_line(&proc, line, info->env) != DEFAULT)
 			continue ;
 		if (launch_shell(proc, info) == EXIT)
-			break;
+			break ;
 	}
 }

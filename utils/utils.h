@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:41:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 17:29:29 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:08:18 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../libft/mylibft.h"
 # include "../env/env.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 int	g_exit_status;
 
@@ -37,5 +39,6 @@ void	save_stdfd(t_info *info);
 char	**ft_splitfree(char **tab);
 char	*mini_getenv(const char *key, t_info *info);
 t_info	*shell_init(void);
+void	shell_terminate(t_info *info);
 
 #endif
