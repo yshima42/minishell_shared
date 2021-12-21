@@ -6,13 +6,13 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 14:58:53 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:20:29 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 
-char	*append_nonvar(char *str, char *current, size_t len)
+static char	*append_nonvar(char *str, char *current, size_t len)
 {
 	char	*tmp;
 	char	*tail;
@@ -23,7 +23,7 @@ char	*append_nonvar(char *str, char *current, size_t len)
 	return (tmp);
 }
 
-char	*append_var(char *str, char *value)
+static char	*append_var(char *str, char *value)
 {
 	char	*tmp;
 
@@ -32,7 +32,7 @@ char	*append_var(char *str, char *value)
 	return (tmp);
 }
 
-char	*fetch_value(char *prefix, size_t key_len, t_dict *env)
+static char	*fetch_value(char *prefix, size_t key_len, t_dict *env)
 {
 	char	*key;
 	char	*value;
@@ -52,7 +52,7 @@ char	*fetch_value(char *prefix, size_t key_len, t_dict *env)
 	return (value);
 }
 
-size_t	strlen_key(char *key_begin)
+static size_t	strlen_key(char *key_begin)
 {
 	size_t	len;
 

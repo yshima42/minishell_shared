@@ -9,11 +9,11 @@ SRCS		= expand_var.c\
 			  ../utils/utils.c\
 			  ../utils/shell_init.c\
 			  ../env/env_utils.c\
-			  test/test_append_nonvar.c\
 			  test/test_expand_var.c\
-			  test/test_expand_var_all.c\
-			  test/test_search_prefix.c\
-			  test/test_strclen_array.c\
+			  test/test_expand_var_all.c
+			  # test/test_append_nonvar.c\
+			  # test/test_search_prefix.c\
+			  # test/test_strclen_array.c\
 
 OBJS		= $(SRCS:.c=.o)
 LIB_LEXER	= liblexer.a
@@ -56,17 +56,17 @@ re: fclean all
 test: all
 	./expander
 
-test_search_prefix: all
-	./expander 0
+# test_search_prefix: all
+# 	./expander 0
 
 test_expand_var: all
 	./expander 1
 
-test_strclen_array: all
-	./expander 2
+# test_strclen_array: all
+# 	./expander 2
 
-test_append_nonvar: all
-	./expander 3
+# test_append_nonvar: all
+# 	./expander 3
 
 test_expand_all: all
 	./expander 4

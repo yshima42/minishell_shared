@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 17:39:44 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:17:54 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-enum e_symbol	search_symbol(char *arg)
+static enum e_symbol	search_symbol(char *arg)
 {
 	char	*join_ptr;
 	char	*assign_ptr;
@@ -26,7 +26,7 @@ enum e_symbol	search_symbol(char *arg)
 	return (NO_SYMBOL);
 }
 
-void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
+static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
 							char **key, char **value)
 {
 	char	*key_end;
@@ -85,7 +85,7 @@ void	update_env(char *key, char *value, enum e_symbol symbol, \
 	return ;
 }
 
-void	export_one_data(char *arg, t_dict *env)
+static void	export_one_data(char *arg, t_dict *env)
 {
 	enum e_symbol	symbol;
 	char			*key;
