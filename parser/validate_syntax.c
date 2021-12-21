@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:59:25 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 13:27:50 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 10:37:39 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,40 @@ static bool	validate_operator_position(t_token *tokens)
 	return (true);
 }
 
+size_t	count_args(char **cmd)
+{
+	size_t	count;
+
+	count = 0;
+	if (*cmd == NULL)
+		return (count);
+	cmd++;
+	while (*cmd != NULL)
+	{
+		count++;
+		cmd++;
+	}
+	return (count);
+}
+
 bool	validate_syntax(t_token *tokens)
 {
 	if (!validate_pipe_position(tokens) || \
 		!validate_operator_position(tokens))
 		return (false);
+	return (true);
+}
+
+bool	validate_arg_num(t_proc *procs)
+{
+	char	**tmp_cmd;
+
+	while (procs != NULL)
+	{
+		tmp_cmd = procs->cmd;
+		if (count_args(tmp_cmd) > MS_ARG_MAX)
+			return (false);
+		procs = procs->next;
+	}
 	return (true);
 }

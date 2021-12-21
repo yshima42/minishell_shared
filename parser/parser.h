@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:32:50 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 11:24:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 10:33:58 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # define DEFAULT -1
 # define EMPTY_LINE 0
 # define HEREDOC_EXIT 1
+# define ARG_TOOLONG 256 
 # define SYNTAX_ERR 258 
+# define MS_ARG_MAX 26057
 
 //2>?
 typedef struct s_io
@@ -44,6 +46,7 @@ typedef struct s_proc
 int		parse_line(t_proc **proclist, char *line, t_dict *env);
 t_proc	*to_proclist(t_token *tokens);
 bool	validate_syntax(t_token *tokens);
+bool	validate_arg_num(t_proc *procs);
 size_t	count_quote(char *word);
 t_token	*remove_quote(t_token *tokens);
 char	*remove_quote_in_token(char *word);

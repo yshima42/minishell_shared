@@ -6,17 +6,27 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 15:16:40 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 12:08:28 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	terminate_syntaxerr(t_token *tokens)
+static int	terminate_syntaxerr(t_token *tokens)
 {
+	g_exit_status = SYNTAX_ERR;
 	tkn_lstclear(&tokens, free);
-	ft_putendl_fd("Syntax Error", STDERR_FILENO);
+	ft_putendl_fd("minishell: syntax Error", STDERR_FILENO);
 	return (SYNTAX_ERR);
+}
+
+static int	terminate_arg_toolong(t_token *tokens, t_proc *procs)
+{
+	g_exit_status = ARG_TOOLONG;
+	tkn_lstclear(&tokens, free);
+	proc_lstclear(&procs);
+	ft_putendl_fd("minishell: Argument list too long", STDERR_FILENO);
+	return (ARG_TOOLONG);
 }
 
 int	parse_line(t_proc **procs, char *line, t_dict *env)
@@ -32,11 +42,10 @@ int	parse_line(t_proc **procs, char *line, t_dict *env)
 	if (tokens == NULL)
 		return (EMPTY_LINE);
 	if (!validate_syntax(tokens))
-	{
-		g_exit_status = SYNTAX_ERR;
 		return (terminate_syntaxerr(tokens));
-	}
 	*procs = to_proclist(tokens);
+	if (!validate_arg_num(*procs))
+		return (terminate_arg_toolong(tokens, *procs));
 	tkn_lstclear(&tokens, free);
 	return (DEFAULT);
 }
