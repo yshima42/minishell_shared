@@ -6,11 +6,12 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:54:49 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 11:14:15 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 10:34:16 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "../minishell.h"
 
 static char	*find_begin(char *str)
 {
@@ -35,7 +36,7 @@ static enum e_kind	set_kind_info(const char *str)
 		return (WORD);
 }
 
-static t_token	*make_token(char **line)
+t_token	*make_token(char **line, enum e_token when)
 {
 	t_token	*new;
 	char	*start;
@@ -45,10 +46,16 @@ static t_token	*make_token(char **line)
 	start = find_begin(*line);
 	if (*start == '\0')
 		return (NULL);
-	len = tkn_strlen(start);
+	if (when == LEXER)
+		len = tkn_strlen(start);
+	else
+		len = tkn_strlen_word(start, is_ifs);
 	word = ft_xstrndup(start, len);
 	new = tkn_lstnew(word);
-	new->kind = set_kind_info(start);
+	if (when == LEXER)
+		new->kind = set_kind_info(start);
+	else
+		new->kind = WORD;
 	*line = start + len;
 	return (new);
 }
@@ -56,15 +63,17 @@ static t_token	*make_token(char **line)
 t_token	*to_tokenlist(char *line)
 {
 	t_token	*head;
-	t_token	*tmp;
+	t_token	*cur_token;
+	char	*cur_line;
 
 	head = NULL;
-	while (*line != '\0')
+	cur_line = line;
+	while (*cur_line != '\0')
 	{
-		tmp = make_token(&line);
-		if (tmp == NULL)
+		cur_token = make_token(&cur_line, LEXER);
+		if (cur_token == NULL)
 			break ;
-		tkn_lstadd_back(&head, tmp);
+		tkn_lstadd_back(&head, cur_token);
 	}
 	return (head);
 }

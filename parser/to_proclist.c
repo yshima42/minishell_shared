@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/14 13:19:19 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 01:13:12 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ t_proc	*to_proclist(t_token *tokens)
 {
 	t_proc	*procs;
 	size_t	proc_num;
+	t_token	*token_head;
 
+	token_head = tokens;
 	proc_num = count_process(tokens);
 	procs = init_procinfo(proc_num);
 	procs = set_procinfo(procs, tokens, proc_num);
+	tkn_lstclear(&token_head, free);
 	return (procs);
 }

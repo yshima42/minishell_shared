@@ -12,65 +12,82 @@
 
 #include "myfunc.h"
 
-static char const	*skip_sep(char const *str, char c)
+static void	*free_all(char **dest, size_t i)
 {
-	while (*str == c)
-		str++;
-	return (str);
+	size_t	j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(dest[j]);
+		j++;
+	}
+	free(dest);
+	return (NULL);
 }
 
-static size_t	count_words(char const *str, char c)
+static char	*char_malloc(char const *src, char c, size_t i)
 {
-	size_t	was_sep;
-	size_t	num_words;
+	size_t	len;
+	char	*ptr;
 
-	num_words = 0;
-	was_sep = 1;
+	if (!src[0])
+		return (0);
+	len = 0;
+	while (src[len] != c && src[len])
+		len++;
+	ptr = (char *)xmalloc(sizeof(char) * (len + 1));
+	if (ptr == NULL)
+		return (free_all(&ptr, i));
+	return (ptr);
+}
+
+static size_t	line_count(char const *str, char c)
+{
+	size_t	one_before;
+	size_t	count;
+
+	count = 0;
+	one_before = 1;
 	while (*str)
 	{
-		if (*str == c && was_sep == 0)
-			was_sep = 1;
-		if (*str != c && was_sep == 1)
+		if (one_before == 0 && *str == c)
+			one_before = 1;
+		if (one_before == 1 && *str != c)
 		{
-			num_words++;
-			was_sep = 0;
+			count++;
+			one_before = 0;
 		}
 		str++;
 	}
-	return (num_words);
+	return (count);
 }
 
-static size_t	count_char(char const *str, char c)
+char	**ft_xsplit(char const *str, char c)
 {
-	size_t	idx;
+	char	**dest;
+	size_t	num;
+	size_t	i;
+	size_t	j;
 
-	idx = 0;
-	while (str[idx] != c && str[idx])
-		idx++;
-	return (idx);
-}
-
-char	**ft_xsplit(char const *s, char c)
-{
-	char	**splitted;
-	size_t	num_words;
-	size_t	len_word;
-	size_t	idx;
-
-	if (!s)
+	if (!str)
+		return (0);
+	num = line_count(str, c);
+	dest = (char **)xmalloc(sizeof(char *) * (num + 1));
+	if (!dest)
 		return (NULL);
-	num_words = count_words(s, c);
-	splitted = (char **)xmalloc(sizeof(char *) * (num_words + 1));
-	idx = 0;
-	while (idx < num_words)
+	i = 0;
+	while (i < num)
 	{
-		s = skip_sep(s, c);
-		len_word = count_char(s, c);
-		splitted[idx] = (char *)xmalloc(sizeof(char) * (len_word + 1));
-		ft_strlcpy(splitted[idx], s, len_word + 1);
-		s = s + len_word;
-		idx++;
+		while (*str == c)
+			str++;
+		dest[i] = char_malloc(str, c, i);
+		j = 0;
+		while (*str != c && *str != '\0')
+			dest[i][j++] = *str++;
+		dest[i][j] = '\0';
+		i++;
 	}
-	splitted[idx] = NULL;
-	return (splitted);
+	dest[i] = NULL;
+	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 15:55:50 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 17:28:06 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,16 @@ void	tkn_lstlink(t_token *before, t_token *after)
 	if (after != NULL)
 		after->prev = before;
 	return ;
+}
+
+t_token	*tkn_lstdup(t_token *old)
+{
+	t_token	*new;
+
+	new = (t_token *)xmalloc(sizeof(t_token));
+	new->prev = NULL;
+	new->next = NULL;
+	new->word = ft_xstrdup(old->word);
+	new->kind = old->kind;
+	return (new);
 }

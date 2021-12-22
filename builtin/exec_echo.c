@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 07:45:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 12:13:48 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:15:42 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-bool	has_n_option(char *cmd)
+static bool	has_n_option(char *cmd)
 {
 	if (cmd == NULL)
 		return (false);
@@ -26,7 +26,7 @@ bool	has_n_option(char *cmd)
 		return (false);
 }
 
-void	skip_optins(char **cmd, size_t *i)
+static void	skip_optins(char **cmd, size_t *i)
 {
 	while (has_n_option(cmd[*i]))
 		*i = *i + 1;

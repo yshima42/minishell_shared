@@ -8,17 +8,25 @@ INCLUDES		= 	minishell.h
 BONUS_PATH		= 	./srcs_bonus/
 LIBFT_PATH		= 	./libft/
 TEST_PATH		=	./tests/
-PARSER_PATH		=	./parser/
 LEXER_PATH		=	./lexer/
+PARSER_PATH		=	./parser/
 EXPANDER_PATH	=	./expander/
+HEREDOC_PATH	=	./heredoc/
 SIGNAL_PATH		=	./signal/
+EXEC_PATH		=	./exec/
+BUILTIN_PATH	=	./builtin/
+ENV_PATH		=	./env/
+UTILS_PATH		=	./utils/
 MAIN			=	main.c
-SRCS_FILES    	= 	exec/loop_shell.c exec/heredoc_handler.c \
-					exec/redirect_utils.c exec/ft_exec.c exec/ft_xopen.c exec/single_proc.c exec/multi_procs.c\
-					utils/utils.c builtin/exec_builtin.c builtin/exec_echo.c utils/shell_init.c builtin/exec_cd.c\
-					builtin/exec_export.c env/env_utils.c builtin/exec_unset.c exec/exec_bool.c builtin/exec_exit.c builtin/utils.c builtin/export_utils.c
+
+LEXER_FILES		=	tkn_lst.c\
+					tkn_lstdel.c\
+					tkn_strlen.c\
+					lex_ctype.c\
+					to_token.c
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\
+					split_expanded_word.c\
 					remove_quote.c\
 					proc_lst.c\
 					proc_lstdel.c\
@@ -29,26 +37,52 @@ PARSER_FILES	=	parse_line.c\
 					set_cmdinfo.c\
 					set_ioinfo.c\
 					validate_syntax.c
-LEXER_FILES		=	tkn_lst.c\
-					tkn_lstdel.c\
-					tkn_strlen.c\
-					lex_ctype.c\
-					to_token.c
-SIGNAL_FILES	=	signal.c\
-					signal_heredoc.c
 EXPANDER_FILES	=	expand_var.c\
 					expand_var_all.c\
 					utils.c
+HEREDOC_FILES	=	heredoc_handler.c\
+					heredoc_utils.c
+SIGNAL_FILES	=	signal.c\
+					signal_heredoc.c
+EXEC_FILES    	= 	exec_bool.c\
+					ft_exec.c\
+					ft_exec_utils.c\
+					ft_xopen.c\
+					ft_open.c\
+					loop_shell.c\
+					multi_procs.c\
+					redirect_utils.c\
+					single_proc.c
+BUILTIN_FILES  	=	exec_builtin.c\
+					exec_cd.c\
+					cd_utils1.c\
+					cd_utils2.c\
+					exec_echo.c\
+					exec_exit.c\
+					exec_export.c\
+					exec_unset.c\
+					export_utils.c\
+					utils.c
+UTILS_FILES	=		utils.c\
+					shell_init.c\
+					shell_terminate.c 
+ENV_FILES    	=	env_utils.c
 BONUS_FILES		=
 TEST_MAIN    	= 	$(TEST_PATH)/test_main.c $(TEST_PATH)/test_pipe.c
 SRCS			= 	$(SRCS_FILES)
 B_SRCS			= 	$(addprefix $(BONUS_PATH), $(BONUS_FILES))
-PARSER_SRCS		= 	$(addprefix $(PARSER_PATH), $(PARSER_FILES))
 LEXER_SRCS		= 	$(addprefix $(LEXER_PATH), $(LEXER_FILES))
+PARSER_SRCS		= 	$(addprefix $(PARSER_PATH), $(PARSER_FILES))
 EXPANDER_SRCS	= 	$(addprefix $(EXPANDER_PATH), $(EXPANDER_FILES))
+HEREDOC_SRCS	= 	$(addprefix $(HEREDOC_PATH), $(HEREDOC_FILES))
 SIGNAL_SRCS		= 	$(addprefix $(SIGNAL_PATH), $(SIGNAL_FILES))
-SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o)
-TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o)
+UTILS_SRCS		= 	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
+EXEC_SRCS		= 	$(addprefix $(EXEC_PATH), $(EXEC_FILES))
+BUILTIN_SRCS	= 	$(addprefix $(BUILTIN_PATH), $(BUILTIN_FILES))
+ENV_SRCS		= 	$(addprefix $(ENV_PATH), $(ENV_FILES))
+SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o) $(HEREDOC_SRCS:.c=.o) $(UTILS_SRCS:.c=.o) $(EXEC_SRCS:.c=.o) $(BUILTIN_SRCS:.c=.o) $(ENV_SRCS:.c=.o)
+TEST_OBJS		= 	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o) $(HEREDOC_SRCS:.c=.o) $(UTILS_SRCS:.c=.o) $(EXEC_SRCS:.c=.o) $(BUILTIN_SRCS:.c=.o) $(ENV_SRCS:.c=.o)
+# TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o)
 BONUS_OBJS		= 	$(SRCS:.c=.o)
 LIBFTMAKE		= 	$(MAKE) -C $(LIBFT_PATH)
 LIBFTFLAG		= 	-L$(LIBFT_PATH) -lft
@@ -83,46 +117,46 @@ fclean:			clean
 
 re:				fclean all
 
-test:			$(NAME)
-				./tests/script/test_file.sh ./tests/cases/cases.txt
+#test:			$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/cases.txt
 
-test_cd:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/cd.txt
+# test_cd:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/cd.txt
 
-test_echo:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/echo.txt
+# test_echo:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/echo.txt
 
-test_env:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/env.txt
+# test_env:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/env.txt
 
-test_exit:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/exit.txt
+# test_exit:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/exit.txt
 
-test_expand:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/expand.txt
+# test_expand:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/expand.txt
 
-test_export:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/export.txt
+# test_export:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/export.txt
 
-test_pwd:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/pwd.txt
+# test_pwd:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/pwd.txt
 
-test_redirect:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/redirect.txt
+# test_redirect:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/redirect.txt
 
-test_syntax:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
+# test_syntax:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
 
-test_unset:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
+# test_unset:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
 
-pipe_test: 		$(TEST_OBJS)
-				$(LIBFTMAKE)
-				$(CC) $(CFLAGS) $(TEST_OBJS) $(LIBFTFLAG) -o $(TEST_NAME)
-				./tests 1
+# pipe_test: 		$(TEST_OBJS)
+# 				$(LIBFTMAKE)
+# 				$(CC) $(CFLAGS) $(TEST_OBJS) $(LIBFTFLAG) -o $(TEST_NAME)
+# 				./tests 1
 
-bonus:			$(NAME) $(BONUS_OBJS)
-				$(LIBFTMAKE)
-				$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFTFLAG) -o $(BONUS_NAME)
+# bonus:			$(NAME) $(BONUS_OBJS)
+# 				$(LIBFTMAKE)
+# 				$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFTFLAG) -o $(BONUS_NAME)
 
 .PHONY:			all clean fclean bonus lib re

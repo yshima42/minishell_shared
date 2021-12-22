@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 00:09:05 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 19:11:38 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,9 @@
 int	main(void)
 {
 	t_info	*info;
-	int		ms_exit_status;
 
 	info = shell_init();
-	ms_exit_status = loop_shell(info);
-	dict_clear(info->env);
-	free(info);
-	return (ms_exit_status);
+	loop_shell(info);
+	shell_terminate(info);
+	return (g_exit_status);
 }
-
-/* void    detect_leak(void)__attribute__((destructor));
-
-void    detect_leak(void)
-{
-     system("leaks -q minishell");
-}
- */

@@ -52,3 +52,9 @@ Mkfile.old
 dkms.conf
 ref/
 minishell
+# .gitignore
+# README.md
+# script
+# tags
+# tests
+# workspace

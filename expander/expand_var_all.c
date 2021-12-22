@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/16 16:35:22 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 11:34:25 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_token	*update_head(t_token *current, t_token *head)
 		return (head);
 }
 
-static t_token	*remove_empty_token(t_token *tokens)
+t_token	*remove_empty_token(t_token *tokens)
 {
 	t_token	*head;
 	t_token	*tmp;
@@ -61,5 +61,6 @@ t_token	*expand_var_all(t_token *tokens, t_dict *env)
 		tokens = tokens->next;
 	}
 	head = remove_empty_token(head);
+	g_exit_status = 0;
 	return (head);
 }

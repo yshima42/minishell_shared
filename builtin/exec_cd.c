@@ -6,48 +6,75 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 09:51:41 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:18:20 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static void	move_dir(char *operand)
+void	update_pwd(char *current_path, char *dest_path, t_info *info)
 {
-	if (chdir(operand) != 0)
-		perror("cd");
+	dict_update_value(ft_xstrdup("pwd"), \
+		ft_xstrdup(dest_path), info->pwd);
+	dict_update_value(ft_xstrdup("oldpwd"), \
+		ft_xstrdup(current_path), info->pwd);
+	dict_update_value(ft_xstrdup("PWD"), \
+		ft_xstrdup(dest_path), info->env);
+	dict_update_value(ft_xstrdup("OLDPWD"), \
+		ft_xstrdup(current_path), info->env);
+	g_exit_status = 0;
 }
 
-static void	operand_cd(char *operand, t_info *info)
+int	dot_handle(char *operand, char *current_path, t_info *info)
 {
-	char	*ope_tmp;
-	char	*home_dir;
+	char	*cwd;
+	char	*update_path;
 
-	home_dir = mini_getenv("HOME", info);
-	if (operand[0] == '~')
+	if (ft_strcmp(operand, ".") == 0)
 	{
-		ope_tmp = ft_xstrjoin(home_dir, &operand[1]);
-		move_dir(ope_tmp);
-		free (ope_tmp);
+		cwd = getcwd(0, 0);
+		if (!cwd)
+		{
+			ft_putstr_fd("cd: ", STDERR_FILENO);
+			ft_putstr_fd("error retrieving current directory: ", STDERR_FILENO);
+			perror("getcwd: cannot access parent directories");
+			update_path = ft_xstrjoin(current_path, "/.");
+			update_pwd(current_path, update_path, info);
+			free(update_path);
+			free(current_path);
+			free(operand);
+			return (0);
+		}
+		else
+			free(cwd);
 	}
-	else
-		move_dir(operand);
-}
-
-static void	no_operand_cd(t_info *info)
-{
-	if (!mini_getenv("HOME", info))
-		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
-	else 
-		if (chdir(mini_getenv("HOME", info)) != 0)
-			perror("cd");//ここをoperandにつなぐか検討
+	return (1);
 }
 
 int	exec_cd(char **args, t_info *info)
 {
-	if (args[1] == NULL)
-		no_operand_cd(info);
+	char	*current_path;
+	char	*dest_path;
+	char	*operand;
+	t_clst	*path_clst;
+
+	current_path = ft_strdup(dict_get_value("pwd", info->pwd));
+	operand = set_cd_dest(args, info);
+	if (!operand)
+		return (CONTINUE);
+	if (!dot_handle(operand, current_path, info))
+		return (CONTINUE);
+	path_clst = path_to_clst(current_path, operand);
+	clst_del_content(path_clst, ".");
+	del_before_dots(path_clst);
+	dest_path = clst_to_line(path_clst);
+	clst_clear(path_clst);
+	if (chdir(dest_path) != 0)
+		cd_perror(args[1]);
 	else
-		operand_cd(args[1], info);
+		update_pwd(current_path, dest_path, info);
+	free(operand);
+	free(current_path);
+	free(dest_path);
 	return (CONTINUE);
 }

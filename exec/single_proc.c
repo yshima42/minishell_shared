@@ -16,7 +16,7 @@ static bool	single_builtin(t_proc *proc, t_info *info)
 {
 	int		exit_flag;
 
-	redirect_pipe(proc->io_info);
+	single_redirect_pipe(proc->io_info);
 	exit_flag = exec_builtin(proc, info);
 	redirect_reset(proc->io_info, info);
 	return (exit_flag);

@@ -6,30 +6,28 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 14:11:57 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:18:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static void	cmd_err(char **cmd)
+static void	cmd_err(char *cmd)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
-	ft_putstr_fd(cmd[0], STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": command not found\n", STDERR_FILENO);
 	exit(127);
 }
 
-static char	*path_from_env(char *cmd, char *strenv)
+static char	*path_from_env(char *cmd, char *envpath)
 {
 	int		i;
-	char	*path;
 	char	*ret;
 	char	**path_each;
 
 	i = 0;
-	path = strenv + 5;
-	path_each = ft_xsplit(path, ':');
+	path_each = ft_xsplit(envpath, ':');
 	i = -1;
 	while (path_each[++i])
 	{
@@ -40,26 +38,29 @@ static char	*path_from_env(char *cmd, char *strenv)
 			return (ret);
 		}
 	}
+	cmd_err(cmd);
 	ft_splitfree(path_each);
 	return (0);
 }
 
-static char	*get_path(char *cmd, char **sp_cmd, t_info *info)
+static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 {
-	char		*strenv;
+	char		*envpath;
 
-	strenv = mini_getenv("PATH", info);
-	if (strenv == NULL)
-		xperror("getenv");
-	if (access(sp_cmd[0], X_OK) == 0)
-		return (sp_cmd[0]);
-	else if (ft_strchr(sp_cmd[0], '/'))
+	envpath = mini_getenv("PATH", info);
+	if (envpath == NULL || ft_strchr(cmd_array[0], '/'))
 	{
-		xperror_2comms("minishell: ", cmd);
-		return (0);
+		xdir_check(cmd);
+		if (access(cmd_array[0], X_OK) == 0)
+			return (cmd_array[0]);
+		else
+		{
+			xpath_error(cmd);
+			return (NULL);
+		}
 	}
 	else
-		return (path_from_env(sp_cmd[0], strenv));
+		return (path_from_env(cmd_array[0], envpath));
 }
 
 void	ft_exec(char **cmd, t_info *info)
@@ -74,6 +75,7 @@ void	ft_exec(char **cmd, t_info *info)
 	if (execve(path, cmd, environ) == -1)
 	{
 		free (path);
-		cmd_err(cmd);
+		perror(*cmd);
+		exit(EXEC_FAIL);
 	}
 }

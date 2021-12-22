@@ -23,7 +23,7 @@ void	tkn_lstdelone(t_token *lst, void (*del)(void *))
 	return ;
 }
 
-void	tkn_lstclear(t_token **lst, void(*del)(void *))
+void	tkn_lstclear(t_token **lst, void (*del)(void *))
 {
 	t_token	*tmp;
 	t_token	*current;

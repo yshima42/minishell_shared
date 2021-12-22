@@ -6,17 +6,22 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 22:43:53 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 22:59:37 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-enum e_symbol	search_symbol(char *arg)
+static enum e_symbol	search_symbol(char *arg)
 {
-	if (ft_strnstr(arg, "+=", ft_strlen(arg)) != NULL)
+	char	*join_ptr;
+	char	*assign_ptr;
+
+	join_ptr = ft_strnstr(arg, "+=", ft_strlen(arg));
+	assign_ptr = ft_strchr(arg, '=');
+	if (join_ptr != NULL && join_ptr != arg)
 		return (JOIN);
-	if (ft_strchr(arg, '='))
+	if (assign_ptr != NULL && assign_ptr != arg)
 		return (ASSIGN);
 	return (NO_SYMBOL);
 }
@@ -50,7 +55,7 @@ static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
 	return ;
 }
 
-static void	update_env(char *key, char *value, enum e_symbol symbol, \
+void	update_env(char *key, char *value, enum e_symbol symbol, \
 						t_dict *env)
 {
 	t_dict	*item;
@@ -80,7 +85,7 @@ static void	update_env(char *key, char *value, enum e_symbol symbol, \
 	return ;
 }
 
-void	export_one_data(char *arg, t_dict *env)
+static void	export_one_data(char *arg, t_dict *env)
 {
 	enum e_symbol	symbol;
 	char			*key;
@@ -90,7 +95,7 @@ void	export_one_data(char *arg, t_dict *env)
 	if (symbol == NO_SYMBOL)
 	{
 		if (!validate_identifier(arg))
-			puterr_not_validate(arg);
+			puterr_not_validate(arg, "export");
 	}
 	else
 	{
@@ -99,7 +104,7 @@ void	export_one_data(char *arg, t_dict *env)
 			multi_free(key, value, NULL, NULL);
 		else if (!validate_identifier(key))
 		{
-			puterr_not_validate(arg);
+			puterr_not_validate(arg, "export");
 			multi_free(key, value, NULL, NULL);
 		}
 		else
@@ -113,10 +118,15 @@ int	exec_export(char **cmd, t_dict *env)
 {
 	g_exit_status = 0;
 	cmd++;
-	while (*cmd != NULL)
+	if (*cmd == NULL)
+		show_environment(env, EXPORT);
+	else
 	{
-		export_one_data(*cmd, env);
-		cmd++;
+		while (*cmd != NULL)
+		{
+			export_one_data(*cmd, env);
+			cmd++;
+		}
 	}
 	return (CONTINUE);
 }
