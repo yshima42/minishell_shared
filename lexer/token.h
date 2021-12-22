@@ -39,6 +39,6 @@ void	tkn_lstadd_back(t_token **lst, t_token *new);
 void	tkn_lstlink(t_token *before, t_token *after);
 t_token	*tkn_lstdup(t_token *old);
 void	tkn_lstdelone(t_token *lst, void (*del)(void *));
-void	tkn_lstclear(t_token **lst, void(*del)(void *));
+void	tkn_lstclear(t_token **lst, void (*del)(void *));
 
-#endif /* TOKEN_H */
+#endif

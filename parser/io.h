@@ -27,6 +27,6 @@ t_io	*io_lstnew(void);
 t_io	*io_lstlast(t_io *lst);
 void	io_lstadd_back(t_io **lst, t_io *new);
 void	io_lstdelone(t_io *lst, void (*del)(void *));
-void	io_lstclear(t_io **lst, void(*del)(void *));
+void	io_lstclear(t_io **lst, void (*del)(void *));
 
 #endif /* IO_H */

@@ -27,4 +27,4 @@ char	*ft_xstrjoin_free(char *str1, char *str2);
 bool	is_shellvar_top(int c);
 bool	is_shellvar(int c);
 
-#endif /* EXPANDER_H */
+#endif

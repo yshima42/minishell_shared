@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:58:18 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 00:58:23 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:23:44 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	clst_link(t_clst *now, t_clst *next)
 {
-    now->next = next;
-    next->prev = now;
+	now->next = next;
+	next->prev = now;
 }

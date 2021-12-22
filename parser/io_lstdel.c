@@ -24,7 +24,7 @@ void	io_lstdelone(t_io *lst, void (*del)(void *))
 	return ;
 }
 
-void	io_lstclear(t_io **lst, void(*del)(void *))
+void	io_lstclear(t_io **lst, void (*del)(void *))
 {
 	t_io	*tmp;
 	t_io	*current;

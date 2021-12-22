@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 01:47:32 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:18:20 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	update_pwd(char *current_path, char *dest_path, t_info *info)
 		ft_xstrdup(dest_path), info->env);
 	dict_update_value(ft_xstrdup("OLDPWD"), \
 		ft_xstrdup(current_path), info->env);
+	g_exit_status = 0;
 }
 
 int	dot_handle(char *operand, char *current_path, t_info *info)

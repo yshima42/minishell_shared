@@ -50,7 +50,7 @@ bool	to_longlong(long long *nbr, const char *nptr)
 		nptr++;
 	}
 	if (!ft_isdigit(*nptr))
-			return (false);
+		return (false);
 	while (ft_isdigit(*nptr))
 	{
 		tmp = *nptr - '0';

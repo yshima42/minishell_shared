@@ -18,10 +18,10 @@ void	call_testfunc(int idx)
 {
 	void	(*func[TEST_NO])(void);
 
-	// func[0] = test_search_prefixs;
+	func[0] = test_search_prefixs;
 	func[1] = test_expand_vars;
-	// func[2] = test_strclen_arrays;
-	// func[3] = test_append_nonvars;
+	func[2] = test_strclen_arrays;
+	func[3] = test_append_nonvars;
 	func[4] = test_expand_var_alls;
 	func[5] = test_expand_exit_status;
 	func[idx]();
