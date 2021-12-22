@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 23:00:21 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 00:32:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ static bool	launch_shell(t_proc *proc, t_info *info)
 	return (exit_flag);
 }
 
+static char	*ms_readline(void)
+{
+	char	*line;
+
+	line = readline(GREEN"minishell"RESET" > ");
+	if (!line)
+		ft_putendl_fd("exit", STDERR_FILENO);
+	return (line);
+}
+
 void	loop_shell(t_info *info)
 {
 	char	*line;
@@ -34,8 +44,9 @@ void	loop_shell(t_info *info)
 	set_signal_in_read();
 	while (true)
 	{
-		line = readline(GREEN"minishell"RESET" > ");
-		if (line == NULL)
+		printf("[%d]", g_exit_status);
+		line = ms_readline();
+		if (!line)
 			break ;
 		if (parse_line(&proc, line, info->env) != DEFAULT)
 			continue ;

@@ -1,0 +1,167 @@
+Mmain	main.c	/^int	main(void)$/
+append_nonvar	expander/expand_var.c	/^static char	*append_nonvar(char *str, char *curren/
+append_open	exec/ft_open.c	/^static int	append_open(char *file)$/
+append_var	expander/expand_var.c	/^static char	*append_var(char *str, char *value)$/
+append_xopen	exec/ft_xopen.c	/^static int	append_xopen(char *file)$/
+array_to_clst	builtin/cd_utils1.c	/^void	array_to_clst(t_clst *clst_head, char **array/
+cd_perror	builtin/cd_utils2.c	/^void	cd_perror(char *cmd)$/
+check_quote_begin	lexer/tkn_strlen.c	/^bool	check_quote_begin(enum e_quote *quote, char c/
+check_quote_end	lexer/tkn_strlen.c	/^bool	check_quote_end(enum e_quote *quote, char c)$/
+child_proc	exec/multi_procs.c	/^static void	child_proc(t_proc *proc, int pipes[][2/
+clst_to_line	builtin/cd_utils1.c	/^char	*clst_to_line(t_clst *clst)$/
+cmd_err	exec/ft_exec.c	/^static void	cmd_err(char *cmd)$/
+count_args	parser/validate_syntax.c	/^size_t	count_args(char **cmd)$/
+count_process	parser/to_proclist.c	/^size_t	count_process(t_token *tokens)$/
+count_quote	parser/remove_quote.c	/^size_t	count_quote(char *word)$/
+count_redirect	parser/set_ioinfo.c	/^static size_t	count_redirect(t_token *tokens)$/
+count_word	parser/set_cmdinfo.c	/^static size_t	count_word(t_token *tokens)$/
+del_before_dots	builtin/cd_utils1.c	/^void	del_before_dots(t_clst *path_clst)$/
+display_sig_info	signal/signal.c	/^int	display_sig_info(int sig)$/
+dot_handle	builtin/exec_cd.c	/^int	dot_handle(char *operand, char *current_path, /
+exec_builtin	builtin/exec_builtin.c	/^int	exec_builtin(t_proc *proc, t_info *info)$/
+exec_cd	builtin/exec_cd.c	/^int	exec_cd(char **args, t_info *info)$/
+exec_echo	builtin/exec_echo.c	/^int	exec_echo(char **cmd)$/
+exec_env	builtin/exec_builtin.c	/^int	exec_env(t_dict *env)$/
+exec_exit	builtin/exec_exit.c	/^int	exec_exit(char **cmd)$/
+exec_export	builtin/exec_export.c	/^int	exec_export(char **cmd, t_dict *env)$/
+exec_pwd	builtin/exec_builtin.c	/^int	exec_pwd(t_info *info)$/
+exec_unset	builtin/exec_unset.c	/^int	exec_unset(char **cmd, t_dict *env)$/
+exists_heredoc	parser/parse_line.c	/^static bool	exists_heredoc(t_proc *proc)$/
+expand_tokens	parser/parse_line.c	/^static t_token	*expand_tokens(t_token *tokens, t_d/
+expand_var	expander/expand_var.c	/^char	*expand_var(char *word, t_dict *env)$/
+expand_var_all	expander/expand_var_all.c	/^t_token	*expand_var_all(t_token *tokens, t_dict *e/
+export_one_data	builtin/exec_export.c	/^static void	export_one_data(char *arg, t_dict *env/
+fetch_value	expander/expand_var.c	/^static char	*fetch_value(char *prefix, size_t key_/
+find_begin	lexer/to_token.c	/^static char	*find_begin(char *str)$/
+ft_exec	exec/ft_exec.c	/^void	ft_exec(char **cmd, t_info *info)$/
+ft_open	exec/ft_open.c	/^int	ft_open(char *file, enum e_kind open_mode)$/
+ft_splitfree	utils/utils.c	/^char	**ft_splitfree(char **tab)$/
+ft_xopen	exec/ft_xopen.c	/^int	ft_xopen(char *file, enum e_kind open_mode)$/
+ft_xstrjoin_free	expander/utils.c	/^char	*ft_xstrjoin_free(char *str1, char *str2)$/
+get_key_and_value	builtin/exec_export.c	/^static void	get_key_and_value(char *key_begin, enu/
+get_path	exec/ft_exec.c	/^static char	*get_path(char *cmd, char **cmd_array,/
+has_n_option	builtin/exec_echo.c	/^static bool	has_n_option(char *cmd)$/
+has_no_arg	builtin/utils.c	/^bool	has_no_arg(char **cmd)$/
+has_one_arg	builtin/utils.c	/^bool	has_one_arg(char **cmd)$/
+heredoc_child	heredoc/heredoc_handler.c	/^static void	heredoc_child(t_io *io_info)$/
+heredoc_exit	heredoc/heredoc_handler.c	/^static int	heredoc_exit(t_proc *proc)$/
+heredoc_handler	heredoc/heredoc_handler.c	/^int	heredoc_handler(t_proc *proc)$/
+heredoc_io_xclose	heredoc/heredoc_handler.c	/^static void	heredoc_io_xclose(t_io *io_info)$/
+heredoc_io_xopen	heredoc/heredoc_utils.c	/^void	heredoc_io_xopen(t_io *io_info)$/
+heredoc_wait_close	heredoc/heredoc_handler.c	/^static void	heredoc_wait_close(pid_t pid, int *sta/
+heredoc_xopen	heredoc/heredoc_utils.c	/^static int	heredoc_xopen(char **heredoc_file_name)/
+in_redirect_xopen	exec/ft_open.c	/^static int	in_redirect_xopen(char *file)$/
+init_envs	env/env_utils.c	/^t_dict	*init_envs(void)$/
+init_ioinfo	parser/set_ioinfo.c	/^static t_io	*init_ioinfo(t_token *tokens)$/
+init_procinfo	parser/to_proclist.c	/^t_proc	*init_procinfo(size_t proc_num)$/
+init_pwd	utils/shell_init.c	/^static t_dict	*init_pwd(t_dict *env)$/
+interrupt_heredoc	signal/signal_heredoc.c	/^void	interrupt_heredoc(int sig)$/
+io_lstadd_back	parser/io_lst.c	/^void	io_lstadd_back(t_io **lst, t_io *new)$/
+io_lstclear	parser/io_lstdel.c	/^void	io_lstclear(t_io **lst, void (*del)(void *))$/
+io_lstdelone	parser/io_lstdel.c	/^void	io_lstdelone(t_io *lst, void (*del)(void *))$/
+io_lstlast	parser/io_lst.c	/^t_io	*io_lstlast(t_io *lst)$/
+io_lstnew	parser/io_lst.c	/^t_io	*io_lstnew(void)$/
+is_2chr_operator	lexer/lex_ctype.c	/^bool	is_2chr_operator(const char *str)$/
+is_builtin	builtin/exec_builtin.c	/^bool	is_builtin(char **args)$/
+is_cmd	parser/proc_ctype.c	/^bool	is_cmd(t_token *token)$/
+is_end	lexer/lex_ctype.c	/^bool	is_end(char c)$/
+is_first_proc	exec/exec_bool.c	/^bool	is_first_proc(t_proc *proc)$/
+is_from_dot	builtin/cd_utils2.c	/^bool	is_from_dot(char *operand)$/
+is_from_slash	builtin/cd_utils2.c	/^bool	is_from_slash(char *operand)$/
+is_ifs	lexer/lex_ctype.c	/^bool	is_ifs(char c)$/
+is_io_operator	parser/proc_ctype.c	/^bool	is_io_operator(enum e_kind kind)$/
+is_last_proc	exec/exec_bool.c	/^bool	is_last_proc(t_proc *proc)$/
+is_link	builtin/cd_utils2.c	/^bool	is_link(char *operand)$/
+is_longlong	builtin/exec_exit.c	/^static bool	is_longlong(long long nbr, long long t/
+is_no_cmd	exec/exec_bool.c	/^bool	is_no_cmd(t_proc *proc)$/
+is_op_kind	parser/proc_ctype.c	/^bool	is_op_kind(enum e_kind kind)$/
+is_operator	lexer/lex_ctype.c	/^bool	is_operator(char c)$/
+is_pipe	parser/proc_ctype.c	/^bool	is_pipe(enum e_kind kind)$/
+is_quote	lexer/lex_ctype.c	/^bool	is_quote(char c)$/
+is_redirect	exec/exec_bool.c	/^bool	is_redirect(t_io *io_info)$/
+is_shellvar	expander/utils.c	/^bool	is_shellvar(int c)$/
+is_shellvar_top	expander/utils.c	/^bool	is_shellvar_top(int c)$/
+is_single_proc	exec/exec_bool.c	/^bool	is_single_proc(t_proc *proc)$/
+launch_shell	exec/loop_shell.c	/^static bool	launch_shell(t_proc *proc, t_info *inf/
+loop_shell	exec/loop_shell.c	/^void	loop_shell(t_info *info)$/
+make_token	lexer/to_token.c	/^t_token	*make_token(char **line, enum e_token when/
+mini_getenv	utils/utils.c	/^char	*mini_getenv(const char *key, t_info *info)$/
+multi_procs	exec/multi_procs.c	/^int	multi_procs(t_proc *proc, t_info *info)$/
+out_redirect_xopen	exec/ft_open.c	/^static int	out_redirect_xopen(char *file)$/
+parse_line	parser/parse_line.c	/^int	parse_line(t_proc **procs, char *line, t_dict /
+path_from_env	exec/ft_exec.c	/^static char	*path_from_env(char *cmd, char *envpat/
+path_to_clst	builtin/cd_utils1.c	/^t_clst	*path_to_clst(char *current_path, char *ope/
+perror_2	exec/ft_open.c	/^void	perror_2(char *str1, char *str2)$/
+pids_wait	exec/multi_procs.c	/^static int	pids_wait(pid_t pids[], int num_pids)$/
+print_error	builtin/cd_utils2.c	/^void	print_error(char *message, char *command)$/
+proc_lstadd_back	parser/proc_lst.c	/^void	proc_lstadd_back(t_proc **lst, t_proc *new)$/
+proc_lstclear	parser/proc_lstdel.c	/^void	proc_lstclear(t_proc **lst)$/
+proc_lstdelone	parser/proc_lstdel.c	/^void	proc_lstdelone(t_proc *lst)$/
+proc_lstlast	parser/proc_lst.c	/^t_proc	*proc_lstlast(t_proc *lst)$/
+proc_lstnew	parser/proc_lst.c	/^t_proc	*proc_lstnew(void)$/
+proc_num_count	parser/proc_lst.c	/^int	proc_num_count(t_proc *head)$/
+puterr_non_numeric	builtin/exec_exit.c	/^static void	puterr_non_numeric(char *arg)$/
+puterr_not_validate	builtin/export_utils.c	/^void	puterr_not_validate(char *arg, char *cmdname)/
+redirect_heredoc	exec/redirect_utils.c	/^static void	redirect_heredoc(t_io *io_info)$/
+redirect_pipe	exec/redirect_utils.c	/^void	redirect_pipe(t_io *io_info)$/
+redirect_reset	exec/redirect_utils.c	/^int	redirect_reset(t_io *io_info, t_info *info)$/
+remove_empty_token	expander/expand_var_all.c	/^t_token	*remove_empty_token(t_token *tokens)$/
+remove_quote	parser/remove_quote.c	/^t_token	*remove_quote(t_token *tokens)$/
+remove_quote_in_token	parser/remove_quote.c	/^char	*remove_quote_in_token(char *word)$/
+save_stdfd	utils/utils.c	/^void	save_stdfd(t_info *info)$/
+search_prefix	expander/utils.c	/^char	*search_prefix(char *word)$/
+search_symbol	builtin/exec_export.c	/^static enum e_symbol	search_symbol(char *arg)$/
+send_newline	signal/signal.c	/^void	send_newline(int sig)$/
+set_cd_dest	builtin/cd_utils1.c	/^char	*set_cd_dest(char **args, t_info *info)$/
+set_cmdinfo	parser/set_cmdinfo.c	/^char	**set_cmdinfo(t_token **tokens)$/
+set_each_procinfo	parser/set_procinfo.c	/^static void	set_each_procinfo(t_proc *proc, t_toke/
+set_ioinfo	parser/set_ioinfo.c	/^t_io	*set_ioinfo(t_token *tokens)$/
+set_kind_info	lexer/to_token.c	/^static enum e_kind	set_kind_info(const char *str)$/
+set_procinfo	parser/set_procinfo.c	/^t_proc	*set_procinfo(t_proc *procs, t_token *token/
+set_sign	builtin/exec_exit.c	/^static void	set_sign(long long *sign, char **nptr)/
+set_signal_ignore	signal/signal.c	/^void	set_signal_ignore(void)$/
+set_signal_in_cmd	signal/signal.c	/^void	set_signal_in_cmd(void)$/
+set_signal_in_heredoc	signal/signal_heredoc.c	/^void	set_signal_in_heredoc(void)$/
+set_signal_in_read	signal/signal.c	/^void	set_signal_in_read(void)$/
+shell_init	utils/shell_init.c	/^t_info	*shell_init(void)$/
+shell_terminate	utils/shell_terminate.c	/^void	shell_terminate(t_info *info)$/
+show_environment	builtin/utils.c	/^void	show_environment(t_dict *env, enum e_cmd cmd)/
+single_builtin	exec/single_proc.c	/^static bool	single_builtin(t_proc *proc, t_info *i/
+single_proc	exec/single_proc.c	/^int	single_proc(t_proc *proc, t_info *info)$/
+single_redirect_pipe	exec/redirect_utils.c	/^void	single_redirect_pipe(t_io *io_info)$/
+skip_optins	builtin/exec_echo.c	/^static void	skip_optins(char **cmd, size_t *i)$/
+split_expanded_word	parser/split_expanded_word.c	/^t_token	*split_expanded_word(t_token *old)$/
+split_token	parser/split_expanded_word.c	/^t_token	*split_token(t_token *old)$/
+strlen_key	expander/expand_var.c	/^static size_t	strlen_key(char *key_begin)$/
+t_exit	exec/exec.h	/^}	t_exit;$/
+t_info	utils/utils.h	/^}	t_info;$/
+t_io	parser/io.h	/^}	t_io;$/
+t_proc	parser/proc.h	/^}	t_proc;$/
+t_stdfd	utils/utils.h	/^}	t_stdfd;$/
+t_token	lexer/token.h	/^}	t_token;$/
+terminate_syntaxerr	parser/parse_line.c	/^static int	terminate_syntaxerr(t_token *tokens)$/
+tkn_lstadd_back	lexer/tkn_lst.c	/^void	tkn_lstadd_back(t_token **lst, t_token *new)$/
+tkn_lstclear	lexer/tkn_lstdel.c	/^void	tkn_lstclear(t_token **lst, void (*del)(void /
+tkn_lstdelone	lexer/tkn_lstdel.c	/^void	tkn_lstdelone(t_token *lst, void (*del)(void /
+tkn_lstdup	lexer/tkn_lst.c	/^t_token	*tkn_lstdup(t_token *old)$/
+tkn_lstlast	lexer/tkn_lst.c	/^t_token	*tkn_lstlast(t_token *lst)$/
+tkn_lstlink	lexer/tkn_lst.c	/^void	tkn_lstlink(t_token *before, t_token *after)$/
+tkn_lstnew	lexer/tkn_lst.c	/^t_token	*tkn_lstnew(char *str)$/
+tkn_strlen	lexer/tkn_strlen.c	/^size_t	tkn_strlen(const char *start)$/
+tkn_strlen_operator	lexer/tkn_strlen.c	/^static size_t	tkn_strlen_operator(const char *star/
+tkn_strlen_word	lexer/tkn_strlen.c	/^size_t	tkn_strlen_word(const char *start, bool (*f/
+to_longlong	builtin/exec_exit.c	/^static bool	to_longlong(long long *nbr, char *nptr/
+to_proclist	parser/to_proclist.c	/^t_proc	*to_proclist(t_token *tokens)$/
+to_tokenlist	lexer/to_token.c	/^t_token	*to_tokenlist(char *line)$/
+update_env	builtin/exec_export.c	/^void	update_env(char *key, char *value, enum e_sym/
+update_head	expander/expand_var_all.c	/^static t_token	*update_head(t_token *current, t_to/
+update_pwd	builtin/exec_cd.c	/^void	update_pwd(char *current_path, char *dest_pat/
+validate_arg_num	parser/validate_syntax.c	/^bool	validate_arg_num(t_proc *procs)$/
+validate_identifier	builtin/export_utils.c	/^bool	validate_identifier(char *arg)$/
+validate_operator_position	parser/validate_syntax.c	/^static bool	validate_operator_position(t_token *to/
+validate_pipe_position	parser/validate_syntax.c	/^static bool	validate_pipe_position(t_token *tokens/
+validate_syntax	parser/validate_syntax.c	/^bool	validate_syntax(t_token *tokens)$/
+xdir_check	exec/ft_exec_utils.c	/^void	xdir_check(char *cmd)$/
+xdup2_xclose	exec/redirect_utils.c	/^static void	xdup2_xclose(int fd1, int fd2)$/
+xpath_error	exec/ft_exec_utils.c	/^void	xpath_error(char *cmd)$/
+xperror_2	exec/ft_xopen.c	/^void	xperror_2(char *str1, char *str2)$/

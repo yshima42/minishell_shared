@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/22 11:35:06 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 00:24:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static t_token	*expand_tokens(t_token *tokens, t_dict *env)
 	new = split_expanded_word(new);
 	new = remove_quote(new);
 	new = remove_empty_token(new);
+	if (!new)
+		g_exit_status = 0;
 	return (new);
 }
 

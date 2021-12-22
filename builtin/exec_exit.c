@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 23:21:39 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/18 01:43:42 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 23:41:11 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	exec_exit(char **cmd)
 {
 	long long	exit_num;
 
+	ft_putendl_fd("exit", STDERR_FILENO);
 	exit_num = 0;
 	if (has_no_arg(cmd))
 		return (EXIT);
