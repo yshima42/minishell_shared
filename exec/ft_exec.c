@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 16:18:20 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 00:52:08 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static char	*path_from_env(char *cmd, char *envpath)
 	char	*ret;
 	char	**path_each;
 
-	i = 0;
 	path_each = ft_xsplit(envpath, ':');
 	i = -1;
 	while (path_each[++i])
@@ -70,6 +69,11 @@ void	ft_exec(char **cmd, t_info *info)
 
 	if (!cmd[0])
 		exit (0);
+	if (!cmd[0][0])
+	{
+		cmd_err(cmd[0]);
+		return ;
+	}
 	environ = xdict_to_array(info->env, "=");
 	path = get_path(cmd[0], cmd, info);
 	if (execve(path, cmd, environ) == -1)

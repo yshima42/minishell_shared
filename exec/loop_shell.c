@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 00:32:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 00:42:21 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ static bool	launch_shell(t_proc *proc, t_info *info)
 	if (!proc)
 		return (0);
 	if (is_single_proc(proc))
+	{
 		exit_flag = single_proc(proc, info);
+	}
 	else
+	{
 		exit_flag = multi_procs(proc, info);
+	}
 	proc_lstclear(&proc);
 	return (exit_flag);
 }
