@@ -6,172 +6,46 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 11:23:40 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 01:47:32 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-void	dict_update_value(char *key, char *value, t_dict *dict)
+void	update_pwd(char *current_path, char *dest_path, t_info *info)
 {
-	t_dict	*item;
-
-	item = dict_search_item(key, dict);
-	if (item == NULL)
-		dict_addback(dict, xdict_new(key, value));
-	else
-	{
-		free(key);
-		free(item->value);
-		item->value = value;
-	}
+	dict_update_value(ft_xstrdup("pwd"), \
+		ft_xstrdup(dest_path), info->pwd);
+	dict_update_value(ft_xstrdup("oldpwd"), \
+		ft_xstrdup(current_path), info->pwd);
+	dict_update_value(ft_xstrdup("PWD"), \
+		ft_xstrdup(dest_path), info->env);
+	dict_update_value(ft_xstrdup("OLDPWD"), \
+		ft_xstrdup(current_path), info->env);
 }
 
-bool	is_link(char *operand)
-{
-	struct stat	sb;
-
-	lstat(operand, &sb);
-	if ((sb.st_mode & S_IFMT) == S_IFLNK)
-		return (true);
-	else
-		return (false);
-}
-
-bool	is_from_dot(char *operand)
-{
-	if (operand[0] == '.'||
-		(operand[0] == '.' && operand[1] == '.'))
-		return (true);
-	else
-		return (false);
-}
-
-bool	is_from_slash(char *operand)
-{
-	if (operand[0] == '/')
-		return (true);
-	else
-		return (false);
-}
-
-/* static void	move_dir(char *operand, t_info *info)
-{
-	char	*current_path;
-	char	*dest_path;
-
-	current_path = ft_strdup(dict_search_item("pwd", info->pwd)->value);
-	dest_path = ft_xtrijoin(current_path, "/", operand);
-
-	if (chdir(operand) != 0)
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		perror(operand);
-		g_exit_status = EXIT_FAILURE;
-	}
-	else
-	{
-		dict_update_value(ft_strdup("pwd"), dest_path, info->pwd);
-		dict_update_value(ft_strdup("oldpwd"), current_path, info->pwd);
-		printf("pwd: %s\n", dict_search_item("pwd", info->pwd)->value);
-		printf("oldpwd: %s\n", dict_search_item("oldpwd", info->pwd)->value);
-		//printf("old_pwd_path: %s\n", dict_get_value("pwd", info->pwd));
-		//update_env(ft_strdup("PWD"), pwd_path, ASSIGN,info->env);
-		(void)info;
-	}
-} */
-
-/* char	*ft_taildel(char *str, char *del_str)
-{
-	size_t	s_len;
-	size_t	t_len;
-	size_t	trimed_len;
-
-	if (!str)
-		return (NULL);
-	s_len = ft_strlen(str);
-	t_len = ft_strlen(del_str);
-	trimed_len = s_len - t_len;
-
-	if (ft_strcmp(del_str, ft_substr(str, trimed_len, s_len)) == 0)
-		return (ft_substr(str, 0, s_len - t_len));
-	else
-		return (str);
-} */
-
-char	*del_tail(char *str, char del_char)
-{
-	size_t	end;
-
-	if (!str)
-		return (NULL);
-	end = ft_strlen(str);
-
-	while (str[end - 1] && str[end - 1] != del_char)
-		end--;
-	return (ft_substr(str, 0, end - 1));
-}
-
-char	*ft_tailtrim(char const *s1, char const *set)
-{
-	size_t	end;
-	char	*ans;
-
-	if (!s1)
-		return (NULL);
-	end = ft_strlen(s1);
-	while (s1[end - 1] && ft_strchr(set, s1[end - 1]))
-		end--;
-	ans = ft_substr(s1, 0, end);
-	return (ans);
-}
-
-static void	operand_cd(char **args, char **operand, char **dest_path, char *current_path, t_info *info)
+int	dot_handle(char *operand, char *current_path, t_info *info)
 {
 	char	*cwd;
-	
-	(void)info;
-	if (is_from_slash(args[1]))
-	{
-		*operand = ft_strdup(args[1]);
-		*dest_path = *operand;
-	}
-	else if (ft_strcmp(args[1], "..") == 0)
-	{
-		*operand = del_tail(current_path, '/');
-		*dest_path = *operand;
-	}
-	else if (ft_strcmp(args[1], ".") == 0)
+	char	*update_path;
+
+	if (ft_strcmp(operand, ".") == 0)
 	{
 		cwd = getcwd(0, 0);
 		if (!cwd)
 		{
-			ft_putstr_fd("cd: error retrieving current directory: ", STDERR_FILENO);
+			ft_putstr_fd("cd: ", STDERR_FILENO);
+			ft_putstr_fd("error retrieving current directory: ", STDERR_FILENO);
 			perror("getcwd: cannot access parent directories");
+			update_path = ft_xstrjoin(current_path, "/.");
+			update_pwd(current_path, update_path, info);
+			free(update_path);
+			free(current_path);
+			free(operand);
+			return (0);
 		}
-		printf("%s\n", cwd);
-		*operand = ft_strdup(current_path);
-		*dest_path = *operand;
 	}
-	else
-	{
-		*operand = ft_tailtrim(args[1], "/");
-		*dest_path = ft_xtrijoin(current_path, "/", *operand);
-	}
-}
-
-static void	no_operand_cd(char **operand, char **dest_path, t_info *info)
-{
-	if (!mini_getenv("HOME", info))
-	{
-		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
-		g_exit_status = EXIT_FAILURE;
-	}
-	else
-	{
-		*operand = ft_xstrdup(mini_getenv("HOME", info));
-		*dest_path = *operand;
-	}
+	return (1);
 }
 
 int	exec_cd(char **args, t_info *info)
@@ -179,32 +53,25 @@ int	exec_cd(char **args, t_info *info)
 	char	*current_path;
 	char	*dest_path;
 	char	*operand;
+	t_clst	*path_clst;
 
-	current_path = ft_strdup(dict_search_item("pwd", info->pwd)->value);
-	
-	if (args[1] == NULL)
-		no_operand_cd(&operand, &dest_path, info);
+	current_path = ft_strdup(dict_get_value("pwd", info->pwd));
+	operand = set_cd_dest(args, info);
+	if (!operand)
+		return (CONTINUE);
+	if (!dot_handle(operand, current_path, info))
+		return (CONTINUE);
+	path_clst = path_to_clst(current_path, operand);
+	clst_del_content(path_clst, ".");
+	del_before_dots(path_clst);
+	dest_path = clst_to_line(path_clst);
+	clst_clear(path_clst);
+	if (chdir(dest_path) != 0)
+		cd_perror(args[1]);
 	else
-		operand_cd(args, &operand, &dest_path, current_path,info);
-
-	//chdir
-	if (chdir(operand) != 0)
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		perror(operand);
-		g_exit_status = EXIT_FAILURE;
-	}
-	else
-	{
-		dict_update_value(ft_xstrdup("pwd"), dest_path, info->pwd);
-		dict_update_value(ft_xstrdup("oldpwd"), current_path, info->pwd);
-		dict_update_value(ft_xstrdup("PWD"), ft_xstrdup(dest_path), info->env);
-		dict_update_value(ft_xstrdup("OLDPWD"), ft_xstrdup(current_path), info->env);	
-		//printf("pwd: %s\n", dict_search_item("pwd", info->pwd)->value);
-		//printf("oldpwd: %s\n", dict_search_item("oldpwd", info->pwd)->value);
-		//printf("old_pwd_path: %s\n", dict_get_value("pwd", info->pwd));
-		//update_env(ft_strdup("PWD"), pwd_path, ASSIGN,info->env);
-		(void)info;
-	}
+		update_pwd(current_path, dest_path, info);
+	free(operand);
+	free(current_path);
+	free(dest_path);
 	return (CONTINUE);
 }

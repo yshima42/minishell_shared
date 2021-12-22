@@ -19,6 +19,7 @@
 # include "../gnl/get_next_line.h"
 # include "color.h"
 # include "dict.h"
+# include "clst.h"
 
 void	free_vector(char **vector);
 int		ft_isspace(int c);

@@ -54,6 +54,8 @@ EXEC_FILES    	= 	exec_bool.c\
 					single_proc.c
 BUILTIN_FILES  	=	exec_builtin.c\
 					exec_cd.c\
+					cd_utils1.c\
+					cd_utils2.c\
 					exec_echo.c\
 					exec_exit.c\
 					exec_export.c\

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xtrijoin.c                                      :+:      :+:    :+:   */
+/*   clst_new.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 17:02:14 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 00:41:55 by yshimazu         ###   ########.fr       */
+/*   Created: 2021/12/22 00:56:13 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/22 00:56:17 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "myfunc.h"
 
-char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3)
+t_clst	*clst_new(char *content)
 {
-	char	*tmp;
-	char	*ret;
+	t_clst	*elem;
 
-	tmp = ft_xstrjoin(s1, s2);
-	ret = ft_xstrjoin(tmp, s3);
-	free(tmp);
-	return (ret);
+	elem = (t_clst *)xmalloc(sizeof(t_clst));
+	if (!elem)
+		return (NULL);
+	elem->content = content;
+	elem->prev = elem;
+	elem->next = elem;
+	return (elem);
 }

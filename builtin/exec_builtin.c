@@ -6,32 +6,17 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 09:21:37 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 01:16:39 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char	*ft_getcwd(void)
-{
-	char	*cwd;
-
-	cwd = getcwd(0, 0);
-	if (!cwd)
-	{
-		ft_putstr_fd("cd: error retrieving current directory: ", STDERR_FILENO);
-		perror("getcwd: cannot access parent directories");
-	}
-	return (cwd);
-}
-
 int	exec_pwd(t_info *info)
 {
 	char	*pwd_path;
 
-	(void)info;
 	pwd_path = dict_get_value("pwd", info->pwd);
-	//pwd_path = ft_getcwd();
 	printf("%s\n", pwd_path);
 	g_exit_status = 0;
 	return (CONTINUE);

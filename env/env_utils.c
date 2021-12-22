@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 17:44:24 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 09:16:03 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_dict	*init_envs(void)
 	t_dict		*env;
 	extern char	**environ;
 
-	i = 0;
 	env = xdict_new("", "");
+	i = 0;
 	while (environ[i])
 	{
 		key = ft_xsubstr(environ[i], 0, ft_strclen(environ[i], '='));
