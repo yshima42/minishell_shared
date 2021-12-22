@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 00:42:15 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 21:28:06 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@
 # include <dirent.h>
 
 # define MAX_PROC 709
+# define SUCCESS 0
+# define GEN_ERR 1
+# define MISUSE_BUILTIN 2
 # define EXEC_FAIL 126
+# define CMD_NOT_FINED 127
 
 typedef enum e_exit
 {

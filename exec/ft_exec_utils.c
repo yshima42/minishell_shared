@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/20 22:24:47 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:28:51 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	xdir_check(char *cmd)
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		closedir(dir);
-		g_exit_status = 126;
-		exit (126);
+		g_exit_status = EXEC_FAIL;
+		exit (EXEC_FAIL);
 	}
 }
