@@ -45,6 +45,8 @@ int	dot_handle(char *operand, char *current_path, t_info *info)
 			free(operand);
 			return (0);
 		}
+		else
+			free(cwd);
 	}
 	return (1);
 }

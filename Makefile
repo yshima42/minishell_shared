@@ -48,6 +48,7 @@ EXEC_FILES    	= 	exec_bool.c\
 					ft_exec.c\
 					ft_exec_utils.c\
 					ft_xopen.c\
+					ft_open.c\
 					loop_shell.c\
 					multi_procs.c\
 					redirect_utils.c\
@@ -116,46 +117,46 @@ fclean:			clean
 
 re:				fclean all
 
-test:			$(NAME)
-				./tests/script/test_file.sh ./tests/cases/cases.txt
+#test:			$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/cases.txt
 
-test_cd:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/cd.txt
+# test_cd:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/cd.txt
 
-test_echo:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/echo.txt
+# test_echo:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/echo.txt
 
-test_env:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/env.txt
+# test_env:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/env.txt
 
-test_exit:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/exit.txt
+# test_exit:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/exit.txt
 
-test_expand:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/expand.txt
+# test_expand:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/expand.txt
 
-test_export:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/export.txt
+# test_export:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/export.txt
 
-test_pwd:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/pwd.txt
+# test_pwd:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/pwd.txt
 
-test_redirect:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/redirect.txt
+# test_redirect:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/redirect.txt
 
-test_syntax:	$(NAME)
-				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
+# test_syntax:	$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
 
-test_unset:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
+# test_unset:		$(NAME)
+# 				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
 
-pipe_test: 		$(TEST_OBJS)
-				$(LIBFTMAKE)
-				$(CC) $(CFLAGS) $(TEST_OBJS) $(LIBFTFLAG) -o $(TEST_NAME)
-				./tests 1
+# pipe_test: 		$(TEST_OBJS)
+# 				$(LIBFTMAKE)
+# 				$(CC) $(CFLAGS) $(TEST_OBJS) $(LIBFTFLAG) -o $(TEST_NAME)
+# 				./tests 1
 
-bonus:			$(NAME) $(BONUS_OBJS)
-				$(LIBFTMAKE)
-				$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFTFLAG) -o $(BONUS_NAME)
+# bonus:			$(NAME) $(BONUS_OBJS)
+# 				$(LIBFTMAKE)
+# 				$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFTFLAG) -o $(BONUS_NAME)
 
 .PHONY:			all clean fclean bonus lib re

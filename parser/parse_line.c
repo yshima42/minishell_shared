@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/22 01:19:28 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 11:35:06 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static t_token	*expand_tokens(t_token *tokens, t_dict *env)
 	new = expand_var_all(tokens, env);
 	new = split_expanded_word(new);
 	new = remove_quote(new);
+	new = remove_empty_token(new);
 	return (new);
 }
 
@@ -55,7 +56,12 @@ int	parse_line(t_proc **procs, char *line, t_dict *env)
 	*procs = NULL;
 	tokens = to_tokenlist(line);
 	if (tokens == NULL)
+	{
+		free(line);
 		return (EMPTY_LINE);
+	}
+	add_history(line);
+	free(line);
 	if (!validate_syntax(tokens))
 		return (terminate_syntaxerr(tokens));
 	tokens = expand_tokens(tokens, env);

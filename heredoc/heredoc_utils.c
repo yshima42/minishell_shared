@@ -19,7 +19,7 @@ static int	heredoc_xopen(char **heredoc_file_name)
 	char	*i_str;
 	int		i;
 
-	directory = ".heredoc/";
+	directory = "/tmp/";
 	i = 0;
 	fd = -1;
 	while (fd == -1)

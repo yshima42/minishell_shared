@@ -49,5 +49,7 @@ bool	is_no_cmd(t_proc *proc);
 void	xperror_2(char *str1, char *str2);
 void	xpath_error(char *cmd);
 void	xdir_check(char *cmd);
+int		ft_open(char *file, enum e_kind open_mode);
+void	single_redirect_pipe(t_io *io_info);
 
 #endif

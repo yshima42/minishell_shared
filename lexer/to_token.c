@@ -6,11 +6,12 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:54:49 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 18:39:02 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/22 10:34:16 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "../minishell.h"
 
 static char	*find_begin(char *str)
 {
@@ -74,6 +75,5 @@ t_token	*to_tokenlist(char *line)
 			break ;
 		tkn_lstadd_back(&head, cur_token);
 	}
-	free(line);
 	return (head);
 }
