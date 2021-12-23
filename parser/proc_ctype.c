@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ctype.c                                      :+:      :+:    :+:   */
+/*   proc_ctype.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 10:53:40 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/06 17:26:31 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 16:02:22 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ bool	is_cmd(t_token *token)
 	if (is_op_kind(token->kind))
 		return (false);
 	if (token->prev != NULL && is_io_operator(token->prev->kind))
+		return (false);
+	if (token->is_empty)
 		return (false);
 	return (true);
 }

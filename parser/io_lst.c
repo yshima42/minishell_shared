@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 23:09:19 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/20 18:06:22 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 16:16:56 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_io	*io_lstnew(void)
 	new->word = NULL;
 	new->heredoc_file = NULL;
 	new->kind = LAST;
+	new->is_empty = false;
 	return (new);
 }
 

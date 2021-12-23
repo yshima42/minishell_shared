@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 17:21:06 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 15:58:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_token	*split_expanded_word(t_token *old)
 	new_head = NULL;
 	while (old != NULL)
 	{
-		if (old->kind == WORD)
+		if (old->kind == WORD && !old->is_empty)
 			new = split_token(old);
 		else
 			new = tkn_lstdup(old);

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 15:19:16 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/24 01:06:58 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	run_cmdline(char *cmd_line, t_info *info)
 	t_proc	*proc;
 	char	**cmd_array;
 	size_t	i;
-	
+
 	i = 0;
 	cmd_array = ft_split(cmd_line, ';');
 	while (cmd_array[i])

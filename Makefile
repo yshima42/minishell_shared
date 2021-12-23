@@ -64,6 +64,7 @@ BUILTIN_FILES  	=	exec_builtin.c\
 					export_utils.c\
 					utils.c
 UTILS_FILES	=		utils.c\
+					error.c\
 					shell_init.c\
 					shell_terminate.c 
 ENV_FILES    	=	env_utils.c

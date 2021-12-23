@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:07:12 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 14:51:05 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 16:18:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ t_io	*set_ioinfo(t_token *tokens)
 		{
 			io_info->kind = tmp->kind;
 			io_info->word = ft_xstrdup(tmp->next->word);
+			if (tmp->next->is_empty)
+				io_info->is_empty = true;
 			io_info = io_info->next;
 		}
 		tmp = tmp->next;
