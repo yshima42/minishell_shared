@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:33:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 00:43:32 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 00:53:28 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	single_builtin(t_proc *proc, t_info *info)
 {
 	int		exit_flag;
 
-	single_redirect_pipe(proc->io_info);
+	redirect_pipe(proc->io_info, PARENT);
 	exit_flag = exec_builtin(proc, info);
 	redirect_reset(proc->io_info, info);
 	return (exit_flag);
@@ -33,7 +33,7 @@ int	single_proc(t_proc *proc, t_info *info)
 	pid = xfork();
 	if (pid == 0)
 	{
-		redirect_pipe(proc->io_info);
+		redirect_pipe(proc->io_info, CHILD);
 		ft_exec(proc->cmd, info);
 	}
 	set_signal_ignore();

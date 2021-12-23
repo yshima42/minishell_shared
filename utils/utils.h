@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:41:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 23:33:27 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 00:12:25 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef struct s_info
 void	save_stdfd(t_info *info);
 char	**ft_splitfree(char **tab);
 char	*mini_getenv(const char *key, t_info *info);
+//utils/error.c
 void	ms_puterr_2arg(char *str1, char *str2);
 void	xperror_2(char *str1, char *str2);
+void	perror_2(char *str1, char *str2);
 //utils/shell_init.c
 t_info	*shell_init(void);
 void	shell_terminate(t_info *info);
