@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 14:48:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 14:51:51 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static bool	launch_shell(t_proc *proc, t_info *info)
+bool	launch_shell(t_proc *proc, t_info *info)
 {
 	bool	exit_flag;
 
