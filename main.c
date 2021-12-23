@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:28:56 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 14:47:38 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/23 15:19:16 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	run_tester(char *cmd_line, t_info *info)
+void	run_cmdline(char *cmd_line, t_info *info)
 {
 	t_proc	*proc;
 	char	**cmd_array;
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 
 	info = shell_init();
 	if (argc > 2 && ft_strcmp("-c", argv[1]) == 0)
-		run_tester(argv[2], info);
+		run_cmdline(argv[2], info);
 	else
 		loop_shell(info);
 	shell_terminate(info);

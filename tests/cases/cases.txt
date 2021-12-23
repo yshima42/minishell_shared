@@ -1,8 +1,7 @@
-echo -n a
-ls  -l | wc -l
-ls  -l | grep Dec | wc -l
-./minishell
-minishell
-/
-/bin/l
-/bin/la
+export HELLO=hello; echo $HELLO
+export HELLO=hello; echo $hello
+echo $
+echo "$"
+echo  '$'
+echo \$
+echo "\$"
