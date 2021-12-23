@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 21:28:06 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/23 14:33:09 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void	xpath_error(char *cmd);
 void	xdir_check(char *cmd);
 int		ft_open(char *file, enum e_kind open_mode);
 void	single_redirect_pipe(t_io *io_info);
+bool	launch_shell(t_proc *proc, t_info *info);
 
 #endif
