@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 14:33:09 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/23 23:16:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	pipes_close(int pipes[][2], int num_pipes);
 void	redirect_pipe(t_io *io_info);
 int		redirect_reset(t_io *io_info, t_info *info);
 int		ft_xopen(char *file, enum e_kind open_mode);
+void	set_redirect(char *file, enum e_kind open_mode);
 int		single_proc(t_proc *proc, t_info *info);
 int		multi_procs(t_proc *proc, t_info *info);
 void	loop_shell(t_info *info);

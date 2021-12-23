@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/22 11:34:33 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 18:17:16 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../libft/mylibft.h"
 
 //expand_var.c
-char	*expand_var(char *word, t_dict *env);
+char	*expand_var(char *word, t_dict *env, bool *is_empty);
 //expand_var_all.c
 t_token	*expand_var_all(t_token *tokens, t_dict *env);
 t_token	*remove_empty_token(t_token *tokens);

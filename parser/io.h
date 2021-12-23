@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:09:17 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 18:09:50 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 16:16:30 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_io
 	char		*heredoc_file;
 	int			fd;
 	enum e_kind	kind;
+	bool		is_empty;
 }	t_io;
 
 t_io	*io_lstnew(void);

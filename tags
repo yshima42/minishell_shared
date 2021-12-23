@@ -1,167 +1,576 @@
-Mmain	main.c	/^int	main(void)$/
-append_nonvar	expander/expand_var.c	/^static char	*append_nonvar(char *str, char *curren/
-append_open	exec/ft_open.c	/^static int	append_open(char *file)$/
-append_var	expander/expand_var.c	/^static char	*append_var(char *str, char *value)$/
-append_xopen	exec/ft_xopen.c	/^static int	append_xopen(char *file)$/
-array_to_clst	builtin/cd_utils1.c	/^void	array_to_clst(t_clst *clst_head, char **array/
-cd_perror	builtin/cd_utils2.c	/^void	cd_perror(char *cmd)$/
-check_quote_begin	lexer/tkn_strlen.c	/^bool	check_quote_begin(enum e_quote *quote, char c/
-check_quote_end	lexer/tkn_strlen.c	/^bool	check_quote_end(enum e_quote *quote, char c)$/
-child_proc	exec/multi_procs.c	/^static void	child_proc(t_proc *proc, int pipes[][2/
-clst_to_line	builtin/cd_utils1.c	/^char	*clst_to_line(t_clst *clst)$/
-cmd_err	exec/ft_exec.c	/^static void	cmd_err(char *cmd)$/
-count_args	parser/validate_syntax.c	/^size_t	count_args(char **cmd)$/
-count_process	parser/to_proclist.c	/^size_t	count_process(t_token *tokens)$/
-count_quote	parser/remove_quote.c	/^size_t	count_quote(char *word)$/
-count_redirect	parser/set_ioinfo.c	/^static size_t	count_redirect(t_token *tokens)$/
-count_word	parser/set_cmdinfo.c	/^static size_t	count_word(t_token *tokens)$/
-del_before_dots	builtin/cd_utils1.c	/^void	del_before_dots(t_clst *path_clst)$/
-display_sig_info	signal/signal.c	/^int	display_sig_info(int sig)$/
-dot_handle	builtin/exec_cd.c	/^int	dot_handle(char *operand, char *current_path, /
-exec_builtin	builtin/exec_builtin.c	/^int	exec_builtin(t_proc *proc, t_info *info)$/
-exec_cd	builtin/exec_cd.c	/^int	exec_cd(char **args, t_info *info)$/
-exec_echo	builtin/exec_echo.c	/^int	exec_echo(char **cmd)$/
-exec_env	builtin/exec_builtin.c	/^int	exec_env(t_dict *env)$/
-exec_exit	builtin/exec_exit.c	/^int	exec_exit(char **cmd)$/
-exec_export	builtin/exec_export.c	/^int	exec_export(char **cmd, t_dict *env)$/
-exec_pwd	builtin/exec_builtin.c	/^int	exec_pwd(t_info *info)$/
-exec_unset	builtin/exec_unset.c	/^int	exec_unset(char **cmd, t_dict *env)$/
-exists_heredoc	parser/parse_line.c	/^static bool	exists_heredoc(t_proc *proc)$/
-expand_tokens	parser/parse_line.c	/^static t_token	*expand_tokens(t_token *tokens, t_d/
-expand_var	expander/expand_var.c	/^char	*expand_var(char *word, t_dict *env)$/
-expand_var_all	expander/expand_var_all.c	/^t_token	*expand_var_all(t_token *tokens, t_dict *e/
-export_one_data	builtin/exec_export.c	/^static void	export_one_data(char *arg, t_dict *env/
-fetch_value	expander/expand_var.c	/^static char	*fetch_value(char *prefix, size_t key_/
-find_begin	lexer/to_token.c	/^static char	*find_begin(char *str)$/
-ft_exec	exec/ft_exec.c	/^void	ft_exec(char **cmd, t_info *info)$/
-ft_open	exec/ft_open.c	/^int	ft_open(char *file, enum e_kind open_mode)$/
-ft_splitfree	utils/utils.c	/^char	**ft_splitfree(char **tab)$/
-ft_xopen	exec/ft_xopen.c	/^int	ft_xopen(char *file, enum e_kind open_mode)$/
-ft_xstrjoin_free	expander/utils.c	/^char	*ft_xstrjoin_free(char *str1, char *str2)$/
-get_key_and_value	builtin/exec_export.c	/^static void	get_key_and_value(char *key_begin, enu/
-get_path	exec/ft_exec.c	/^static char	*get_path(char *cmd, char **cmd_array,/
-has_n_option	builtin/exec_echo.c	/^static bool	has_n_option(char *cmd)$/
-has_no_arg	builtin/utils.c	/^bool	has_no_arg(char **cmd)$/
-has_one_arg	builtin/utils.c	/^bool	has_one_arg(char **cmd)$/
-heredoc_child	heredoc/heredoc_handler.c	/^static void	heredoc_child(t_io *io_info)$/
-heredoc_exit	heredoc/heredoc_handler.c	/^static int	heredoc_exit(t_proc *proc)$/
-heredoc_handler	heredoc/heredoc_handler.c	/^int	heredoc_handler(t_proc *proc)$/
-heredoc_io_xclose	heredoc/heredoc_handler.c	/^static void	heredoc_io_xclose(t_io *io_info)$/
-heredoc_io_xopen	heredoc/heredoc_utils.c	/^void	heredoc_io_xopen(t_io *io_info)$/
-heredoc_wait_close	heredoc/heredoc_handler.c	/^static void	heredoc_wait_close(pid_t pid, int *sta/
-heredoc_xopen	heredoc/heredoc_utils.c	/^static int	heredoc_xopen(char **heredoc_file_name)/
-in_redirect_xopen	exec/ft_open.c	/^static int	in_redirect_xopen(char *file)$/
-init_envs	env/env_utils.c	/^t_dict	*init_envs(void)$/
-init_ioinfo	parser/set_ioinfo.c	/^static t_io	*init_ioinfo(t_token *tokens)$/
-init_procinfo	parser/to_proclist.c	/^t_proc	*init_procinfo(size_t proc_num)$/
-init_pwd	utils/shell_init.c	/^static t_dict	*init_pwd(t_dict *env)$/
-interrupt_heredoc	signal/signal_heredoc.c	/^void	interrupt_heredoc(int sig)$/
-io_lstadd_back	parser/io_lst.c	/^void	io_lstadd_back(t_io **lst, t_io *new)$/
-io_lstclear	parser/io_lstdel.c	/^void	io_lstclear(t_io **lst, void (*del)(void *))$/
-io_lstdelone	parser/io_lstdel.c	/^void	io_lstdelone(t_io *lst, void (*del)(void *))$/
-io_lstlast	parser/io_lst.c	/^t_io	*io_lstlast(t_io *lst)$/
-io_lstnew	parser/io_lst.c	/^t_io	*io_lstnew(void)$/
-is_2chr_operator	lexer/lex_ctype.c	/^bool	is_2chr_operator(const char *str)$/
-is_builtin	builtin/exec_builtin.c	/^bool	is_builtin(char **args)$/
-is_cmd	parser/proc_ctype.c	/^bool	is_cmd(t_token *token)$/
-is_end	lexer/lex_ctype.c	/^bool	is_end(char c)$/
-is_first_proc	exec/exec_bool.c	/^bool	is_first_proc(t_proc *proc)$/
-is_from_dot	builtin/cd_utils2.c	/^bool	is_from_dot(char *operand)$/
-is_from_slash	builtin/cd_utils2.c	/^bool	is_from_slash(char *operand)$/
-is_ifs	lexer/lex_ctype.c	/^bool	is_ifs(char c)$/
-is_io_operator	parser/proc_ctype.c	/^bool	is_io_operator(enum e_kind kind)$/
-is_last_proc	exec/exec_bool.c	/^bool	is_last_proc(t_proc *proc)$/
-is_link	builtin/cd_utils2.c	/^bool	is_link(char *operand)$/
-is_longlong	builtin/exec_exit.c	/^static bool	is_longlong(long long nbr, long long t/
-is_no_cmd	exec/exec_bool.c	/^bool	is_no_cmd(t_proc *proc)$/
-is_op_kind	parser/proc_ctype.c	/^bool	is_op_kind(enum e_kind kind)$/
-is_operator	lexer/lex_ctype.c	/^bool	is_operator(char c)$/
-is_pipe	parser/proc_ctype.c	/^bool	is_pipe(enum e_kind kind)$/
-is_quote	lexer/lex_ctype.c	/^bool	is_quote(char c)$/
-is_redirect	exec/exec_bool.c	/^bool	is_redirect(t_io *io_info)$/
-is_shellvar	expander/utils.c	/^bool	is_shellvar(int c)$/
-is_shellvar_top	expander/utils.c	/^bool	is_shellvar_top(int c)$/
-is_single_proc	exec/exec_bool.c	/^bool	is_single_proc(t_proc *proc)$/
-launch_shell	exec/loop_shell.c	/^static bool	launch_shell(t_proc *proc, t_info *inf/
-loop_shell	exec/loop_shell.c	/^void	loop_shell(t_info *info)$/
-make_token	lexer/to_token.c	/^t_token	*make_token(char **line, enum e_token when/
-mini_getenv	utils/utils.c	/^char	*mini_getenv(const char *key, t_info *info)$/
-multi_procs	exec/multi_procs.c	/^int	multi_procs(t_proc *proc, t_info *info)$/
-out_redirect_xopen	exec/ft_open.c	/^static int	out_redirect_xopen(char *file)$/
-parse_line	parser/parse_line.c	/^int	parse_line(t_proc **procs, char *line, t_dict /
-path_from_env	exec/ft_exec.c	/^static char	*path_from_env(char *cmd, char *envpat/
-path_to_clst	builtin/cd_utils1.c	/^t_clst	*path_to_clst(char *current_path, char *ope/
-perror_2	exec/ft_open.c	/^void	perror_2(char *str1, char *str2)$/
-pids_wait	exec/multi_procs.c	/^static int	pids_wait(pid_t pids[], int num_pids)$/
-print_error	builtin/cd_utils2.c	/^void	print_error(char *message, char *command)$/
-proc_lstadd_back	parser/proc_lst.c	/^void	proc_lstadd_back(t_proc **lst, t_proc *new)$/
-proc_lstclear	parser/proc_lstdel.c	/^void	proc_lstclear(t_proc **lst)$/
-proc_lstdelone	parser/proc_lstdel.c	/^void	proc_lstdelone(t_proc *lst)$/
-proc_lstlast	parser/proc_lst.c	/^t_proc	*proc_lstlast(t_proc *lst)$/
-proc_lstnew	parser/proc_lst.c	/^t_proc	*proc_lstnew(void)$/
-proc_num_count	parser/proc_lst.c	/^int	proc_num_count(t_proc *head)$/
-puterr_non_numeric	builtin/exec_exit.c	/^static void	puterr_non_numeric(char *arg)$/
-puterr_not_validate	builtin/export_utils.c	/^void	puterr_not_validate(char *arg, char *cmdname)/
-redirect_heredoc	exec/redirect_utils.c	/^static void	redirect_heredoc(t_io *io_info)$/
-redirect_pipe	exec/redirect_utils.c	/^void	redirect_pipe(t_io *io_info)$/
-redirect_reset	exec/redirect_utils.c	/^int	redirect_reset(t_io *io_info, t_info *info)$/
-remove_empty_token	expander/expand_var_all.c	/^t_token	*remove_empty_token(t_token *tokens)$/
-remove_quote	parser/remove_quote.c	/^t_token	*remove_quote(t_token *tokens)$/
-remove_quote_in_token	parser/remove_quote.c	/^char	*remove_quote_in_token(char *word)$/
-save_stdfd	utils/utils.c	/^void	save_stdfd(t_info *info)$/
-search_prefix	expander/utils.c	/^char	*search_prefix(char *word)$/
-search_symbol	builtin/exec_export.c	/^static enum e_symbol	search_symbol(char *arg)$/
-send_newline	signal/signal.c	/^void	send_newline(int sig)$/
-set_cd_dest	builtin/cd_utils1.c	/^char	*set_cd_dest(char **args, t_info *info)$/
-set_cmdinfo	parser/set_cmdinfo.c	/^char	**set_cmdinfo(t_token **tokens)$/
-set_each_procinfo	parser/set_procinfo.c	/^static void	set_each_procinfo(t_proc *proc, t_toke/
-set_ioinfo	parser/set_ioinfo.c	/^t_io	*set_ioinfo(t_token *tokens)$/
-set_kind_info	lexer/to_token.c	/^static enum e_kind	set_kind_info(const char *str)$/
-set_procinfo	parser/set_procinfo.c	/^t_proc	*set_procinfo(t_proc *procs, t_token *token/
-set_sign	builtin/exec_exit.c	/^static void	set_sign(long long *sign, char **nptr)/
-set_signal_ignore	signal/signal.c	/^void	set_signal_ignore(void)$/
-set_signal_in_cmd	signal/signal.c	/^void	set_signal_in_cmd(void)$/
-set_signal_in_heredoc	signal/signal_heredoc.c	/^void	set_signal_in_heredoc(void)$/
-set_signal_in_read	signal/signal.c	/^void	set_signal_in_read(void)$/
-shell_init	utils/shell_init.c	/^t_info	*shell_init(void)$/
-shell_terminate	utils/shell_terminate.c	/^void	shell_terminate(t_info *info)$/
-show_environment	builtin/utils.c	/^void	show_environment(t_dict *env, enum e_cmd cmd)/
-single_builtin	exec/single_proc.c	/^static bool	single_builtin(t_proc *proc, t_info *i/
-single_proc	exec/single_proc.c	/^int	single_proc(t_proc *proc, t_info *info)$/
-single_redirect_pipe	exec/redirect_utils.c	/^void	single_redirect_pipe(t_io *io_info)$/
-skip_optins	builtin/exec_echo.c	/^static void	skip_optins(char **cmd, size_t *i)$/
-split_expanded_word	parser/split_expanded_word.c	/^t_token	*split_expanded_word(t_token *old)$/
-split_token	parser/split_expanded_word.c	/^t_token	*split_token(t_token *old)$/
-strlen_key	expander/expand_var.c	/^static size_t	strlen_key(char *key_begin)$/
-t_exit	exec/exec.h	/^}	t_exit;$/
-t_info	utils/utils.h	/^}	t_info;$/
-t_io	parser/io.h	/^}	t_io;$/
-t_proc	parser/proc.h	/^}	t_proc;$/
-t_stdfd	utils/utils.h	/^}	t_stdfd;$/
-t_token	lexer/token.h	/^}	t_token;$/
-terminate_syntaxerr	parser/parse_line.c	/^static int	terminate_syntaxerr(t_token *tokens)$/
-tkn_lstadd_back	lexer/tkn_lst.c	/^void	tkn_lstadd_back(t_token **lst, t_token *new)$/
-tkn_lstclear	lexer/tkn_lstdel.c	/^void	tkn_lstclear(t_token **lst, void (*del)(void /
-tkn_lstdelone	lexer/tkn_lstdel.c	/^void	tkn_lstdelone(t_token *lst, void (*del)(void /
-tkn_lstdup	lexer/tkn_lst.c	/^t_token	*tkn_lstdup(t_token *old)$/
-tkn_lstlast	lexer/tkn_lst.c	/^t_token	*tkn_lstlast(t_token *lst)$/
-tkn_lstlink	lexer/tkn_lst.c	/^void	tkn_lstlink(t_token *before, t_token *after)$/
-tkn_lstnew	lexer/tkn_lst.c	/^t_token	*tkn_lstnew(char *str)$/
-tkn_strlen	lexer/tkn_strlen.c	/^size_t	tkn_strlen(const char *start)$/
-tkn_strlen_operator	lexer/tkn_strlen.c	/^static size_t	tkn_strlen_operator(const char *star/
-tkn_strlen_word	lexer/tkn_strlen.c	/^size_t	tkn_strlen_word(const char *start, bool (*f/
-to_longlong	builtin/exec_exit.c	/^static bool	to_longlong(long long *nbr, char *nptr/
-to_proclist	parser/to_proclist.c	/^t_proc	*to_proclist(t_token *tokens)$/
-to_tokenlist	lexer/to_token.c	/^t_token	*to_tokenlist(char *line)$/
-update_env	builtin/exec_export.c	/^void	update_env(char *key, char *value, enum e_sym/
-update_head	expander/expand_var_all.c	/^static t_token	*update_head(t_token *current, t_to/
-update_pwd	builtin/exec_cd.c	/^void	update_pwd(char *current_path, char *dest_pat/
-validate_arg_num	parser/validate_syntax.c	/^bool	validate_arg_num(t_proc *procs)$/
-validate_identifier	builtin/export_utils.c	/^bool	validate_identifier(char *arg)$/
-validate_operator_position	parser/validate_syntax.c	/^static bool	validate_operator_position(t_token *to/
-validate_pipe_position	parser/validate_syntax.c	/^static bool	validate_pipe_position(t_token *tokens/
-validate_syntax	parser/validate_syntax.c	/^bool	validate_syntax(t_token *tokens)$/
-xdir_check	exec/ft_exec_utils.c	/^void	xdir_check(char *cmd)$/
-xdup2_xclose	exec/redirect_utils.c	/^static void	xdup2_xclose(int fd1, int fd2)$/
-xpath_error	exec/ft_exec_utils.c	/^void	xpath_error(char *cmd)$/
-xperror_2	exec/ft_xopen.c	/^void	xperror_2(char *str1, char *str2)$/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+APPEND	lexer/token.h	/^	APPEND,$/;"	e	enum:e_kind
+ARG_TOOLONG	parser/parser.h	/^# define ARG_TOOLONG /;"	d
+ASSIGN	builtin/builtin.h	/^	ASSIGN,$/;"	e	enum:e_symbol
+BLACK	libft/myfunc/color.h	/^# define BLACK	/;"	d
+BLUE	lexer/color.h	/^# define BLUE /;"	d
+BLUE	libft/myfunc/color.h	/^# define BLUE	/;"	d
+BONUS_FILES	Makefile	/^BONUS_FILES		=$/;"	m
+BONUS_NAME	Makefile	/^BONUS_NAME		= 	minishell_bonus$/;"	m
+BONUS_OBJS	Makefile	/^BONUS_OBJS		= 	$(SRCS:.c=.o)$/;"	m
+BONUS_PATH	Makefile	/^BONUS_PATH		= 	.\/srcs_bonus\/$/;"	m
+BUFFER_SIZE	libft/gnl/get_next_line.h	/^# define BUFFER_SIZE /;"	d
+BUILTIN_FILES	Makefile	/^BUILTIN_FILES  	=	exec_builtin.c\\$/;"	m
+BUILTIN_H	builtin/builtin.h	/^# define BUILTIN_H$/;"	d
+BUILTIN_PATH	Makefile	/^BUILTIN_PATH	=	.\/builtin\/$/;"	m
+BUILTIN_SRCS	Makefile	/^BUILTIN_SRCS	= 	$(addprefix $(BUILTIN_PATH), $(BUILTIN_FILES))$/;"	m
+B_OBJS	libft/Makefile	/^B_OBJS	= $(B_SRCS:.c=.o)$/;"	m
+B_SRC	libft/Makefile	/^B_SRC	=	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\\$/;"	m
+B_SRCS	Makefile	/^B_SRCS			= 	$(addprefix $(BONUS_PATH), $(BONUS_FILES))$/;"	m
+B_SRCS	libft/Makefile	/^B_SRCS	= $(addprefix $(SRCDIR), $(B_SRC))$/;"	m
+CC	Makefile	/^CC				= 	gcc$/;"	m
+CC	libft/Makefile	/^CC		=	gcc$/;"	m
+CC	tests/expander/Makefile	/^CC			= gcc$/;"	m
+CC	tests/lexer/Makefile	/^CC			= gcc$/;"	m
+CC	tests/parser/Makefile	/^CC			= gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS			= 	-Wall -Wextra -Werror$/;"	m
+CFLAGS	libft/Makefile	/^CFLAGS	=	-Wall -Wextra -Werror$/;"	m
+CFLAGS	tests/expander/Makefile	/^CFLAGS		= -Wall -Wextra -Werror$/;"	m
+CFLAGS	tests/lexer/Makefile	/^CFLAGS		= -Wall -Wextra -Werror$/;"	m
+CFLAGS	tests/parser/Makefile	/^CFLAGS		= -Wall -Wextra -Werror$/;"	m
+CLST_H	libft/myfunc/clst.h	/^# define CLST_H$/;"	d
+CMD_NOT_FINED	exec/exec.h	/^# define CMD_NOT_FINED /;"	d
+COLOR_H	lexer/color.h	/^# define COLOR_H$/;"	d
+COLOR_H	libft/myfunc/color.h	/^# define COLOR_H$/;"	d
+CONTINUE	exec/exec.h	/^	CONTINUE,$/;"	e	enum:e_exit
+CYAN	lexer/color.h	/^# define CYAN /;"	d
+CYAN	libft/myfunc/color.h	/^# define CYAN	/;"	d
+DEFAULT	parser/parser.h	/^# define DEFAULT /;"	d
+DICT_H	libft/myfunc/dict.h	/^# define DICT_H$/;"	d
+DOUBLE	lexer/lexer.h	/^	DOUBLE,$/;"	e	enum:e_quote
+EMPTY_LINE	parser/parser.h	/^# define EMPTY_LINE /;"	d
+END	libft/myfunc/color.h	/^# define END	/;"	d
+ENV	builtin/builtin.h	/^	ENV,$/;"	e	enum:e_cmd
+ENV_FILES	Makefile	/^ENV_FILES    	=	env_utils.c$/;"	m
+ENV_H	env/env.h	/^# define ENV_H$/;"	d
+ENV_PATH	Makefile	/^ENV_PATH		=	.\/env\/$/;"	m
+ENV_SRCS	Makefile	/^ENV_SRCS		= 	$(addprefix $(ENV_PATH), $(ENV_FILES))$/;"	m
+EQUAL	lexer/lexer.h	/^# define EQUAL /;"	d
+EQUAL	minishell.h	/^# define EQUAL /;"	d
+EXEC_FAIL	exec/exec.h	/^# define EXEC_FAIL /;"	d
+EXEC_FILES	Makefile	/^EXEC_FILES    	= 	exec_bool.c\\$/;"	m
+EXEC_H	exec/exec.h	/^# define EXEC_H$/;"	d
+EXEC_PATH	Makefile	/^EXEC_PATH		=	.\/exec\/$/;"	m
+EXEC_SRCS	Makefile	/^EXEC_SRCS		= 	$(addprefix $(EXEC_PATH), $(EXEC_FILES))$/;"	m
+EXIT	exec/exec.h	/^	EXIT$/;"	e	enum:e_exit
+EXPANDER_FILES	Makefile	/^EXPANDER_FILES	=	expand_var.c\\$/;"	m
+EXPANDER_H	expander/expander.h	/^# define EXPANDER_H$/;"	d
+EXPANDER_PATH	Makefile	/^EXPANDER_PATH	=	.\/expander\/$/;"	m
+EXPANDER_SRCS	Makefile	/^EXPANDER_SRCS	= 	$(addprefix $(EXPANDER_PATH), $(EXPANDER_FILES))$/;"	m
+EXPORT	builtin/builtin.h	/^	EXPORT$/;"	e	enum:e_cmd
+GEN_ERR	exec/exec.h	/^# define GEN_ERR /;"	d
+GET_NEXT_LINE_H	libft/gnl/get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
+GREEN	lexer/color.h	/^# define GREEN /;"	d
+GREEN	libft/myfunc/color.h	/^# define GREEN	/;"	d
+G_OBJS	libft/Makefile	/^G_OBJS	= $(G_SRCS:.c=.o)$/;"	m
+G_SRCS	libft/Makefile	/^G_SRCS	= gnl\/get_next_line_before.c gnl\/get_next_line_utils.c$/;"	m
+HEREDOC	lexer/token.h	/^	HEREDOC,$/;"	e	enum:e_kind
+HEREDOC_EXIT	parser/parser.h	/^# define HEREDOC_EXIT /;"	d
+HEREDOC_FILES	Makefile	/^HEREDOC_FILES	=	heredoc_handler.c\\$/;"	m
+HEREDOC_H	heredoc/heredoc.h	/^# define HEREDOC_H$/;"	d
+HEREDOC_PATH	Makefile	/^HEREDOC_PATH	=	.\/heredoc\/$/;"	m
+HEREDOC_SRCS	Makefile	/^HEREDOC_SRCS	= 	$(addprefix $(HEREDOC_PATH), $(HEREDOC_FILES))$/;"	m
+INCLUDES	Makefile	/^INCLUDES		= 	minishell.h$/;"	m
+IN_REDIRECT	lexer/token.h	/^	IN_REDIRECT,$/;"	e	enum:e_kind
+IO_H	parser/io.h	/^# define IO_H$/;"	d
+JOIN	builtin/builtin.h	/^	JOIN$/;"	e	enum:e_symbol
+LAST	lexer/token.h	/^	LAST,$/;"	e	enum:e_kind
+LEXER	lexer/lexer.h	/^	LEXER,$/;"	e	enum:e_token
+LEXER_FILES	Makefile	/^LEXER_FILES		=	tkn_lst.c\\$/;"	m
+LEXER_H	lexer/lexer.h	/^# define LEXER_H$/;"	d
+LEXER_PATH	Makefile	/^LEXER_PATH		=	.\/lexer\/$/;"	m
+LEXER_SRCS	Makefile	/^LEXER_SRCS		= 	$(addprefix $(LEXER_PATH), $(LEXER_FILES))$/;"	m
+LIBFTFLAG	Makefile	/^LIBFTFLAG		= 	-L$(LIBFT_PATH) -lft$/;"	m
+LIBFTMAKE	Makefile	/^LIBFTMAKE		= 	$(MAKE) -C $(LIBFT_PATH)$/;"	m
+LIBFT_H	libft/subject/libft.h	/^# define LIBFT_H$/;"	d
+LIBFT_PATH	Makefile	/^LIBFT_PATH		= 	.\/libft\/$/;"	m
+LIBS	tests/expander/Makefile	/^LIBS		= -L. -lft -L. -llexer -lreadline$/;"	m
+LIBS	tests/lexer/Makefile	/^LIBS		= -L. -lft$/;"	m
+LIBS	tests/parser/Makefile	/^LIBS		= -L. -lft -L. -llexer$/;"	m
+LIB_LEXER	tests/expander/Makefile	/^LIB_LEXER	= liblexer.a$/;"	m
+LIB_LEXER	tests/parser/Makefile	/^LIB_LEXER	= liblexer.a$/;"	m
+L_OBJS	tests/expander/Makefile	/^L_OBJS		= $(L_SRCS:.c=.o)$/;"	m
+L_OBJS	tests/parser/Makefile	/^L_OBJS		= $(L_SRC:.c=.o)$/;"	m
+L_SRC	tests/expander/Makefile	/^L_SRC		= ..\/..\/lexer\/tkn_lst.c\\$/;"	m
+L_SRC	tests/parser/Makefile	/^L_SRC		= ..\/..\/lexer\/tkn_lst.c\\$/;"	m
+L_SRCDIR	tests/expander/Makefile	/^L_SRCDIR	= ..\/lexer$/;"	m
+L_SRCS	tests/expander/Makefile	/^L_SRCS		= $(addprefix ${L_SRCDIR}\/,${L_SRC})$/;"	m
+MAGENTA	lexer/color.h	/^# define MAGENTA /;"	d
+MAGENTA	libft/myfunc/color.h	/^# define MAGENTA	/;"	d
+MAIN	Makefile	/^MAIN			=	main.c$/;"	m
+MAX_PROC	exec/exec.h	/^# define MAX_PROC /;"	d
+MINISHELL_H	minishell.h	/^# define MINISHELL_H$/;"	d
+MISUSE_BUILTIN	exec/exec.h	/^# define MISUSE_BUILTIN /;"	d
+MS_ARG_MAX	parser/parser.h	/^# define MS_ARG_MAX /;"	d
+MS_SIGNAL_H	signal/ms_signal.h	/^# define MS_SIGNAL_H$/;"	d
+MYFUNC_H	libft/myfunc/myfunc.h	/^# define MYFUNC_H$/;"	d
+MYLIBFT_H	libft/mylibft.h	/^# define MYLIBFT_H$/;"	d
+M_OBJS	libft/Makefile	/^M_OBJS	= $(M_SRCS:.c=.o)$/;"	m
+M_SRC	libft/Makefile	/^M_SRC	=	dict_addback.c\\$/;"	m
+M_SRCDIR	libft/Makefile	/^M_SRCDIR=  myfunc\/$/;"	m
+M_SRCS	libft/Makefile	/^M_SRCS	= $(addprefix $(M_SRCDIR), $(M_SRC))$/;"	m
+NAME	Makefile	/^NAME			= 	minishell$/;"	m
+NAME	libft/Makefile	/^NAME	=	libft.a$/;"	m
+NAME	tests/expander/Makefile	/^NAME		= expander$/;"	m
+NAME	tests/lexer/Makefile	/^NAME		= lexer$/;"	m
+NAME	tests/parser/Makefile	/^NAME		= parser$/;"	m
+NONE	lexer/lexer.h	/^	NONE,$/;"	e	enum:e_quote
+NO_SYMBOL	builtin/builtin.h	/^	NO_SYMBOL,$/;"	e	enum:e_symbol
+OBJS	libft/Makefile	/^OBJS	= $(SRCS:.c=.o)$/;"	m
+OBJS	tests/expander/Makefile	/^OBJS		= $(SRCS:.c=.o)$/;"	m
+OBJS	tests/lexer/Makefile	/^OBJS		= $(SRCS:.c=.o)$/;"	m
+OBJS	tests/parser/Makefile	/^OBJS		= $(SRCS:.c=.o)$/;"	m
+OUT_REDIRECT	lexer/token.h	/^	OUT_REDIRECT,$/;"	e	enum:e_kind
+PARSER_FILES	Makefile	/^PARSER_FILES	=	parse_line.c\\$/;"	m
+PARSER_H	parser/parser.h	/^# define PARSER_H$/;"	d
+PARSER_PATH	Makefile	/^PARSER_PATH		=	.\/parser\/$/;"	m
+PARSER_SRCS	Makefile	/^PARSER_SRCS		= 	$(addprefix $(PARSER_PATH), $(PARSER_FILES))$/;"	m
+PIPE	lexer/token.h	/^	PIPE,$/;"	e	enum:e_kind
+PROC_H	parser/proc.h	/^# define PROC_H$/;"	d
+RED	lexer/color.h	/^# define RED /;"	d
+RED	libft/myfunc/color.h	/^# define RED	/;"	d
+RESET	lexer/color.h	/^# define RESET /;"	d
+RESET	libft/myfunc/color.h	/^# define RESET	/;"	d
+SAVED_ERR	utils/utils.h	/^	SAVED_ERR,$/;"	e	enum:e_stdfd
+SAVED_IN	utils/utils.h	/^	SAVED_IN,$/;"	e	enum:e_stdfd
+SAVED_OUT	utils/utils.h	/^	SAVED_OUT,$/;"	e	enum:e_stdfd
+SIGNAL_FILES	Makefile	/^SIGNAL_FILES	=	signal.c\\$/;"	m
+SIGNAL_PATH	Makefile	/^SIGNAL_PATH		=	.\/signal\/$/;"	m
+SIGNAL_SRCS	Makefile	/^SIGNAL_SRCS		= 	$(addprefix $(SIGNAL_PATH), $(SIGNAL_FILES))$/;"	m
+SINGLE	lexer/lexer.h	/^	SINGLE,$/;"	e	enum:e_quote
+SPLIT	lexer/lexer.h	/^	SPLIT,$/;"	e	enum:e_token
+SRC	libft/Makefile	/^SRC		=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c\\$/;"	m
+SRCDIR	libft/Makefile	/^SRCDIR	= subject\/$/;"	m
+SRCS	Makefile	/^SRCS			= 	$(SRCS_FILES)$/;"	m
+SRCS	libft/Makefile	/^SRCS	= $(addprefix $(SRCDIR), $(SRC))$/;"	m
+SRCS	tests/expander/Makefile	/^SRCS		= ..\/..\/expander\/expand_var.c\\$/;"	m
+SRCS	tests/lexer/Makefile	/^SRCS		= main.c\\$/;"	m
+SRCS	tests/parser/Makefile	/^SRCS		= main.c\\$/;"	m
+SRCS_OBJS	Makefile	/^SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o) $(HEREDOC_SRCS:.c=.o) $(UTILS_SRCS:.c=.o) $(EXEC_SRCS:.c=.o) $(BUILTIN_SRCS:.c=.o) $(ENV_SRCS:.c=.o)$/;"	m
+STDFD_NUM	utils/utils.h	/^	STDFD_NUM$/;"	e	enum:e_stdfd
+SUCCESS	exec/exec.h	/^# define SUCCESS /;"	d
+SYNTAX_ERR	parser/parser.h	/^# define SYNTAX_ERR /;"	d
+TEST_EXPANDER_H	tests/expander/test/test_expander.h	/^# define TEST_EXPANDER_H$/;"	d
+TEST_LEXER_H	tests/lexer/test/test_lexer.h	/^# define TEST_LEXER_H$/;"	d
+TEST_MAIN	Makefile	/^TEST_MAIN    	= 	$(TEST_PATH)\/test_main.c $(TEST_PATH)\/test_pipe.c$/;"	m
+TEST_NAME	Makefile	/^TEST_NAME		= 	tests$/;"	m
+TEST_NO	tests/expander/main.c	/^#define TEST_NO /;"	d	file:
+TEST_NO	tests/lexer/main.c	/^#define TEST_NO /;"	d	file:
+TEST_NO	tests/parser/main.c	/^#define TEST_NO /;"	d	file:
+TEST_OBJS	Makefile	/^TEST_OBJS		= 	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o) $(HEREDOC_SRCS:.c=.o) $(UTILS_SRCS:.c=.o) $(EXEC_SRCS:.c=.o) $(BUILTIN_SRCS:.c=.o) $(ENV_SRCS:.c=.o)$/;"	m
+TEST_PARSER_H	tests/parser/test/test_parser.h	/^# define TEST_PARSER_H$/;"	d
+TEST_PATH	Makefile	/^TEST_PATH		=	.\/tests\/$/;"	m
+TOKEN_H	lexer/token.h	/^# define TOKEN_H$/;"	d
+UTILS_FILES	Makefile	/^UTILS_FILES	=		utils.c\\$/;"	m
+UTILS_H	utils/utils.h	/^# define UTILS_H$/;"	d
+UTILS_PATH	Makefile	/^UTILS_PATH		=	.\/utils\/$/;"	m
+UTILS_SRCS	Makefile	/^UTILS_SRCS		= 	$(addprefix $(UTILS_PATH), $(UTILS_FILES))$/;"	m
+WORD	lexer/token.h	/^	WORD,$/;"	e	enum:e_kind
+YELLOW	lexer/color.h	/^# define YELLOW /;"	d
+YELLOW	libft/myfunc/color.h	/^# define YELLOW	/;"	d
+append_nonvar	expander/expand_var.c	/^static char	*append_nonvar(char *str, char *current, size_t len)$/;"	f	file:
+append_open	exec/ft_open.c	/^static int	append_open(char *file)$/;"	f	file:
+append_var	expander/expand_var.c	/^static char	*append_var(char *str, char *value)$/;"	f	file:
+append_xopen	exec/ft_xopen.c	/^static int	append_xopen(char *file)$/;"	f	file:
+array_to_clst	builtin/cd_utils1.c	/^void	array_to_clst(t_clst *clst_head, char **array)$/;"	f
+call_testfunc	tests/expander/main.c	/^void	call_testfunc(int idx)$/;"	f
+call_testfunc	tests/lexer/main.c	/^void	call_testfunc(int idx)$/;"	f
+cd_perror	builtin/cd_utils2.c	/^void	cd_perror(char *cmd)$/;"	f
+change_atoi	libft/subject/ft_atoi.c	/^static long	change_atoi(const char *nptr, int sign)$/;"	f	file:
+char_malloc	libft/myfunc/ft_xsplit.c	/^static char	*char_malloc(char const *src, char c, size_t i)$/;"	f	file:
+char_malloc	libft/subject/ft_split.c	/^static char	*char_malloc(char const *src, char c, size_t i)$/;"	f	file:
+check_quote_begin	lexer/tkn_strlen.c	/^bool	check_quote_begin(enum e_quote *quote, char c)$/;"	f
+check_quote_end	lexer/tkn_strlen.c	/^bool	check_quote_end(enum e_quote *quote, char c)$/;"	f
+check_set	libft/subject/ft_strtrim.c	/^static int	check_set(char const c, char const *list)$/;"	f	file:
+check_strs	libft/gnl/get_next_line_before.c	/^static int	check_strs(ssize_t cnt, char **line, char **left, char *buf)$/;"	f	file:
+child_proc	exec/multi_procs.c	/^static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)$/;"	f	file:
+clear_set	libft/myfunc/to_vector.c	/^static void	*clear_set(t_list **lst, char *str)$/;"	f	file:
+clst_addback	libft/myfunc/clst_addback.c	/^void	clst_addback(t_clst *head, t_clst *new)$/;"	f
+clst_addfront	libft/myfunc/clst_addfront.c	/^void	clst_addfront(t_clst *head, t_clst *new)$/;"	f
+clst_clear	libft/myfunc/clst_clear.c	/^void	clst_clear(t_clst *head)$/;"	f
+clst_count	libft/myfunc/clst_count.c	/^size_t	clst_count(t_clst *clst)$/;"	f
+clst_del_content	libft/myfunc/clst_del_content.c	/^void	clst_del_content(t_clst *path_clst, char *del_content)$/;"	f
+clst_delone	libft/myfunc/clst_delone.c	/^bool	clst_delone(t_clst *elem)$/;"	f
+clst_insert	libft/myfunc/clst_insert.c	/^void	clst_insert(t_clst *lst, t_clst *new)$/;"	f
+clst_link	libft/myfunc/clst_link.c	/^void	clst_link(t_clst *now, t_clst *next)$/;"	f
+clst_new	libft/myfunc/clst_new.c	/^t_clst	*clst_new(char *content)$/;"	f
+clst_to_line	builtin/cd_utils1.c	/^char	*clst_to_line(t_clst *clst)$/;"	f
+cmd	parser/proc.h	/^	char			**cmd;$/;"	m	struct:s_proc
+cmd_err	exec/ft_exec.c	/^static void	cmd_err(char *cmd)$/;"	f	file:
+content	libft/myfunc/clst.h	/^	char			*content;$/;"	m	struct:s_clst
+content	libft/subject/libft.h	/^	void			*content;$/;"	m	struct:s_list
+count_args	parser/validate_syntax.c	/^size_t	count_args(char **cmd)$/;"	f
+count_process	parser/to_proclist.c	/^size_t	count_process(t_token *tokens)$/;"	f
+count_quote	parser/remove_quote.c	/^size_t	count_quote(char *word)$/;"	f
+count_redirect	parser/set_ioinfo.c	/^static size_t	count_redirect(t_token *tokens)$/;"	f	file:
+count_word	parser/set_cmdinfo.c	/^static size_t	count_word(t_token *tokens)$/;"	f	file:
+del_before_dots	builtin/cd_utils1.c	/^void	del_before_dots(t_clst *path_clst)$/;"	f
+detect_leak	tests/expander/main.c	/^void	detect_leak(void)$/;"	f
+detect_leak	tests/expander/test/test_dict_get_value.c	/^void	detect_leak(void)$/;"	f
+detect_leak	tests/lexer/main.c	/^void	detect_leak(void)$/;"	f
+detect_leak	tests/parser/main.c	/^void	detect_leak(void)$/;"	f
+dict_addback	libft/myfunc/dict_addback.c	/^bool	dict_addback(t_dict *head, t_dict *new)$/;"	f
+dict_clear	libft/myfunc/dict_clear.c	/^void	dict_clear(t_dict *head)$/;"	f
+dict_delone	libft/myfunc/dict_delone.c	/^bool	dict_delone(t_dict *elem)$/;"	f
+dict_get_value	libft/myfunc/dict_get_value.c	/^char	*dict_get_value(const char *key, t_dict *head)$/;"	f
+dict_new	libft/myfunc/dict_new.c	/^t_dict	*dict_new(char *key, char *value)$/;"	f
+dict_search_item	libft/myfunc/dict_search_item.c	/^t_dict	*dict_search_item(char *key, t_dict *dict)$/;"	f
+dict_size	libft/myfunc/dict_size.c	/^size_t	dict_size(t_dict *head)$/;"	f
+dict_to_array	libft/myfunc/dict_to_array.c	/^char	**dict_to_array(t_dict *dict_head, char *connector)$/;"	f
+dict_update_value	libft/myfunc/dict_update_value.c	/^void	dict_update_value(char *key, char *value, t_dict *dict)$/;"	f
+diff_check	tests/script/test_base.sh	/^diff_check()$/;"	f
+display_sig_info	signal/signal.c	/^int	display_sig_info(int sig)$/;"	f
+dot_handle	builtin/exec_cd.c	/^int	dot_handle(char *operand, char *current_path, t_info *info)$/;"	f
+e_cmd	builtin/builtin.h	/^enum e_cmd$/;"	g
+e_exit	exec/exec.h	/^typedef enum e_exit$/;"	g
+e_kind	lexer/token.h	/^enum e_kind$/;"	g
+e_quote	lexer/lexer.h	/^enum e_quote$/;"	g
+e_stdfd	utils/utils.h	/^typedef enum e_stdfd$/;"	g
+e_symbol	builtin/builtin.h	/^enum e_symbol$/;"	g
+e_token	lexer/lexer.h	/^enum e_token$/;"	g
+env	utils/utils.h	/^	t_dict	*env;$/;"	m	struct:s_info
+error_file_save	tests/script/test_base.sh	/^error_file_save()$/;"	f
+exec_builtin	builtin/exec_builtin.c	/^int	exec_builtin(t_proc *proc, t_info *info)$/;"	f
+exec_cd	builtin/exec_cd.c	/^int	exec_cd(char **args, t_info *info)$/;"	f
+exec_echo	builtin/exec_echo.c	/^int	exec_echo(char **cmd)$/;"	f
+exec_env	builtin/exec_builtin.c	/^int	exec_env(t_dict *env)$/;"	f
+exec_exit	builtin/exec_exit.c	/^int	exec_exit(char **cmd)$/;"	f
+exec_export	builtin/exec_export.c	/^int	exec_export(char **cmd, t_dict *env)$/;"	f
+exec_pwd	builtin/exec_builtin.c	/^int	exec_pwd(t_info *info)$/;"	f
+exec_unset	builtin/exec_unset.c	/^int	exec_unset(char **cmd, t_dict *env)$/;"	f
+exists_heredoc	parser/parse_line.c	/^static bool	exists_heredoc(t_proc *proc)$/;"	f	file:
+expand_tokens	parser/parse_line.c	/^static t_token	*expand_tokens(t_token *tokens, t_dict *env)$/;"	f	file:
+expand_var	expander/expand_var.c	/^char	*expand_var(char *word, t_dict *env, bool *is_empty)$/;"	f
+expand_var_all	expander/expand_var_all.c	/^t_token	*expand_var_all(t_token *tokens, t_dict *env)$/;"	f
+export_one_data	builtin/exec_export.c	/^static void	export_one_data(char *arg, t_dict *env)$/;"	f	file:
+fd	parser/io.h	/^	int			fd;$/;"	m	struct:s_io
+fetch_value	expander/expand_var.c	/^static char	*fetch_value(char *prefix, size_t key_len, t_dict *env)$/;"	f	file:
+file_print	tests/script/test_base.sh	/^file_print()$/;"	f
+find_begin	lexer/to_token.c	/^static char	*find_begin(char *str)$/;"	f	file:
+free_all	libft/myfunc/ft_xsplit.c	/^static void	*free_all(char **dest, size_t i)$/;"	f	file:
+free_all	libft/subject/ft_split.c	/^static void	*free_all(char **dest, size_t i)$/;"	f	file:
+free_set	libft/gnl/get_next_line_utils.c	/^void	*free_set(char **ptr1, char *ptr2)$/;"	f
+free_vector	libft/myfunc/free_vector.c	/^void	free_vector(char **vector)$/;"	f
+ft_atoi	libft/subject/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_bzero	libft/subject/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_calloc	libft/subject/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
+ft_exec	exec/ft_exec.c	/^void	ft_exec(char **cmd, t_info *info)$/;"	f
+ft_isalnum	libft/subject/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
+ft_isalpha	libft/subject/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
+ft_isascii	libft/subject/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
+ft_isdigit	libft/subject/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isprint	libft/subject/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_isspace	libft/myfunc/ft_isspace.c	/^int	ft_isspace(int c)$/;"	f
+ft_itoa	libft/subject/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
+ft_lstadd_back	libft/subject/ft_lstadd_back_bonus.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/;"	f
+ft_lstadd_front	libft/subject/ft_lstadd_front_bonus.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/;"	f
+ft_lstclear	libft/subject/ft_lstclear_bonus.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *))$/;"	f
+ft_lstdelone	libft/subject/ft_lstdelone_bonus.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstiter	libft/subject/ft_lstiter_bonus.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstlast	libft/subject/ft_lstlast_bonus.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f
+ft_lstmap	libft/subject/ft_lstmap_bonus.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstnew	libft/subject/ft_lstnew_bonus.c	/^t_list	*ft_lstnew(void *content)$/;"	f
+ft_lstsize	libft/subject/ft_lstsize_bonus.c	/^int	ft_lstsize(t_list *lst)$/;"	f
+ft_lstsize_sizet	libft/myfunc/ft_lstsize_sizet.c	/^size_t	ft_lstsize_sizet(t_list *lst)$/;"	f
+ft_memchr	libft/subject/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memcmp	libft/subject/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcpy	libft/subject/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memmove	libft/subject/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f
+ft_memset	libft/subject/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_open	exec/ft_open.c	/^int	ft_open(char *file, enum e_kind open_mode)$/;"	f
+ft_putchar_fd	libft/subject/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putendl_fd	libft/subject/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_putnbr_fd	libft/subject/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putstr_fd	libft/subject/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f
+ft_putstr_fd_dquate	builtin/utils.c	/^static void	ft_putstr_fd_dquate(char *str, int fd)$/;"	f	file:
+ft_split	libft/subject/ft_split.c	/^char	**ft_split(char const *str, char c)$/;"	f
+ft_splitfree	utils/utils.c	/^char	**ft_splitfree(char **tab)$/;"	f
+ft_strajoin	libft/myfunc/ft_strajoin.c	/^char	*ft_strajoin(char **str, char *connector)$/;"	f
+ft_strchr	libft/subject/ft_strchr.c	/^char	*ft_strchr(const char *str, int c)$/;"	f
+ft_strclen	libft/myfunc/ft_strclen.c	/^size_t	ft_strclen(const char *str, int c)$/;"	f
+ft_strclen_array	libft/myfunc/ft_strclen.c	/^size_t	ft_strclen_array(const char *str, char *sep)$/;"	f
+ft_strcmp	libft/myfunc/ft_strcmp.c	/^int	ft_strcmp(const char *s1, const char *s2)$/;"	f
+ft_strdup	libft/subject/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/;"	f
+ft_striteri	libft/subject/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char *))$/;"	f
+ft_strjoin	libft/subject/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strjoin3	libft/myfunc/ft_strjoin3.c	/^char	*ft_strjoin3(const char *s1, const char *s2, const char *s3)$/;"	f
+ft_strlcat	libft/subject/ft_strlcat.c	/^size_t	ft_strlcat(char *dest, const char *src, size_t size)$/;"	f
+ft_strlcpy	libft/subject/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f
+ft_strlen	libft/subject/ft_strlen.c	/^size_t	ft_strlen(const char *str)$/;"	f
+ft_strmapi	libft/subject/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strncmp	libft/subject/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strndup	libft/myfunc/ft_strndup.c	/^char	*ft_strndup(const char *s1, size_t n)$/;"	f
+ft_strnstr	libft/subject/ft_strnstr.c	/^char	*ft_strnstr(const char *big, const char *little, size_t len)$/;"	f
+ft_strrchr	libft/subject/ft_strrchr.c	/^char	*ft_strrchr(const char *str, int c)$/;"	f
+ft_strtrim	libft/subject/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_substr	libft/subject/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_tolower	libft/subject/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
+ft_toupper	libft/subject/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_trijoin	libft/myfunc/ft_trijoin.c	/^char	*ft_trijoin(char const *s1, char const *s2, char const *s3)$/;"	f
+ft_ulongtoa_base	libft/myfunc/ft_ulongtoa_base.c	/^char	*ft_ulongtoa_base(unsigned long nbr, char *base)$/;"	f
+ft_v_strchr	libft/myfunc/ft_v_strchr.c	/^int	ft_v_strchr(const char *str, int c)$/;"	f
+ft_xcalloc	libft/myfunc/ft_xcalloc.c	/^void	*ft_xcalloc(size_t nmemb, size_t size)$/;"	f
+ft_xitoa	libft/myfunc/ft_xitoa.c	/^char	*ft_xitoa(int n)$/;"	f
+ft_xlstnew	libft/myfunc/ft_xlstnew_bonus.c	/^t_list	*ft_xlstnew(void *content)$/;"	f
+ft_xopen	exec/ft_xopen.c	/^int	ft_xopen(char *file, enum e_kind open_mode)$/;"	f
+ft_xsplit	libft/myfunc/ft_xsplit.c	/^char	**ft_xsplit(char const *str, char c)$/;"	f
+ft_xstrajoin	libft/myfunc/ft_xstrajoin.c	/^char	*ft_xstrajoin(char **str, char *connector)$/;"	f
+ft_xstrdup	libft/myfunc/ft_xstrdup.c	/^char	*ft_xstrdup(const char *s1)$/;"	f
+ft_xstrjoin	libft/myfunc/ft_xstrjoin.c	/^char	*ft_xstrjoin(char const *s1, char const *s2)$/;"	f
+ft_xstrjoin3	libft/myfunc/ft_xstrjoin3.c	/^char	*ft_xstrjoin3(const char *s1, const char *s2, const char *s3)$/;"	f
+ft_xstrjoin_free	expander/utils.c	/^char	*ft_xstrjoin_free(char *str1, char *str2)$/;"	f
+ft_xstrmapi	libft/myfunc/ft_xstrmapi.c	/^char	*ft_xstrmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_xstrndup	libft/myfunc/ft_xstrndup.c	/^char	*ft_xstrndup(const char *s1, size_t n)$/;"	f
+ft_xsubstr	libft/myfunc/ft_xsubstr.c	/^char	*ft_xsubstr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_xtrijoin	libft/myfunc/ft_xtrijoin.c	/^char	*ft_xtrijoin(char const *s1, char const *s2, char const *s3)$/;"	f
+ft_xulongtoa_base	libft/myfunc/ft_xulongtoa_base.c	/^char	*ft_xulongtoa_base(unsigned long nbr, char *base)$/;"	f
+g_exit_status	utils/utils.h	/^int	g_exit_status;$/;"	v
+get_int	libft/subject/ft_atoi.c	/^static long	get_int(char c)$/;"	f	file:
+get_key_and_value	builtin/exec_export.c	/^static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \\$/;"	f	file:
+get_len_int	libft/myfunc/ft_xitoa.c	/^static long	get_len_int(long l_nbr)$/;"	f	file:
+get_len_int	libft/subject/ft_itoa.c	/^static long	get_len_int(long l_nbr)$/;"	f	file:
+get_len_trimmed	libft/subject/ft_strtrim.c	/^static size_t	get_len_trimmed(char const *str, char const *set)$/;"	f	file:
+get_length	libft/myfunc/ft_ulongtoa_base.c	/^static int	get_length(unsigned long nbr, unsigned long base_num)$/;"	f	file:
+get_length	libft/myfunc/ft_xulongtoa_base.c	/^static int	get_length(unsigned long nbr, unsigned long base_num)$/;"	f	file:
+get_next_line	libft/gnl/get_next_line_before.c	/^int	get_next_line(int fd, char **line)$/;"	f
+get_path	exec/ft_exec.c	/^static char	*get_path(char *cmd, char **cmd_array, t_info *info)$/;"	f	file:
+gnl_strchr	libft/gnl/get_next_line_utils.c	/^char	*gnl_strchr(const char *str, int c)$/;"	f
+gnl_strdup	libft/gnl/get_next_line_utils.c	/^char	*gnl_strdup(const char *s1)$/;"	f
+gnl_strjoin	libft/gnl/get_next_line_utils.c	/^char	*gnl_strjoin(char const *s1, char const *s2)$/;"	f
+gnl_strlen	libft/gnl/get_next_line_utils.c	/^size_t	gnl_strlen(const char *str)$/;"	f
+has_n_option	builtin/exec_echo.c	/^static bool	has_n_option(char *cmd)$/;"	f	file:
+has_no_arg	builtin/utils.c	/^bool	has_no_arg(char **cmd)$/;"	f
+has_one_arg	builtin/utils.c	/^bool	has_one_arg(char **cmd)$/;"	f
+heredoc_child	heredoc/heredoc_handler.c	/^static void	heredoc_child(t_io *io_info)$/;"	f	file:
+heredoc_exit	heredoc/heredoc_handler.c	/^static int	heredoc_exit(t_proc *proc)$/;"	f	file:
+heredoc_file	parser/io.h	/^	char		*heredoc_file;$/;"	m	struct:s_io
+heredoc_handler	heredoc/heredoc_handler.c	/^int	heredoc_handler(t_proc *proc)$/;"	f
+heredoc_io_xclose	heredoc/heredoc_handler.c	/^static void	heredoc_io_xclose(t_io *io_info)$/;"	f	file:
+heredoc_io_xopen	heredoc/heredoc_utils.c	/^void	heredoc_io_xopen(t_io *io_info)$/;"	f
+heredoc_wait_close	heredoc/heredoc_handler.c	/^static void	heredoc_wait_close(pid_t pid, int *status, t_proc *proc)$/;"	f	file:
+heredoc_xopen	heredoc/heredoc_utils.c	/^static int	heredoc_xopen(char **heredoc_file_name)$/;"	f	file:
+id	parser/proc.h	/^	size_t			id;$/;"	m	struct:s_proc
+in_redirect_xopen	exec/ft_open.c	/^static int	in_redirect_xopen(char *file)$/;"	f	file:
+in_redirect_xopen	exec/ft_xopen.c	/^static int	in_redirect_xopen(char *file)$/;"	f	file:
+init_envs	env/env_utils.c	/^t_dict	*init_envs(void)$/;"	f
+init_ioinfo	parser/set_ioinfo.c	/^static t_io	*init_ioinfo(t_token *tokens)$/;"	f	file:
+init_procinfo	parser/to_proclist.c	/^t_proc	*init_procinfo(size_t proc_num)$/;"	f
+init_pwd	utils/shell_init.c	/^static t_dict	*init_pwd(t_dict *env)$/;"	f	file:
+interrupt_heredoc	signal/signal_heredoc.c	/^void	interrupt_heredoc(int sig)$/;"	f
+io_info	parser/proc.h	/^	t_io			*io_info;$/;"	m	struct:s_proc
+io_lstadd_back	parser/io_lst.c	/^void	io_lstadd_back(t_io **lst, t_io *new)$/;"	f
+io_lstclear	parser/io_lstdel.c	/^void	io_lstclear(t_io **lst, void (*del)(void *))$/;"	f
+io_lstdelone	parser/io_lstdel.c	/^void	io_lstdelone(t_io *lst, void (*del)(void *))$/;"	f
+io_lstlast	parser/io_lst.c	/^t_io	*io_lstlast(t_io *lst)$/;"	f
+io_lstnew	parser/io_lst.c	/^t_io	*io_lstnew(void)$/;"	f
+is_2chr_operator	lexer/lex_ctype.c	/^bool	is_2chr_operator(const char *str)$/;"	f
+is_builtin	builtin/exec_builtin.c	/^bool	is_builtin(char **args)$/;"	f
+is_cmd	parser/proc_ctype.c	/^bool	is_cmd(t_token *token)$/;"	f
+is_empty	lexer/token.h	/^	bool			is_empty;$/;"	m	struct:s_token
+is_empty	parser/io.h	/^	bool		is_empty;$/;"	m	struct:s_io
+is_end	lexer/lex_ctype.c	/^bool	is_end(char c)$/;"	f
+is_first_proc	exec/exec_bool.c	/^bool	is_first_proc(t_proc *proc)$/;"	f
+is_from_dot	builtin/cd_utils2.c	/^bool	is_from_dot(char *operand)$/;"	f
+is_from_slash	builtin/cd_utils2.c	/^bool	is_from_slash(char *operand)$/;"	f
+is_ifs	lexer/lex_ctype.c	/^bool	is_ifs(char c)$/;"	f
+is_io_operator	parser/proc_ctype.c	/^bool	is_io_operator(enum e_kind kind)$/;"	f
+is_last_proc	exec/exec_bool.c	/^bool	is_last_proc(t_proc *proc)$/;"	f
+is_link	builtin/cd_utils2.c	/^bool	is_link(char *operand)$/;"	f
+is_longlong	builtin/exec_exit.c	/^static bool	is_longlong(long long nbr, long long tmp, int sign)$/;"	f	file:
+is_no_cmd	exec/exec_bool.c	/^bool	is_no_cmd(t_proc *proc)$/;"	f
+is_op_kind	parser/proc_ctype.c	/^bool	is_op_kind(enum e_kind kind)$/;"	f
+is_operator	lexer/lex_ctype.c	/^bool	is_operator(char c)$/;"	f
+is_pipe	parser/proc_ctype.c	/^bool	is_pipe(enum e_kind kind)$/;"	f
+is_quote	lexer/lex_ctype.c	/^bool	is_quote(char c)$/;"	f
+is_redirect	exec/exec_bool.c	/^bool	is_redirect(t_io *io_info)$/;"	f
+is_shellvar	expander/utils.c	/^bool	is_shellvar(int c)$/;"	f
+is_shellvar_top	expander/utils.c	/^bool	is_shellvar_top(int c)$/;"	f
+is_single_proc	exec/exec_bool.c	/^bool	is_single_proc(t_proc *proc)$/;"	f
+key	libft/myfunc/dict.h	/^	char			*key;$/;"	m	struct:s_dict
+kind	lexer/token.h	/^	enum e_kind		kind;$/;"	m	struct:s_token	typeref:enum:s_token::e_kind
+kind	parser/io.h	/^	enum e_kind	kind;$/;"	m	struct:s_io	typeref:enum:s_io::e_kind
+launch_shell	exec/loop_shell.c	/^bool	launch_shell(t_proc *proc, t_info *info)$/;"	f
+line_count	libft/myfunc/ft_xsplit.c	/^static size_t	line_count(char const *str, char c)$/;"	f	file:
+line_count	libft/subject/ft_split.c	/^static size_t	line_count(char const *str, char c)$/;"	f	file:
+loop_shell	exec/loop_shell.c	/^void	loop_shell(t_info *info)$/;"	f
+main	main.c	/^int	main(int argc, char *argv[])$/;"	f
+main	tests/expander/main.c	/^int	main(int argc, char **argv)$/;"	f
+main	tests/expander/test/test_dict_get_value.c	/^int	main(void)$/;"	f
+main	tests/lexer/main.c	/^int	main(int argc, char **argv)$/;"	f
+main	tests/parser/main.c	/^int	main(int argc, char **argv)$/;"	f
+make_firstnode	libft/myfunc/to_vector.c	/^static int	make_firstnode(char **str, t_list **lst, int fd)$/;"	f	file:
+make_token	lexer/to_token.c	/^t_token	*make_token(char **line, enum e_token when)$/;"	f
+mini_getenv	utils/utils.c	/^char	*mini_getenv(const char *key, t_info *info)$/;"	f
+ms_readline	exec/loop_shell.c	/^static char	*ms_readline(void)$/;"	f	file:
+multi_free	libft/myfunc/multi_free.c	/^void	multi_free(char *str1, char *str2, char *str3, char *str4)$/;"	f
+multi_procs	exec/multi_procs.c	/^int	multi_procs(t_proc *proc, t_info *info)$/;"	f
+next	lexer/token.h	/^	struct s_token	*next;$/;"	m	struct:s_token	typeref:struct:s_token::s_token
+next	libft/myfunc/clst.h	/^	struct s_clst	*next;$/;"	m	struct:s_clst	typeref:struct:s_clst::s_clst
+next	libft/myfunc/dict.h	/^	struct s_dict	*next;$/;"	m	struct:s_dict	typeref:struct:s_dict::s_dict
+next	libft/subject/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	parser/io.h	/^	struct s_io	*next;$/;"	m	struct:s_io	typeref:struct:s_io::s_io
+next	parser/proc.h	/^	struct s_proc	*next;$/;"	m	struct:s_proc	typeref:struct:s_proc::s_proc
+out_redirect_xopen	exec/ft_open.c	/^static int	out_redirect_xopen(char *file)$/;"	f	file:
+out_redirect_xopen	exec/ft_xopen.c	/^static int	out_redirect_xopen(char *file)$/;"	f	file:
+parse_line	parser/parse_line.c	/^int	parse_line(t_proc **procs, char *line, t_dict *env)$/;"	f
+path_from_env	exec/ft_exec.c	/^static char	*path_from_env(char *cmd, char *envpath)$/;"	f	file:
+path_to_clst	builtin/cd_utils1.c	/^t_clst	*path_to_clst(char *current_path, char *operand)$/;"	f
+perror_2	exec/ft_open.c	/^void	perror_2(char *str1, char *str2)$/;"	f
+pids_wait	exec/multi_procs.c	/^static int	pids_wait(pid_t pids[], int num_pids)$/;"	f	file:
+prev	lexer/token.h	/^	struct s_token	*prev;$/;"	m	struct:s_token	typeref:struct:s_token::s_token
+prev	libft/myfunc/clst.h	/^	struct s_clst	*prev;$/;"	m	struct:s_clst	typeref:struct:s_clst::s_clst
+prev	libft/myfunc/dict.h	/^	struct s_dict	*prev;$/;"	m	struct:s_dict	typeref:struct:s_dict::s_dict
+prev	parser/io.h	/^	struct s_io	*prev;$/;"	m	struct:s_io	typeref:struct:s_io::s_io
+prev	parser/proc.h	/^	struct s_proc	*prev;$/;"	m	struct:s_proc	typeref:struct:s_proc::s_proc
+print_error	builtin/cd_utils2.c	/^void	print_error(char *message, char *command)$/;"	f
+print_iolist	tests/parser/test/utils_test.c	/^void	print_iolist(t_io *io_info)$/;"	f
+print_procinfo	tests/parser/test/utils_test.c	/^void	print_procinfo(t_proc *proc, int ex_status)$/;"	f
+print_proclist	tests/parser/test/utils_test.c	/^void	print_proclist(t_proc *head, int ex_status)$/;"	f
+print_tokens	tests/lexer/test/test_to_token.c	/^void	print_tokens(t_token *head)$/;"	f
+print_value	tests/expander/test/test_dict_get_value.c	/^void	print_value(char *key, t_dict *dict)$/;"	f
+print_vector	tests/parser/test/utils_test.c	/^void	print_vector(char **vector)$/;"	f
+proc_lstadd_back	parser/proc_lst.c	/^void	proc_lstadd_back(t_proc **lst, t_proc *new)$/;"	f
+proc_lstclear	parser/proc_lstdel.c	/^void	proc_lstclear(t_proc **lst)$/;"	f
+proc_lstdelone	parser/proc_lstdel.c	/^void	proc_lstdelone(t_proc *lst)$/;"	f
+proc_lstlast	parser/proc_lst.c	/^t_proc	*proc_lstlast(t_proc *lst)$/;"	f
+proc_lstnew	parser/proc_lst.c	/^t_proc	*proc_lstnew(void)$/;"	f
+proc_num_count	parser/proc_lst.c	/^int	proc_num_count(t_proc *head)$/;"	f
+puterr_non_numeric	builtin/exec_exit.c	/^static void	puterr_non_numeric(char *arg)$/;"	f	file:
+puterr_not_validate	builtin/export_utils.c	/^void	puterr_not_validate(char *arg, char *cmdname)$/;"	f
+pwd	utils/utils.h	/^	t_dict	*pwd;$/;"	m	struct:s_info
+redirect_heredoc	exec/redirect_utils.c	/^static void	redirect_heredoc(t_io *io_info)$/;"	f	file:
+redirect_pipe	exec/redirect_utils.c	/^void	redirect_pipe(t_io *io_info)$/;"	f
+redirect_reset	exec/redirect_utils.c	/^int	redirect_reset(t_io *io_info, t_info *info)$/;"	f
+remove_quote	parser/remove_quote.c	/^t_token	*remove_quote(t_token *tokens)$/;"	f
+remove_quote_in_token	parser/remove_quote.c	/^char	*remove_quote_in_token(char *word)$/;"	f
+reset_for_error	libft/gnl/get_next_line_before.c	/^static int	reset_for_error(char **line, char **left, char *buf)$/;"	f	file:
+run_tester	main.c	/^void	run_tester(char *cmd_line, t_info *info)$/;"	f
+s_clst	libft/myfunc/clst.h	/^typedef struct s_clst$/;"	s
+s_dict	libft/myfunc/dict.h	/^typedef struct s_dict$/;"	s
+s_info	utils/utils.h	/^typedef struct s_info$/;"	s
+s_io	parser/io.h	/^typedef struct s_io$/;"	s
+s_list	libft/subject/libft.h	/^typedef struct s_list$/;"	s
+s_proc	parser/proc.h	/^typedef struct s_proc$/;"	s
+s_token	lexer/token.h	/^typedef struct s_token$/;"	s
+save_stdfd	utils/utils.c	/^void	save_stdfd(t_info *info)$/;"	f
+search_prefix	expander/utils.c	/^char	*search_prefix(char *word)$/;"	f
+search_symbol	builtin/exec_export.c	/^static enum e_symbol	search_symbol(char *arg)$/;"	f	file:
+send_newline	signal/signal.c	/^void	send_newline(int sig)$/;"	f
+set_cd_dest	builtin/cd_utils1.c	/^char	*set_cd_dest(char **args, t_info *info)$/;"	f
+set_cmdinfo	parser/set_cmdinfo.c	/^char	**set_cmdinfo(t_token **tokens)$/;"	f
+set_each_procinfo	parser/set_procinfo.c	/^static void	set_each_procinfo(t_proc *proc, t_token **tokens)$/;"	f	file:
+set_ioinfo	parser/set_ioinfo.c	/^t_io	*set_ioinfo(t_token *tokens)$/;"	f
+set_kind_info	lexer/to_token.c	/^static enum e_kind	set_kind_info(const char *str)$/;"	f	file:
+set_nbr	libft/myfunc/ft_xitoa.c	/^static char	*set_nbr(char *str, long l_nbr, long digit)$/;"	f	file:
+set_nbr	libft/subject/ft_itoa.c	/^static char	*set_nbr(char *str, long l_nbr, long digit)$/;"	f	file:
+set_procinfo	parser/set_procinfo.c	/^t_proc	*set_procinfo(t_proc *procs, t_token *tokens, size_t proc_num)$/;"	f
+set_return_ssize_t	libft/gnl/get_next_line_before.c	/^static ssize_t	set_return_ssize_t(ssize_t *cnt, ssize_t read)$/;"	f	file:
+set_return_str	libft/gnl/get_next_line_before.c	/^static char	*set_return_str(char **str1, char *str2)$/;"	f	file:
+set_sign	builtin/exec_exit.c	/^static void	set_sign(long long *sign, char **nptr)$/;"	f	file:
+set_signal_ignore	signal/signal.c	/^void	set_signal_ignore(void)$/;"	f
+set_signal_in_cmd	signal/signal.c	/^void	set_signal_in_cmd(void)$/;"	f
+set_signal_in_heredoc	signal/signal_heredoc.c	/^void	set_signal_in_heredoc(void)$/;"	f
+set_signal_in_read	signal/signal.c	/^void	set_signal_in_read(void)$/;"	f
+set_string	tests/lexer/test/test_to_token.c	/^void	set_string(char **kstr)$/;"	f
+set_strings_from_list	libft/myfunc/to_vector.c	/^static char	**set_strings_from_list(t_list *head)$/;"	f	file:
+shell_init	utils/shell_init.c	/^t_info	*shell_init(void)$/;"	f
+shell_terminate	utils/shell_terminate.c	/^void	shell_terminate(t_info *info)$/;"	f
+show_environment	builtin/utils.c	/^void	show_environment(t_dict *env, enum e_cmd cmd)$/;"	f
+single_builtin	exec/single_proc.c	/^static bool	single_builtin(t_proc *proc, t_info *info)$/;"	f	file:
+single_proc	exec/single_proc.c	/^int	single_proc(t_proc *proc, t_info *info)$/;"	f
+single_redirect_pipe	exec/redirect_utils.c	/^void	single_redirect_pipe(t_io *io_info)$/;"	f
+skip_optins	builtin/exec_echo.c	/^static void	skip_optins(char **cmd, size_t *i)$/;"	f	file:
+split_expanded_word	parser/split_expanded_word.c	/^t_token	*split_expanded_word(t_token *old)$/;"	f
+split_token	parser/split_expanded_word.c	/^t_token	*split_token(t_token *old)$/;"	f
+stdfd	utils/utils.h	/^	int		stdfd[STDFD_NUM];$/;"	m	struct:s_info
+strlen_key	expander/expand_var.c	/^static size_t	strlen_key(char *key_begin)$/;"	f	file:
+t_clst	libft/myfunc/clst.h	/^}		t_clst;$/;"	t	typeref:struct:s_clst
+t_dict	libft/myfunc/dict.h	/^}				t_dict;$/;"	t	typeref:struct:s_dict
+t_exit	exec/exec.h	/^}	t_exit;$/;"	t	typeref:enum:e_exit
+t_info	utils/utils.h	/^}	t_info;$/;"	t	typeref:struct:s_info
+t_io	parser/io.h	/^}	t_io;$/;"	t	typeref:struct:s_io
+t_list	libft/subject/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
+t_proc	parser/proc.h	/^}	t_proc;$/;"	t	typeref:struct:s_proc
+t_stdfd	utils/utils.h	/^}	t_stdfd;$/;"	t	typeref:enum:e_stdfd
+t_token	lexer/token.h	/^}	t_token;$/;"	t	typeref:struct:s_token
+terminate_syntaxerr	parser/parse_line.c	/^static int	terminate_syntaxerr(t_token *tokens)$/;"	f	file:
+test_append_nonvar	tests/expander/test/test_append_nonvar.c	/^void	test_append_nonvar(char *str, char *tail, size_t len, char *tstmsg)$/;"	f
+test_append_nonvars	tests/expander/test/test_append_nonvar.c	/^void	test_append_nonvars(void)$/;"	f
+test_count_process	tests/parser/test/test_count.c	/^void	test_count_process(char *line, char *tstmsg)$/;"	f
+test_count_processes	tests/parser/test/test_count.c	/^void	test_count_processes(void)$/;"	f
+test_count_quote	tests/parser/test/test_count_quote.c	/^void	test_count_quote(char *line, char *tstmsg)$/;"	f
+test_count_quotes	tests/parser/test/test_count_quote.c	/^void	test_count_quotes(void)$/;"	f
+test_enum_kind	tests/lexer/test/test_utils.c	/^void	test_enum_kind(void)$/;"	f
+test_expand_exit_status	tests/expander/test/test_expand_var.c	/^void	test_expand_exit_status(void)$/;"	f
+test_expand_var	tests/expander/test/test_expand_var.c	/^void	test_expand_var(char *word, char *tstmsg)$/;"	f
+test_expand_var_all	tests/expander/test/test_expand_var_all.c	/^void	test_expand_var_all(char *line, char *tstmsg)$/;"	f
+test_expand_var_alls	tests/expander/test/test_expand_var_all.c	/^void	test_expand_var_alls(void)$/;"	f
+test_expand_vars	tests/expander/test/test_expand_var.c	/^void	test_expand_vars(void)$/;"	f
+test_init_procinfo	tests/parser/test/test_init.c	/^void	test_init_procinfo(char *line, char *tstmsg)$/;"	f
+test_init_procinfos	tests/parser/test/test_init.c	/^void	test_init_procinfos(void)$/;"	f
+test_is_ifs	tests/lexer/test/test_utils.c	/^void	test_is_ifs(void)$/;"	f
+test_operator	tests/lexer/test/test_operator.c	/^void	test_operator(void)$/;"	f
+test_parse_line	tests/parser/test/test_parse_line.c	/^void	test_parse_line(char *line, char *tstmsg)$/;"	f
+test_parse_lines	tests/parser/test/test_parse_line.c	/^void	test_parse_lines(void)$/;"	f
+test_quote	tests/lexer/test/test_quote.c	/^void	test_quote(void)$/;"	f
+test_rm_quote	tests/parser/test/test_rm_quote.c	/^void	test_rm_quote(char *line, char *tstmsg)$/;"	f
+test_rm_quote_word	tests/parser/test/test_rm_quote.c	/^void	test_rm_quote_word(char *word, char *tstmsg)$/;"	f
+test_rm_quote_words	tests/parser/test/test_rm_quote.c	/^void	test_rm_quote_words(void)$/;"	f
+test_rm_quotes	tests/parser/test/test_rm_quote.c	/^void	test_rm_quotes(void)$/;"	f
+test_search_prefix	tests/expander/test/test_search_prefix.c	/^void	test_search_prefix(char *word, char *tstmsg)$/;"	f
+test_search_prefixs	tests/expander/test/test_search_prefix.c	/^void	test_search_prefixs(void)$/;"	f
+test_set_procinfo	tests/parser/test/test_set.c	/^void	test_set_procinfo(char *line, char *tstmsg)$/;"	f
+test_set_procinfos	tests/parser/test/test_set.c	/^void	test_set_procinfos(void)$/;"	f
+test_start	tests/parser/test/test_count.c	/^void	test_start(void)$/;"	f
+test_strclen_array	tests/expander/test/test_strclen_array.c	/^void	test_strclen_array(char *str, char *sep, char *tstmsg)$/;"	f
+test_strclen_arrays	tests/expander/test/test_strclen_array.c	/^void	test_strclen_arrays(void)$/;"	f
+test_strndup	tests/lexer/test/test_utils.c	/^void	test_strndup(void)$/;"	f
+test_tknlist	tests/lexer/test/test_utils.c	/^void	test_tknlist(void)$/;"	f
+test_to_token	tests/lexer/test/test_to_token.c	/^void	test_to_token(char *line, char *tstmsg)$/;"	f
+test_validate	tests/parser/test/test_validate.c	/^void	test_validate(char *line, char *tstmsg)$/;"	f
+test_validates	tests/parser/test/test_validate.c	/^void	test_validates(void)$/;"	f
+tester	tests/script/test_base.sh	/^tester()$/;"	f
+tkn_lstadd_back	lexer/tkn_lst.c	/^void	tkn_lstadd_back(t_token **lst, t_token *new)$/;"	f
+tkn_lstclear	lexer/tkn_lstdel.c	/^void	tkn_lstclear(t_token **lst, void (*del)(void *))$/;"	f
+tkn_lstdelone	lexer/tkn_lstdel.c	/^void	tkn_lstdelone(t_token *lst, void (*del)(void *))$/;"	f
+tkn_lstdup	lexer/tkn_lst.c	/^t_token	*tkn_lstdup(t_token *old)$/;"	f
+tkn_lstlast	lexer/tkn_lst.c	/^t_token	*tkn_lstlast(t_token *lst)$/;"	f
+tkn_lstlink	lexer/tkn_lst.c	/^void	tkn_lstlink(t_token *before, t_token *after)$/;"	f
+tkn_lstnew	lexer/tkn_lst.c	/^t_token	*tkn_lstnew(char *str)$/;"	f
+tkn_strlen	lexer/tkn_strlen.c	/^size_t	tkn_strlen(const char *start)$/;"	f
+tkn_strlen_operator	lexer/tkn_strlen.c	/^static size_t	tkn_strlen_operator(const char *start)$/;"	f	file:
+tkn_strlen_word	lexer/tkn_strlen.c	/^size_t	tkn_strlen_word(const char *start, bool (*func)(char))$/;"	f
+to_longlong	builtin/exec_exit.c	/^static bool	to_longlong(long long *nbr, char *nptr)$/;"	f	file:
+to_proclist	parser/to_proclist.c	/^t_proc	*to_proclist(t_token *tokens)$/;"	f
+to_tokenlist	lexer/to_token.c	/^t_token	*to_tokenlist(char *line)$/;"	f
+to_vector	libft/myfunc/to_vector.c	/^char	**to_vector(int fd)$/;"	f
+update_env	builtin/exec_export.c	/^void	update_env(char *key, char *value, enum e_symbol symbol, \\$/;"	f
+update_pwd	builtin/exec_cd.c	/^void	update_pwd(char *current_path, char *dest_path, t_info *info)$/;"	f
+use_funcptr	tests/parser/main.c	/^void	use_funcptr(int idx)$/;"	f
+validate_arg_num	parser/validate_syntax.c	/^bool	validate_arg_num(t_proc *procs)$/;"	f
+validate_identifier	builtin/export_utils.c	/^bool	validate_identifier(char *arg)$/;"	f
+validate_operator_position	parser/validate_syntax.c	/^static bool	validate_operator_position(t_token *tokens)$/;"	f	file:
+validate_pipe_position	parser/validate_syntax.c	/^static bool	validate_pipe_position(t_token *tokens)$/;"	f	file:
+validate_syntax	parser/validate_syntax.c	/^bool	validate_syntax(t_token *tokens)$/;"	f
+value	libft/myfunc/dict.h	/^	char			*value;$/;"	m	struct:s_dict
+word	lexer/token.h	/^	char			*word;$/;"	m	struct:s_token
+word	parser/io.h	/^	char		*word;$/;"	m	struct:s_io
+xclose	libft/myfunc/xclose.c	/^void	xclose(int fd)$/;"	f
+xdict_new	libft/myfunc/xdict_new.c	/^t_dict	*xdict_new(char *key, char *value)$/;"	f
+xdict_to_array	libft/myfunc/xdict_to_array.c	/^char	**xdict_to_array(t_dict *dict_head, char *connector)$/;"	f
+xdir_check	exec/ft_exec_utils.c	/^void	xdir_check(char *cmd)$/;"	f
+xdup	libft/myfunc/xdup.c	/^int	xdup(int fd)$/;"	f
+xdup2	libft/myfunc/xdup2.c	/^void	xdup2(int fd1, int fd2)$/;"	f
+xdup2_xclose	exec/redirect_utils.c	/^static void	xdup2_xclose(int fd1, int fd2)$/;"	f	file:
+xfork	libft/myfunc/xfork.c	/^pid_t	xfork(void)$/;"	f
+xmalloc	libft/myfunc/xmalloc.c	/^void	*xmalloc(size_t size)$/;"	f
+xpath_error	exec/ft_exec_utils.c	/^void	xpath_error(char *cmd)$/;"	f
+xperror	libft/myfunc/xperror.c	/^void	xperror(char *s)$/;"	f
+xperror_2	exec/ft_xopen.c	/^void	xperror_2(char *str1, char *str2)$/;"	f
+xpipe	libft/myfunc/xpipe.c	/^void	xpipe(int *fd)$/;"	f
+xwaitpid	libft/myfunc/xwaitpid.c	/^void	xwaitpid(pid_t pid, int *status, int options)$/;"	f

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/17 14:19:41 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/23 23:54:06 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,18 @@ char	*mini_getenv(const char *key, t_info *info)
 		t_env = t_env->next;
 	}
 	return (NULL);
+}
+
+void	ms_puterr_2arg(char *str1, char *str2)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(str1, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(str2, STDERR_FILENO);
+}
+
+void	xperror_2(char *str1, char *str2)
+{
+	ft_putstr_fd(str1, 2);
+	xperror(str2);
 }

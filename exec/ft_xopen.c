@@ -6,17 +6,11 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:55:25 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/18 19:49:57 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/23 23:22:11 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-
-void	xperror_2(char *str1, char *str2)
-{
-	ft_putstr_fd(str1, 2);
-	xperror(str2);
-}
 
 static int	append_xopen(char *file)
 {
@@ -61,3 +55,4 @@ int	ft_xopen(char *file, enum e_kind open_mode)
 	else
 		return (0);
 }
+

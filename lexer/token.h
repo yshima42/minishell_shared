@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 10:35:02 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 17:18:17 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/23 15:43:00 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_token
 	struct s_token	*next;
 	char			*word;
 	enum e_kind		kind;
+	bool			is_empty;
 }	t_token;
 
 t_token	*tkn_lstnew(char *str);
