@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 16:43:58 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 17:11:58 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,22 @@ bool	redirect(t_io *io)
 		if (io->is_empty)
 		{
 			ms_puterr_2arg(io->word, "ambiguous redirect");
-			g_exit_status = 1;
-			return (false);
+			break ;
 		}
 		else
 		{
 			if (set_redirect(io->word, io->heredoc_file, io->kind) == -1)
-				return (false);
+				break ;
 		}
 		io = io->next;
 	}
-	return (true);
+	if (io)
+	{
+		g_exit_status = 1;
+		return (false);
+	}
+	else
+	{
+		return (true);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 00:11:51 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 17:17:38 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,10 @@ void	ms_puterr_2arg(char *str1, char *str2)
 	ft_putendl_fd(str2, STDERR_FILENO);
 }
 
-void	xperror_2(char *str1, char *str2)
-{
-	ft_putstr_fd(str1, 2);
-	xperror(str2);
-}
-
 void	perror_2(char *str1, char *str2)
 {
 	ft_putstr_fd(str1, 2);
+	if (str2 && !*str2)
+		ft_putstr_fd(":", 2);
 	perror(str2);
-	g_exit_status = 1;
 }
