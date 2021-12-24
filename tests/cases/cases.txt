@@ -1,8 +1,1 @@
-echo -n a
-ls  -l | wc -l
-ls  -l | grep Dec | wc -l
-./minishell
-minishell
-/
-/bin/l
-/bin/la
+exit a
