@@ -12,3 +12,8 @@ cd tests world; pwd
 cd / ; pwd
 cd /bin; pwd
 cd /bin/../ ; pwd
+cd TESTS ; pwd
+cd tests ; pwd
+chmod 000 workspace ; cd workspace ; pwd ; chmod 777 workspace
+cd ; pwd ;
+cd ; pwd ; , export HOME=
