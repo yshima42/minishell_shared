@@ -52,9 +52,14 @@ Mkfile.old
 dkms.conf
 ref/
 minishell
+# Add when review
 # .gitignore
 # README.md
 # script
 # tags
 # tests
 # workspace
+
+# Tests
+tests/output
+tests/cases/cases.txt
