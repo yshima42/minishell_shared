@@ -1,2 +1,4 @@
-echo "$$USER$USER""$USER"
 echo "$USER'$USER'"
+
+#no handle $$
+echo "$$USER$USER""$USER"
