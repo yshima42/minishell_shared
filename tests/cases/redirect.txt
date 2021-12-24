@@ -7,3 +7,9 @@ echo a > out | echo b >> out | echo c >> out | echo d >> out | cat out
 echo a > out | echo b >> out | echo c >> out | echo d > out | cat out
 echo a > $NO_ENV | echo b ; unset NO_ENV
 ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f |cat f
+ls > $NO_ENV
+ls > "$NO_ENV"
+ls > ""
+cat < $NO_ENV
+cat < "$NO_ENV"
+cat < ""

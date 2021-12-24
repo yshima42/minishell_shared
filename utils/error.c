@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 17:17:38 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 00:21:21 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	perror_2(char *str1, char *str2)
 {
 	ft_putstr_fd(str1, 2);
 	if (str2 && !*str2)
-		ft_putstr_fd(":", 2);
+		ft_putstr_fd(": ", 2);
 	perror(str2);
 }
