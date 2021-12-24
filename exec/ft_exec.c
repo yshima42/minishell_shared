@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 14:48:29 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 18:05:57 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static char	*path_from_env(char *cmd, char *envpath)
 	char	**path_each;
 
 	path_each = ft_xsplit(envpath, ':');
+	if (*path_each == NULL)
+		return (cmd);
 	i = -1;
 	while (path_each[++i])
 	{
@@ -50,13 +52,7 @@ static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 	if (envpath == NULL || ft_strchr(cmd_array[0], '/'))
 	{
 		xdir_check(cmd);
-		if (access(cmd_array[0], X_OK) == 0)
-			return (cmd_array[0]);
-		else
-		{
-			xpath_error(cmd);
-			return (NULL);
-		}
+		return (cmd_array[0]);
 	}
 	else
 		return (path_from_env(cmd_array[0], envpath));
@@ -79,6 +75,7 @@ void	ft_exec(char **cmd, t_info *info)
 	if (execve(path, cmd, environ) == -1)
 	{
 		free (path);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		perror(*cmd);
 		exit(EXEC_FAIL);
 	}
