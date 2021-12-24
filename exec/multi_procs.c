@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:38:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 00:52:04 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 16:42:30 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	child_proc(t_proc *proc, int pipes[][2], t_info *info)
 		xclose(pipes[proc->id][0]);
 		xclose(pipes[proc->id][1]);
 	}
-	redirect_pipe(proc->io_info, CHILD);
+	if (!redirect(proc->io_info))
+		exit(EXIT_FAILURE);
 	if (is_builtin(proc->cmd))
 	{
 		if (!is_first_proc(proc))

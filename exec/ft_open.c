@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 11:26:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 00:11:59 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/24 16:46:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	append_open(char *file)
 	return (fd);
 }
 
-static int	out_redirect_xopen(char *file)
+static int	out_redirect_open(char *file)
 {
 	int	fd;
 
@@ -34,7 +34,7 @@ static int	out_redirect_xopen(char *file)
 	return (fd);
 }
 
-static int	in_redirect_xopen(char *file)
+static int	in_redirect_open(char *file)
 {
 	int	fd;
 
@@ -47,9 +47,9 @@ static int	in_redirect_xopen(char *file)
 int	ft_open(char *file, enum e_kind open_mode)
 {
 	if (open_mode == IN_REDIRECT)
-		return (in_redirect_xopen(file));
+		return (in_redirect_open(file));
 	else if (open_mode == OUT_REDIRECT)
-		return (out_redirect_xopen(file));
+		return (out_redirect_open(file));
 	else if (open_mode == APPEND)
 		return (append_open(file));
 	else

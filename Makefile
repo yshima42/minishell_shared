@@ -47,7 +47,6 @@ SIGNAL_FILES	=	signal.c\
 EXEC_FILES    	= 	exec_bool.c\
 					ft_exec.c\
 					ft_exec_utils.c\
-					ft_xopen.c\
 					ft_open.c\
 					loop_shell.c\
 					multi_procs.c\
