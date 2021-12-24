@@ -1,4 +1,4 @@
-unset; env | grep -v -E '^_=' | sort
+
 unset A B =invalid C; echo $A$B$C$D; export A=test B=multiple C=var D=hello
 unset 1
 unset A=a; echo $A; export A=a
