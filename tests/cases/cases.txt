@@ -1,7 +1,1 @@
-export HELLO=hello; echo $HELLO
-export HELLO=hello; echo $hello
-echo $
-echo "$"
-echo  '$'
-echo \$
-echo "\$"
+cd tests; pwd;
