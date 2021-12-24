@@ -61,5 +61,5 @@ minishell
 # workspace
 
 # Tests
-tests/output
+tests/output/test_result.md
 tests/cases/cases.txt
