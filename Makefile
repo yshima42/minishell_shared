@@ -148,8 +148,11 @@ test_redirect:	$(NAME)
 test_syntax:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
 
+test_simple:	$(NAME)
+				./tests/script/test_file.sh ./tests/cases/simple_command.txt
+
 test_unset:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/syntax_unset.txt
+				./tests/script/test_file.sh ./tests/cases/unset.txt
 
 #pipe_test: 		$(TEST_OBJS)
 #				$(LIBFTMAKE)

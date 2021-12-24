@@ -1,16 +1,9 @@
 > file
 > file | cat < no_such_file
 echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt | cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
-echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt | cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
-ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt | cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
-ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt | cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt | cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt | cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
 echo a > out | echo b >> out | echo c >> out | echo d >> out | cat out
 echo a > out | echo b >> out | echo c >> out | echo d > out | cat out
-echo hello 2147483647> file
-echo hello 2147483648> file
-echo a > $NO_ENV | echo b, unset NO_ENV
-echo a > f | echo b >> f | cat f f f >> ff | cat ff ff >> f | cat f
+echo a > $NO_ENV | echo b ; unset NO_ENV
 ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f |cat f
-ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV |ls
