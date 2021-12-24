@@ -16,4 +16,34 @@ cd TESTS ; pwd
 cd tests ; pwd
 chmod 000 workspace ; cd workspace ; pwd ; chmod 777 workspace
 cd ; pwd ;
-cd ; pwd ; , export HOME=
+cd ; pwd ; export HOME=
+cd ; pwd ; unset HOME
+cd ; pwd; export HOME="./"
+cd ; pwd; export HOME="../../"
+cd ; pwd; export HOME=""
+cd ; pwd; export HOME="/BIN"
+cd ; pwd; export HOME=NO_SUCH_FILE
+cd bin; pwd ; export CDPATH="/"
+cd ; pwd ; export CDPATH="/"
+cd ; pwd ; export CDPATH="/"; export HOME=
+cd ; pwd ; export CDPATH="/"; unset HOME
+cd /; pwd ; export CDPATH="/"
+cd /bin; pwd ; export CDPATH="/"
+cd /bin; pwd ; export CDPATH="/bin"
+cd /bin; pwd ; export CDPATH="/bin"
+cd; cd ../../../../../././././../../../././../../../; pwd ; export HOME="/"
+cd ///; pwdl; cd ///bin; pwd
+cd ////; pwdl; cd ////bin; pwd
+cd /////; pwdl; cd /////bin; pwd
+cd //////; pwdl; cd //////bin; pwd
+cd ///////; pwdl; cd ///////bin; pwd
+cd  ; export HOME=//
+cd  ; export HOME=//bin/..////////////bin/../
+cd  ; export HOME=///
+cd bin ; export CDPATH=//
+cd bin ; export CDPATH=//bin/..////////////bin/../
+cd bin ; export CDPATH=///
+export CDPATH=":"; cd dir; pwd
+export CDPATH="hello:"; cd dir; pwd
+export CDPATH=":/"; cd dir; pwd
+export CDPATH=""; cd bin; pw
