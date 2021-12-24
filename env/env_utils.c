@@ -6,11 +6,26 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 18:51:29 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/24 15:56:56 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+
+static void	shlvl_update(t_dict *env)
+{
+	int	shlvl;
+
+	shlvl = ft_atoi(dict_get_value("SHLVL", env));
+	shlvl++;
+	if (shlvl > 1000)
+	{
+		ft_putstr_fd("bash: warning: shell level (1000) too high, \
+		resetting to 1", STDERR_FILENO);
+		shlvl = 1;
+	}
+	dict_update_value(ft_xstrdup("SHLVL"), ft_itoa(shlvl), env);
+}
 
 t_dict	*init_envs(void)
 {
@@ -29,6 +44,7 @@ t_dict	*init_envs(void)
 		dict_addback(env, dict_new(key, value));
 		i++;
 	}
+	shlvl_update(env);
 	dict_delone(dict_search_item("OLDPWD", env));
 	return (env);
 }

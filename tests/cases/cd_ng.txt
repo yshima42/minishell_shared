@@ -1,3 +1,9 @@
+cd //; pwdl; cd //bin; pwd
+export CDPATH="::/"; cd bin; pwd
+export CDPATH="::/:"; cd bin; pwd
+export CDPATH="/:"; cd bin; pwd
+export CDPATH="//::"; cd bin; pwd
+
 mkdir dir; ln -s dir link; cd link; pwd
 mkdir dir; ln -s dir link; rmdir dir; cd link; pwd
 mkdir dir; cd dir; rmdir ../dir; cd ./; pwd;cd .; pwd; cd ./././././; pwd; cd .////////./; pwd; cd ../; pwd
