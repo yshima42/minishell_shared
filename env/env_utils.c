@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 15:56:56 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/24 16:30:55 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ t_dict	*init_envs(void)
 	}
 	shlvl_update(env);
 	dict_delone(dict_search_item("OLDPWD", env));
+	dict_delone(dict_search_item("_", env));
 	return (env);
 }

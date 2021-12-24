@@ -145,6 +145,9 @@ test_pwd:		$(NAME)
 test_redirect:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/redirect.txt
 
+test_shlvl:		$(NAME)
+				./tests/script/test_file.sh ./tests/cases/shlvl.txt
+
 test_syntax:	$(NAME)
 				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
 
