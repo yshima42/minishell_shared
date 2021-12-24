@@ -2,7 +2,7 @@
 
 GRADEME_DIR=`pwd`
 
-source ${GRADEME_DIR}/tests/new_test/test_base.sh
+source ${GRADEME_DIR}/tests/script/test_base.sh
 
 # clean file
 echo -n > ${GRADEME_DIR}/tests/output/test_result.md
