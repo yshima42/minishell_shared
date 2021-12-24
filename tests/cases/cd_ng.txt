@@ -3,7 +3,7 @@ mkdir dir; ln -s dir link; rmdir dir; cd link; pwd
 mkdir dir; cd dir; rmdir ../dir; cd ./; pwd;cd .; pwd; cd ./././././; pwd; cd .////////./; pwd; cd ../; pwd
 mkdir -p a/b/c; cd a/b/c; rm -rf ../../b; cd ./; pwd; cd ../; pwd; cd .////./; pwd
 mkdir -p a/b/c; cd a/b/c; rm -rf ../../b; cd ./; pwd; cd .././.; pwd; cd ./; pwd; cd ../; pwd
-cd ; pwd;
+
 cd ; pwd;, export HOME=
 cd ; pwd;, unset HOME
 cd ; pwd;, export HOME="./"
