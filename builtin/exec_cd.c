@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 09:18:20 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/24 00:30:26 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	exec_cd(char **args, t_info *info)
 	del_before_dots(path_clst);
 	dest_path = clst_to_line(path_clst);
 	clst_clear(path_clst);
-	if (chdir(dest_path) != 0)
+	if (chdir(args[1]) != 0)
 		cd_perror(args[1]);
 	else
 		update_pwd(current_path, dest_path, info);

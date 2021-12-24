@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 01:17:47 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 01:44:28 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/24 00:04:46 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	del_before_dots(t_clst *path_clst)
 		{
 			p = p->next;
 			clst_delone(p->prev);
-			clst_delone(p->prev);
+			if (p->prev != path_clst)
+				clst_delone(p->prev);
 			continue ;
 		}
 		p = p->next;
