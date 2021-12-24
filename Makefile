@@ -120,40 +120,42 @@ re:				fclean all
 test:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/cases.txt
 
-test_cd:		$(NAME)
+cd:				$(NAME)
 				./tests/script/test_file.sh ./tests/cases/cd.txt
 
-test_echo:		$(NAME)
+echo:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/echo.txt
 
-test_env:		$(NAME)
+env:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/env.txt
 
-test_exit:		$(NAME)
+exit:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/exit.txt
 
-test_expand:	$(NAME)
+expand:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/expand.txt
 
-test_export:	$(NAME)
+export:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/export.txt
 
-test_pwd:		$(NAME)
+pwd:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/pwd.txt
 
-test_redirect:	$(NAME)
+redirect:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/redirect.txt
+				rm -rf file *.txt f out
 
-test_shlvl:		$(NAME)
+shlvl:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/shlvl.txt
 
-test_syntax:	$(NAME)
+syntax:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/syntax_error.txt
 
-test_simple:	$(NAME)
+simple:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/simple_command.txt
+				rm -rf aa ab ac a .a perm dir ls 
 
-test_unset:		$(NAME)
+unset:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/unset.txt
 
 #pipe_test: 		$(TEST_OBJS)
