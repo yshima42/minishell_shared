@@ -32,6 +32,8 @@ M_SRC	=	clst_addback.c\
 			dict_search_item.c\
 			dict_size.c\
 			dict_store_item.c\
+			dict_substr_key.c\
+			dict_substr_value.c\
 			dict_to_array.c\
 			dict_update_value.c\
 			dict_xstore_item.c\

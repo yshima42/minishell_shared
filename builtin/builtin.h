@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 01:35:30 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/25 20:04:58 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@
 
 //PATH_MAX
 # include <limits.h>
-
-enum e_symbol
-{
-	NO_SYMBOL,
-	ASSIGN,
-	JOIN
-};
 
 enum e_cmd
 {
@@ -53,8 +46,8 @@ void	show_environment(t_dict *env, enum e_cmd cmd);
 bool	validate_identifier(char *arg);
 void	puterr_not_validate(char *arg, char *cmdname);
 char	*ft_getcwd(void);
-void	update_env(char *key, char *value, enum e_symbol symbol, \
-						t_dict *env);
+/* void	update_env(char *key, char *value, enum e_symbol symbol, \ */
+						/* t_dict *env); */
 //cd_utils1.c
 char	*set_cd_dest(char **args, t_info *info);
 void	array_to_clst(t_clst *clst_head, char **array);
