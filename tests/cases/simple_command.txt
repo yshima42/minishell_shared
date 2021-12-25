@@ -1,9 +1,3 @@
-
-/bin/ls | /usr/bin/grep a | /usr/bin/grep c ; touch aa ab ac
-ls ; touch a .a
-ls -a ; touch a .a
-ls | grep a ; touch aa ab ac
-ls | grep a | grep c ; touch aa ab ac
 echo hello world | cat
 no_such_file
 ./no_such_file
@@ -11,11 +5,7 @@ no_such_file
 perm ; touch perm; chmod 000 perm
 perm ; touch perm; chmod 100 perm
 perm ; touch perm; chmod 300 perm
-dir ; mkdir dir
-./dir ; mkdir dir
 echo a | $NO_ENV | cat ; unset NO_ENV
-export PATH=":/bin" ; ls  ; cp /bin/ls .; chmod 000 ls;
-export PATH="::/bin::" ; ls  ; cp /bin/ls .; chmod 000 ls;
 export PATH=""; nosuchfile
 export PATH=''; nosuchfile
 unset PATH; nosuchfile
