@@ -6,19 +6,19 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 17:47:52 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/25 10:40:00 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-/* void	xpath_error(char *cmd)
+void	xpath_error(char *cmd)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	perror(cmd);
-	g_exit_status = EXEC_FAIL;
-	exit (EXEC_FAIL);
-} */
+	g_exit_status = CMD_NOT_FINED;
+	exit (CMD_NOT_FINED);
+}
 
 void	xdir_check(char *cmd)
 {
