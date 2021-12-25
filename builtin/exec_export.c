@@ -6,111 +6,79 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 22:59:37 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 20:06:44 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static enum e_symbol	search_symbol(char *arg)
+static char	*search_connector(char *line)
 {
 	char	*join_ptr;
 	char	*assign_ptr;
 
-	join_ptr = ft_strnstr(arg, "+=", ft_strlen(arg));
-	assign_ptr = ft_strchr(arg, '=');
-	if (join_ptr != NULL && join_ptr != arg)
-		return (JOIN);
-	if (assign_ptr != NULL && assign_ptr != arg)
-		return (ASSIGN);
-	return (NO_SYMBOL);
+	join_ptr = ft_strnstr(line, "+=", ft_strlen(line));
+	assign_ptr = ft_strchr(line, '=');
+	if (join_ptr && join_ptr != line)
+		return ("+=");
+	if (assign_ptr && assign_ptr != line)
+		return ("=");
+	return (NULL);
 }
 
-static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
-							char **key, char **value)
-{
-	char	*key_end;
-	char	*value_begin;
-	size_t	key_len;
-
-	if (symbol == JOIN)
-	{
-		key_end = ft_strnstr(key_begin, "+=", ft_strlen(key_begin));
-		value_begin = key_end + 2;
-	}
-	else
-	{
-		key_end = ft_strchr(key_begin, '=');
-		value_begin = key_end + 1;
-	}
-	key_len = key_end - key_begin;
-	if (key_len == 0)
-		*key = NULL;
-	else
-		*key = ft_xstrndup(key_begin, key_len);
-	if (*value_begin == '\0')
-		*value = NULL;
-	else
-		*value = ft_xstrdup(value_begin);
-	return ;
-}
-
-void	update_env(char *key, char *value, enum e_symbol symbol, \
-						t_dict *env)
+static void	update_env(char *key, char *value, char *connector, t_dict *env)
 {
 	t_dict	*item;
 
 	item = dict_search_item(key, env);
-	if (symbol == JOIN)
+	if (connector && ft_strcmp(connector, "+=") == 0)
 	{
-		if (item != NULL)
-		{
-			if (ft_strcmp(item->key, "_") != 0)
-				item->value = ft_xstrjoin_free(item->value, value);
-		}
+		if (item)
+			item->value = ft_xstrjoin_free(item->value, value);
 		else
 			dict_addback(env, xdict_new(key, value));
 	}
 	else
 	{
-		if (item != NULL)
-		{
-			free(key);
-			free(item->value);
-			item->value = value;
-		}
-		else
-			dict_addback(env, xdict_new(key, value));
+		dict_update_value(key, value, env);
 	}
 	return ;
 }
 
-static void	export_one_data(char *arg, t_dict *env)
+static void	export_item(char *arg, t_dict *env)
 {
-	enum e_symbol	symbol;
 	char			*key;
 	char			*value;
+	char			*connector;
 
-	symbol = search_symbol(arg);
-	if (symbol == NO_SYMBOL)
+	connector = search_connector(arg);
+	if (!connector)
 	{
-		if (!validate_identifier(arg))
-			puterr_not_validate(arg, "export");
+		key = ft_xstrdup(arg);
+		value = NULL;
 	}
 	else
 	{
-		get_key_and_value(arg, symbol, &key, &value);
-		if (ft_strcmp(key, "_") == 0)
-			multi_free(key, value, NULL, NULL);
-		else if (!validate_identifier(key))
+		key = dict_substr_key(arg, connector);
+		value = dict_substr_value(arg, connector);
+	}
+	update_env(key, value, connector, env);
+}
+
+void	export_loop(char **args, t_dict *env)
+{
+	while (*args)
+	{
+		if (validate_identifier(*args))
 		{
-			puterr_not_validate(arg, "export");
-			multi_free(key, value, NULL, NULL);
+			export_item(*args, env);
 		}
 		else
 		{
-			update_env(key, value, symbol, env);
+			puterr_not_validate(*args, "export");
+			g_exit_status = 1;
 		}
+		args++;
 	}
 }
 
@@ -118,15 +86,13 @@ int	exec_export(char **cmd, t_dict *env)
 {
 	g_exit_status = 0;
 	cmd++;
-	if (*cmd == NULL)
+	if (!*cmd)
+	{
 		show_environment(env, EXPORT);
+	}
 	else
 	{
-		while (*cmd != NULL)
-		{
-			export_one_data(*cmd, env);
-			cmd++;
-		}
+		export_loop(cmd, env);
 	}
 	return (CONTINUE);
 }

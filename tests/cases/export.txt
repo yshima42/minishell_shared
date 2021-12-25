@@ -1,6 +1,9 @@
 export APPEND=1; export APPEND+=2; export | grep APPEND
 export APPEND_NONE=1; export APPEND_NONE+=; export | grep APPEND_NONE
-export APPEND_NONE=; export APPEND_NONE=; export APPEND_NONE+=; export | grep APPEND_NONE
-export OVERWRITE=42; export OVERWRITE=a; export | grep OVERWRITE
-export PATH; export | grep PATH
-export A=B=C=D; export | grep A
+export APPEND_NONE=; export APPEND_NONE=; export APPEND_NONE+=; export | sort | grep APPEND_NONE
+export OVERWRITE=42; export OVERWRITE=a; export | sort | grep OVERWRITE
+export PATH; export | sort | grep PATH
+export A=B=C=D; export | sort | grep A
+export =
+export | sort | grep -v -E '^declare -x _='
+export OK ; export | sort | grep -v -E '^declare -x _='

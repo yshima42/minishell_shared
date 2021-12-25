@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:14:08 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 16:30:55 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/25 19:04:15 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,15 @@ static void	shlvl_update(t_dict *env)
 
 t_dict	*init_envs(void)
 {
-	char		*key;
-	char		*value;
-	size_t		i;
 	t_dict		*env;
 	extern char	**environ;
+	size_t		i;
 
 	env = xdict_new("", "");
 	i = 0;
 	while (environ[i])
-	{
-		key = ft_xsubstr(environ[i], 0, ft_strclen(environ[i], '='));
-		value = ft_xstrdup(ft_strchr(environ[i], '=') + 1);
-		dict_addback(env, dict_new(key, value));
-		i++;
-	}
+		dict_addback(env, dict_xstore_item(environ[i++], "="));
 	shlvl_update(env);
-	dict_delone(dict_search_item("OLDPWD", env));
 	dict_delone(dict_search_item("_", env));
 	return (env);
 }
