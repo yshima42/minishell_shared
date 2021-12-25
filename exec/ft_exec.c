@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/25 10:49:22 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/25 11:43:52 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_exec(char **cmd, t_info *info)
 		free (path);
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		perror(*cmd);
-		if (errno == EACCES)
+		if (errno == EACCES || errno == ENOTDIR)
 			exit(EXEC_FAIL);
 		else
 			exit(CMD_NOT_FINED);

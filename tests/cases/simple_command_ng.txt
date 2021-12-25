@@ -1,5 +1,4 @@
 /bin/ls | /usr/bin/grep a ; touch aa ab ac
-/bin/ls/no_such_file
 ./perm ; touch perm; chmod 000 perm
 ./perm ; touch perm; chmod 100 perm
 ./perm ; touch perm; chmod 300 perm

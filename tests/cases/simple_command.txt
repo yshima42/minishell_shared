@@ -11,3 +11,4 @@ export PATH=''; nosuchfile
 unset PATH; nosuchfile
 unset PATH; export PATH; nosuchfile
 unset PATH; export PATH=; nosuchfile
+/bin/ls/no_such_file

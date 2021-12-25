@@ -6,13 +6,13 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 14:22:20 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 10:56:10 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/25 11:30:20 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-void	update_pwd(char *current_path, char *dest_path, t_info *info)
+static void	update_pwd(char *current_path, char *dest_path, t_info *info)
 {
 	dict_update_value(ft_xstrdup("pwd"), \
 		ft_xstrdup(dest_path), info->pwd);
@@ -25,7 +25,7 @@ void	update_pwd(char *current_path, char *dest_path, t_info *info)
 	g_exit_status = 0;
 }
 
-int	dot_handle(char *operand, char *current_path, t_info *info)
+static bool	dot_handle(char *operand, char *current_path, t_info *info)
 {
 	char	*cwd;
 	char	*update_path;
@@ -43,12 +43,12 @@ int	dot_handle(char *operand, char *current_path, t_info *info)
 			free(update_path);
 			free(current_path);
 			free(operand);
-			return (0);
+			return (false);
 		}
 		else
 			free(cwd);
 	}
-	return (1);
+	return (true);
 }
 
 int	exec_cd(char **args, t_info *info)
