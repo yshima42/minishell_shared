@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/25 20:04:58 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 22:45:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		exec_cd(char **args, t_info *info);
 bool	has_no_arg(char **cmd);
 bool	has_one_arg(char **cmd);
 void	show_environment(t_dict *env, enum e_cmd cmd);
+void	show_environlist(t_dict *env);
+void	show_declarelist(t_dict *env);
 //builtin/export_utils.c
 bool	validate_identifier(char *arg);
 void	puterr_not_validate(char *arg, char *cmdname);

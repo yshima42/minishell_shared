@@ -6,4 +6,9 @@ export PATH; export | sort | grep PATH
 export A=B=C=D; export | sort | grep A
 export =
 export | sort | grep -v -E '^declare -x _='
-export OK ; export | sort | grep -v -E '^declare -x _='
+export 1 _+ _OK _2? _OK2=VAR =NG OK3=; export | sort | grep -v -E '^declare -x _='
+export APPEND_EMPTY=""; export APPEND_EMPTY=""; export APPEND_EMPTY=""; export | sort | grep APPEND_EMPTY
+export APPEND=1; export APPEND+=2; export | grep APPEND
+unset OLDPWD; cd ..; export | gsort | rep OLDPWD
+export PWD; export | sort | grep PWD
+export OLDPWD; export | sort | grep OLDPWD

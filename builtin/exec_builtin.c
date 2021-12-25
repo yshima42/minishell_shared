@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 00:20:31 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 01:16:39 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/25 22:46:33 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	exec_pwd(t_info *info)
 int	exec_env(t_dict *env)
 {
 	g_exit_status = 0;
-	show_environment(env, ENV);
+	show_environlist(env);
 	return (CONTINUE);
 }
 

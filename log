@@ -20,18 +20,10 @@ STDERR:      [32m[OK][0m
 EXIT STATUS: [32m[OK][0m
 
 [33mexport PATH; export | sort | grep PATH
-[0mSTDOUT:      [31m[NG]
-1,3d0
-< declare -x CPATH="/Users/hyoshie/.brew/opt/readline/include:"
-< declare -x MANPATH="/Users/hyoshie/.brew/Cellar/readline/8.1.1/share/man:"
-< declare -x PATH="/Users/hyoshie/.brew/opt/llvm/bin:/Users/hyoshie/.nodebrew/current/bin:/Users/hyoshie/.command:/Users/hyoshie/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki:/Users/hyoshie/.brew/opt/llvm/bin:/Users/hyoshie/.nodebrew/current/bin:/Users/hyoshie/.command:/Users/hyoshie/.brew/bin:/Users/hyoshie/.brew/opt/fzf/bin"
-[0mSTDERR:      [32m[OK][0m
-EXIT STATUS: [31m[NG]
-1c1
-< 0
----
-> 139
-[0m
+[0mSTDOUT:      [32m[OK][0m
+STDERR:      [32m[OK][0m
+EXIT STATUS: [32m[OK][0m
+
 [33mexport A=B=C=D; export | sort | grep A
 [0mSTDOUT:      [32m[OK][0m
 STDERR:      [32m[OK][0m
@@ -47,52 +39,23 @@ EXIT STATUS: [32m[OK][0m
 STDERR:      [32m[OK][0m
 EXIT STATUS: [32m[OK][0m
 
-[33mexport OK ; export | sort | grep -v -E '^declare -x _='
+[33mexport 1 _+ _OK _2? _OK2=VAR =NG OK3=; export | sort | grep -v -E '^declare -x _='
+[0mSTDOUT:      [32m[OK][0m
+STDERR:      [32m[OK][0m
+EXIT STATUS: [32m[OK][0m
+
+[33mexport dquote='"' dollar='$' backslash='' backquote='`' newline='n'; export | sort | grep -v -E '^declare -x _='
 [0mSTDOUT:      [31m[NG]
-1,39d0
-< declare -x CPATH="/Users/hyoshie/.brew/opt/readline/include:"
-< declare -x HISTFILE="/Users/hyoshie/.zsh_history"
-< declare -x HISTSIZE="100000"
-< declare -x HOME="/Users/hyoshie"
-< declare -x HOMEBREW_CACHE="/tmp/hyoshie/Homebrew/Caches"
-< declare -x HOMEBREW_TEMP="/tmp/hyoshie/Homebrew/Temp"
-< declare -x LESS_TERMCAP_mb="[01;34m"
-< declare -x LESS_TERMCAP_md="[01;34m"
-< declare -x LESS_TERMCAP_me="[0m"
-< declare -x LESS_TERMCAP_se="[0m"
-< declare -x LESS_TERMCAP_so="[01;44;33m"
-< declare -x LESS_TERMCAP_ue="[0m"
-< declare -x LESS_TERMCAP_us="[01;33m"
-< declare -x LOGNAME="hyoshie"
-< declare -x MAIL="hyoshie@student.42tokyo.jp"
-< declare -x MAKEFLAGS=""
-< declare -x MAKELEVEL="1"
-< declare -x MANPATH="/Users/hyoshie/.brew/Cellar/readline/8.1.1/share/man:"
-< declare -x MFLAGS=""
-< declare -x OK
-< declare -x OLDPWD
-< declare -x PATH="/Users/hyoshie/.brew/opt/llvm/bin:/Users/hyoshie/.nodebrew/current/bin:/Users/hyoshie/.command:/Users/hyoshie/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/munki:/Users/hyoshie/.brew/opt/llvm/bin:/Users/hyoshie/.nodebrew/current/bin:/Users/hyoshie/.command:/Users/hyoshie/.brew/bin:/Users/hyoshie/.brew/opt/fzf/bin"
-< declare -x PWD="/Users/hyoshie/project/minish/share"
-< declare -x SAVEHIST="100000"
-< declare -x SHELL="/bin/zsh"
-< declare -x SHLVL="4"
-< declare -x SSH_CLIENT="10.51.0.29 37804 22"
-< declare -x SSH_CONNECTION="10.51.0.31 35090 10.11.22.8 22"
-< declare -x SSH_TTY="/dev/ttys000"
-< declare -x TERM="screen-256color"
-< declare -x TERM_PROGRAM="tmux"
-< declare -x TERM_PROGRAM_VERSION="3.2a"
-< declare -x TMOUT="86400"
-< declare -x TMPDIR="/var/folders/zz/zyxvpxvq6csfxvn_n0000sr80006f2/T/"
-< declare -x TMUX="/private/tmp/tmux-6594/default,77177,0"
-< declare -x TMUX_PANE="%15"
-< declare -x USER="hyoshie"
-< declare -x XDG_CONFIG_HOME="/Users/hyoshie/.config"
-< declare -x __CF_USER_TEXT_ENCODING="0x19C2:0:0"
-[0mSTDERR:      [32m[OK][0m
-EXIT STATUS: [31m[NG]
-1c1
-< 0
+39c39
+< declare -x backquote="`"
 ---
-> 139
-[0m
+> declare -x backquote="`"
+41,42c41,42
+< declare -x dollar="$"
+< declare -x dquote="""
+---
+> declare -x dollar="$"
+> declare -x dquote="""
+[0mSTDERR:      [32m[OK][0m
+EXIT STATUS: [32m[OK][0m
+

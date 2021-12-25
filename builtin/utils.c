@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 10:15:03 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/25 01:31:52 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 22:21:42 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,43 +32,4 @@ bool	has_one_arg(char **cmd)
 		return (true);
 	else
 		return (false);
-}
-
-static void	ft_putstr_fd_dquate(char *str, int fd)
-{
-	ft_putchar_fd('\"', fd);
-	ft_putstr_fd(str, fd);
-	ft_putchar_fd('\"', fd);
-}
-
-static bool	exists_oldpwd(t_dict *env)
-{
-	if (dict_search_item("OLDPWD", env))
-		return (true);
-	else
-		return (false);
-}
-
-void	show_environment(t_dict *env, enum e_cmd cmd)
-{
-	t_dict	*t_env;
-
-	if (env == NULL)
-		return ;
-	t_env = env->next;
-	while (t_env != env)
-	{	
-		if (cmd == EXPORT)
-			ft_putstr_fd("declare -x ", STDOUT_FILENO);
-		ft_putstr_fd(t_env->key, STDOUT_FILENO);
-		ft_putstr_fd("=", STDOUT_FILENO);
-		if (cmd == EXPORT)
-			ft_putstr_fd_dquate(t_env->value, STDOUT_FILENO);
-		else
-			ft_putstr_fd(t_env->value, STDOUT_FILENO);
-		ft_putchar_fd('\n', STDOUT_FILENO);
-		t_env = t_env->next;
-	}
-	if (cmd == EXPORT && !exists_oldpwd(env))
-		ft_putendl_fd("declare -x OLDPWD", STDOUT_FILENO);
 }
