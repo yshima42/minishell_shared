@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/25 15:04:59 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 16:47:38 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
 	char	*value_begin;
 	size_t	key_len;
 
+	if (symbol == NO_SYMBOL)
+	{
+		*key = ft_xstrdup(key_begin);
+		*value = NULL;
+		return ;
+	}
 	if (symbol == JOIN)
 	{
 		key_end = ft_strnstr(key_begin, "+=", ft_strlen(key_begin));
@@ -60,70 +66,47 @@ void	update_env(char *key, char *value, enum e_symbol symbol, \
 	item = dict_search_item(key, env);
 	if (symbol == JOIN)
 	{
-		if (item != NULL)
-		{
-			if (ft_strcmp(item->key, "_") != 0)
-				item->value = ft_xstrjoin_free(item->value, value);
-		}
+		if (item)
+			item->value = ft_xstrjoin_free(item->value, value);
 		else
 			dict_addback(env, xdict_new(key, value));
 	}
 	else
 	{
-		if (item != NULL)
-		{
-			free(key);
-			free(item->value);
-			item->value = value;
-		}
-		else
-			dict_addback(env, xdict_new(key, value));
+		dict_update_value(key, value, env);
 	}
 	return ;
 }
 
-static void	export_one_data(char *arg, t_dict *env)
+static void	export_item(char *arg, t_dict *env)
 {
 	enum e_symbol	symbol;
 	char			*key;
 	char			*value;
 
+	if (!validate_identifier(arg))
+	{
+		puterr_not_validate(arg, "export");
+		g_exit_status = 1;
+		return ;
+	}
 	symbol = search_symbol(arg);
-	if (symbol == NO_SYMBOL)
-	{
-		if (!validate_identifier(arg))
-			puterr_not_validate(arg, "export");
-	}
-	else
-	{
-		get_key_and_value(arg, symbol, &key, &value);
-		if (ft_strcmp(key, "_") == 0)
-			multi_free(key, value, NULL, NULL);
-		else if (!validate_identifier(key))
-		{
-			puterr_not_validate(arg, "export");
-			multi_free(key, value, NULL, NULL);
-		}
-		else
-		{
-			update_env(key, value, symbol, env);
-		}
-	}
+	get_key_and_value(arg, symbol, &key, &value);
+	update_env(key, value, symbol, env);
 }
 
 int	exec_export(char **cmd, t_dict *env)
 {
 	g_exit_status = 0;
 	cmd++;
-	if (*cmd == NULL)
+	if (!*cmd)
+	{
 		show_environment(env, EXPORT);
+	}
 	else
 	{
-		while (*cmd != NULL)
-		{
-			export_one_data(*cmd, env);
-			cmd++;
-		}
+		while (*cmd)
+			export_item(*cmd++, env);
 	}
 	return (CONTINUE);
 }
