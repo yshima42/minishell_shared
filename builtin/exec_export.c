@@ -6,22 +6,22 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/25 20:06:44 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 22:14:29 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static char	*search_connector(char *line)
+static char	*search_connector(char *expression)
 {
 	char	*join_ptr;
 	char	*assign_ptr;
 
-	join_ptr = ft_strnstr(line, "+=", ft_strlen(line));
-	assign_ptr = ft_strchr(line, '=');
-	if (join_ptr && join_ptr != line)
+	join_ptr = ft_strnstr(expression, "+=", ft_strlen(expression));
+	assign_ptr = ft_strchr(expression, '=');
+	if (join_ptr && join_ptr != expression)
 		return ("+=");
-	if (assign_ptr && assign_ptr != line)
+	if (assign_ptr && assign_ptr != expression)
 		return ("=");
 	return (NULL);
 }
@@ -45,22 +45,22 @@ static void	update_env(char *key, char *value, char *connector, t_dict *env)
 	return ;
 }
 
-static void	export_item(char *arg, t_dict *env)
+static void	export_item(char *expression, t_dict *env)
 {
 	char			*key;
 	char			*value;
 	char			*connector;
 
-	connector = search_connector(arg);
+	connector = search_connector(expression);
 	if (!connector)
 	{
-		key = ft_xstrdup(arg);
+		key = ft_xstrdup(expression);
 		value = NULL;
 	}
 	else
 	{
-		key = dict_substr_key(arg, connector);
-		value = dict_substr_value(arg, connector);
+		key = dict_substr_key(expression, connector);
+		value = dict_substr_value(expression, connector);
 	}
 	update_env(key, value, connector, env);
 }
