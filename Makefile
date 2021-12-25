@@ -126,7 +126,7 @@ cd:				$(NAME)
 echo:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/echo.txt
 
-env:			$(NAME)
+env_test:		$(NAME)
 				./tests/script/test_file.sh ./tests/cases/env.txt
 
 exit:			$(NAME)

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 23:22:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/22 22:59:37 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/25 15:04:59 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ static void	get_key_and_value(char *key_begin, enum e_symbol symbol, \
 		*key = NULL;
 	else
 		*key = ft_xstrndup(key_begin, key_len);
-	if (*value_begin == '\0')
-		*value = NULL;
-	else
-		*value = ft_xstrdup(value_begin);
+	*value = ft_xstrdup(value_begin);
 	return ;
 }
 

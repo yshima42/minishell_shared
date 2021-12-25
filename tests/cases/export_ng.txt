@@ -1,4 +1,3 @@
-export | sort | grep -v -E '^declare -x _='
 export 1 _+ _OK _2? _OK2=VAR =NG OK3=; export | sort | grep -v -E '^declare -x _='
 export dquote='"' dollar='$' backslash='\' backquote='`' newline='\n'; export | sort | grep -v -E '^declare -x _='
 export APPEND_EMPTY=""; export APPEND_EMPTY=""; export APPEND_EMPTY=""; export | sort | grep APPEND_EMPTY
@@ -8,4 +7,4 @@ unset PWD; cd ..; export | sort | grep PWD
 unset OLDPWD; cd ..; export | gsort | rep OLDPWD
 unset PWD; cd ..; export PWD=new_value; export | sort | grep PWD
 unset PWD; cd ..; export PWD; export | sort | grep PWD
-export =
+export APPEND=1; export APPEND+=2; export | grep APPEND
