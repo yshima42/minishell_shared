@@ -13,6 +13,7 @@ export PATH=":/" ; ls  ; cp /bin/ls .; chmod 000 ls;
 export PATH="::" ; ls  ; cp /bin/ls .; chmod 000 ls;
 export PATH="/:" ; ls  ; cp /bin/ls .; chmod 000 ls;
 export PATH="/bin:" ; ls  ; cp /bin/ls .; chmod 000 ls;
+touch perm; chmod 000 perm; ./perm
 
 #I think the following tests are OK, even though it doesn't pass the tester
 dir ; mkdir dir

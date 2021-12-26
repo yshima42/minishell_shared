@@ -9,6 +9,6 @@ echo -n > ${GRADEME_DIR}/tests/output/test_result.md
 
 while read line
 do
-	tester $line
+	perm_tester $line
 	printf "\n"
 done < $1

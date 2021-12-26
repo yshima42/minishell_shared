@@ -159,7 +159,7 @@ unset:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/unset.txt
 
 permisson:		$(NAME)
-				./tests/script/test_file.sh ./tests/cases/permission.txt
+				./tests/script/test_perm.sh ./tests/cases/permission.txt
 
 #pipe_test: 		$(TEST_OBJS)
 #				$(LIBFTMAKE)

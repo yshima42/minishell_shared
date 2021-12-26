@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/25 11:43:52 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/26 18:29:39 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 		return (path_from_env(cmd_array[0], envpath));
 }
 
+static void	handle_execve_err(char *cmd, char *path)
+{
+	free (path);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	if (errno == ENOEXEC)
+	{
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		ft_putendl_fd(": Permission denied", STDERR_FILENO);
+	}
+	else
+		perror(cmd);
+	if (errno == EACCES || errno == ENOTDIR || errno == ENOEXEC)
+		exit(EXEC_FAIL);
+	else
+		exit(CMD_NOT_FINED);
+}
+
 void	ft_exec(char **cmd, t_info *info)
 {
 	char	*path;
@@ -74,12 +91,6 @@ void	ft_exec(char **cmd, t_info *info)
 	path = get_path(cmd[0], cmd, info);
 	if (execve(path, cmd, environ) == -1)
 	{
-		free (path);
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		perror(*cmd);
-		if (errno == EACCES || errno == ENOTDIR)
-			exit(EXEC_FAIL);
-		else
-			exit(CMD_NOT_FINED);
+		handle_execve_err(*cmd, path);
 	}
 }

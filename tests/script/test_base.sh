@@ -70,11 +70,17 @@ diff_check()
 	fi
 }
 
+remove_file()
+{
+	rm -rf perm ls
+}
+
 tester()
 {
 	TEST_CMD=$@
 
 	echo $TEST_CMD | bash > ${STDOUT_BASH} 2> ${STDERR_BASH_TMP} ; echo $? > ${EXIIT_STATUS_BASH}
+	remove_file
 	./minishell -c "$TEST_CMD" > ${STDOUT_MINISHELL} 2> ${STDERR_MINISHELL_TMP} ; echo $? > ${EXIT_STATUS_MINISHELL}
 	if [ $1 = "exit" ]; then
 		sed -e /^exit/d ${STDERR_MINISHELL_TMP} > ${STDERR_MINISHELL}
@@ -106,8 +112,40 @@ tester()
 	rm ${EXIT_STATUS_MINISHELL} ${EXIIT_STATUS_BASH} ${DIFF_EXIT_STATUS}
 }
 
-remove_file()
+perm_tester()
 {
-	rm -rf perm ls
+	TEST_CMD=$@
+
+	echo $TEST_CMD | bash > ${STDOUT_BASH} 2> ${STDERR_BASH_TMP} ; echo $? > ${EXIIT_STATUS_BASH}
+	remove_file
+	./minishell -c "$TEST_CMD" > ${STDOUT_MINISHELL} 2> ${STDERR_MINISHELL_TMP} ; echo $? > ${EXIT_STATUS_MINISHELL}
+	if [ $1 = "exit" ]; then
+		sed -e /^exit/d ${STDERR_MINISHELL_TMP} > ${STDERR_MINISHELL}
+	else
+		cp ${STDERR_MINISHELL_TMP} ${STDERR_MINISHELL}
+	fi
+
+	printf "${COLOR_YELLOW}$TEST_CMD\n${COLOR_RESET}"
+	#STDOUT
+	printf "STDOUT:      "
+	diff -s ${STDOUT_BASH} ${STDOUT_MINISHELL} > ${DIFF_STDOUT}
+	diff_check ${DIFF_STDOUT} ${STDOUT_BASH} ${STDOUT_MINISHELL} $TEST_CMD
+
+	#STDERR
+	sed -e 's/bash/minishell/g' ${STDERR_BASH_TMP} > ${STDERR_BASH}
+	rm ${STDERR_BASH_TMP}
+	rm ${STDERR_MINISHELL_TMP}
+	printf "STDERR:      "
+	diff -s ${STDERR_BASH} ${STDERR_MINISHELL} > ${DIFF_STDERR}
+	diff_check ${DIFF_STDERR} ${STDERR_BASH} ${STDERR_MINISHELL} $TEST_CMD
+
+	#EXIT STATUS
+	printf "EXIT STATUS: "
+	diff -s ${EXIIT_STATUS_BASH} ${EXIT_STATUS_MINISHELL} > ${DIFF_EXIT_STATUS}
+	diff_check ${DIFF_EXIT_STATUS} ${EXIIT_STATUS_BASH} ${EXIT_STATUS_MINISHELL} $TEST_CMD
+
+	rm ${STDOUT_MINISHELL} ${STDOUT_BASH} ${DIFF_STDOUT}
+	rm ${STDERR_MINISHELL} ${STDERR_BASH} ${DIFF_STDERR}
+	rm ${EXIT_STATUS_MINISHELL} ${EXIIT_STATUS_BASH} ${DIFF_EXIT_STATUS}
 }
 
