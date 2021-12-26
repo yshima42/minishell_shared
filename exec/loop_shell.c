@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 12:47:49 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/23 14:51:51 by yshimazu         ###   ########.fr       */
+/*   Updated: 2021/12/26 22:48:51 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char	*ms_readline(void)
 	line = readline(GREEN"minishell"RESET" > ");
 	if (!line)
 		ft_putendl_fd("exit", STDERR_FILENO);
+	if (ft_strlen(line) > 0)
+		add_history(line);
 	return (line);
 }
 

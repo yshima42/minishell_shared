@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:53:45 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 14:57:04 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 22:34:51 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	proc_lstclear(t_proc **lst)
 	if (!lst || !(*lst))
 		return ;
 	current = *lst;
-	while (current != NULL)
+	while (current)
 	{
 		tmp = current->next;
 		proc_lstdelone(current);

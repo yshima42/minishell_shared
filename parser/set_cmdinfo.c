@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:07:12 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 14:45:06 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 23:10:49 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	count_word(t_token *tokens)
 	size_t	cmd_num;
 
 	cmd_num = 0;
-	while (tokens != NULL && !is_pipe(tokens->kind))
+	while (tokens && !is_pipe(tokens->kind))
 	{
 		if (is_cmd(tokens))
 			cmd_num++;
@@ -30,24 +30,24 @@ char	**set_cmdinfo(t_token **tokens)
 {
 	char	**cmd;
 	size_t	cmd_num;
-	t_token	*tmp;
+	t_token	*current;
 	size_t	idx;
 
-	if (tokens == NULL)
+	if (!tokens)
 		return (NULL);
-	tmp = *tokens;
-	cmd_num = count_word(tmp);
+	current = *tokens;
+	cmd_num = count_word(current);
 	cmd = (char **)xmalloc(sizeof(char *) * (cmd_num + 1));
 	idx = 0;
-	while (tmp != NULL && !is_pipe(tmp->kind))
+	while (current && !is_pipe(current->kind))
 	{
-		if (is_cmd(tmp))
-			cmd[idx++] = ft_xstrdup(tmp->word);
-		tmp = tmp->next;
+		if (is_cmd(current))
+			cmd[idx++] = ft_xstrdup(current->word);
+		current = current->next;
 	}
 	cmd[idx] = NULL;
-	if (tmp != NULL && is_pipe(tmp->kind))
-		tmp = tmp->next;
-	*tokens = tmp;
+	if (current && is_pipe(current->kind))
+		current = current->next;
+	*tokens = current;
 	return (cmd);
 }

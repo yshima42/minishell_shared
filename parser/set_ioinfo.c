@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:07:12 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/23 16:18:43 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 23:07:22 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static size_t	count_redirect(t_token *tokens)
 	size_t	io_num;
 
 	io_num = 0;
-	while (tokens != NULL && !is_pipe(tokens->kind))
+	while (tokens && !is_pipe(tokens->kind))
 	{
 		if (is_io_operator(tokens->kind))
 			io_num++;
@@ -29,7 +29,7 @@ static size_t	count_redirect(t_token *tokens)
 static t_io	*init_ioinfo(t_token *tokens)
 {
 	t_io	*head;
-	t_io	*tmp;
+	t_io	*current;
 	size_t	io_num;
 
 	head = NULL;
@@ -38,10 +38,10 @@ static t_io	*init_ioinfo(t_token *tokens)
 		return (NULL);
 	while (io_num--)
 	{
-		tmp = io_lstnew();
-		if (tmp == NULL)
+		current = io_lstnew();
+		if (!current)
 			exit(EXIT_FAILURE);
-		io_lstadd_back(&head, tmp);
+		io_lstadd_back(&head, current);
 	}
 	return (head);
 }
@@ -50,26 +50,26 @@ t_io	*set_ioinfo(t_token *tokens)
 {
 	t_io	*io_info;
 	t_io	*io_head;
-	t_token	*tmp;
+	t_token	*current;
 
-	if (tokens == NULL)
+	if (!tokens)
 		return (NULL);
-	tmp = tokens;
-	io_info = init_ioinfo(tmp);
-	if (io_info == NULL)
+	current = tokens;
+	io_info = init_ioinfo(current);
+	if (!io_info)
 		return (NULL);
 	io_head = io_info;
-	while (tmp != NULL && !is_pipe(tmp->kind))
+	while (current && !is_pipe(current->kind))
 	{
-		if (is_io_operator(tmp->kind))
+		if (is_io_operator(current->kind))
 		{
-			io_info->kind = tmp->kind;
-			io_info->word = ft_xstrdup(tmp->next->word);
-			if (tmp->next->is_empty)
+			io_info->kind = current->kind;
+			io_info->word = ft_xstrdup(current->next->word);
+			if (current->next->is_empty)
 				io_info->is_empty = true;
 			io_info = io_info->next;
 		}
-		tmp = tmp->next;
+		current = current->next;
 	}
 	return (io_head);
 }

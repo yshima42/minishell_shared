@@ -6,18 +6,18 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/22 01:13:12 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 23:21:25 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-size_t	count_process(t_token *tokens)
+static size_t	count_process(t_token *tokens)
 {
 	size_t	count;
 
 	count = 1;
-	while (tokens != NULL)
+	while (tokens)
 	{
 		if (tokens->kind == PIPE)
 			count++;
@@ -26,18 +26,16 @@ size_t	count_process(t_token *tokens)
 	return (count);
 }
 
-t_proc	*init_procinfo(size_t proc_num)
+static t_proc	*init_procinfo(size_t proc_num)
 {
 	t_proc	*head;
-	t_proc	*tmp;
-	size_t	idx;
+	t_proc	*current;
 
 	head = NULL;
-	idx = 0;
 	while (proc_num--)
 	{
-		tmp = proc_lstnew();
-		proc_lstadd_back(&head, tmp);
+		current = proc_lstnew();
+		proc_lstadd_back(&head, current);
 	}
 	return (head);
 }
@@ -47,12 +45,12 @@ t_proc	*to_proclist(t_token *tokens)
 {
 	t_proc	*procs;
 	size_t	proc_num;
-	t_token	*token_head;
+	t_token	*head;
 
-	token_head = tokens;
+	head = tokens;
 	proc_num = count_process(tokens);
 	procs = init_procinfo(proc_num);
 	procs = set_procinfo(procs, tokens, proc_num);
-	tkn_lstclear(&token_head, free);
+	tkn_lstclear(&head, free);
 	return (procs);
 }
