@@ -106,4 +106,8 @@ tester()
 	rm ${EXIT_STATUS_MINISHELL} ${EXIIT_STATUS_BASH} ${DIFF_EXIT_STATUS}
 }
 
+remove_file()
+{
+	rm -rf perm ls
+}
 

@@ -1,0 +1,22 @@
+./empty ; touch empty; chmod +x empty
+./exe ; printf "#!/bin/bash\necho 42" > exe; chmod +x exe; ln -s exe sym; chmod -h -x sym
+export PATH="/bin:" ; ls  ; cp /bin/ls .; chmod 000 ls;
+export PATH="hello:" ; ls  ; cp /bin/ls .; chmod 000 ls;
+export PATH=":" ; ls  ; cp /bin/ls .; chmod 000 ls;
+export PATH=":/" ; ls  ; cp /bin/ls .; chmod 000 ls;
+export PATH="::" ; ls  ; cp /bin/ls .; chmod 000 ls;
+export PATH="/:" ; ls  ; cp /bin/ls .; chmod 000 ls;
+export PATH="/bin:" ; ls  ; cp /bin/ls .; chmod 000 ls;
+
+#I think the following tests are OK, even though it doesn't pass the tester
+dir ; mkdir dir
+export PATH=":/bin" ; ls  ; cp /bin/ls .; chmod 000 ls;
+./dir ; mkdir dir
+ls ; touch a .a
+ls -a ; touch a .a
+/bin/ls | /usr/bin/grep a | /usr/bin/grep c ; touch aa ab ac
+ls | grep a ; touch aa ab ac
+ls | grep a | grep c ; touch aa ab ac
+/bin/ls ; touch a .a
+/bin/ls -a ; touch a .a
+export PATH="::/bin::" ; ls  ; cp /bin/ls .; chmod 000 ls;

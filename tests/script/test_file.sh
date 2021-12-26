@@ -11,4 +11,5 @@ while read line
 do
 	tester $line
 	printf "\n"
+	remove_file
 done < $1

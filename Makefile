@@ -158,6 +158,9 @@ simple:			$(NAME)
 unset:			$(NAME)
 				./tests/script/test_file.sh ./tests/cases/unset.txt
 
+permisson:		$(NAME)
+				./tests/script/test_file.sh ./tests/cases/permission.txt
+
 #pipe_test: 		$(TEST_OBJS)
 #				$(LIBFTMAKE)
 #				$(CC) $(CFLAGS) $(TEST_OBJS) $(LIBFTFLAG) -o $(TEST_NAME)
