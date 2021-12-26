@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/23 16:04:22 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 22:21:34 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_token	*tkn_lstlast(t_token *lst)
 {
 	if (!lst)
 		return (NULL);
-	while (lst->next != NULL)
+	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }
@@ -54,9 +54,9 @@ void	tkn_lstadd_back(t_token **lst, t_token *new)
 
 void	tkn_lstlink(t_token *before, t_token *after)
 {
-	if (before != NULL)
+	if (before)
 		before->next = after;
-	if (after != NULL)
+	if (after)
 		after->prev = before;
 	return ;
 }

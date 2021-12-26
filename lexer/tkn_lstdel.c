@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/07 14:58:41 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 22:22:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	tkn_lstdelone(t_token *lst, void (*del)(void *))
 
 void	tkn_lstclear(t_token **lst, void (*del)(void *))
 {
-	t_token	*tmp;
 	t_token	*current;
+	t_token	*tmp;
 
 	if (!lst || !(*lst))
 		return ;
 	current = *lst;
-	while (current != NULL)
+	while (current)
 	{
 		tmp = current->next;
 		tkn_lstdelone(current, del);

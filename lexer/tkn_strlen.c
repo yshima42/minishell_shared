@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 20:02:46 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 17:27:35 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 22:24:16 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ size_t	tkn_strlen_word(const char *start, bool (*func)(char))
 
 	len = 0;
 	quote = NONE;
-	while (*start != '\0')
+	while (*start)
 	{
 		if (quote == NONE)
 		{
