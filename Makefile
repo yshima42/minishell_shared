@@ -37,7 +37,7 @@ PARSER_FILES	=	parse_line.c\
 					set_cmdinfo.c\
 					set_ioinfo.c\
 					validate_syntax.c
-EXPANDER_FILES	=	expand_var.c\
+EXPANDER_FILES	=	replace_var.c\
 					expand_var_all.c\
 					utils.c
 HEREDOC_FILES	=	heredoc_handler.c\

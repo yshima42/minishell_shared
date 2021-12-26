@@ -6,31 +6,37 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 15:14:51 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/19 14:48:43 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 19:32:44 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 
-char	*search_prefix(char *word)
+static bool	is_prefix_dollar(int current, int next, enum e_quote quote)
 {
-	enum e_quote	quote;
+	if (current == '$' && quote != SINGLE)
+	{
+		if (is_shellvar_top(next) || next == '?')
+			return (true);
+	}
+	return (false);
+}
 
-	quote = NONE;
+char	*search_prefix(char *word, enum e_quote *quote)
+{
 	while (*word != '\0')
 	{
-		if (*word == '$' && quote != SINGLE && \
-			*(word + 1) != '\0' && *(word + 1) != '$' && \
-			!(quote == DOUBLE && *(word + 1) == '"') && \
-			!(quote == DOUBLE && ft_isspace(*(word + 1))))
-			return (word);
-		if (quote == NONE)
+		if (is_prefix_dollar(*word, *(word + 1), *quote))
 		{
-			check_quote_begin(&quote, *word);
+			return (word);
+		}
+		if (*quote == NONE)
+		{
+			check_quote_begin(quote, *word);
 		}
 		else
 		{
-			check_quote_end(&quote, *word);
+			check_quote_end(quote, *word);
 		}
 		word++;
 	}
