@@ -4,6 +4,7 @@ NAME			= 	minishell
 BONUS_NAME		= 	minishell_bonus
 TEST_NAME		= 	tests
 INCLUDES		= 	minishell.h
+
 #SRCS_PATH		= 	./srcs/
 BONUS_PATH		= 	./srcs_bonus/
 LIBFT_PATH		= 	./libft/
@@ -24,10 +25,9 @@ LEXER_FILES		=	tkn_lst.c\
 					tkn_strlen.c\
 					lex_ctype.c\
 					to_token.c
+
 PARSER_FILES	=	parse_line.c\
 					to_proclist.c\
-					split_expanded_word.c\
-					remove_quote.c\
 					proc_lst.c\
 					proc_lstdel.c\
 					proc_ctype.c\
@@ -37,13 +37,20 @@ PARSER_FILES	=	parse_line.c\
 					set_cmdinfo.c\
 					set_ioinfo.c\
 					validate_syntax.c
-EXPANDER_FILES	=	replace_var.c\
-					expand_var_all.c\
+
+EXPANDER_FILES	=	expand.c\
+					remove_quote.c\
+					replace_var_in_str.c\
+					replace_vars.c\
+					split_with_value_ifs.c\
 					utils.c
+
 HEREDOC_FILES	=	heredoc_handler.c\
 					heredoc_utils.c
+
 SIGNAL_FILES	=	signal.c\
 					signal_heredoc.c
+
 EXEC_FILES    	= 	exec_bool.c\
 					ft_exec.c\
 					ft_exec_utils.c\
@@ -52,6 +59,7 @@ EXEC_FILES    	= 	exec_bool.c\
 					multi_procs.c\
 					redirect_utils.c\
 					single_proc.c
+
 BUILTIN_FILES  	=	exec_builtin.c\
 					exec_cd.c\
 					cd_utils1.c\
@@ -62,13 +70,18 @@ BUILTIN_FILES  	=	exec_builtin.c\
 					exec_unset.c\
 					export_utils.c\
 					utils.c
+
 UTILS_FILES	=		utils.c\
 					error.c\
 					shell_init.c\
 					shell_terminate.c 
+
 ENV_FILES    	=	env_utils.c
+
 BONUS_FILES		=
+
 TEST_MAIN    	= 	$(TEST_PATH)/test_main.c $(TEST_PATH)/test_pipe.c
+
 SRCS			= 	$(SRCS_FILES)
 B_SRCS			= 	$(addprefix $(BONUS_PATH), $(BONUS_FILES))
 LEXER_SRCS		= 	$(addprefix $(LEXER_PATH), $(LEXER_FILES))
@@ -80,10 +93,12 @@ UTILS_SRCS		= 	$(addprefix $(UTILS_PATH), $(UTILS_FILES))
 EXEC_SRCS		= 	$(addprefix $(EXEC_PATH), $(EXEC_FILES))
 BUILTIN_SRCS	= 	$(addprefix $(BUILTIN_PATH), $(BUILTIN_FILES))
 ENV_SRCS		= 	$(addprefix $(ENV_PATH), $(ENV_FILES))
+
 SRCS_OBJS		= 	$(MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o) $(HEREDOC_SRCS:.c=.o) $(UTILS_SRCS:.c=.o) $(EXEC_SRCS:.c=.o) $(BUILTIN_SRCS:.c=.o) $(ENV_SRCS:.c=.o)
 TEST_OBJS		= 	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o) $(HEREDOC_SRCS:.c=.o) $(UTILS_SRCS:.c=.o) $(EXEC_SRCS:.c=.o) $(BUILTIN_SRCS:.c=.o) $(ENV_SRCS:.c=.o)
 # TEST_OBJS		=	$(TEST_MAIN:.c=.o) $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(LEXER_SRCS:.c=.o) $(SIGNAL_SRCS:.c=.o) $(EXPANDER_SRCS:.c=.o)
 BONUS_OBJS		= 	$(SRCS:.c=.o)
+
 LIBFTMAKE		= 	$(MAKE) -C $(LIBFT_PATH)
 LIBFTFLAG		= 	-L$(LIBFT_PATH) -lft
 
