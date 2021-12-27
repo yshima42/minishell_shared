@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:02:31 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/26 19:46:55 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/27 18:31:58 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include "../libft/mylibft.h"
 
 //expand_var.c
-char	*replace_var(char *word, t_dict *env);
+t_token	*expand(t_token *tokens, t_dict *env);
+char	*replace_var_in_str(char *word, t_dict *env);
 //expand_var_all.c
-t_token	*expand_var_all(t_token *tokens, t_dict *env);
+t_token	*replace_vars(t_token *tokens, t_dict *env);
+t_token	*remove_quoting(t_token *tokens);
+t_token	*split_with_value_ifs(t_token *old);
 //utils.c
 char	*search_prefix(char *word, enum e_quote *quote);
 char	*ft_xstrjoin_free(char *str1, char *str2);

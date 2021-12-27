@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_var.c                                       :+:      :+:    :+:   */
+/*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 22:54:15 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/26 19:46:44 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/27 18:31:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static size_t	strlen_var(char *var_begin)
 	}
 }
 
-char	*replace_var(char *word, t_dict *env)
+char	*replace_var_in_str(char *word, t_dict *env)
 {
 	char			*prefix;
 	char			*ret;
