@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/04 17:44:13 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 01:16:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,6 @@ static int	terminate_syntaxerr(t_token *tokens)
 	ft_putendl_fd("minishell: Syntax Error", STDERR_FILENO);
 	return (SYNTAX_ERR);
 }
-
-// static bool	exists_heredoc(t_proc *proc)
-// {
-// 	t_io	*current;
-
-// 	while (proc)
-// 	{
-// 		current = proc->io_info;
-// 		while (current)
-// 		{
-// 			if (current->kind == HEREDOC)
-// 				return (true);
-// 			current = current->next;
-// 		}
-// 		proc = proc->next;
-// 	}
-// 	return (false);
-// }
 
 int	parse_line(t_proc **procs, char *line, t_dict *env)
 {
@@ -54,7 +36,5 @@ int	parse_line(t_proc **procs, char *line, t_dict *env)
 	if (!tokens)
 		return (EMPTY_LINE);
 	*procs = to_proclist(tokens);
-	// if (exists_heredoc(*procs) && heredoc_handler(*procs) != DEFAULT)
-	// 	return (HEREDOC_EXIT);
 	return (DEFAULT);
 }
