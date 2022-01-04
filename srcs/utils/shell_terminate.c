@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   shell_terminate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 17:41:40 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/21 19:06:25 by hyoshie           #+#    #+#             */
+/*   Updated: 2021/12/21 19:07:46 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#include "utils.h"
 
-# include "../parser/parser.h"
-# include "../signal/ms_signal.h"
-# include <fcntl.h>
-
-/* void	heredoc_io_xopen(t_io *io_info); */
-int		heredoc_handler(t_token *tokens);
-
-#endif
+void	shell_terminate(t_info *info)
+{
+	dict_clear(info->env);
+	dict_clear(info->pwd);
+	free(info);
+	rl_clear_history();
+}

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 17:41:40 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/11/26 21:29:15 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/25 00:21:21 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#include "utils.h"
 
-# include "../parser/parser.h"
-# include "../signal/ms_signal.h"
-# include <fcntl.h>
+void	ms_puterr_2arg(char *str1, char *str2)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(str1, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(str2, STDERR_FILENO);
+}
 
-/* void	heredoc_io_xopen(t_io *io_info); */
-int		heredoc_handler(t_token *tokens);
-
-#endif
+void	perror_2(char *str1, char *str2)
+{
+	ft_putstr_fd(str1, 2);
+	if (str2 && !*str2)
+		ft_putstr_fd(": ", 2);
+	perror(str2);
+}

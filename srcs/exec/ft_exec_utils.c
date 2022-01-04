@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   ft_exec_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 17:41:40 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/25 10:40:00 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#include "exec.h"
 
-# include "../parser/parser.h"
-# include "../signal/ms_signal.h"
-# include <fcntl.h>
+void	xpath_error(char *cmd)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	perror(cmd);
+	g_exit_status = CMD_NOT_FINED;
+	exit (CMD_NOT_FINED);
+}
 
-/* void	heredoc_io_xopen(t_io *io_info); */
-int		heredoc_handler(t_token *tokens);
+void	xdir_check(char *cmd)
+{
+	DIR	*dir;
 
-#endif
+	dir = opendir(cmd);
+	if (dir)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+		closedir(dir);
+		g_exit_status = EXEC_FAIL;
+		exit (EXEC_FAIL);
+	}
+}

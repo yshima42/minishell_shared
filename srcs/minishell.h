@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 17:41:40 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/10/01 21:56:57 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/18 08:15:23 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-# include "../parser/parser.h"
-# include "../signal/ms_signal.h"
-# include <fcntl.h>
+# include "libft/mylibft.h"
+# include "parser/parser.h"
+# include "signal/ms_signal.h"
+# include "exec/exec.h"
+# include "env/env.h"
+# include "utils/utils.h"
+# include "builtin/builtin.h"
+/* # include "tests/test.h" */
+# include <stdint.h>
+# include <stdbool.h>
+# include <string.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-/* void	heredoc_io_xopen(t_io *io_info); */
-int		heredoc_handler(t_token *tokens);
+# define EQUAL 0
 
 #endif

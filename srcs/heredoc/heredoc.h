@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 17:41:40 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/21 18:02:50 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../signal/ms_signal.h"
 # include <fcntl.h>
 
-/* void	heredoc_io_xopen(t_io *io_info); */
-int		heredoc_handler(t_token *tokens);
+void	heredoc_io_xopen(t_io *io_info);
+int		heredoc_handler(t_proc *proc);
 
 #endif

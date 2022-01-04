@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tkn_lstdel.c                                       :+:      :+:    :+:   */
+/*   signal_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/04 17:25:00 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/15 10:00:37 by hyoshie           #+#    #+#             */
+/*   Updated: 2021/12/19 11:21:19 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "ms_signal.h"
+#include "../parser/parser.h"
 
-//Need connect prev and next?
-void	tkn_lstdelone(t_token *lst, void (*del)(void *))
+void	interrupt_heredoc(int sig)
 {
-	if (!lst)
-		return ;
-	if (del)
-		del(lst->word);
-	free(lst);
+	(void)sig;
+	ft_putchar_fd('\n', STDERR_FILENO);
+	exit(HEREDOC_EXIT);
 	return ;
 }
 
-void	tkn_lstclear(t_token **lst, void (*del)(void *))
+void	set_signal_in_heredoc(void)
 {
-	t_token	*current;
-	t_token	*tmp;
-
-	if (!lst || !(*lst))
-		return ;
-	current = *lst;
-	while (current)
-	{
-		tmp = current->next;
-		tkn_lstdelone(current, del);
-		current = tmp;
-	}
-	*lst = NULL;
+	signal(SIGINT, interrupt_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 	return ;
 }

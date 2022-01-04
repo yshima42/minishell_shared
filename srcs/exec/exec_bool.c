@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   exec_bool.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 17:41:40 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/09 17:26:56 by yshimazu          #+#    #+#             */
+/*   Updated: 2021/12/15 17:50:24 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#include "exec.h"
 
-# include "../parser/parser.h"
-# include "../signal/ms_signal.h"
-# include <fcntl.h>
+bool	is_single_proc(t_proc *proc)
+{
+	return (!proc->next);
+}
 
-/* void	heredoc_io_xopen(t_io *io_info); */
-int		heredoc_handler(t_token *tokens);
+bool	is_redirect(t_io *io_info)
+{
+	return (io_info);
+}
 
-#endif
+bool	is_first_proc(t_proc *proc)
+{
+	return (proc->id == 0);
+}
+
+bool	is_last_proc(t_proc *proc)
+{
+	return (!proc->next);
+}
+
+bool	is_no_cmd(t_proc *proc)
+{
+	return (!proc->cmd[0]);
+}

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tkn_lstdel.c                                       :+:      :+:    :+:   */
+/*   proc_lstdel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/04 17:25:00 by hyoshie          ###   ########.fr       */
+/*   Created: 2021/12/07 14:53:45 by hyoshie           #+#    #+#             */
+/*   Updated: 2021/12/26 22:34:51 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "parser.h"
 
-//Need connect prev and next?
-void	tkn_lstdelone(t_token *lst, void (*del)(void *))
+void	proc_lstdelone(t_proc *lst)
 {
 	if (!lst)
 		return ;
-	if (del)
-		del(lst->word);
+	free_vector(lst->cmd);
+	io_lstclear(&lst->io_info, free);
 	free(lst);
 	return ;
 }
 
-void	tkn_lstclear(t_token **lst, void (*del)(void *))
+void	proc_lstclear(t_proc **lst)
 {
-	t_token	*current;
-	t_token	*tmp;
+	t_proc	*tmp;
+	t_proc	*current;
 
 	if (!lst || !(*lst))
 		return ;
@@ -34,7 +33,7 @@ void	tkn_lstclear(t_token **lst, void (*del)(void *))
 	while (current)
 	{
 		tmp = current->next;
-		tkn_lstdelone(current, del);
+		proc_lstdelone(current);
 		current = tmp;
 	}
 	*lst = NULL;

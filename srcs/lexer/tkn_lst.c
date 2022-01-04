@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/04 17:38:56 by hyoshie          ###   ########.fr       */
+/*   Updated: 2021/12/26 22:21:34 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_token	*tkn_lstnew(char *str)
 	new->prev = NULL;
 	new->next = NULL;
 	new->word = str;
-	new->heredoc_file = NULL;
 	new->kind = WORD;
 	new->is_empty = false;
 	return (new);
@@ -70,10 +69,6 @@ t_token	*tkn_lstdup(t_token *old)
 	new->prev = NULL;
 	new->next = NULL;
 	new->word = ft_xstrdup(old->word);
-	if (old->heredoc_file)
-		new->heredoc_file = ft_xstrdup(old->heredoc_file);
-	else
-		new->heredoc_file = NULL;
 	new->kind = old->kind;
 	new->is_empty = old->is_empty;
 	return (new);
