@@ -14,11 +14,11 @@
 
 static char	*replace_line(char *line, t_dict *env)
 {
-	char	*ret;
+	char	*tmp;
 
-	ret = replace_var_in_str(line, env);
-	free(line);
-	return (ret);
+	line = replace_var_in_str(line, env);
+	free(tmp);
+	return (line);
 }
 
 static void	heredoc_child(t_token *tokens, t_dict *env, int heredoc_fd)
