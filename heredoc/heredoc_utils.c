@@ -6,45 +6,71 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:14:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/21 17:59:27 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 14:37:21 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
 
-static int	heredoc_xopen(char **heredoc_file_name)
+static char	*replace_line(char *line, t_dict *env)
 {
-	int		fd;
-	char	*directory;
-	char	*i_str;
-	int		i;
+	char	*ret;
 
-	directory = "/tmp/";
-	i = 0;
-	fd = -1;
-	while (fd == -1)
-	{
-		if (i >= INT_MAX)
-			xperror("too many heredoc files");
-		i_str = ft_xitoa(i);
-		*heredoc_file_name = ft_xstrjoin(directory, i_str);
-		fd = open(*heredoc_file_name, O_WRONLY | O_EXCL | O_CREAT, 0666);
-		if (fd == -1)
-			free(*heredoc_file_name);
-		free(i_str);
-		i++;
-	}
-	return (fd);
+	ret = replace_var_in_str(line, env);
+	free(line);
+	return (ret);
 }
 
-void	heredoc_io_xopen(t_io *io_info)
+static void	heredoc_child(t_token *tokens, t_dict *env, int heredoc_fd)
 {
-	char	*heredoc_file_name;
+	char	*line;
+	char	*delimiter;
+	bool	expand;
 
-	while (io_info)
-	{	
-		io_info->fd = heredoc_xopen(&heredoc_file_name);
-		io_info->heredoc_file = heredoc_file_name;
-		io_info = io_info->next;
+	delimiter = remove_quoting_in_str(tokens->next->word);
+	if (ft_strcmp(tokens->next->word, delimiter) == 0)
+		expand = true;
+	else
+		expand = false;
+	while (true)
+	{
+		line = readline("> ");
+		if (!line)
+			break ;
+		if (ft_strcmp(line, delimiter) == 0)
+			break ;
+		if (expand)
+			line = replace_line(line, env);
+		ft_putendl_fd(line, heredoc_fd);
+		free(line);
 	}
+	free(line);
+	free(delimiter);
+	exit(0);
+}
+
+static void	heredoc_wait_close(pid_t pid, int *status, int heredoc_fd)
+{
+	set_signal_ignore();
+	xwaitpid(pid, status, 0);
+	xclose(heredoc_fd);
+}
+
+int	store_heredoc(t_token *tokens, t_dict *env, int heredoc_fd)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = xfork();
+	if (pid == 0)
+	{
+		heredoc_child(tokens, env, heredoc_fd);
+	}
+	else
+	{
+		heredoc_wait_close(pid, &status, heredoc_fd);
+		if (WEXITSTATUS(status) == HEREDOC_EXIT)
+			return (HEREDOC_EXIT);
+	}
+	return (DEFAULT);
 }

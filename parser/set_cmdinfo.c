@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:07:12 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/26 23:10:49 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 11:35:43 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char	**set_cmdinfo(t_token **tokens)
 	t_token	*current;
 	size_t	idx;
 
-	if (!tokens)
-		return (NULL);
 	current = *tokens;
 	cmd_num = count_word(current);
 	cmd = (char **)xmalloc(sizeof(char *) * (cmd_num + 1));

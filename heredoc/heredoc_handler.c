@@ -6,85 +6,65 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/21 17:58:00 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 12:41:18 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
 
-//when(ft_strcmp == 0), needs free?
-static void	heredoc_child(t_io *io_info)
+static int	heredoc_xopen(t_token *tokens)
 {
-	char	*line;
+	int		fd;
+	char	*directory;
+	char	*i_str;
+	int		i;
 
-	while (io_info)
+	directory = "/tmp/";
+	i = 0;
+	fd = -1;
+	while (fd == -1)
 	{
-		while (1)
-		{
-			line = readline("> ");
-			if (line == NULL)
-				break ;
-			if (ft_strcmp(line, io_info->word) == 0)
-			{
-				free(line);
-				break ;
-			}
-			ft_putendl_fd(line, io_info->fd);
-			free(line);
-		}
-		io_info = io_info->next;
+		if (i >= INT_MAX)
+			xperror("too many heredoc files");
+		i_str = ft_xitoa(i);
+		tokens->heredoc_file = ft_xstrjoin(directory, i_str);
+		fd = open(tokens->heredoc_file, O_WRONLY | O_EXCL | O_CREAT, 0666);
+		if (fd == -1)
+			free(tokens->heredoc_file);
+		free(i_str);
+		i++;
 	}
-	exit(0);
+	return (fd);
 }
 
-static void	heredoc_io_xclose(t_io *io_info)
-{
-	while (io_info)
-	{	
-		xclose(io_info->fd);
-		io_info = io_info->next;
-	}
-}
-
-static int	heredoc_exit(t_proc *proc)
+static int	heredoc_exit(t_token *tokens, t_token *head)
 {
 	g_exit_status = 1;
-	unlink(proc->io_info->heredoc_file);
-	proc_lstclear(&proc);
+	unlink(tokens->heredoc_file);
+	tkn_lstclear(&head, free);
 	set_signal_in_read();
 	return (HEREDOC_EXIT);
 }
 
-static void	heredoc_wait_close(pid_t pid, int *status, t_proc *proc)
+int	heredoc_handler(t_token *tokens, t_dict *env)
 {
-	set_signal_ignore();
-	xwaitpid(pid, status, 0);
-	heredoc_io_xclose(proc->io_info);
-}
+	int		heredoc_fd;
+	t_token	*head;
 
-int	heredoc_handler(t_proc *proc)
-{
-	pid_t	pid;
-	int		status;
-
+	head = tokens;
 	set_signal_in_heredoc();
-	while (proc)
+	while (tokens)
 	{
-		if (!proc->io_info || proc->io_info->kind != HEREDOC)
+		if (tokens->kind != HEREDOC)
 		{
-			proc = proc->next;
-			continue ;
+			tokens = tokens->next;
 		}
-		heredoc_io_xopen(proc->io_info);
-		pid = xfork();
-		if (pid == 0)
-			heredoc_child(proc->io_info);
 		else
 		{
-			heredoc_wait_close(pid, &status, proc);
-			if (WEXITSTATUS(status) == HEREDOC_EXIT)
-				return (heredoc_exit(proc));
-			proc = proc->next;
+			heredoc_fd = heredoc_xopen(tokens);
+			if (store_heredoc(tokens, env, heredoc_fd) == HEREDOC_EXIT)
+				return (heredoc_exit(tokens, head));
+			tokens = tokens->next->next;
 		}
 	}
 	set_signal_in_read();

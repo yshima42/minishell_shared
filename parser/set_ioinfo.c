@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:07:12 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/26 23:07:22 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 11:35:55 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ t_io	*set_ioinfo(t_token *tokens)
 	t_io	*io_head;
 	t_token	*current;
 
-	if (!tokens)
-		return (NULL);
 	current = tokens;
 	io_info = init_ioinfo(current);
 	if (!io_info)
@@ -65,6 +63,8 @@ t_io	*set_ioinfo(t_token *tokens)
 		{
 			io_info->kind = current->kind;
 			io_info->word = ft_xstrdup(current->next->word);
+			if (current->heredoc_file)
+				io_info->heredoc_file = ft_xstrdup(current->heredoc_file);
 			if (current->next->is_empty)
 				io_info->is_empty = true;
 			io_info = io_info->next;

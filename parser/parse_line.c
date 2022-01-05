@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/27 18:16:24 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 12:24:53 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@ static int	terminate_syntaxerr(t_token *tokens)
 	return (SYNTAX_ERR);
 }
 
-static bool	exists_heredoc(t_proc *proc)
-{
-	t_io	*current;
-
-	while (proc)
-	{
-		current = proc->io_info;
-		while (current)
-		{
-			if (current->kind == HEREDOC)
-				return (true);
-			current = current->next;
-		}
-		proc = proc->next;
-	}
-	return (false);
-}
-
 int	parse_line(t_proc **procs, char *line, t_dict *env)
 {
 	t_token	*tokens;
@@ -48,11 +30,11 @@ int	parse_line(t_proc **procs, char *line, t_dict *env)
 		return (EMPTY_LINE);
 	if (!validate_syntax(tokens))
 		return (terminate_syntaxerr(tokens));
+	if (heredoc_handler(tokens, env) != DEFAULT)
+		return (HEREDOC_EXIT);
 	tokens = expand(tokens, env);
 	if (!tokens)
 		return (EMPTY_LINE);
 	*procs = to_proclist(tokens);
-	if (exists_heredoc(*procs) && heredoc_handler(*procs) != DEFAULT)
-		return (HEREDOC_EXIT);
 	return (DEFAULT);
 }

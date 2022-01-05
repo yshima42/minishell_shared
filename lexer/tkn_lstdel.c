@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:01:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/26 22:22:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 01:35:20 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	tkn_lstdelone(t_token *lst, void (*del)(void *))
 	if (!lst)
 		return ;
 	if (del)
+	{
 		del(lst->word);
+		del(lst->heredoc_file);
+	}
 	free(lst);
 	return ;
 }
