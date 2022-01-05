@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 17:18:05 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/18 01:41:40 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:34:52 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdbool.h>
+# include <sys/wait.h>
 # include "../subject/libft.h"
 # include "../gnl/get_next_line.h"
 # include "color.h"
