@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/04 18:17:50 by yshimazu         ###   ########.fr       */
+/*   Updated: 2022/01/05 14:41:06 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*path_from_env(char *cmd, char *envpath)
 	while (path_each[++i])
 	{
 		ret = ft_xtrijoin(path_each[i], "/", cmd);
-		if (access(ret, X_OK) == 0)//読み込みでいいのか、execで読み込むのか
+		if (access(ret, F_OK) == 0)
 		{
 			ft_splitfree(path_each);
 			return (ret);
@@ -58,6 +58,26 @@ static char	*get_path(char *cmd, char **cmd_array, t_info *info)
 		return (path_from_env(cmd_array[0], envpath));
 }
 
+static void	handle_execve_error(char *path)
+{
+	int	status;
+
+	if (errno == ENOENT)
+		status = CMD_NOT_FINED;
+	else
+		status = EXEC_FAIL;
+	if (errno == ENOEXEC && !is_executable(path))
+		errno = EACCES;
+	if (errno == ENOEXEC)
+	{
+		free (path);
+		exit(EXIT_SUCCESS);
+	}
+	print_error(strerror(errno), path);
+	free (path);
+	exit(status);
+}
+
 void	ft_exec(char **cmd, t_info *info)
 {
 	char	*path;
@@ -65,7 +85,8 @@ void	ft_exec(char **cmd, t_info *info)
 
 	if (!cmd[0])
 		exit (0);
-	if (!cmd[0][0] || ft_strcmp(cmd[0], ".") == 0 || ft_strcmp(cmd[0], "..") == 0)
+	if (!cmd[0][0] || ft_strcmp(cmd[0], ".") == 0 ||
+		ft_strcmp(cmd[0], "..") == 0)
 	{
 		cmd_err(cmd[0]);
 		return ;
@@ -73,13 +94,5 @@ void	ft_exec(char **cmd, t_info *info)
 	environ = xdict_to_array(info->env, "=");
 	path = get_path(cmd[0], cmd, info);
 	if (execve(path, cmd, environ) == -1)
-	{
-		free (path);
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		perror(*cmd);
-		if (errno == EACCES || errno == ENOTDIR)
-			exit(EXEC_FAIL);
-		else
-			exit(CMD_NOT_FINED);
-	}
+		handle_execve_error(path);
 }
