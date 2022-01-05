@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:14:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/05 18:57:24 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 21:25:15 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	*replace_line(char *line, t_dict *env)
 {
 	char	*tmp;
 
+	tmp = line;
 	line = replace_var_in_str(line, env);
 	free(tmp);
 	return (line);
