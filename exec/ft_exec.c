@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/05 20:46:13 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 21:41:39 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,16 @@ static char	*path_from_env(char *cmd, char *envpath)
 	char	*ret;
 	char	**path_each;
 
-	path_each = ft_xsplit(envpath, ':');
+	path_each = ms_xsplit(envpath, ':');
 	if (*path_each == NULL)
 		return (cmd);
 	i = -1;
-	while (path_each[++i])
-	{
-		ret = ft_xtrijoin(path_each[i], "/", cmd);
-		if (access(ret, X_OK) == 0)
-		{
-			ft_splitfree(path_each);
-			return (ret);
-		}
-		free(ret);
-	}
+	ret = search_executable(cmd, path_each);
+	if (ret)
+		return (ret);
+	ret = search_binary(cmd, path_each);
+	if (ret)
+		return (ret);
 	cmd_err(cmd);
 	ft_splitfree(path_each);
 	return (0);
