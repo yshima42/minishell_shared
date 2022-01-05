@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:01 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/05 18:46:42 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 19:02:00 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	redirect(t_io *io)
 		return (true);
 	while (io)
 	{
-		if (io->is_empty)
+		if (io->is_empty && io->kind != HEREDOC)
 		{
 			ms_puterr_2arg(io->word, "ambiguous redirect");
 			break ;
