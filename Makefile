@@ -58,7 +58,8 @@ EXEC_FILES    	= 	exec_bool.c\
 					loop_shell.c\
 					multi_procs.c\
 					redirect_utils.c\
-					single_proc.c
+					single_proc.c\
+					ms_xsplit.c
 
 BUILTIN_FILES  	=	exec_builtin.c\
 					exec_cd.c\

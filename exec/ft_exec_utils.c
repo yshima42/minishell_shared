@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/05 14:40:03 by yshimazu         ###   ########.fr       */
+/*   Updated: 2022/01/05 21:07:52 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,40 @@ bool	is_executable(const char *path)
 	if ((path_stat.st_mode & S_IRUSR) != S_IRUSR)
 		return (false);
 	return (true);
+}
+
+char	*search_executable(char *cmd, char **path_each)
+{
+	int		i;
+	char	*ret;
+
+	i = -1;
+	while (path_each[++i])
+	{
+		ret = ft_xtrijoin(path_each[i], "/", cmd);
+		if (access(ret, X_OK) == 0)
+		{
+			ft_splitfree(path_each);
+			return (ret);
+		}
+	}
+	return (NULL);
+}
+
+char	*search_binary(char *cmd, char **path_each)
+{
+	int		i;
+	char	*ret;
+
+	i = -1;
+	while (path_each[++i])
+	{
+		ret = ft_xtrijoin(path_each[i], "/", cmd);
+		if (access(ret, F_OK) == 0)
+		{
+			ft_splitfree(path_each);
+			return (ret);
+		}
+	}
+	return (NULL);
 }

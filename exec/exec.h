@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/05 14:38:55 by yshimazu         ###   ########.fr       */
+/*   Updated: 2022/01/05 21:09:49 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ int		ft_open(char *file, enum e_kind open_mode);
 void	single_redirect_pipe(t_io *io_info);
 bool	launch_shell(t_proc *proc, t_info *info);
 bool	is_executable(const char *path);
+char	*search_executable(char *cmd, char **path_each);
+char	*search_binary(char *cmd, char **path_each);
+char	**ms_xsplit(char const *str, char c);
 
 #endif
