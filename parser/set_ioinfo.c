@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:07:12 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/05 11:14:56 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 11:35:55 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ t_io	*set_ioinfo(t_token *tokens)
 	t_io	*io_head;
 	t_token	*current;
 
-	if (!tokens)
-		return (NULL);
 	current = tokens;
 	io_info = init_ioinfo(current);
 	if (!io_info)
