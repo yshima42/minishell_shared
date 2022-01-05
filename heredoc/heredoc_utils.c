@@ -6,33 +6,58 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:14:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/05 01:20:37 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 12:44:10 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
 
-int	heredoc_xopen(t_token *tokens)
+static void	heredoc_child(t_token *tokens, t_dict *env, int heredoc_fd)
 {
-	int		fd;
-	char	*directory;
-	char	*i_str;
-	int		i;
+	char	*line;
+	char	*delimiter;
+	char	*tmp;
 
-	directory = "/tmp/";
-	i = 0;
-	fd = -1;
-	while (fd == -1)
+	delimiter = tokens->next->word;
+	while (1)
 	{
-		if (i >= INT_MAX)
-			xperror("too many heredoc files");
-		i_str = ft_xitoa(i);
-		tokens->heredoc_file = ft_xstrjoin(directory, i_str);
-		fd = open(tokens->heredoc_file, O_WRONLY | O_EXCL | O_CREAT, 0666);
-		if (fd == -1)
-			free(tokens->heredoc_file);
-		free(i_str);
-		i++;
+		line = readline("> ");
+		if (!line)
+			break ;
+		if (ft_strcmp(line, delimiter) == 0)
+			break ;
+		tmp = line;
+		line = replace_var_in_str(line, env);
+		ft_putendl_fd(line, heredoc_fd);
+		free(tmp);
+		free(line);
 	}
-	return (fd);
+	free(line);
+	exit(0);
+}
+
+static void	heredoc_wait_close(pid_t pid, int *status, int heredoc_fd)
+{
+	set_signal_ignore();
+	xwaitpid(pid, status, 0);
+	xclose(heredoc_fd);
+}
+
+int	store_heredoc(t_token *tokens, t_dict *env, int heredoc_fd)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = xfork();
+	if (pid == 0)
+	{
+		heredoc_child(tokens, env, heredoc_fd);
+	}
+	else
+	{
+		heredoc_wait_close(pid, &status, heredoc_fd);
+		if (WEXITSTATUS(status) == HEREDOC_EXIT)
+			return (HEREDOC_EXIT);
+	}
+	return (DEFAULT);
 }

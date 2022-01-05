@@ -6,32 +6,35 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:23 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/05 01:34:53 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 12:41:18 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
 
-static void	heredoc_child(t_token *tokens, int heredoc_fd)
+static int	heredoc_xopen(t_token *tokens)
 {
-	char	*line;
-	char	*delimiter;
+	int		fd;
+	char	*directory;
+	char	*i_str;
+	int		i;
 
-	delimiter = tokens->next->word;
-	while (1)
+	directory = "/tmp/";
+	i = 0;
+	fd = -1;
+	while (fd == -1)
 	{
-		line = readline("> ");
-		if (line == NULL)
-			break ;
-		if (ft_strcmp(line, delimiter) == 0)
-		{
-			free(line);
-			break ;
-		}
-		ft_putendl_fd(line, heredoc_fd);
-		free(line);
+		if (i >= INT_MAX)
+			xperror("too many heredoc files");
+		i_str = ft_xitoa(i);
+		tokens->heredoc_file = ft_xstrjoin(directory, i_str);
+		fd = open(tokens->heredoc_file, O_WRONLY | O_EXCL | O_CREAT, 0666);
+		if (fd == -1)
+			free(tokens->heredoc_file);
+		free(i_str);
+		i++;
 	}
-	exit(0);
+	return (fd);
 }
 
 static int	heredoc_exit(t_token *tokens, t_token *head)
@@ -43,33 +46,7 @@ static int	heredoc_exit(t_token *tokens, t_token *head)
 	return (HEREDOC_EXIT);
 }
 
-static void	heredoc_wait_close(pid_t pid, int *status, int heredoc_fd)
-{
-	set_signal_ignore();
-	xwaitpid(pid, status, 0);
-	xclose(heredoc_fd);
-}
-
-static int	store_heredoc(t_token *tokens, int heredoc_fd)
-{
-	pid_t	pid;
-	int		status;
-
-	pid = xfork();
-	if (pid == 0)
-	{
-		heredoc_child(tokens, heredoc_fd);
-	}
-	else
-	{
-		heredoc_wait_close(pid, &status, heredoc_fd);
-		if (WEXITSTATUS(status) == HEREDOC_EXIT)
-			return (HEREDOC_EXIT);
-	}
-	return (DEFAULT);
-}
-
-int	heredoc_handler(t_token *tokens)
+int	heredoc_handler(t_token *tokens, t_dict *env)
 {
 	int		heredoc_fd;
 	t_token	*head;
@@ -85,7 +62,7 @@ int	heredoc_handler(t_token *tokens)
 		else
 		{
 			heredoc_fd = heredoc_xopen(tokens);
-			if (store_heredoc(tokens, heredoc_fd) == HEREDOC_EXIT)
+			if (store_heredoc(tokens, env, heredoc_fd) == HEREDOC_EXIT)
 				return (heredoc_exit(tokens, head));
 			tokens = tokens->next->next;
 		}

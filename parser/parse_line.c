@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 18:35:36 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/05 01:16:20 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 12:24:53 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_line(t_proc **procs, char *line, t_dict *env)
 		return (EMPTY_LINE);
 	if (!validate_syntax(tokens))
 		return (terminate_syntaxerr(tokens));
-	if (heredoc_handler(tokens) != DEFAULT)
+	if (heredoc_handler(tokens, env) != DEFAULT)
 		return (HEREDOC_EXIT);
 	tokens = expand(tokens, env);
 	if (!tokens)
