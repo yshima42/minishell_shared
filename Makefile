@@ -3,7 +3,7 @@ CFLAGS			= 	-Wall -Wextra -Werror
 NAME			= 	minishell
 BONUS_NAME		= 	minishell_bonus
 TEST_NAME		= 	tests
-INCLUDES		= 	minishell.h
+# INCLUDES		= 	minishell.h
 
 #SRCS_PATH		= 	./srcs/
 BONUS_PATH		= 	./srcs_bonus/
@@ -119,7 +119,7 @@ lib:
 				$(LIBFTMAKE)
 
 .c.o:
-				$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
+				$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 				$(LIBFTMAKE) clean
