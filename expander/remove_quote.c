@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:08:07 by hyoshie           #+#    #+#             */
-/*   Updated: 2021/12/27 18:24:05 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 14:36:55 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*strcpy_except_quoting(char *dest, char *src)
 	return (top);
 }
 
-static char	*remove_quoting_in_str(char *word)
+char	*remove_quoting_in_str(char *word)
 {
 	char			*new;
 	size_t			count;

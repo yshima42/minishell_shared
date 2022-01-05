@@ -6,33 +6,46 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:14:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/05 12:44:10 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 14:37:21 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "heredoc.h"
 
+static char	*replace_line(char *line, t_dict *env)
+{
+	char	*ret;
+
+	ret = replace_var_in_str(line, env);
+	free(line);
+	return (ret);
+}
+
 static void	heredoc_child(t_token *tokens, t_dict *env, int heredoc_fd)
 {
 	char	*line;
 	char	*delimiter;
-	char	*tmp;
+	bool	expand;
 
-	delimiter = tokens->next->word;
-	while (1)
+	delimiter = remove_quoting_in_str(tokens->next->word);
+	if (ft_strcmp(tokens->next->word, delimiter) == 0)
+		expand = true;
+	else
+		expand = false;
+	while (true)
 	{
 		line = readline("> ");
 		if (!line)
 			break ;
 		if (ft_strcmp(line, delimiter) == 0)
 			break ;
-		tmp = line;
-		line = replace_var_in_str(line, env);
+		if (expand)
+			line = replace_line(line, env);
 		ft_putendl_fd(line, heredoc_fd);
-		free(tmp);
 		free(line);
 	}
 	free(line);
+	free(delimiter);
 	exit(0);
 }
 
