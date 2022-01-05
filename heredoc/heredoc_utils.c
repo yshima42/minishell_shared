@@ -6,7 +6,7 @@
 /*   By: hyoshie <hyoshie@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:14:27 by hyoshie           #+#    #+#             */
-/*   Updated: 2022/01/05 14:37:21 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 18:57:24 by hyoshie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	heredoc_child(t_token *tokens, t_dict *env, int heredoc_fd)
 			break ;
 		if (ft_strcmp(line, delimiter) == 0)
 			break ;
-		if (expand)
+		if (expand && line[0] != '\0')
 			line = replace_line(line, env);
 		ft_putendl_fd(line, heredoc_fd);
 		free(line);
