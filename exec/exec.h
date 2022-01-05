@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:56:32 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/24 17:13:40 by hyoshie          ###   ########.fr       */
+/*   Updated: 2022/01/05 14:38:55 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void	xdir_check(char *cmd);
 int		ft_open(char *file, enum e_kind open_mode);
 void	single_redirect_pipe(t_io *io_info);
 bool	launch_shell(t_proc *proc, t_info *info);
+bool	is_executable(const char *path);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:45:11 by yshimazu          #+#    #+#             */
-/*   Updated: 2021/12/25 10:40:00 by yshimazu         ###   ########.fr       */
+/*   Updated: 2022/01/05 14:40:03 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,17 @@ void	xdir_check(char *cmd)
 		g_exit_status = EXEC_FAIL;
 		exit (EXEC_FAIL);
 	}
+}
+
+bool	is_executable(const char *path)
+{
+	struct stat	path_stat;
+
+	if (stat(path, &path_stat) == -1)
+		return (false);
+	if ((path_stat.st_mode & S_IXUSR) != S_IXUSR)
+		return (false);
+	if ((path_stat.st_mode & S_IRUSR) != S_IRUSR)
+		return (false);
+	return (true);
 }
