@@ -6,7 +6,7 @@
 /*   By: yshimazu <yshimazu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:09:35 by yshimazu          #+#    #+#             */
-/*   Updated: 2022/01/05 14:41:06 by yshimazu         ###   ########.fr       */
+/*   Updated: 2022/01/05 14:54:39 by yshimazu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*path_from_env(char *cmd, char *envpath)
 	while (path_each[++i])
 	{
 		ret = ft_xtrijoin(path_each[i], "/", cmd);
-		if (access(ret, F_OK) == 0)
+		if (access(ret, X_OK) == 0)
 		{
 			ft_splitfree(path_each);
 			return (ret);

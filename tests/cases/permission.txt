@@ -4,3 +4,8 @@ touch perm; chmod 300 perm; ./perm
 touch perm; chmod 500 perm; ./perm
 touch perm; chmod 700 perm; ./perm
 cp /bin/ls .; chmod 000 ls; export PATH=":" ; ls
+cp /bin/ls .; chmod 000 ls; export PATH="/bin:" ; ls
+cp /bin/ls .; chmod 000 ls; export PATH="hello:" ; ls
+cp /bin/ls .; chmod 000 ls; export PATH=":/" ; ls
+cp /bin/ls .; chmod 000 ls; export PATH="::" ; ls
+cp /bin/ls .; chmod 000 ls; export PATH="/:" ; ls
